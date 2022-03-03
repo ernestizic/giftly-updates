@@ -7,16 +7,9 @@ const Backdrop = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: ${(props) =>
-    props.transparent ? "transparent" : "#00000090"};
-  opacity: 0;
-  pointer-events: none;
+    props.transparent ? "transparent" : "#00000050"};
   z-index: 5;
   overflow: auto;
-
-  &.show {
-    opacity: 1;
-    pointer-events: all;
-  }
 `;
 
 export default Backdrop;

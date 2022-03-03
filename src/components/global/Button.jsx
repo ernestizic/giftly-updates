@@ -8,56 +8,72 @@ const Wrapper = styled.button`
   justify-content: center;
   border-radius: 8px;
   height: 48px;
-  width: ${(props) => props.width ?? "200px"};
-  padding: 0 36px;
+  width: ${(props) => props.width ?? "120px"};
   background-color: var(--primary-main);
   color: #ffffff;
+  font-family: var(--font_1-regular);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0px;
   text-align: center;
+  transition: all 0.2s ease-out;
 
   .icon {
-    height: 2rem;
-    margin-right: 1.2rem;
+    height: 20px;
+
+    &.left {
+      margin-right: 8px;
+    }
+
+    &.right {
+      margin-left: 8px;
+    }
   }
 
   &:hover {
     background-color: var(--primary-dark);
   }
 
-  &:focus {
-    border: 8px solid #fcd4e5;
+  &.secondary {
+    background-color: var(--primary-light);
+    color: var(--primary-main);
+
+    &:hover {
+      background-color: var(--primary-light);
+    }
+  }
+
+  &.large {
+    height: 64px;
+    width: ${(props) => props.width ?? "200px"};
+    font-size: 18px;
+    line-height: 28px;
   }
 
   &:disabled {
     opacity: 0.5;
-  }
-
-  &.bordered {
-    border: 1px solid #01a3fa;
-    color: #01a3fa;
-    background-color: transparent;
-  }
-
-  &.borderedPrimary {
-    border: 1px solid var(--primary);
-    color: var(--primary);
-    background-color: transparent;
-  }
-
-  &.borderedGrey {
-    border: 1px solid var(--body_text);
-    color: var(--body_text);
-    background-color: transparent;
+    cursor: default;
   }
 
   &.noBorder {
     border: none;
-    color: var(--primary);
+    color: var(--primary-main);
     background-color: transparent;
+
+    &.white {
+      color: #ffffff;
+    }
+  }
+
+  &.inverted {
+    background-color: #ffffff;
+    color: var(--primary-main);
+
+    &:hover {
+      background-color: var(--primary-light);
+    }
   }
 `;
 
@@ -71,8 +87,8 @@ const Button = ({
   text,
   disabled,
   color,
-  icon,
-  endIcon,
+  iconLeft,
+  iconRight,
   as,
   href,
   onClick,
@@ -94,9 +110,9 @@ const Button = ({
   };
   return (
     <Wrapper {...styleProps}>
-      {icon && !disabled && <img src={icon} alt="icon" className="icon" />}
+      {iconLeft && <img src={iconLeft} alt="icon" className="icon left" />}
       <span>{text}</span>
-      {endIcon && <img src={endIcon} alt="endIcon" className="endIcon" />}
+      {iconRight && <img src={iconRight} alt="icon" className="icon right" />}
     </Wrapper>
   );
 };

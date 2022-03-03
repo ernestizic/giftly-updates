@@ -7,53 +7,68 @@ import * as Yup from "yup";
 import FormGroup from "components/global/FormGroup";
 import FormWrapper from "components/global/FormWrapper";
 import Button from "components/global/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CheckBox from "components/global/CheckBox";
 import { AuthWrapper } from "./AuthStyles";
 import { AuthCard } from "./AuthStyles";
 import { GoogleAuthButton } from "./AuthStyles";
 import { AuthDivider } from "./AuthStyles";
 
-const Register = () => {
+const Login = () => {
   const navigate = useNavigate();
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   const schema = Yup.object({
-    first_name: Yup.string().required("Fiield required"),
-    last_name: Yup.string().required("Fiield required"),
     email: Yup.string()
       .email("Invalid email address")
       .required("Field required"),
-    password: Yup.string()
-      .matches("^[a-zA-Zd]{8,}$", "Must be at least eight characters")
-      .required("Field required"),
-    password_confirmation: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords must match")
-      .required("Field required"),
+    password: Yup.string().required("Field required"),
   });
 
-  const handleRegister = async (cred) => {
-    navigate("/home/verify-email");
+  const rememberMe = (values) => {
+    const rmCheck = document.getElementById("rememberMe");
+
+    if (rmCheck.checked && values.email !== "") {
+      localStorage.username = values.email.trim();
+      localStorage.checkbox = rmCheck.value;
+    } else {
+      localStorage.username = "";
+      localStorage.checkbox = "";
+    }
+  };
+
+  const handleLogin = async (cred) => {
+    rememberMe(cred);
+    navigate("/user");
     return;
   };
 
+  useEffect(() => {
+    const rmCheck = document.getElementById("rememberMe");
+
+    if (localStorage.checkbox && localStorage.checkbox !== "") {
+      rmCheck?.click();
+    } else {
+      rmCheck?.removeAttribute("checked");
+    }
+  });
+
   return (
-    <AuthWrapper>
+    <AuthWrapper className="flexColumn alignCenter">
       <AuthCard>
         <div className="flexRow alignCenter justifySpaceBetween">
           <Link to="/home">
             <img src={closeIcon} alt="icon" />
           </Link>
           <p className="subtitle-4 prompt1">
-            Already have an account?{" "}
-            <Link to="/login" className="colorPrimaryMain">
-              Login
+            Don't have an account?{" "}
+            <Link to="/sign-up" className="colorPrimaryMain">
+              Sign up
             </Link>
           </p>
         </div>
         <Spacer y={2.4} />
         <h1 className="title-3 textCenter colorTitleActive title">
-          Sign up to Giftly
+          Login to Giftly
         </h1>
         <Spacer y={3.2} />
         <GoogleAuthButton
@@ -79,21 +94,11 @@ const Register = () => {
           }}
           validationSchema={schema}
           onSubmit={(values) => {
-            handleRegister(values);
+            handleLogin(values);
           }}
         >
           {({ handleSubmit, isSubmitting, isValid, values }) => (
             <FormWrapper onSubmit={handleSubmit}>
-              <FormGroup
-                fieldStyle="shortText"
-                label="First name"
-                name="first_name"
-              />
-              <FormGroup
-                fieldStyle="shortText"
-                label="Last name"
-                name="last_name"
-              />
               <FormGroup
                 fieldStyle="shortText"
                 type="email"
@@ -108,44 +113,28 @@ const Register = () => {
                 name="password"
                 className="password spanFull"
               />
-              <FormGroup
-                fieldStyle="shortText"
-                type="password"
-                label="Confirm password"
-                name="password_confirmation"
-                className="password spanFull"
-              />
-              <div className="spanFull flexRow alignCenter">
+              <div className="flexRow justifySpaceBetween spanFull">
                 <CheckBox
-                  id="agreement"
-                  name="agreement"
-                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                  id="rememberMe"
+                  name="rememberMe"
+                  label="Remember me"
+                  value="rememberMe"
                 />
-                <Spacer x={0.8} />
-                <label className="subtitle-5 prompt2" htmlFor="agreement">
-                  I agree to the{" "}
-                  <Link to="/terms" className="colorPrimaryMain">
-                    Terms of Use
-                  </Link>{" "}
-                  and{" "}
-                  <Link to="/privacy-policy" className="colorPrimaryMain">
-                    Privacy Policy
+                <div>
+                  <Link to="/password-reset" className="colorPrimaryMain">
+                    Forgot password?
                   </Link>
-                </label>
+                </div>
               </div>
 
               <Button
                 type="submit"
-                text="Sign up"
+                text="Sign in"
                 className="spanFull"
                 width="100%"
                 loading={isSubmitting}
                 disabled={
-                  isSubmitting ||
-                  !isValid ||
-                  !values.email ||
-                  !values.password ||
-                  !agreedToTerms
+                  isSubmitting || !isValid || !values.email || !values.password
                 }
               />
             </FormWrapper>
@@ -156,4 +145,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

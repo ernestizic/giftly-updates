@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { useState } from "react";
-import doneIconWhite from "assets/icons/doneIconWhite.svg";
 
 const Wrapper = styled.div`
   label {
@@ -14,14 +12,23 @@ const Box = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
-  height: 1.8rem;
-  width: 1.8rem;
-  border: 1px solid
-    ${(props) => (props.checked ? "var(--primary-main)" : "var(--line)")};
-  border-radius: ${(props) => (props.circle ? "100%" : "4px")};
-  background-color: ${(props) =>
-    props.checked ? "var(--primary-main)" : "transparent"};
+  height: 20px;
+  width: 20px;
+  border: ${(props) =>
+    props.checked ? "2px solid var(--primary-main)" : "1px solid var(--line)"};
+  border-radius: 50%;
   cursor: pointer;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: var(--primary-main);
+    display: ${(props) => (props.checked ? "block" : "none")};
+  }
 
   input {
     display: none;
@@ -33,14 +40,7 @@ const Box = styled.div`
   }
 `;
 
-const handleClick = (e, id) => {
-  e.stopPropagation();
-  const checkboxInput = document.querySelector(`input[type="checkbox"]#${id}`);
-
-  checkboxInput.click();
-};
-
-const CheckBox = ({
+const RadioInput = ({
   id,
   className,
   name,
@@ -49,36 +49,32 @@ const CheckBox = ({
   label,
   value,
   required = false,
+  checked = false,
   disabled,
-  onChange,
+  onClick,
 }) => {
-  const [checked, setChecked] = useState(false);
-
   return (
     <Wrapper className="flexRow alignCenter">
       <Box
         grey={grey}
         circle={circle}
         checked={checked}
-        onClick={(e) => handleClick(e, id)}
+        onClick={() => {
+          onClick && onClick();
+        }}
         className={className}
       >
         <input
-          type="checkbox"
+          type="radio"
           name={name}
           id={`${id}`}
-          data-id={id}
-          data-name={name}
-          checked={checked}
           value={value}
-          onChange={(e) => {
-            setChecked(!checked);
-            onChange && onChange(e);
-          }}
           required={required}
           disabled={disabled}
+          onClick={() => {
+            onClick && onClick();
+          }}
         />
-        <img src={doneIconWhite} alt="check" className="checkedIcon" />
       </Box>
       {label && (
         <label htmlFor={`${id}`} className="subtitle-5">
@@ -89,7 +85,7 @@ const CheckBox = ({
   );
 };
 
-CheckBox.propTypes = {
+RadioInput.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   name: PropTypes.string,
@@ -102,4 +98,4 @@ CheckBox.propTypes = {
   onChange: PropTypes.func,
 };
 
-export default CheckBox;
+export default RadioInput;

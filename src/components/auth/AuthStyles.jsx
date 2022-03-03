@@ -1,0 +1,64 @@
+import styled from "styled-components";
+import Backdrop from "../global/Backdrop";
+
+export const AuthWrapper = styled(Backdrop)`
+  padding: 72px 0;
+
+  @media screen and (max-width: 768px) {
+    padding: 32px 8px;
+  }
+`;
+
+export const AuthCard = styled.div`
+  width: 424px;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 48px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding: 24px 16px;
+
+    .title {
+      font-size: 24px;
+      line-height: 36px;
+    }
+
+    .prompt1 {
+      font-size: 14px;
+      line-height: auto;
+    }
+
+    .prompt2 {
+      font-size: 12px;
+      line-height: auto;
+    }
+  }
+`;
+
+export const GoogleAuthButton = styled.button`
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 8px;
+`;
+
+export const AuthDivider = styled.div`
+  height: 1px;
+  background-color: var(--line);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .text {
+    position: absolute;
+    // top: 50%;
+    // transform: translateY(-50%);
+    padding: 0 16px;
+    background-color: #ffffff;
+    text-align: center;
+    width: max-content;
+    margin: auto;
+  }
+`;

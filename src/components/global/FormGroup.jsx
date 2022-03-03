@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import CheckBox from "./CheckBox";
 import eyeIcon from "assets/icons/eye.svg";
-import eyeClosed from "assets/icons/eyeClosed.svg";
+import eyeClosed from "assets/icons/eye_slash.svg";
 import { useField } from "formik";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -13,13 +12,13 @@ export const FormGroupWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-radius: 4px;
-    height: ${(props) => (props.fieldStyle === "longText" ? "auto" : "4.8rem")};
-    border: none;
+    border-radius: 8px;
+    height: ${(props) => (props.fieldStyle === "longText" ? "auto" : "56px")};
     position: relative;
+    background-color: var(--input-bg);
 
     &.error {
-      border-color: var(--danger);
+      border: 1px solid var(--error-default);
     }
   }
 
@@ -27,18 +26,18 @@ export const FormGroupWrapper = styled.div`
   textarea,
   select {
     display: block;
-    color: ${(props) => props.color ?? "var(--grey_1)"};
+    color: ${(props) => props.color ?? "var(--title-active)"};
     width: 100%;
-    height: 100%;
-    padding: 0 1.5rem;
+    padding: 0 24px;
     background-color: transparent;
     border: none;
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 24px;
     font-style: normal;
     font-weight: 400;
 
     &::placeholder {
-      color: var(--grey_9);
+      color: var(--placeholder);
     }
   }
 
@@ -54,7 +53,7 @@ export const FormGroupWrapper = styled.div`
   &.password {
     input,
     textarea {
-      width: 80%;
+      width: calc(100% - 24px);
     }
 
     .toggleShow {
@@ -85,24 +84,20 @@ export const FormGroupWrapper = styled.div`
     width: 100%;
     text-align: left;
     margin-top: 0.6rem;
+    color: var(--error-default);
   }
 `;
 
 export const FormGroupLabel = styled.label`
   display: block;
-  color: var(--body_text);
-  font-size: 16px;
+  color: var(--label);
+  font-size: 14px;
   font-weight: 400;
-  line-height: 20px;
-  margin-bottom: 0.3rem;
+  line-height: 18px;
   text-align: left;
-
-  sup {
-    color: var(--danger);
-  }
+  margin-top: 6px;
+  margin-left: 24px;
 `;
-
-const CheckboxField = styled.div``;
 
 const handleToggleShowPassword = (id) => {
   const field = document.querySelector(`#${id}`);
@@ -112,13 +107,6 @@ const handleToggleShowPassword = (id) => {
   } else {
     field.type = "password";
   }
-};
-
-const handleCheckboxSelect = (e, id) => {
-  e.preventDefault();
-
-  const selectedElCheckbox = document.querySelector(`#${id}`);
-  selectedElCheckbox.click();
 };
 
 const FormGroup = ({
@@ -137,6 +125,21 @@ const FormGroup = ({
 }) => {
   const [field, meta] = useField({ ...props, name });
   const [showPassword, setShowPassword] = useState(false);
+  const [showLabel, setShowLabel] = useState(false);
+
+  const toggleLabel = (e) => {
+    if (e.target.value) {
+      setShowLabel(true);
+    } else {
+      setShowLabel(false);
+    }
+  };
+
+  useEffect(() => {
+    if (defaultValue?.length) {
+      setShowLabel(true);
+    }
+  }, [defaultValue]);
 
   useEffect(() => {
     document.querySelectorAll(`input`).forEach((input) => {
@@ -147,22 +150,6 @@ const FormGroup = ({
     // eslint-disable-next-line
   }, []);
 
-  if (type === "checkbox") {
-    return (
-      <CheckboxField className={`flex-row align-center ${className ?? ""}`}>
-        <CheckBox className="checkbox" id={name} name={name} />
-        <FormGroupLabel
-          className="cursorPointer"
-          htmlFor={name}
-          onClick={(e) => handleCheckboxSelect(e, name)}
-          style={{ marginBottom: 0, marginLeft: "0.5rem" }}
-        >
-          {label}
-        </FormGroupLabel>
-      </CheckboxField>
-    );
-  }
-
   return (
     <>
       <FormGroupWrapper className={className} fieldStyle={fieldStyle}>
@@ -171,11 +158,8 @@ const FormGroup = ({
             meta.touched && meta.error ? " error" : ""
           }`}
         >
-          {label && (
-            <FormGroupLabel htmlFor={name}>
-              {label}
-              <sup>*</sup>
-            </FormGroupLabel>
+          {label && showLabel && (
+            <FormGroupLabel htmlFor={name}>{label}</FormGroupLabel>
           )}
           {fieldStyle === "shortText" && (
             <>
@@ -187,11 +171,17 @@ const FormGroup = ({
                 defaultValue={defaultValue}
                 onChange={(e) => {
                   onChange && onChange(rowIndex, name, e.target.value);
+                  toggleLabel(e);
                   field.onChange(e);
+                }}
+                onBlur={(e) => {
+                  toggleLabel(e);
+                  field.onBlur(e);
                 }}
                 value={value || field.value}
                 {...props}
                 autoComplete="off"
+                placeholder={label}
               />
               {type === "password" && (
                 <img
