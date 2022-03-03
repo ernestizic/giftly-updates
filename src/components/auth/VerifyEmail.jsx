@@ -3,17 +3,7 @@ import { AuthCard } from "./AuthStyles";
 import { AuthWrapper } from "./AuthStyles";
 import handPoint from "assets/images/hand_point.png";
 import Spacer from "components/global/Spacer";
-import styled from "styled-components";
-
-const CardImage = styled.img`
-  display: block;
-  width: 330px;
-  margin: auto;
-
-  @media screen and (max-width: 768px) {
-    width: 160px;
-  }
-`;
+import { CardImage } from "./AuthStyles";
 
 const VerifyEmail = () => {
   return (

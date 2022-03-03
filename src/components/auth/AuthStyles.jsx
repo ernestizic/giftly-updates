@@ -62,3 +62,21 @@ export const AuthDivider = styled.div`
     margin: auto;
   }
 `;
+
+export const CardImage = styled.img`
+  display: block;
+  width: 330px;
+  margin: auto;
+
+  &.icon {
+    width: 48px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 160px;
+
+    &.icon {
+      width: 48px;
+    }
+  }
+`;

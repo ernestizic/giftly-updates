@@ -7,27 +7,10 @@ import Button from "components/global/Button";
 import { AuthWrapper } from "components/auth/AuthStyles";
 import { AuthCard } from "components/auth/AuthStyles";
 import { useNavigate } from "react-router-dom";
+import { CardImage } from "components/auth/AuthStyles";
 
 const Card = styled(AuthCard)`
   background-color: var(--primary-main);
-`;
-
-const CardImage = styled.img`
-  display: block;
-  width: 330px;
-  margin: auto;
-
-  &.icon {
-    width: 48px;
-  }
-
-  @media screen and (max-width: 768px) {
-    width: 160px;
-
-    &.icon {
-      width: 48px;
-    }
-  }
 `;
 
 const DeletePrompt = () => {

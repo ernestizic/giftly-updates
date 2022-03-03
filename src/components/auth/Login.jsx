@@ -61,7 +61,7 @@ const Login = () => {
           </Link>
           <p className="subtitle-4 prompt1">
             Don't have an account?{" "}
-            <Link to="/sign-up" className="colorPrimaryMain">
+            <Link to="/home/sign-up" className="colorPrimaryMain">
               Sign up
             </Link>
           </p>
@@ -121,7 +121,7 @@ const Login = () => {
                   value="rememberMe"
                 />
                 <div>
-                  <Link to="/password-reset" className="colorPrimaryMain">
+                  <Link to="/home/password-reset" className="colorPrimaryMain">
                     Forgot password?
                   </Link>
                 </div>

@@ -25,7 +25,7 @@ const Register = () => {
       .email("Invalid email address")
       .required("Field required"),
     password: Yup.string()
-      .matches("^[a-zA-Zd]{8,}$", "Must be at least eight characters")
+      .min(8, "Must be at least eight characters")
       .required("Field required"),
     password_confirmation: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
@@ -46,7 +46,7 @@ const Register = () => {
           </Link>
           <p className="subtitle-4 prompt1">
             Already have an account?{" "}
-            <Link to="/login" className="colorPrimaryMain">
+            <Link to="/home/login" className="colorPrimaryMain">
               Login
             </Link>
           </p>

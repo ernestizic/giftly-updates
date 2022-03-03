@@ -80,7 +80,7 @@ const Wrapper = styled.button`
 const Button = ({
   className,
   bg,
-  type,
+  type = "button",
   height,
   fullWidth,
   width,
