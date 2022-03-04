@@ -9,8 +9,8 @@ const Wrapper = styled.button`
   border-radius: 8px;
   height: 48px;
   width: ${(props) => props.width ?? "120px"};
-  background-color: var(--primary-main);
-  color: #ffffff;
+  background-color:${(props)=>props.bg || " var(--primary-main)"};
+  color: ${(props)=>props.color || "#ffffff"};
   font-family: var(--font_1-regular);
   font-size: 16px;
   font-style: normal;

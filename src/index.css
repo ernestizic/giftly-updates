@@ -47,6 +47,7 @@
   --input-bg: #fbfbfb;
   --background: #f7f7fc;
   --off-white: #fcfcfc;
+  --white: #ffffff;
   --shadow-1: 0px 25px 35px 0px #00000008;
   --shadow-2: 0px 2px 5px 0px #0000000d;
   --font_1-regular: "Product Sans Regular";
@@ -139,6 +140,14 @@ textarea {
 
 /* Title */
 
+.title-plus {
+  font-family: "BoldenVan";
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 96px;
+  letter-spacing: 0px;
+}
 .title-1 {
   font-family: "BoldenVan";
   font-size: 56px;
