@@ -10,11 +10,14 @@ export const AuthWrapper = styled(Backdrop)`
 `;
 
 export const AuthCard = styled.div`
-  width: 424px;
+  width: 480px;
+  max-height: 640px;
+  overflow: auto;
   margin: auto;
   background-color: #ffffff;
   border-radius: 16px;
   padding: 48px;
+  flex-shrink: 0;
 
   @media screen and (max-width: 768px) {
     width: 100%;

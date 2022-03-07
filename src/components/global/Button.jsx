@@ -8,7 +8,8 @@ const Wrapper = styled.button`
   justify-content: center;
   border-radius: 8px;
   height: 48px;
-  width: ${(props) => props.width ?? "120px"};
+  width: ${(props) => props.width ?? "max-content"};
+  padding: 0 16px;
   background-color: var(--primary-main);
   color: #ffffff;
   font-family: var(--font_1-regular);
@@ -19,6 +20,7 @@ const Wrapper = styled.button`
   letter-spacing: 0px;
   text-align: center;
   transition: all 0.2s ease-out;
+  flex-shrink: 0;
 
   .icon {
     height: 20px;

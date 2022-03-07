@@ -109,7 +109,7 @@ const handleToggleShowPassword = (id) => {
   }
 };
 
-const FormGroup = ({
+const FormGroupCustom = ({
   className,
   fieldStyle,
   type = "text",
@@ -119,11 +119,11 @@ const FormGroup = ({
   required = true,
   defaultValue,
   color,
+  bg,
   onChange,
   rowIndex,
   ...props
 }) => {
-  const [field, meta] = useField({ ...props, name });
   const [showPassword, setShowPassword] = useState(false);
   const [showLabel, setShowLabel] = useState(false);
 
@@ -152,19 +152,15 @@ const FormGroup = ({
 
   return (
     <>
-      <FormGroupWrapper className={className} fieldStyle={fieldStyle}>
-        <div
-          className={`fieldWrapper${
-            meta.touched && meta.error ? " error" : ""
-          }`}
-        >
+      <FormGroupWrapper className={className} fieldStyle={fieldStyle} bg={bg}>
+        <div className={`fieldWrapper`}>
           {label && showLabel && (
             <FormGroupLabel htmlFor={name}>{label}</FormGroupLabel>
           )}
           {fieldStyle === "shortText" && (
             <>
               <input
-                {...field}
+                {...props}
                 className="textSmall"
                 id={name}
                 type={type}
@@ -172,14 +168,11 @@ const FormGroup = ({
                 onChange={(e) => {
                   onChange && onChange(e);
                   toggleLabel(e);
-                  field.onChange(e);
                 }}
                 onBlur={(e) => {
                   toggleLabel(e);
-                  field.onBlur(e);
                 }}
-                value={value || field.value}
-                {...props}
+                value={value}
                 autoComplete="off"
                 placeholder={label}
               />
@@ -204,24 +197,18 @@ const FormGroup = ({
                 name={name}
                 required={required}
                 defaultValue={defaultValue}
-                {...field}
                 {...props}
                 autoComplete="off"
               />
             </>
           )}
         </div>
-        {meta.touched && meta.error && (
-          <span className="textDescription colorDanger errorText">
-            {meta.error}
-          </span>
-        )}
       </FormGroupWrapper>
     </>
   );
 };
 
-FormGroup.propTypes = {
+FormGroupCustom.propTypes = {
   className: PropTypes.string,
   fieldStyle: PropTypes.string.isRequired,
   type: PropTypes.string,
@@ -235,4 +222,4 @@ FormGroup.propTypes = {
   rowIndex: PropTypes.number,
 };
 
-export default FormGroup;
+export default FormGroupCustom;

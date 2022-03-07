@@ -121,7 +121,10 @@ const Login = () => {
                   value="rememberMe"
                 />
                 <div>
-                  <Link to="/home/password-reset" className="colorPrimaryMain">
+                  <Link
+                    to="/home/password-reset"
+                    className="colorPrimaryMain label"
+                  >
                     Forgot password?
                   </Link>
                 </div>

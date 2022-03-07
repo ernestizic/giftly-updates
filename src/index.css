@@ -47,8 +47,10 @@
   --input-bg: #fbfbfb;
   --background: #f7f7fc;
   --off-white: #fcfcfc;
-  --shadow-1: 0px 25px 35px 0px #00000008;
-  --shadow-2: 0px 2px 5px 0px #0000000d;
+  --filter-white: brightness(0%) saturate(100%) invert(100%) sepia(9%)
+    saturate(2%) hue-rotate(284deg) brightness(113%) contrast(100%);
+  --shadow_1: 0px 25px 35px 0px #00000008;
+  --shadow_2: 0px 2px 5px 0px #0000000d;
   --font_1-regular: "Product Sans Regular";
   --font_1-bold: "Product Sans Bold";
   --font_2: "Boldenvan";
@@ -92,6 +94,7 @@ a {
 
 input {
   color: inherit;
+  font-family: inherit;
 }
 
 input:focus {
@@ -389,4 +392,8 @@ textarea {
 
 .colorWhite {
   color: #ffffff;
+}
+
+.colorErrorDefault {
+  color: var(--error-default);
 }

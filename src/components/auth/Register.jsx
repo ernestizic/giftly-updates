@@ -124,11 +124,14 @@ const Register = () => {
                 <Spacer x={0.8} />
                 <label className="subtitle-5 prompt2" htmlFor="agreement">
                   I agree to the{" "}
-                  <Link to="/terms" className="colorPrimaryMain">
+                  <Link to="/terms" className="colorPrimaryMain subtitle-5">
                     Terms of Use
                   </Link>{" "}
                   and{" "}
-                  <Link to="/privacy-policy" className="colorPrimaryMain">
+                  <Link
+                    to="/privacy-policy"
+                    className="colorPrimaryMain subtitle-5"
+                  >
                     Privacy Policy
                   </Link>
                 </label>

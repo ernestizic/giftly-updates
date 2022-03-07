@@ -79,6 +79,7 @@ const PrivacyOptions = styled.div`
   .options {
     opacity: 0;
     height: 0;
+    overflow: hidden;
     pointer-events: none;
     transition: all 0.2s ease-out;
 
@@ -117,7 +118,7 @@ const CreateWishList = () => {
   return (
     <Wrapper className="flexColumn alignCenter">
       <Card>
-        <div className="flexRow alignCenter justifyEnd">
+        <div className="flexRow alignCenter">
           <Link to="/home">
             <img src={closeIcon} alt="icon" />
           </Link>

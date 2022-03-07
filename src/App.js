@@ -1,3 +1,4 @@
+import Dashboard from "pages/Dashboard";
 import {
   BrowserRouter as Router,
   Routes,
@@ -12,6 +13,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home/*" element={<Landing />} />
+        <Route path="/user" element={<Navigate to="/user/wish-lists" />} />
+        <Route path="/user/*" element={<Dashboard />} />
+
+        {/* No match */}
+        <Route path="*" element={<Navigate to="/home" />} />
       </Routes>
     </Router>
   );
