@@ -9,7 +9,7 @@ import Button from "components/global/Button";
 import { AuthWrapper } from "./AuthStyles";
 import { AuthCard } from "./AuthStyles";
 import closeIcon from "assets/icons/close_square.svg";
-import handPoint from "assets/images/hand_point.png";
+import handPoint from "assets/images/hand_point.svg";
 import { useState } from "react";
 import axios from "axios";
 import { CardImage } from "./AuthStyles";

@@ -78,8 +78,8 @@ const ShareList = () => {
     const timeout = setTimeout(() => {
       dispatch(clearAlert());
     }, 5000);
-    dispatch(showAlert("Link copied!"));
     dispatch(setAlertTimeout(timeout));
+    dispatch(showAlert("Link copied!"));
   };
 
   return (

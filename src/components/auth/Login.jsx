@@ -13,9 +13,20 @@ import { AuthWrapper } from "./AuthStyles";
 import { AuthCard } from "./AuthStyles";
 import { GoogleAuthButton } from "./AuthStyles";
 import { AuthDivider } from "./AuthStyles";
+import Logo from "components/global/Logo";
+import axios from "axios";
+import { base_url } from "utils/utils";
+import {
+  clearAlert,
+  setAlertTimeout,
+  showAlert,
+} from "features/alert/alertSlice";
+import { useDispatch } from "react-redux";
+import { setToken, setUser } from "features/auth/authSlice";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const schema = Yup.object({
     email: Yup.string()
@@ -38,8 +49,35 @@ const Login = () => {
 
   const handleLogin = async (cred) => {
     rememberMe(cred);
-    navigate("/user");
-    return;
+
+    try {
+      const res = await axios.post(`${base_url}/auth`, cred);
+
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+
+      if (!res) {
+        dispatch(showAlert("An error occurred"));
+        return;
+      }
+
+      if (res.data.status === "success") {
+        dispatch(setUser(res.data.data.user));
+        dispatch(setToken(res.data.data.token.token));
+        navigate("/user/wish-lists");
+        return;
+      }
+
+      dispatch(showAlert(res.data.message));
+    } catch (e) {
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+      dispatch(showAlert(e.response.data.message));
+    }
   };
 
   useEffect(() => {
@@ -67,11 +105,15 @@ const Login = () => {
           </p>
         </div>
         <Spacer y={2.4} />
+        <div className="flexRow justifyCenter">
+          <Logo />
+        </div>
+        <Spacer y={0.8} />
         <h1 className="title-3 textCenter colorTitleActive title">
           Login to Giftly
         </h1>
         <Spacer y={3.2} />
-        <GoogleAuthButton
+        {/* <GoogleAuthButton
           className="flexRow alignCenter justifyCenter borderLight"
           type="button"
         >
@@ -83,18 +125,15 @@ const Login = () => {
         <AuthDivider>
           <p className="text subtitle-5">OR WITH</p>
         </AuthDivider>
-        <Spacer y={3.2} />
+        <Spacer y={3.2} /> */}
         <Formik
           initialValues={{
-            first_name: "",
-            last_name: "",
             email: "",
             password: "",
-            password_confirmation: "",
           }}
           validationSchema={schema}
-          onSubmit={(values) => {
-            handleLogin(values);
+          onSubmit={async (values) => {
+            await handleLogin(values);
           }}
         >
           {({ handleSubmit, isSubmitting, isValid, values }) => (

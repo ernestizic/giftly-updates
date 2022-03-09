@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Loader from "./Loader";
 
 const Wrapper = styled.button`
   display: flex;
@@ -110,6 +111,15 @@ const Button = ({
     href,
     onClick,
   };
+
+  if (loading) {
+    return (
+      <Wrapper {...styleProps}>
+        <Loader />
+      </Wrapper>
+    );
+  }
+
   return (
     <Wrapper {...styleProps}>
       {iconLeft && <img src={iconLeft} alt="icon" className="icon left" />}
@@ -133,6 +143,7 @@ Button.propTypes = {
   endIcon: PropTypes.string,
   href: PropTypes.string,
   onClick: PropTypes.func,
+  loading: PropTypes.bool,
 };
 
 export default Button;

@@ -1,4 +1,3 @@
-import AlertBox from "components/global/AlertBox";
 import Sidebar from "components/user/Sidebar";
 import WishsLists from "components/user/WishsLists";
 import { Route, Routes } from "react-router-dom";
@@ -17,7 +16,6 @@ const Wrapper = styled.div`
 const Dashboard = () => {
   return (
     <Wrapper>
-      <AlertBox className="dashboard" />
       <Sidebar />
       <div className="viewContent">
         <Routes>

@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import spinnerIcon from "assets/icons/spinner.png";
 
 const spin = keyframes`
   from {
@@ -6,7 +7,7 @@ const spin = keyframes`
   }
 
   to {
-    transform: rotateZ(0deg);
+    transform: rotateZ(360deg);
   }
 `;
 
@@ -17,7 +18,7 @@ const Spinner = styled.img`
 `;
 
 const Loader = () => {
-  return <Spinner />;
+  return <Spinner src={spinnerIcon} alt="..." />;
 };
 
 export default Loader;

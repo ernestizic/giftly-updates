@@ -15,6 +15,7 @@ import ShareList from "./ShareList";
 import DeletePrompt from "components/wishlist/DeletePrompt";
 import CreateWishList from "components/wishlist/CreateWishList";
 import EditWishList from "components/wishlist/EditWishList";
+import CreateUsername from "./CreateUsername";
 
 const Wrapper = styled.div``;
 
@@ -148,12 +149,12 @@ const WishsLists = () => {
         <WishListCard />
       </ListWrapper>
 
-      {/* Share */}
       <Routes>
         <Route path="new" element={<CreateWishList />} />
         <Route path="edit" element={<EditWishList />} />
         <Route path="share" element={<ShareList />} />
         <Route path="delete" element={<DeletePrompt />} />
+        <Route path="create-username" element={<CreateUsername />} />
       </Routes>
     </Wrapper>
   );

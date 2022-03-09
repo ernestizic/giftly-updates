@@ -1,5 +1,5 @@
 import React from "react";
-import handPhone from "assets/images/hand_phone.png";
+import handPhone from "assets/images/hand_phone.svg";
 import coolEmoji from "assets/images/cool_emoji.png";
 import Spacer from "components/global/Spacer";
 import styled from "styled-components";

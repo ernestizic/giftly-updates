@@ -9,12 +9,14 @@ import Landing from "./pages/Landing";
 import { store, persistor } from "redux/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import AlertBox from "components/global/AlertBox";
 
 function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Router>
+          <AlertBox />
           <Routes>
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home/*" element={<Landing />} />
