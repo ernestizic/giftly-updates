@@ -143,7 +143,7 @@ const Login = () => {
         <Spacer y={3.2} /> */}
         <Formik
           initialValues={{
-            email: "",
+            email: localStorage.username || "",
             password: "",
           }}
           validationSchema={schema}

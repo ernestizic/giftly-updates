@@ -17,12 +17,14 @@ import {
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "features/auth/authSlice";
 
 const CreateUsername = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const token = useSelector((state) => state.auth.token);
 
   const schema = Yup.object({
     username: Yup.string().required("Field required"),
@@ -30,7 +32,11 @@ const CreateUsername = () => {
 
   const handleCreate = async (cred) => {
     try {
-      const res = await axios.post(`${base_url}/user/username`, cred);
+      const res = await axios.post(`${base_url}/user/username`, cred, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const timeout = setTimeout(() => {
         dispatch(clearAlert());
@@ -43,6 +49,7 @@ const CreateUsername = () => {
       }
 
       if (res.data.status === "success") {
+        dispatch(showAlert(res.data.message));
         navigate("/user/wish-lists");
         return;
       }
@@ -53,7 +60,7 @@ const CreateUsername = () => {
         dispatch(clearAlert());
       }, 5000);
       dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response.data.message));
+      dispatch(showAlert(e.response.data.message || "Something went wrong"));
     }
   };
 
