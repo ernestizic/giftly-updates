@@ -1,6 +1,6 @@
 import closeIcon from "assets/icons/close_square.svg";
 import googleIcon from "assets/icons/google_icon.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -21,12 +21,14 @@ import {
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setToken, setUser } from "features/auth/authSlice";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const token = useSelector((state) => state.auth.token);
 
   const schema = Yup.object({
     email: Yup.string()
@@ -89,6 +91,10 @@ const Login = () => {
       rmCheck?.removeAttribute("checked");
     }
   });
+
+  if (token) {
+    return <Navigate to="/user/wish-lists" />;
+  }
 
   return (
     <AuthWrapper className="flexColumn alignCenter">

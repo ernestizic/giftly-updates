@@ -18,6 +18,7 @@ import { AuthCard } from "components/auth/AuthStyles";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setTempList,
+  setTempListId,
   setTempListName,
   setTempListVisibility,
 } from "features/wishList/wishListSlice";
@@ -26,6 +27,8 @@ import {
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
+import { base_url } from "utils/utils";
+import axios from "axios";
 
 const Wrapper = styled(Backdrop)`
   padding: 72px 0;
@@ -107,7 +110,7 @@ const CreateWishList = () => {
     (state) => state.wishList.tempListVisibility
   );
   const dispatch = useDispatch();
-  const [privacyOption, setPrivacyOption] = useState("public");
+  const [saving, setSaving] = useState(false);
 
   const setFieldValue = (rowIndex, fieldName, fieldValue) => {
     let temp = tempList.map((item) => Object.assign({}, item));
@@ -137,8 +140,8 @@ const CreateWishList = () => {
     document.querySelector("form.options").classList.toggle("show");
   };
 
-  const handleShare = () => {
-    const timeout = setTimeout(() => {
+  const handleShare = async () => {
+    let timeout = setTimeout(() => {
       dispatch(clearAlert());
     }, 5000);
     dispatch(setAlertTimeout(timeout));
@@ -153,7 +156,46 @@ const CreateWishList = () => {
       return;
     }
 
-    navigate("/home/register-prompt");
+    dispatch(clearAlert());
+
+    const wishList = {
+      title: tempListName,
+      visibility: tempListVisibility,
+      items: tempList,
+    };
+
+    setSaving(true);
+    try {
+      const res = await axios.post(`${base_url}/wishlist`, wishList);
+
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+
+      if (!res) {
+        dispatch(showAlert("An error occurred"));
+        return;
+      }
+
+      if (res.data.status === "success") {
+        dispatch(setTempListId(res.data.data.id));
+        dispatch(showAlert("Wish list saved"));
+        setSaving(false);
+        navigate("/home/register-prompt");
+        return;
+      }
+
+      setSaving(false);
+      dispatch(showAlert(res.data.message));
+    } catch (e) {
+      setSaving(false);
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+      dispatch(showAlert(e.response.data.message));
+    }
   };
 
   return (
@@ -258,6 +300,8 @@ const CreateWishList = () => {
           <Button
             text="Share"
             iconLeft={shareIcon}
+            disabled={saving}
+            loading={saving}
             width="calc(50% - 12px)"
             onClick={handleShare}
           />

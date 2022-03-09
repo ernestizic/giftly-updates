@@ -25,6 +25,11 @@ export const wishListSlice = createSlice({
     setTempListVisibility: (state, action) => {
       state.tempListVisibility = action.payload;
     },
+    clearTempList: (state) => {
+      state.tempList = [{}];
+      state.tempListName = "";
+      state.tempListVisibility = "public";
+    },
   },
 });
 
@@ -33,6 +38,7 @@ export const {
   setTempListName,
   setTempList,
   setTempListVisibility,
+  clearTempList,
 } = wishListSlice.actions;
 
 export default wishListSlice.reducer;
