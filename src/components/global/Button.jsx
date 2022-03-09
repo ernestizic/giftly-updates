@@ -6,29 +6,29 @@ const Wrapper = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  height: 48px;
-  width: ${(props) => props.width ?? "120px"};
+  border-radius: .8rem;
+  height: ${(props)=> props.height || "4.8rem"};
+  width: ${(props) => props.width ?? "12.0rem"};
   background-color:${(props)=>props.bg || " var(--primary-main)"};
   color: ${(props)=>props.color || "#ffffff"};
   font-family: var(--font_1-regular);
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0px;
+  line-height: 2.4rem;
+  letter-spacing: .0rem;
   text-align: center;
   transition: all 0.2s ease-out;
 
   .icon {
-    height: 20px;
+    height: 2.0rem;
 
     &.left {
-      margin-right: 8px;
+      margin-right: .8rem;
     }
 
     &.right {
-      margin-left: 8px;
+      margin-left: .8rem;
     }
   }
 
@@ -46,10 +46,10 @@ const Wrapper = styled.button`
   }
 
   &.large {
-    height: 64px;
-    width: ${(props) => props.width ?? "200px"};
-    font-size: 18px;
-    line-height: 28px;
+    height: 6.4rem;
+    width: ${(props) => props.width ?? "20.0rem"};
+    font-size: 1.8rem;
+    line-height: 2.8rem;
   }
 
   &:disabled {
