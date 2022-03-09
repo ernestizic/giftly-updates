@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import logo from "assets/icons/logo.svg";
+import logo from "assets/images/logo.svg";
 
 const Wrapper = styled.div`
   width: max-content;

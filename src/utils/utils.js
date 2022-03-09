@@ -1,6 +1,7 @@
-import { setAlertDetails, setLoggedIn } from "redux/actions";
 import axios from "axios";
 import { store } from "redux/store";
+
+export const base_url = "https://api.giftly.me/api/v1";
 
 export const authService = () => {
   axios.interceptors.response.use(
@@ -148,12 +149,6 @@ export function getFormData(object) {
   });
   return formData;
 }
-
-export const showAlert = (details) => {
-  setAlertDetails(details);
-
-  setTimeout(() => setAlertDetails(null), 5000);
-};
 
 export const media_base_url =
   "https://postpaddy-s.fra1.digitaloceanspaces.com/Postpaddy";

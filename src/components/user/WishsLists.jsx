@@ -12,6 +12,9 @@ import { useNavigate } from "react-router";
 import WishListCard from "./WishListCard";
 import { Route, Routes } from "react-router-dom";
 import ShareList from "./ShareList";
+import DeletePrompt from "components/wishlist/DeletePrompt";
+import CreateWishList from "components/wishlist/CreateWishList";
+import EditWishList from "components/wishlist/EditWishList";
 
 const Wrapper = styled.div``;
 
@@ -147,7 +150,10 @@ const WishsLists = () => {
 
       {/* Share */}
       <Routes>
+        <Route path="new" element={<CreateWishList />} />
+        <Route path="edit" element={<EditWishList />} />
         <Route path="share" element={<ShareList />} />
+        <Route path="delete" element={<DeletePrompt />} />
       </Routes>
     </Wrapper>
   );

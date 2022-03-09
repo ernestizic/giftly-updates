@@ -152,7 +152,12 @@ const FormGroupCustom = ({
 
   return (
     <>
-      <FormGroupWrapper className={className} fieldStyle={fieldStyle} bg={bg}>
+      <FormGroupWrapper
+        className={className}
+        fieldStyle={fieldStyle}
+        bg={bg}
+        color={color}
+      >
         <div className={`fieldWrapper`}>
           {label && showLabel && (
             <FormGroupLabel htmlFor={name}>{label}</FormGroupLabel>

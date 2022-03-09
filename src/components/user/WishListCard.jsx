@@ -6,6 +6,7 @@ import moreIcon from "assets/icons/more.svg";
 import CardOptions from "./CardOptions";
 import { useState } from "react";
 import Spacer from "components/global/Spacer";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   padding: 8px;
@@ -13,6 +14,11 @@ const Wrapper = styled.div`
   background-color: #ffffff;
   box-shadow: var(--shadow_1);
   position: relative;
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    transform: translateY(-12px);
+  }
 
   .screen {
     height: 120px;
@@ -20,6 +26,14 @@ const Wrapper = styled.div`
 
     img {
       height: 100%;
+    }
+  }
+
+  .title {
+    display: block;
+
+    &:hover {
+      color: var(--primary-main);
     }
   }
 `;
@@ -34,9 +48,9 @@ const WishListCard = () => {
       </div>
       <Spacer y={1.6} />
       <div className="body">
-        <h3 className="body-3 colorTitleActive title textCenter">
+        <Link to="edit" className="body-3 colorTitleActive title textCenter">
           For Tobeezy
-        </h3>
+        </Link>
         <Spacer y={0.4} />
         <p className="label subtitle colorLabelText textCenter">3 wishes</p>
       </div>

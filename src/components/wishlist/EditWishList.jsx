@@ -88,7 +88,7 @@ const PrivacyOptions = styled.div`
   }
 `;
 
-const CreateWishList = () => {
+const EditWishList = () => {
   const navigate = useNavigate();
   const [rows, setRows] = useState([{}]);
   const [privacyOption, setPrivacyOption] = useState("public");
@@ -125,7 +125,7 @@ const CreateWishList = () => {
           <Logo />
         </div>
         <Spacer y={0.8} />
-        <p className="subtitle-4 subtitle textCenter">Create a wish list</p>
+        <p className="subtitle-4 subtitle textCenter">Edit this wish list</p>
         <Spacer y={0.4} />
         <h3 className="title-3 title textCenter colorTitleActive">
           List Details
@@ -230,4 +230,4 @@ const CreateWishList = () => {
   );
 };
 
-export default CreateWishList;
+export default EditWishList;

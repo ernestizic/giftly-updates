@@ -1,6 +1,5 @@
 import React from "react";
 import deleteIcon from "assets/icons/delete_circle.svg";
-import coolEmoji from "assets/images/cool_emoji.png";
 import Spacer from "components/global/Spacer";
 import styled from "styled-components";
 import Button from "components/global/Button";
@@ -13,7 +12,7 @@ const Card = styled(AuthCard)`
   background-color: var(--primary-main);
 `;
 
-const DeletePrompt = () => {
+const DeletePrompt = ({ callback = () => null }) => {
   const navigate = useNavigate();
   return (
     <AuthWrapper className="flexColumn alignCenter">
@@ -29,13 +28,18 @@ const DeletePrompt = () => {
           wishes will be deleted with it.
         </p>
         <Spacer y={2.4} />
-        <Button text="Delete wish list" width="100%" className="inverted" />
+        <Button
+          text="Delete wish list"
+          width="100%"
+          className="inverted"
+          onClick={() => callback()}
+        />
         <Spacer y={1.6} />
         <Button
           text="Cancel"
           className="noBorder white"
           width="100%"
-          onClick={() => navigate("/home/new-wishlist")}
+          onClick={() => navigate(-1)}
         />
       </Card>
     </AuthWrapper>

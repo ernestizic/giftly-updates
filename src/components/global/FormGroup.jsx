@@ -120,7 +120,6 @@ const FormGroup = ({
   defaultValue,
   color,
   onChange,
-  rowIndex,
   ...props
 }) => {
   const [field, meta] = useField({ ...props, name });
