@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   tempListId: null,
+  tempList: [{}],
 };
 
 export const wishListSlice = createSlice({
@@ -12,9 +13,12 @@ export const wishListSlice = createSlice({
     setTempListId: (state, action) => {
       state.tempListId = action.payload;
     },
+    setTempList: (state, action) => {
+      state.tempList = action.payload;
+    },
   },
 });
 
-export const { setTempListId } = wishListSlice.actions;
+export const { setTempListId, setTempList } = wishListSlice.actions;
 
 export default wishListSlice.reducer;

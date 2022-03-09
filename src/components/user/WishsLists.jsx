@@ -4,7 +4,6 @@ import plusIcon from "assets/icons/plus_white.svg";
 import heartIcon from "assets/icons/heart_primary_circle.svg";
 import Dropdown from "components/user/Dropdown";
 import { useState } from "react";
-import FormGroup from "components/global/FormGroup";
 import FormGroupCustom from "components/global/FormGroupCustom";
 import Spacer from "components/global/Spacer";
 import Button from "components/global/Button";
@@ -13,9 +12,9 @@ import WishListCard from "./WishListCard";
 import { Route, Routes } from "react-router-dom";
 import ShareList from "./ShareList";
 import DeletePrompt from "components/wishlist/DeletePrompt";
-import CreateWishList from "components/wishlist/CreateWishList";
 import EditWishList from "components/wishlist/EditWishList";
 import CreateUsername from "./CreateUsername";
+import CreateUserWishList from "./CreateUserWishList";
 
 const Wrapper = styled.div``;
 
@@ -150,7 +149,7 @@ const WishsLists = () => {
       </ListWrapper>
 
       <Routes>
-        <Route path="new" element={<CreateWishList />} />
+        <Route path="new" element={<CreateUserWishList />} />
         <Route path="edit" element={<EditWishList />} />
         <Route path="share" element={<ShareList />} />
         <Route path="delete" element={<DeletePrompt />} />
