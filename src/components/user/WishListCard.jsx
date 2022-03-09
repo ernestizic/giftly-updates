@@ -6,7 +6,14 @@ import moreIcon from "assets/icons/more.svg";
 import CardOptions from "./CardOptions";
 import { useState } from "react";
 import Spacer from "components/global/Spacer";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  setTempList,
+  setTempListId,
+  setTempListName,
+  setTempListVisibility,
+} from "features/wishList/wishListSlice";
 
 const Wrapper = styled.div`
   padding: 8px;
@@ -17,7 +24,7 @@ const Wrapper = styled.div`
   transition: all 0.2s ease-out;
 
   &:hover {
-    transform: translateY(-12px);
+    transform: translateY(-8px);
   }
 
   .screen {
@@ -30,7 +37,7 @@ const Wrapper = styled.div`
   }
 
   .title {
-    display: block;
+    width: 100%;
 
     &:hover {
       color: var(--primary-main);
@@ -38,8 +45,21 @@ const Wrapper = styled.div`
   }
 `;
 
-const WishListCard = () => {
+const WishListCard = ({ details }) => {
+  const navigate = useNavigate();
   const [optionsOpen, setOptionsOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleOpen = () => {
+    if (!details) return;
+
+    dispatch(setTempListId(details.id));
+    dispatch(setTempListName(details.title));
+    dispatch(setTempList(details.items));
+    dispatch(setTempListVisibility(details.visibility));
+
+    navigate("edit");
+  };
 
   return (
     <Wrapper>
@@ -48,18 +68,30 @@ const WishListCard = () => {
       </div>
       <Spacer y={1.6} />
       <div className="body">
-        <Link to="edit" className="body-3 colorTitleActive title textCenter">
-          For Tobeezy
-        </Link>
+        <button
+          className="body-3 colorTitleActive title textCenter flexRow justifyCenter"
+          onClick={handleOpen}
+        >
+          {details.title}
+        </button>
         <Spacer y={0.4} />
-        <p className="label subtitle colorLabelText textCenter">3 wishes</p>
+        <p className="label subtitle colorLabelText textCenter">
+          {details?.items.length} wish{details?.items.length > 1 ? "es" : ""}
+        </p>
       </div>
       <Spacer y={1.6} />
       <div className="bottom flexRow alignCenter justifySpaceBetween">
         <button className="flexRow alignCenter togglePrivacy">
-          <img src={unlockedIcon} alt="lock" className="icon" />
+          {details?.visibility === "public" && (
+            <img src={unlockedIcon} alt="lock" className="icon" />
+          )}
+          {details?.visibility === "private" && (
+            <img src={lockedIcon} alt="lock" className="icon" />
+          )}
           <Spacer x={0.8} />
-          <span className="body-3 text">Public</span>
+          <span className="body-3 text textCapitalize">
+            {details?.visibility}
+          </span>
         </button>
         <button
           className="flexRow alignCenter toggleOptions"

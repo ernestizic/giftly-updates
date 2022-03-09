@@ -19,7 +19,6 @@ export const wishListSlice = createSlice({
       state.tempListName = action.payload;
     },
     setTempList: (state, action) => {
-      console.log(state);
       state.tempList = action.payload;
     },
     setTempListVisibility: (state, action) => {

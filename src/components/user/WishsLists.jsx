@@ -2,6 +2,7 @@ import styled from "styled-components";
 import searchIcon from "assets/icons/search.svg";
 import plusIcon from "assets/icons/plus_white.svg";
 import heartIcon from "assets/icons/heart_primary_circle.svg";
+import handPoint from "assets/images/hand_phone.svg";
 import Dropdown from "components/user/Dropdown";
 import { useState } from "react";
 import FormGroupCustom from "components/global/FormGroupCustom";
@@ -12,82 +13,28 @@ import WishListCard from "./WishListCard";
 import { Route, Routes } from "react-router-dom";
 import ShareList from "./ShareList";
 import DeletePrompt from "components/wishlist/DeletePrompt";
-import EditWishList from "components/wishlist/EditWishList";
+import EditWishList from "components/user/EditWishList";
 import CreateUsername from "./CreateUsername";
 import CreateUserWishList from "./CreateUserWishList";
+import { Search } from "./WishListsStyles";
+import { SubHeader } from "./WishListsStyles";
+import { Header } from "./WishListsStyles";
+import { ListWrapper } from "./WishListsStyles";
+import { Initials } from "./WishListsStyles";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import {
+  clearAlert,
+  setAlertTimeout,
+  showAlert,
+} from "features/alert/alertSlice";
+import { base_url } from "utils/utils";
+import axios from "axios";
+import Loader from "components/global/Loader";
+import { NoLists } from "./WishListsStyles";
+import { clearTempList } from "features/wishList/wishListSlice";
 
 const Wrapper = styled.div``;
-
-const Header = styled.div`
-  position: sticky;
-  top: 0;
-  background-color: #ffffff;
-  padding: 24px 48px;
-`;
-
-const Search = styled.div`
-  width: 400px;
-  height: 48px;
-  border: 1px solid #efefef;
-  border-radius: 4px;
-  padding: 8px 0;
-  display: grid;
-  grid-template-columns: 140px auto;
-
-  .dropdownWrapper {
-    height: 100%;
-  }
-
-  .searchInputWrapper {
-    display: grid;
-    grid-template-columns: auto 44px;
-  }
-
-  .divider {
-    width: 1px;
-    height: 100%;
-    background-color: var(--line);
-    margin-left: 9px;
-  }
-
-  .inputWrapper {
-    height: 100% !important;
-  }
-
-  .fieldWrapper {
-    height: 100%;
-  }
-`;
-
-const Initials = styled.div`
-  background-color: var(--primary-main);
-  color: #ffffff;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-
-  .text {
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 900;
-    line-height: 30px;
-    letter-spacing: 0px;
-  }
-`;
-
-const SubHeader = styled.div`
-  padding: 0 48px;
-`;
-
-const ListWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 48px;
-  padding: 0 48px;
-`;
 
 const searchCategories = ["Friends", "Wish list"];
 
@@ -95,6 +42,76 @@ const WishsLists = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState("Friends");
   const [search, setSearch] = useState("");
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.auth.user);
+  const tempList = useSelector((state) => state.wishList.tempList);
+  const tempListId = useSelector((state) => state.wishList.tempListId);
+  const dispatch = useDispatch();
+
+  const updateTempWishList = async () => {
+    if (!tempList?.length || !tempList[0].name) {
+      return;
+    }
+
+    const res = await axios.patch(
+      `${base_url}/wishlist/${tempListId}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (res.data.status === "success") {
+      dispatch(clearTempList());
+    }
+  };
+
+  const getWishLists = async () => {
+    await updateTempWishList();
+    try {
+      const res = await axios.get(`${base_url}/wishlist`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+
+      if (!res) {
+        setLoading(false);
+        dispatch(showAlert("An error occurred"));
+        return;
+      }
+
+      if (res.data.status === "success") {
+        setLoading(false);
+        setData(res.data.data.data);
+        return;
+      }
+      setLoading(false);
+      dispatch(showAlert(res.data.message));
+    } catch (e) {
+      setLoading(false);
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+      dispatch(showAlert(e.response.data.message || "Something went wrong"));
+    }
+  };
+
+  useEffect(() => {
+    getWishLists();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <Wrapper>
@@ -144,9 +161,29 @@ const WishsLists = () => {
         />
       </SubHeader>
       <Spacer y={4.8} />
+      {loading && (
+        <div className="flexRow justifyCenter">
+          <Loader />
+        </div>
+      )}
       <ListWrapper>
-        <WishListCard />
+        {data?.map((item, index) => (
+          <WishListCard key={index} details={item} />
+        ))}
       </ListWrapper>
+      {!loading && !data.length && (
+        <NoLists className="flexColumn justifyCenter">
+          <img src={handPoint} alt="..." className="image" />
+          <Spacer y={2.4} />
+          <h3 className="title-3 colorTitleActive textCenter">
+            No Wish list yet
+          </h3>
+          <Spacer y={0.4} />
+          <p className="body-2 textCenter">
+            Click on the create button to create a wish list
+          </p>
+        </NoLists>
+      )}
 
       <Routes>
         <Route path="new" element={<CreateUserWishList />} />
