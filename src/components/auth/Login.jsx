@@ -94,15 +94,15 @@ const Login = () => {
     <AuthWrapper className="flexColumn alignCenter">
       <AuthCard>
         <div className="flexRow alignCenter justifySpaceBetween">
-          <Link to="/home">
-            <img src={closeIcon} alt="icon" />
-          </Link>
           <p className="subtitle-4 prompt1">
             Don't have an account?{" "}
             <Link to="/home/sign-up" className="colorPrimaryMain">
               Sign up
             </Link>
           </p>
+          <Link to="/home">
+            <img src={closeIcon} alt="icon" />
+          </Link>
         </div>
         <Spacer y={2.4} />
         <div className="flexRow justifyCenter">

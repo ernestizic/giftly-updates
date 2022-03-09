@@ -35,6 +35,7 @@ const RowWrapper = styled.form`
 
   .linkInput {
     padding: 8px 0;
+    padding-bottom: 16px;
     padding-left: 48px;
     height: 36px;
 

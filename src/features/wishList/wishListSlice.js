@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   tempListId: null,
+  tempListName: "",
   tempList: [{}],
+  tempListVisibility: "public",
 };
 
 export const wishListSlice = createSlice({
@@ -13,12 +15,24 @@ export const wishListSlice = createSlice({
     setTempListId: (state, action) => {
       state.tempListId = action.payload;
     },
+    setTempListName: (state, action) => {
+      state.tempListName = action.payload;
+    },
     setTempList: (state, action) => {
+      console.log(state);
       state.tempList = action.payload;
+    },
+    setTempListVisibility: (state, action) => {
+      state.tempListVisibility = action.payload;
     },
   },
 });
 
-export const { setTempListId, setTempList } = wishListSlice.actions;
+export const {
+  setTempListId,
+  setTempListName,
+  setTempList,
+  setTempListVisibility,
+} = wishListSlice.actions;
 
 export default wishListSlice.reducer;

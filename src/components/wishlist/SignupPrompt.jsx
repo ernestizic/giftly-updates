@@ -1,8 +1,7 @@
 import React from "react";
-import handPhone from "assets/images/hand_phone.svg";
+import handPhone from "assets/images/hand_phone_social.svg";
 import coolEmoji from "assets/images/cool_emoji.png";
 import Spacer from "components/global/Spacer";
-import styled from "styled-components";
 import Button from "components/global/Button";
 import { AuthWrapper } from "components/auth/AuthStyles";
 import { AuthCard } from "components/auth/AuthStyles";

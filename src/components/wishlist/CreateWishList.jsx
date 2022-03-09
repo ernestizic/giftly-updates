@@ -15,6 +15,17 @@ import RadioInput from "components/global/RadioInput";
 import Button from "components/global/Button";
 import Logo from "components/global/Logo";
 import { AuthCard } from "components/auth/AuthStyles";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setTempList,
+  setTempListName,
+  setTempListVisibility,
+} from "features/wishList/wishListSlice";
+import {
+  clearAlert,
+  setAlertTimeout,
+  showAlert,
+} from "features/alert/alertSlice";
 
 const Wrapper = styled(Backdrop)`
   padding: 72px 0;
@@ -90,26 +101,59 @@ const PrivacyOptions = styled.div`
 
 const CreateWishList = () => {
   const navigate = useNavigate();
-  const [rows, setRows] = useState([{}]);
+  const tempList = useSelector((state) => state.wishList.tempList);
+  const tempListName = useSelector((state) => state.wishList.tempListName);
+  const tempListVisibility = useSelector(
+    (state) => state.wishList.tempListVisibility
+  );
+  const dispatch = useDispatch();
   const [privacyOption, setPrivacyOption] = useState("public");
 
   const setFieldValue = (rowIndex, fieldName, fieldValue) => {
-    let temp = [...rows];
+    let temp = tempList.map((item) => Object.assign({}, item));
+
     temp[rowIndex][fieldName] = fieldValue;
 
-    setRows(temp);
+    dispatch(setTempList(temp));
   };
 
   const removeRow = (index) => {
-    if (rows[index] !== undefined && rows[index] !== null) {
-      let temp = [...rows];
+    if (tempList[index] !== undefined && tempList[index] !== null) {
+      let temp = [...tempList];
       temp.splice(index, 1);
-      setRows(temp);
+      dispatch(setTempList(temp));
     }
+  };
+
+  const addMore = () => {
+    let temp = tempList.map((item) => Object.assign({}, item));
+
+    temp.push({ name: "", link: "" });
+
+    dispatch(setTempList(temp));
   };
 
   const togglePrivacyOptions = () => {
     document.querySelector("form.options").classList.toggle("show");
+  };
+
+  const handleShare = () => {
+    const timeout = setTimeout(() => {
+      dispatch(clearAlert());
+    }, 5000);
+    dispatch(setAlertTimeout(timeout));
+
+    if (!tempListName || !tempListName.length) {
+      dispatch(showAlert("Please name your wish list"));
+      return;
+    }
+
+    if (!tempList[0].name) {
+      dispatch(showAlert("Please add at least one item"));
+      return;
+    }
+
+    navigate("/home/register-prompt");
   };
 
   return (
@@ -131,14 +175,15 @@ const CreateWishList = () => {
           List Details
         </h3>
         <Spacer y={2.4} />
-        <Formik initialValues={{ wish_list_name: "" }}>
+        <Formik initialValues={{ wish_list_name: tempListName || "" }}>
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <FormGroup
                 fieldStyle="shortText"
                 name="wish_list_name"
                 label="Wish list name"
-                // onChange={(e) => }
+                value={tempListName}
+                onChange={(e) => dispatch(setTempListName(e.target.value))}
               />
             </form>
           )}
@@ -147,7 +192,7 @@ const CreateWishList = () => {
         <p className="subtitle-4 colorTitleActive">Add wishes</p>
         <Spacer y={1.6} />
         <div className="formRows">
-          {rows.map((row, index) => (
+          {tempList?.map((row, index) => (
             <ItemRowGroup
               key={index}
               index={index}
@@ -161,7 +206,7 @@ const CreateWishList = () => {
         <button
           type="button"
           className="addMore flexRow alignCenter justifyCenter colorGrey1"
-          onClick={() => setRows((prev) => [...prev, {}])}
+          onClick={addMore}
         >
           <img src={addIcon} alt="plus" className="icon" />
           <Spacer x={1.2} />
@@ -184,8 +229,8 @@ const CreateWishList = () => {
                 id="public"
                 name="privacy"
                 value="public"
-                checked={privacyOption === "public"}
-                onClick={() => setPrivacyOption("public")}
+                checked={tempListVisibility === "public"}
+                onClick={() => dispatch(setTempListVisibility("public"))}
               />
               <Spacer x={0.8} />
               <label className="body-3 colorTitleActive" htmlFor="public">
@@ -198,8 +243,8 @@ const CreateWishList = () => {
                 id="private"
                 name="privacy"
                 value="private"
-                checked={privacyOption === "private"}
-                onClick={() => setPrivacyOption("private")}
+                checked={tempListVisibility === "private"}
+                onClick={() => dispatch(setTempListVisibility("private"))}
               />
               <Spacer x={0.8} />
               <label className="body-3 colorTitleActive" htmlFor="private">
@@ -214,7 +259,7 @@ const CreateWishList = () => {
             text="Share"
             iconLeft={shareIcon}
             width="calc(50% - 12px)"
-            onClick={() => navigate("/home/register-prompt")}
+            onClick={handleShare}
           />
           <Spacer x={2.4} />
           <Button

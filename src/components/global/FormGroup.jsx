@@ -135,7 +135,7 @@ const FormGroup = ({
   };
 
   useEffect(() => {
-    if (defaultValue?.length) {
+    if (defaultValue?.length || defaultValue !== undefined || value) {
       setShowLabel(true);
     }
   }, [defaultValue]);

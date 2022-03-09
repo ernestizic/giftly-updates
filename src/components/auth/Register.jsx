@@ -58,7 +58,7 @@ const Register = () => {
       }
 
       if (res.data.status === "success") {
-        dispatch(setUser(res.data.data.user));
+        dispatch(setUser(res.data.data));
         navigate("/home/verify-email");
         return;
       }
@@ -77,15 +77,15 @@ const Register = () => {
     <AuthWrapper>
       <AuthCard>
         <div className="flexRow alignCenter justifySpaceBetween">
-          <Link to="/home">
-            <img src={closeIcon} alt="icon" />
-          </Link>
           <p className="subtitle-4 prompt1">
             Already have an account?{" "}
             <Link to="/home/login" className="colorPrimaryMain">
               Login
             </Link>
           </p>
+          <Link to="/home">
+            <img src={closeIcon} alt="icon" />
+          </Link>
         </div>
         <Spacer y={2.4} />
         <div className="flexRow justifyCenter">
