@@ -29,6 +29,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.auth.user);
 
   const schema = Yup.object({
     email: Yup.string()
@@ -93,7 +94,15 @@ const Login = () => {
   });
 
   if (token) {
-    return <Navigate to="/user/wish-lists" />;
+    return (
+      <Navigate
+        to={
+          user?.username
+            ? "/user/wish-lists"
+            : "/user/wish-lists/create-username"
+        }
+      />
+    );
   }
 
   return (

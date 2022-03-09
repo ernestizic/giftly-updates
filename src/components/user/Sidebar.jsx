@@ -6,6 +6,8 @@ import faqIcon from "assets/icons/message_question.svg";
 import supportIcon from "assets/icons/support.svg";
 import logoutIcon from "assets/icons/logout.svg";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setToken, setUser } from "features/auth/authSlice";
 
 const Wrapper = styled.div`
   padding: 2.4rem;
@@ -67,6 +69,13 @@ const menuList = [
 ];
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(setToken(null));
+    dispatch(setUser(null));
+  };
+
   return (
     <Wrapper>
       <div className="brand">
@@ -85,7 +94,11 @@ const Sidebar = () => {
             <span className="subtitle-4 text">{item.title}</span>
           </NavLink>
         ))}
-        <NavLink to="/home/login" className="item flexRow alignCenter">
+        <NavLink
+          to="/home/login"
+          className="item flexRow alignCenter"
+          onClick={handleLogout}
+        >
           <img src={logoutIcon} alt="icon" className="icon" />
           <span className="subtitle-4 text">Logout</span>
         </NavLink>
