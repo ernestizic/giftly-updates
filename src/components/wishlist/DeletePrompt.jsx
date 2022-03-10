@@ -22,7 +22,7 @@ const Card = styled(AuthCard)`
   background-color: var(--primary-main);
 `;
 
-const DeletePrompt = ({ getWishLists }) => {
+const DeletePrompt = ({ getWishLists, redirect }) => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -32,7 +32,14 @@ const DeletePrompt = ({ getWishLists }) => {
   const [deleting, setDeleting] = useState(false);
 
   const deleteList = async () => {
-    if (!tempListId) return;
+    if (!tempListId || !getWishLists) {
+      redirect ? navigate(redirect) : navigate(-1);
+
+      dispatch(clearTempList());
+
+      return;
+    }
+
     setDeleting(true);
     try {
       const res = await axios.delete(`${base_url}/wishlist/${tempListId}`, {

@@ -209,12 +209,7 @@ const CreateUserWishList = ({ getWishLists }) => {
   };
 
   const handleDelete = () => {
-    navigate(-1);
-    if (!tempListName || !tempListName.length || !tempList[0].name) {
-      return;
-    }
-
-    dispatch(clearTempList());
+    navigate("/user/wish-lists/delete");
   };
 
   if (!user.username) {
