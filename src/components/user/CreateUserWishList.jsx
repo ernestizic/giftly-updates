@@ -5,7 +5,7 @@ import addIcon from "assets/icons/plus.svg";
 import settingsIcon from "assets/icons/settings.svg";
 import shareIcon from "assets/icons/share_white.svg";
 import deleteIcon from "assets/icons/trash.svg";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { useState } from "react";
 import ItemRowGroup from "../wishlist/ItemRowGroup";
@@ -112,6 +112,7 @@ const CreateUserWishList = ({ getWishLists }) => {
     (state) => state.wishList.tempListVisibility
   );
   const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const [saving, setSaving] = useState(false);
 
@@ -215,6 +216,10 @@ const CreateUserWishList = ({ getWishLists }) => {
 
     dispatch(clearTempList());
   };
+
+  if (!user.username) {
+    return <Navigate to="/user/wish-lists/create-username" />;
+  }
 
   return (
     <Wrapper className="flexColumn alignCenter">

@@ -140,7 +140,10 @@ const WishsLists = () => {
         </Search>
         <div>
           <Initials>
-            <span className="text textCenter textUppercase">ND</span>
+            <span className="text textCenter textUppercase">
+              {user?.first_name.charAt(0)}
+              {user?.last_name.charAt(0)}
+            </span>
           </Initials>
         </div>
       </Header>
