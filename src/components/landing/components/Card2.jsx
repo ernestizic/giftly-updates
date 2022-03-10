@@ -47,6 +47,7 @@ const ICONS = [
 const Wrapper = styled.div`
 	border-radius: 0.8rem;
 	background-color: var(--accent_2-main);
+	z-index: 2;
 	width: 45.6rem;
 	/* padding-top: 0.1rem; */
 	overflow: hidden;
