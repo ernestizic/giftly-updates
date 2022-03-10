@@ -4,11 +4,10 @@ import styled from "styled-components";
 import closeIcon from "assets/icons/close_square.svg";
 import twitterIcon from "assets/icons/twitter.svg";
 import facebookIcon from "assets/icons/facebook.svg";
-import instagramIcon from "assets/icons/instagram.svg";
 import whatsappIcon from "assets/icons/whatsapp.svg";
-import snapchatIcon from "assets/icons/snapchat.svg";
 import telegramIcon from "assets/icons/telegram.svg";
 import copyIcon from "assets/icons/document_copy.svg";
+import copyIconCircle from "assets/icons/document_copy_circle.svg";
 import { Link } from "react-router-dom";
 import FormGroupCustom from "components/global/FormGroupCustom";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,6 +47,23 @@ const Card = styled(AuthCard)`
 
   .copyTrigger {
     width: max-content;
+  }
+
+  @media screen and (max-width: 768px) {
+    .shareOptions {
+      padding: 24px;
+    }
+
+    .socials {
+      grid-column-gap: 36px;
+      .icon {
+        height: 48px;
+      }
+    }
+
+    .copyWrapper {
+      display: none;
+    }
   }
 `;
 
@@ -92,12 +108,10 @@ const socials = {
     icon: facebookIcon,
     share: shareOnFB,
   },
-  // instagram: instagramIcon,
   whatsapp: {
     icon: whatsappIcon,
     share: shareOnWhatsapp,
   },
-  // snapchat: snapchatIcon,
   telegram: {
     icon: telegramIcon,
     share: shareOnTelegram,
@@ -156,6 +170,16 @@ const ShareList = () => {
                 </p>
               </button>
             ))}
+            <button
+              className="flexColumn justifyCenter alignCenter item copyLink"
+              onClick={() => copyLink("share_link")}
+            >
+              <img src={copyIconCircle} alt="search" className="icon" />
+              <Spacer y={0.4} />
+              <p className="subtitle-4 textCenter colorTitleActive text textCapitalize">
+                Copy link
+              </p>
+            </button>
           </div>
         </div>
         <div className="copyWrapper">
