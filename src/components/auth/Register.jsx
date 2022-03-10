@@ -1,5 +1,5 @@
 import closeIcon from "assets/icons/close_square.svg";
-import googleIcon from "assets/icons/google_icon.svg";
+// import googleIcon from "assets/icons/google_icon.svg";
 import { Link, useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { Formik } from "formik";
@@ -11,8 +11,8 @@ import { useState } from "react";
 import CheckBox from "components/global/CheckBox";
 import { AuthWrapper } from "./AuthStyles";
 import { AuthCard } from "./AuthStyles";
-import { GoogleAuthButton } from "./AuthStyles";
-import { AuthDivider } from "./AuthStyles";
+// import { GoogleAuthButton } from "./AuthStyles";
+// import { AuthDivider } from "./AuthStyles";
 import {
   clearAlert,
   setAlertTimeout,

@@ -11,13 +11,11 @@ import { AuthCard } from "./AuthStyles";
 import closeIcon from "assets/icons/close_square.svg";
 import handPoint from "assets/images/hand_point.svg";
 import { useState } from "react";
-import axios from "axios";
 import { CardImage } from "./AuthStyles";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const [emailAddress, setEmailAddress] = useState("");
-  const [isSubmitting, setSubmitting] = useState(false);
 
   const schema_email = Yup.object({
     email: Yup.string()
@@ -70,8 +68,8 @@ const ForgotPassword = () => {
   };
 
   const submitPassword = async (values) => {
-    const token = window.location.pathname.split("/")[2];
-    const data = { ...values, token };
+    // const token = window.location.pathname.split("/")[2];
+    // const data = { ...values, token };
     navigate("/home/login");
     // try {
     //   let res = await axios.post(
@@ -136,7 +134,7 @@ const ForgotPassword = () => {
                   await submitEmail(values);
                 }}
               >
-                {({ handleSubmit, isValid, values }) => (
+                {({ handleSubmit, isSubmitting, isValid, values }) => (
                   <FormWrapper onSubmit={handleSubmit}>
                     <FormGroup
                       fieldStyle="shortText"
@@ -147,7 +145,8 @@ const ForgotPassword = () => {
                     />
                     <Button
                       type="submit"
-                      text={isSubmitting ? "..." : "Send reset instructions"}
+                      text={"Send reset instructions"}
+                      loading={isSubmitting}
                       className="spanFull"
                       disabled={!isValid || !values.email || isSubmitting}
                       width="100%"
@@ -220,7 +219,7 @@ const ForgotPassword = () => {
                   await submitPassword(values);
                 }}
               >
-                {({ handleSubmit, isValid, values }) => (
+                {({ handleSubmit, isSubmitting, isValid, values }) => (
                   <FormWrapper onSubmit={handleSubmit}>
                     <FormGroup
                       fieldStyle="shortText"
@@ -238,7 +237,8 @@ const ForgotPassword = () => {
                     />
                     <Button
                       type="submit"
-                      text={isSubmitting ? "..." : "Reset password"}
+                      text={"Reset password"}
+                      loading={isSubmitting}
                       className="spanFull"
                       disabled={
                         !isValid ||

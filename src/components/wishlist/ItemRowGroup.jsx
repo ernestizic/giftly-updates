@@ -1,5 +1,4 @@
 import { Formik } from "formik";
-import * as Yup from "yup";
 import styled from "styled-components";
 import FormGroup from "components/global/FormGroup";
 import removeIcon from "assets/icons/close_square.svg";

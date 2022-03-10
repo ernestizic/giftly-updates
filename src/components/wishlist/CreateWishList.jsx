@@ -5,7 +5,7 @@ import addIcon from "assets/icons/plus.svg";
 import settingsIcon from "assets/icons/settings.svg";
 import shareIcon from "assets/icons/share_white.svg";
 import deleteIcon from "assets/icons/trash.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { useState } from "react";
 import ItemRowGroup from "./ItemRowGroup";

@@ -6,7 +6,7 @@ import moreIcon from "assets/icons/more.svg";
 import CardOptions from "./CardOptions";
 import { useState } from "react";
 import Spacer from "components/global/Spacer";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   setTempList,

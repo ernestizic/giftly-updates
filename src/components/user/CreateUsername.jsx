@@ -1,13 +1,10 @@
-import closeIcon from "assets/icons/close_square.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import FormGroup from "components/global/FormGroup";
 import FormWrapper from "components/global/FormWrapper";
 import Button from "components/global/Button";
-import { useEffect, useState } from "react";
-import CheckBox from "components/global/CheckBox";
 import { AuthWrapper, AuthCard } from "components/auth/AuthStyles";
 import Logo from "components/global/Logo";
 import axios from "axios";

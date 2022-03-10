@@ -1,5 +1,4 @@
 import axios from "axios";
-import { store } from "redux/store";
 
 export const base_url = "https://api.giftly.me/api/v1";
 

@@ -138,7 +138,8 @@ const FormGroup = ({
     if (defaultValue?.length || defaultValue !== undefined || value) {
       setShowLabel(true);
     }
-  }, [defaultValue]);
+    // eslint-disable-next-line
+  }, [defaultValue, value]);
 
   useEffect(() => {
     document.querySelectorAll(`input`).forEach((input) => {

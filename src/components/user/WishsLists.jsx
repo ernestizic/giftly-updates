@@ -42,7 +42,7 @@ const searchCategories = ["Friends", "Wish list"];
 const WishsLists = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState("Friends");
-  const [search, setSearch] = useState("");
+  const [setSearch] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 

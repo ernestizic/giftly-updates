@@ -3,9 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import eyeIcon from "assets/icons/eye.svg";
 import eyeClosed from "assets/icons/eye_slash.svg";
-import { useField } from "formik";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export const FormGroupWrapper = styled.div`
   .fieldWrapper {
