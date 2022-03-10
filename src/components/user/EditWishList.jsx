@@ -17,6 +17,7 @@ import Logo from "components/global/Logo";
 import { AuthCard } from "components/auth/AuthStyles";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  clearTempList,
   setTempList,
   setTempListId,
   setTempListName,
@@ -177,6 +178,8 @@ const EditWishList = () => {
       }
     );
 
+    dispatch(clearTempList());
+
     return res;
   };
 
@@ -219,7 +222,13 @@ const EditWishList = () => {
     <Wrapper className="flexColumn alignCenter">
       <Card>
         <div className="flexRow alignCenter justifyEnd">
-          <button type="button" onClick={() => navigate(-1)}>
+          <button
+            type="button"
+            onClick={() => {
+              updateDetails();
+              navigate(-1);
+            }}
+          >
             <img src={closeIcon} alt="icon" />
           </button>
         </div>

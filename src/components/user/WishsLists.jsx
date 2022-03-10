@@ -96,6 +96,7 @@ const WishsLists = () => {
         setData(res.data.data.data);
         return;
       }
+      dispatch(clearTempList());
       setLoading(false);
       dispatch(showAlert(res.data.message));
     } catch (e) {
