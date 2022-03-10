@@ -40,7 +40,7 @@ const Wrapper = styled.button`
   }
 
   &.secondary {
-    background-color: var(--primary-light);
+    background-color: var(--accent_2-main);
     color: var(--primary-main);
 
     &:hover {

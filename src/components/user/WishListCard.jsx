@@ -43,6 +43,12 @@ const Wrapper = styled.div`
       color: var(--primary-main);
     }
   }
+
+  @media screen and (max-width: 768px) {
+    position: unset;
+    margin: auto;
+    width: 240px;
+  }
 `;
 
 const WishListCard = ({ details }) => {
@@ -62,16 +68,13 @@ const WishListCard = ({ details }) => {
   };
 
   return (
-    <Wrapper onClick={() => dispatch(setTempListId(details.id))}>
-      <div className="screen flexRow justifyCenter">
+    <Wrapper>
+      <div className="screen flexRow justifyCenter" onClick={handleOpen}>
         <img src={openBox} alt="Open box" />
       </div>
       <Spacer y={1.6} />
-      <div className="body">
-        <button
-          className="body-3 colorTitleActive title textCenter flexRow justifyCenter"
-          onClick={handleOpen}
-        >
+      <div className="body" onClick={handleOpen}>
+        <button className="body-3 colorTitleActive title textCenter flexRow justifyCenter">
           {details.title}
         </button>
         <Spacer y={0.4} />
@@ -81,7 +84,10 @@ const WishListCard = ({ details }) => {
       </div>
       <Spacer y={1.6} />
       <div className="bottom flexRow alignCenter justifySpaceBetween">
-        <button className="flexRow alignCenter togglePrivacy">
+        <button
+          className="flexRow alignCenter togglePrivacy"
+          id="togglePrivacy"
+        >
           {details?.visibility === "public" && (
             <img src={unlockedIcon} alt="lock" className="icon" />
           )}
@@ -94,6 +100,7 @@ const WishListCard = ({ details }) => {
           </span>
         </button>
         <button
+          id="toggleOptions"
           className="flexRow alignCenter toggleOptions"
           onClick={() => setOptionsOpen((prev) => !prev)}
         >

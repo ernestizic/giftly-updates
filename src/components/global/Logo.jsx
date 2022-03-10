@@ -11,8 +11,8 @@ const Wrapper = styled.div`
 
 export default function Logo({ onClick = () => null }) {
   return (
-    <Wrapper onClick={onClick}>
-      <img src={logo} alt="PostPaddy" />
+    <Wrapper onClick={onClick} className="logo">
+      <img src={logo} alt="Giftly" />
     </Wrapper>
   );
 }

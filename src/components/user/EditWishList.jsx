@@ -326,20 +326,20 @@ const EditWishList = ({ getWishLists }) => {
         <Spacer y={2.4} />
         <div className="flexRow justifyCenter actionBtns">
           <Button
+            text="Delete"
+            iconLeft={deleteIcon}
+            className="secondary"
+            width="calc(50% - 24px)"
+            onClick={() => navigate("delete")}
+          />
+          <Spacer x={2.4} />
+          <Button
             text="Share"
             iconLeft={shareIcon}
             disabled={saving}
             loading={saving}
             width="calc(50% - 12px)"
             onClick={handleShare}
-          />
-          <Spacer x={2.4} />
-          <Button
-            text="Delete"
-            iconLeft={deleteIcon}
-            className="secondary"
-            width="calc(50% - 24px)"
-            onClick={() => navigate("delete")}
           />
         </div>
       </Card>

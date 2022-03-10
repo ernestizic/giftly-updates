@@ -102,8 +102,8 @@ export const SubHeader = styled.div`
       right: 24px;
       z-index: 5;
       border-radius: 50%;
-      height: 48px;
-      width: 48px;
+      height: 56px;
+      width: 56px;
 
       span {
         display: none;
@@ -121,6 +121,11 @@ export const ListWrapper = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 48px;
   padding: 0 48px;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+  }
 `;
 
 export const NoLists = styled.div`

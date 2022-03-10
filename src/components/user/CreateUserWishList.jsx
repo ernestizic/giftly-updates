@@ -3,8 +3,8 @@ import styled from "styled-components";
 import closeIcon from "assets/icons/close_square.svg";
 import addIcon from "assets/icons/plus.svg";
 import settingsIcon from "assets/icons/settings.svg";
-import shareIcon from "assets/icons/share_white.svg";
-import deleteIcon from "assets/icons/trash.svg";
+import shareIcon from "assets/icons/share_primary.svg";
+import saveIcon from "assets/icons/save_white.svg";
 import { Navigate, useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { useState } from "react";
@@ -143,7 +143,7 @@ const CreateUserWishList = ({ getWishLists }) => {
     document.querySelector("form.options").classList.toggle("show");
   };
 
-  const handleShare = async () => {
+  const handleSave = async (action) => {
     let timeout = setTimeout(() => {
       dispatch(clearAlert());
     }, 5000);
@@ -191,7 +191,9 @@ const CreateUserWishList = ({ getWishLists }) => {
         dispatch(showAlert("Wish list saved"));
         dispatch(clearTempList());
         setSaving(false);
-        navigate("/user/wish-lists/share");
+        action === "share"
+          ? navigate("/user/wish-lists/share")
+          : navigate("/user/wish-lists");
         return;
       }
 
@@ -205,10 +207,6 @@ const CreateUserWishList = ({ getWishLists }) => {
       dispatch(setAlertTimeout(timeout));
       dispatch(showAlert(e.response.data.message));
     }
-  };
-
-  const handleDelete = () => {
-    navigate("/user/wish-lists/delete");
   };
 
   if (!user.username) {
@@ -316,19 +314,21 @@ const CreateUserWishList = ({ getWishLists }) => {
         <div className="flexRow justifyCenter actionBtns">
           <Button
             text="Share"
+            className="secondary"
             iconLeft={shareIcon}
             disabled={saving}
             loading={saving}
             width="calc(50% - 12px)"
-            onClick={handleShare}
+            onClick={() => handleSave("share")}
           />
           <Spacer x={2.4} />
           <Button
-            text="Delete"
-            iconLeft={deleteIcon}
-            className="secondary"
+            text="Save"
+            iconLeft={saveIcon}
+            disabled={saving}
+            loading={saving}
             width="calc(50% - 24px)"
-            onClick={handleDelete}
+            onClick={handleSave}
           />
         </div>
       </Card>

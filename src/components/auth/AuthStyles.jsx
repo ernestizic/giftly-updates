@@ -11,8 +11,8 @@ export const AuthWrapper = styled(Backdrop)`
 
 export const AuthCard = styled.div`
   width: 480px;
-  max-height: 640px;
-  overflow: auto;
+  // max-height: 640px;
+  // overflow: auto;
   margin: auto;
   background-color: #ffffff;
   border-radius: 16px;

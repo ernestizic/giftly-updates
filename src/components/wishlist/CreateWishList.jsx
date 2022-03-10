@@ -166,7 +166,7 @@ const CreateWishList = () => {
 
     setSaving(true);
     try {
-      const res = await axios.post(`${base_url}/wishlist`, wishList);
+      const res = await axios.post(`${base_url}/wishlist/save`, wishList);
 
       const timeout = setTimeout(() => {
         dispatch(clearAlert());

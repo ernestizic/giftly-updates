@@ -51,13 +51,19 @@ const Card = styled(AuthCard)`
 
   @media screen and (max-width: 768px) {
     .shareOptions {
-      padding: 24px;
+      padding: 24px 48px;
+      padding-bottom: 32px;
     }
 
     .socials {
-      grid-column-gap: 36px;
+      grid-column-gap: 40px;
       .icon {
         height: 48px;
+      }
+
+      .text {
+        font-size: 14px;
+        line-height: 18px;
       }
     }
 
