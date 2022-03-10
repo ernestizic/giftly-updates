@@ -5,7 +5,7 @@ import addIcon from "assets/icons/plus.svg";
 import settingsIcon from "assets/icons/settings.svg";
 import shareIcon from "assets/icons/share_white.svg";
 import deleteIcon from "assets/icons/trash.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { useState } from "react";
 import ItemRowGroup from "./ItemRowGroup";
@@ -13,6 +13,22 @@ import FormGroup from "components/global/FormGroup";
 import { Formik } from "formik";
 import RadioInput from "components/global/RadioInput";
 import Button from "components/global/Button";
+import Logo from "components/global/Logo";
+import { AuthCard } from "components/auth/AuthStyles";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setTempList,
+  setTempListId,
+  setTempListName,
+  setTempListVisibility,
+} from "features/wishList/wishListSlice";
+import {
+  clearAlert,
+  setAlertTimeout,
+  showAlert,
+} from "features/alert/alertSlice";
+import { base_url } from "utils/utils";
+import axios from "axios";
 
 const Wrapper = styled(Backdrop)`
   padding: 72px 0;
@@ -22,8 +38,7 @@ const Wrapper = styled(Backdrop)`
   }
 `;
 
-const Card = styled.div`
-  width: 695px;
+const Card = styled(AuthCard)`
   margin: auto;
   background-color: #ffffff;
   border-radius: 16px;
@@ -42,7 +57,7 @@ const Card = styled.div`
   }
 
   .actionBtns {
-    width: 504px;
+    width: 100%;
     margin: auto;
   }
 
@@ -64,10 +79,6 @@ const Card = styled.div`
       font-size: 12px;
       line-height: auto;
     }
-
-    .actionBtns {
-      width: 100%;
-    }
   }
 `;
 
@@ -79,6 +90,7 @@ const PrivacyOptions = styled.div`
   .options {
     opacity: 0;
     height: 0;
+    overflow: hidden;
     pointer-events: none;
     transition: all 0.2s ease-out;
 
@@ -92,51 +104,128 @@ const PrivacyOptions = styled.div`
 
 const CreateWishList = () => {
   const navigate = useNavigate();
-  const [rows, setRows] = useState([{}]);
-  const [privacyOption, setPrivacyOption] = useState("public");
+  const tempList = useSelector((state) => state.wishList.tempList);
+  const tempListName = useSelector((state) => state.wishList.tempListName);
+  const tempListVisibility = useSelector(
+    (state) => state.wishList.tempListVisibility
+  );
+  const dispatch = useDispatch();
+  const [saving, setSaving] = useState(false);
 
   const setFieldValue = (rowIndex, fieldName, fieldValue) => {
-    let temp = [...rows];
+    let temp = tempList.map((item) => Object.assign({}, item));
+
     temp[rowIndex][fieldName] = fieldValue;
 
-    setRows(temp);
+    dispatch(setTempList(temp));
   };
 
   const removeRow = (index) => {
-    if (rows[index] !== undefined && rows[index] !== null) {
-      let temp = [...rows];
+    if (tempList[index] !== undefined && tempList[index] !== null) {
+      let temp = [...tempList];
       temp.splice(index, 1);
-      setRows(temp);
+      dispatch(setTempList(temp));
     }
+  };
+
+  const addMore = () => {
+    let temp = tempList.map((item) => Object.assign({}, item));
+
+    temp.push({ name: "", link: "" });
+
+    dispatch(setTempList(temp));
   };
 
   const togglePrivacyOptions = () => {
     document.querySelector("form.options").classList.toggle("show");
   };
 
+  const handleShare = async () => {
+    let timeout = setTimeout(() => {
+      dispatch(clearAlert());
+    }, 5000);
+    dispatch(setAlertTimeout(timeout));
+
+    if (!tempListName || !tempListName.length) {
+      dispatch(showAlert("Please name your wish list"));
+      return;
+    }
+
+    if (!tempList[0].name) {
+      dispatch(showAlert("Please add at least one item"));
+      return;
+    }
+
+    dispatch(clearAlert());
+
+    const wishList = {
+      title: tempListName,
+      visibility: tempListVisibility,
+      items: tempList,
+    };
+
+    setSaving(true);
+    try {
+      const res = await axios.post(`${base_url}/wishlist`, wishList);
+
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+
+      if (!res) {
+        dispatch(showAlert("An error occurred"));
+        return;
+      }
+
+      if (res.data.status === "success") {
+        dispatch(setTempListId(res.data.data.id));
+        dispatch(showAlert("Wish list saved"));
+        setSaving(false);
+        navigate("/home/register-prompt");
+        return;
+      }
+
+      setSaving(false);
+      dispatch(showAlert(res.data.message));
+    } catch (e) {
+      setSaving(false);
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+      dispatch(showAlert(e.response.data.message));
+    }
+  };
+
   return (
     <Wrapper className="flexColumn alignCenter">
       <Card>
         <div className="flexRow alignCenter justifyEnd">
-          <Link to="/home">
+          <button type="button" onClick={() => navigate(-1)}>
             <img src={closeIcon} alt="icon" />
-          </Link>
+          </button>
         </div>
         <Spacer y={2.4} />
+        <div className="flexRow justifyCenter">
+          <Logo />
+        </div>
+        <Spacer y={0.8} />
         <p className="subtitle-4 subtitle textCenter">Create a wish list</p>
         <Spacer y={0.4} />
         <h3 className="title-3 title textCenter colorTitleActive">
           List Details
         </h3>
         <Spacer y={2.4} />
-        <Formik initialValues={{ wish_list_name: "" }}>
+        <Formik initialValues={{ wish_list_name: tempListName || "" }}>
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <FormGroup
                 fieldStyle="shortText"
                 name="wish_list_name"
                 label="Wish list name"
-                // onChange={(e) => }
+                value={tempListName}
+                onChange={(e) => dispatch(setTempListName(e.target.value))}
               />
             </form>
           )}
@@ -145,7 +234,7 @@ const CreateWishList = () => {
         <p className="subtitle-4 colorTitleActive">Add wishes</p>
         <Spacer y={1.6} />
         <div className="formRows">
-          {rows.map((row, index) => (
+          {tempList?.map((row, index) => (
             <ItemRowGroup
               key={index}
               index={index}
@@ -159,7 +248,7 @@ const CreateWishList = () => {
         <button
           type="button"
           className="addMore flexRow alignCenter justifyCenter colorGrey1"
-          onClick={() => setRows((prev) => [...prev, {}])}
+          onClick={addMore}
         >
           <img src={addIcon} alt="plus" className="icon" />
           <Spacer x={1.2} />
@@ -182,8 +271,8 @@ const CreateWishList = () => {
                 id="public"
                 name="privacy"
                 value="public"
-                checked={privacyOption === "public"}
-                onClick={() => setPrivacyOption("public")}
+                checked={tempListVisibility === "public"}
+                onClick={() => dispatch(setTempListVisibility("public"))}
               />
               <Spacer x={0.8} />
               <label className="body-3 colorTitleActive" htmlFor="public">
@@ -196,8 +285,8 @@ const CreateWishList = () => {
                 id="private"
                 name="privacy"
                 value="private"
-                checked={privacyOption === "private"}
-                onClick={() => setPrivacyOption("private")}
+                checked={tempListVisibility === "private"}
+                onClick={() => dispatch(setTempListVisibility("private"))}
               />
               <Spacer x={0.8} />
               <label className="body-3 colorTitleActive" htmlFor="private">
@@ -211,8 +300,10 @@ const CreateWishList = () => {
           <Button
             text="Share"
             iconLeft={shareIcon}
+            disabled={saving}
+            loading={saving}
             width="calc(50% - 12px)"
-            onClick={() => navigate("/home/register-prompt")}
+            onClick={handleShare}
           />
           <Spacer x={2.4} />
           <Button

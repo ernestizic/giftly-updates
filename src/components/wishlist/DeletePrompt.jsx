@@ -1,37 +1,81 @@
 import React from "react";
 import deleteIcon from "assets/icons/delete_circle.svg";
-import coolEmoji from "assets/images/cool_emoji.png";
 import Spacer from "components/global/Spacer";
 import styled from "styled-components";
 import Button from "components/global/Button";
 import { AuthWrapper } from "components/auth/AuthStyles";
 import { AuthCard } from "components/auth/AuthStyles";
 import { useNavigate } from "react-router-dom";
+import { CardImage } from "components/auth/AuthStyles";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { base_url } from "utils/utils";
+import {
+  clearAlert,
+  setAlertTimeout,
+  showAlert,
+} from "features/alert/alertSlice";
+import { clearTempList } from "features/wishList/wishListSlice";
+import { useState } from "react";
 
 const Card = styled(AuthCard)`
   background-color: var(--primary-main);
 `;
 
-const CardImage = styled.img`
-  display: block;
-  width: 330px;
-  margin: auto;
-
-  &.icon {
-    width: 48px;
-  }
-
-  @media screen and (max-width: 768px) {
-    width: 160px;
-
-    &.icon {
-      width: 48px;
-    }
-  }
-`;
-
-const DeletePrompt = () => {
+const DeletePrompt = ({ getWishLists, redirect }) => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const tempListId = useSelector((state) => state.wishList.tempListId);
+  const token = useSelector((state) => state.auth.token);
+
+  const [deleting, setDeleting] = useState(false);
+
+  const deleteList = async () => {
+    if (!tempListId || !getWishLists) {
+      redirect ? navigate(redirect) : navigate(-1);
+
+      dispatch(clearTempList());
+
+      return;
+    }
+
+    setDeleting(true);
+    try {
+      const res = await axios.delete(`${base_url}/wishlist/${tempListId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+
+      if (!res) {
+        dispatch(showAlert("An error occurred"));
+        return;
+      }
+
+      if (res.data.status === "success") {
+        getWishLists();
+        dispatch(clearTempList());
+        dispatch(showAlert("List deleted"));
+        navigate(-1);
+        return;
+      }
+
+      dispatch(showAlert(res.data.message));
+    } catch (e) {
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+      dispatch(showAlert(e.response?.data.message || "Something went wrong"));
+    }
+  };
+
   return (
     <AuthWrapper className="flexColumn alignCenter">
       <Card className="flexColumn justifyCenter">
@@ -46,13 +90,20 @@ const DeletePrompt = () => {
           wishes will be deleted with it.
         </p>
         <Spacer y={2.4} />
-        <Button text="Delete wish list" width="100%" className="inverted" />
+        <Button
+          text="Delete wish list"
+          width="100%"
+          className="inverted"
+          loading={deleting}
+          disabled={deleting}
+          onClick={deleteList}
+        />
         <Spacer y={1.6} />
         <Button
           text="Cancel"
           className="noBorder white"
           width="100%"
-          onClick={() => navigate("/home/new-wishlist")}
+          onClick={() => navigate(-1)}
         />
       </Card>
     </AuthWrapper>

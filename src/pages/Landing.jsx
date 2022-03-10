@@ -1,3 +1,4 @@
+import ForgotPassword from "components/auth/ForgotPassword";
 import Login from "components/auth/Login";
 import Register from "components/auth/Register";
 import VerifyEmail from "components/auth/VerifyEmail";
@@ -35,6 +36,7 @@ const Landing = () => {
         <Route path="sign-up" element={<Register />} />
         <Route path="verify-email" element={<VerifyEmail />} />
         <Route path="login" element={<Login />} />
+        <Route path="password-reset/*" element={<ForgotPassword />} />
 
         {/* Wish list */}
         <Route path="new-wishlist" element={<CreateWishList />} />

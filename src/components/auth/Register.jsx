@@ -1,5 +1,5 @@
 import closeIcon from "assets/icons/close_square.svg";
-import googleIcon from "assets/icons/google_icon.svg";
+// import googleIcon from "assets/icons/google_icon.svg";
 import { Link, useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { Formik } from "formik";
@@ -11,12 +11,23 @@ import { useState } from "react";
 import CheckBox from "components/global/CheckBox";
 import { AuthWrapper } from "./AuthStyles";
 import { AuthCard } from "./AuthStyles";
-import { GoogleAuthButton } from "./AuthStyles";
-import { AuthDivider } from "./AuthStyles";
+// import { GoogleAuthButton } from "./AuthStyles";
+// import { AuthDivider } from "./AuthStyles";
+import {
+  clearAlert,
+  setAlertTimeout,
+  showAlert,
+} from "features/alert/alertSlice";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { base_url } from "utils/utils";
+import { setUser } from "features/auth/authSlice";
+import Logo from "components/global/Logo";
 
 const Register = () => {
   const navigate = useNavigate();
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const dispatch = useDispatch();
 
   const schema = Yup.object({
     first_name: Yup.string().required("Fiield required"),
@@ -25,7 +36,7 @@ const Register = () => {
       .email("Invalid email address")
       .required("Field required"),
     password: Yup.string()
-      .matches("^[a-zA-Zd]{8,}$", "Must be at least eight characters")
+      .min(8, "Must be at least eight characters")
       .required("Field required"),
     password_confirmation: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
@@ -33,30 +44,59 @@ const Register = () => {
   });
 
   const handleRegister = async (cred) => {
-    navigate("/home/verify-email");
-    return;
+    try {
+      const res = await axios.post(`${base_url}/auth/register`, cred);
+
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+
+      if (!res) {
+        dispatch(showAlert("An error occurred"));
+        return;
+      }
+
+      if (res.data.status === "success") {
+        dispatch(setUser(res.data.data));
+        navigate("/home/verify-email");
+        return;
+      }
+
+      dispatch(showAlert(res.data.message));
+    } catch (e) {
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+      dispatch(showAlert(e.response.data.message));
+    }
   };
 
   return (
     <AuthWrapper>
       <AuthCard>
         <div className="flexRow alignCenter justifySpaceBetween">
-          <Link to="/home">
-            <img src={closeIcon} alt="icon" />
-          </Link>
           <p className="subtitle-4 prompt1">
             Already have an account?{" "}
-            <Link to="/login" className="colorPrimaryMain">
+            <Link to="/home/login" className="colorPrimaryMain">
               Login
             </Link>
           </p>
+          <Link to="/home">
+            <img src={closeIcon} alt="icon" />
+          </Link>
         </div>
         <Spacer y={2.4} />
+        <div className="flexRow justifyCenter">
+          <Logo />
+        </div>
+        <Spacer y={0.8} />
         <h1 className="title-3 textCenter colorTitleActive title">
           Sign up to Giftly
         </h1>
         <Spacer y={3.2} />
-        <GoogleAuthButton
+        {/* <GoogleAuthButton
           className="flexRow alignCenter justifyCenter borderLight"
           type="button"
         >
@@ -68,7 +108,7 @@ const Register = () => {
         <AuthDivider>
           <p className="text subtitle-5">OR WITH</p>
         </AuthDivider>
-        <Spacer y={3.2} />
+        <Spacer y={3.2} /> */}
         <Formik
           initialValues={{
             first_name: "",
@@ -78,8 +118,8 @@ const Register = () => {
             password_confirmation: "",
           }}
           validationSchema={schema}
-          onSubmit={(values) => {
-            handleRegister(values);
+          onSubmit={async (values) => {
+            await handleRegister(values);
           }}
         >
           {({ handleSubmit, isSubmitting, isValid, values }) => (
@@ -119,16 +159,20 @@ const Register = () => {
                 <CheckBox
                   id="agreement"
                   name="agreement"
+                  isChecked={false}
                   onChange={(e) => setAgreedToTerms(e.target.checked)}
                 />
                 <Spacer x={0.8} />
                 <label className="subtitle-5 prompt2" htmlFor="agreement">
                   I agree to the{" "}
-                  <Link to="/terms" className="colorPrimaryMain">
+                  <Link to="/terms" className="colorPrimaryMain subtitle-5">
                     Terms of Use
                   </Link>{" "}
                   and{" "}
-                  <Link to="/privacy-policy" className="colorPrimaryMain">
+                  <Link
+                    to="/privacy-policy"
+                    className="colorPrimaryMain subtitle-5"
+                  >
                     Privacy Policy
                   </Link>
                 </label>

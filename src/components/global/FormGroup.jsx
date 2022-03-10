@@ -15,7 +15,7 @@ export const FormGroupWrapper = styled.div`
     border-radius: .8rem;
     height: ${(props) => (props.fieldStyle === "longText" ? "auto" : "5.6rem")};
     position: relative;
-    background-color: var(--input-bg);
+    background-color: ${(props) => props.bg ?? "var(--input-bg)"};
 
     &.error {
       border: .1rem solid var(--error-default);
@@ -120,7 +120,6 @@ const FormGroup = ({
   defaultValue,
   color,
   onChange,
-  rowIndex,
   ...props
 }) => {
   const [field, meta] = useField({ ...props, name });
@@ -136,10 +135,11 @@ const FormGroup = ({
   };
 
   useEffect(() => {
-    if (defaultValue?.length) {
+    if (defaultValue?.length || defaultValue !== undefined || value) {
       setShowLabel(true);
     }
-  }, [defaultValue]);
+    // eslint-disable-next-line
+  }, [defaultValue, value]);
 
   useEffect(() => {
     document.querySelectorAll(`input`).forEach((input) => {
@@ -170,7 +170,7 @@ const FormGroup = ({
                 type={type}
                 defaultValue={defaultValue}
                 onChange={(e) => {
-                  onChange && onChange(rowIndex, name, e.target.value);
+                  onChange && onChange(e);
                   toggleLabel(e);
                   field.onChange(e);
                 }}
