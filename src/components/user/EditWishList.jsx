@@ -3,8 +3,8 @@ import styled from "styled-components";
 import closeIcon from "assets/icons/close_square.svg";
 import addIcon from "assets/icons/plus.svg";
 import settingsIcon from "assets/icons/settings.svg";
-import shareIcon from "assets/icons/share_white.svg";
-import deleteIcon from "assets/icons/trash.svg";
+import shareIcon from "assets/icons/share_primary.svg";
+import saveIcon from "assets/icons/save_white.svg";
 import { useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { useState } from "react";
@@ -30,6 +30,7 @@ import {
 } from "features/alert/alertSlice";
 import { base_url } from "utils/utils";
 import axios from "axios";
+import Loader from "components/global/Loader";
 
 const Wrapper = styled(Backdrop)`
   padding: 72px 0;
@@ -185,7 +186,7 @@ const EditWishList = ({ getWishLists }) => {
     return res;
   };
 
-  const handleShare = async () => {
+  const handleSave = async (action) => {
     setSaving(true);
     try {
       const res = await updateDetails();
@@ -204,7 +205,9 @@ const EditWishList = ({ getWishLists }) => {
         dispatch(setTempListId(res.data.data.id));
         dispatch(showAlert("Wish list saved"));
         setSaving(false);
-        navigate("/user/wish-lists/share");
+        action === "share"
+          ? navigate("/user/wish-lists/share")
+          : navigate("/user/wish-lists");
         return;
       }
 
@@ -324,24 +327,32 @@ const EditWishList = ({ getWishLists }) => {
           </form>
         </PrivacyOptions>
         <Spacer y={2.4} />
-        <div className="flexRow justifyCenter actionBtns">
-          <Button
-            text="Delete"
-            iconLeft={deleteIcon}
-            className="secondary"
-            width="calc(50% - 24px)"
-            onClick={() => navigate("delete")}
-          />
-          <Spacer x={2.4} />
-          <Button
-            text="Share"
-            iconLeft={shareIcon}
-            disabled={saving}
-            loading={saving}
-            width="calc(50% - 12px)"
-            onClick={handleShare}
-          />
-        </div>
+        {saving ? (
+          <div className="flexRow justifyCenter">
+            <Loader />
+          </div>
+        ) : (
+          <div className="flexRow justifyCenter actionBtns">
+            <Button
+              text="Share"
+              className="secondary"
+              iconLeft={shareIcon}
+              disabled={saving}
+              loading={saving}
+              width="calc(50% - 12px)"
+              onClick={() => handleSave("share")}
+            />
+            <Spacer x={2.4} />
+            <Button
+              text="Save"
+              iconLeft={saveIcon}
+              disabled={saving}
+              loading={saving}
+              width="calc(50% - 24px)"
+              onClick={handleSave}
+            />
+          </div>
+        )}
       </Card>
     </Wrapper>
   );

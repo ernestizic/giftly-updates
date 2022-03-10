@@ -22,6 +22,7 @@ const Wrapper = styled.div`
   box-shadow: var(--shadow_1);
   position: relative;
   transition: all 0.2s ease-out;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-8px);
@@ -68,7 +69,7 @@ const WishListCard = ({ details }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper onClick={() => dispatch(setTempListId(details.id))}>
       <div className="screen flexRow justifyCenter" onClick={handleOpen}>
         <img src={openBox} alt="Open box" />
       </div>

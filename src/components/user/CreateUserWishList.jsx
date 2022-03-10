@@ -30,6 +30,7 @@ import {
 } from "features/alert/alertSlice";
 import { base_url } from "utils/utils";
 import axios from "axios";
+import Loader from "components/global/Loader";
 
 const Wrapper = styled(Backdrop)`
   padding: 72px 0;
@@ -311,26 +312,32 @@ const CreateUserWishList = ({ getWishLists }) => {
           </form>
         </PrivacyOptions>
         <Spacer y={2.4} />
-        <div className="flexRow justifyCenter actionBtns">
-          <Button
-            text="Share"
-            className="secondary"
-            iconLeft={shareIcon}
-            disabled={saving}
-            loading={saving}
-            width="calc(50% - 12px)"
-            onClick={() => handleSave("share")}
-          />
-          <Spacer x={2.4} />
-          <Button
-            text="Save"
-            iconLeft={saveIcon}
-            disabled={saving}
-            loading={saving}
-            width="calc(50% - 24px)"
-            onClick={handleSave}
-          />
-        </div>
+        {saving ? (
+          <div className="flexRow justifyCenter">
+            <Loader />
+          </div>
+        ) : (
+          <div className="flexRow justifyCenter actionBtns">
+            <Button
+              text="Share"
+              className="secondary"
+              iconLeft={shareIcon}
+              disabled={saving}
+              loading={saving}
+              width="calc(50% - 12px)"
+              onClick={() => handleSave("share")}
+            />
+            <Spacer x={2.4} />
+            <Button
+              text="Save"
+              iconLeft={saveIcon}
+              disabled={saving}
+              loading={saving}
+              width="calc(50% - 24px)"
+              onClick={handleSave}
+            />
+          </div>
+        )}
       </Card>
     </Wrapper>
   );
