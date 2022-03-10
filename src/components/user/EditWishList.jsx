@@ -103,7 +103,7 @@ const PrivacyOptions = styled.div`
   }
 `;
 
-const EditWishList = () => {
+const EditWishList = ({ getWishLists }) => {
   const navigate = useNavigate();
   const tempListId = useSelector((state) => state.wishList.tempListId);
   const tempList = useSelector((state) => state.wishList.tempList);
@@ -177,6 +177,8 @@ const EditWishList = () => {
         },
       }
     );
+
+    getWishLists();
 
     dispatch(clearTempList());
 

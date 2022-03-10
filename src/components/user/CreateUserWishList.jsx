@@ -17,9 +17,11 @@ import Logo from "components/global/Logo";
 import { AuthCard } from "components/auth/AuthStyles";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  clearTempList,
   setTempList,
   setTempListId,
   setTempListName,
+  setTempListSlug,
   setTempListVisibility,
 } from "features/wishList/wishListSlice";
 import {
@@ -102,7 +104,7 @@ const PrivacyOptions = styled.div`
   }
 `;
 
-const CreateUserWishList = () => {
+const CreateUserWishList = ({ getWishLists }) => {
   const navigate = useNavigate();
   const tempList = useSelector((state) => state.wishList.tempList);
   const tempListName = useSelector((state) => state.wishList.tempListName);
@@ -179,10 +181,12 @@ const CreateUserWishList = () => {
       }
 
       if (res.data.status === "success") {
-        dispatch(setTempListId(res.data.data.id));
+        getWishLists();
+        dispatch(setTempListSlug(res.data.data.slug));
         dispatch(showAlert("Wish list saved"));
+        dispatch(clearTempList());
         setSaving(false);
-        navigate("/home/register-prompt");
+        navigate("/user/wish-lists/share");
         return;
       }
 

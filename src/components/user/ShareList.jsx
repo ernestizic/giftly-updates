@@ -11,7 +11,7 @@ import telegramIcon from "assets/icons/telegram.svg";
 import copyIcon from "assets/icons/document_copy.svg";
 import { Link } from "react-router-dom";
 import FormGroupCustom from "components/global/FormGroupCustom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   clearAlert,
   setAlertTimeout,
@@ -51,17 +51,65 @@ const Card = styled(AuthCard)`
   }
 `;
 
+const shareOnFB = (shareLink) => {
+  const url = `https://www.facebook.com/sharer/sharer.php?u=${shareLink}&t=${encodeURI(
+    "Checkout my wish list on giftly.me"
+  )}`;
+  window.open(url, "");
+  return;
+};
+
+const shareOntwitter = (shareLink) => {
+  const url = `https://twitter.com/intent/tweet?url=${shareLink}&via=giftly&text=${encodeURI(
+    "Checkout my wish list on giftly.me"
+  )}`;
+  window.open(url);
+  return;
+};
+
+const shareOnWhatsapp = (shareLink) => {
+  const url = `whatsapp://send?text=${encodeURI(
+    `Checkout my wish list on giftly.me\n${shareLink}`
+  )}`;
+  window.open(url);
+  return;
+};
+
+const shareOnTelegram = (shareLink) => {
+  const url = `https://telegram.me/share/url?url=${shareLink}&text=${encodeURI(
+    "Checkout my wish list on giftly.me"
+  )}`;
+  window.open(url);
+  return;
+};
+
 const socials = {
-  twitter: twitterIcon,
-  facebook: facebookIcon,
-  instagram: instagramIcon,
-  whatsapp: whatsappIcon,
-  snapchat: snapchatIcon,
-  telegram: telegramIcon,
+  twitter: {
+    icon: twitterIcon,
+    share: shareOntwitter,
+  },
+  facebook: {
+    icon: facebookIcon,
+    share: shareOnFB,
+  },
+  // instagram: instagramIcon,
+  whatsapp: {
+    icon: whatsappIcon,
+    share: shareOnWhatsapp,
+  },
+  // snapchat: snapchatIcon,
+  telegram: {
+    icon: telegramIcon,
+    share: shareOnTelegram,
+  },
 };
 
 const ShareList = () => {
   const dispatch = useDispatch();
+  const tempListSlug = useSelector((state) => state.wishList.tempListSlug);
+  const user = useSelector((state) => state.auth.user);
+
+  const shareLink = `https://giftly.me/${user?.username}/${tempListSlug}`;
 
   const copyLink = (id) => {
     /* Get the text field */
@@ -99,8 +147,9 @@ const ShareList = () => {
               <button
                 key={index}
                 className="flexColumn justifyCenter alignCenter item"
+                onClick={() => socials[key].share(shareLink)}
               >
-                <img src={socials[key]} alt="" className="icon" />
+                <img src={socials[key].icon} alt="" className="icon" />
                 <Spacer y={0.4} />
                 <p className="subtitle-4 textCenter colorTitleActive text textCapitalize">
                   {key}
@@ -116,7 +165,7 @@ const ShareList = () => {
             <FormGroupCustom
               fieldStyle="shortText"
               name="share_link"
-              value="https://www.giftly.me/Natasha/Doja"
+              value={shareLink}
               bg="#ffffff"
               color="var(--placeholder)"
               readOnly

@@ -187,8 +187,14 @@ const WishsLists = () => {
       )}
 
       <Routes>
-        <Route path="new" element={<CreateUserWishList />} />
-        <Route path="edit" element={<EditWishList />} />
+        <Route
+          path="new"
+          element={<CreateUserWishList getWishLists={getWishLists} />}
+        />
+        <Route
+          path="edit"
+          element={<EditWishList getWishLists={getWishLists} />}
+        />
         <Route path="share" element={<ShareList />} />
         <Route path="delete" element={<DeletePrompt />} />
         <Route path="create-username" element={<CreateUsername />} />
