@@ -2,6 +2,8 @@ import ForgotPassword from "components/auth/ForgotPassword";
 import Login from "components/auth/Login";
 import Register from "components/auth/Register";
 import VerifyEmail from "components/auth/VerifyEmail";
+import Nav from "components/global/Nav";
+import  Home from "components/landing/Home";
 import CreateWishList from "components/wishlist/CreateWishList";
 import DeletePrompt from "components/wishlist/DeletePrompt";
 import SignupPrompt from "components/wishlist/SignupPrompt";
@@ -26,6 +28,9 @@ const Landing = () => {
       
       */}
 
+      <Nav/>
+      <Home/>
+
       <Routes>
         {/* Auth */}
         <Route path="sign-up" element={<Register />} />
@@ -43,3 +48,4 @@ const Landing = () => {
 };
 
 export default Landing;
+ 

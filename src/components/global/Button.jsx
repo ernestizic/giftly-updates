@@ -7,31 +7,30 @@ const Wrapper = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  height: 48px;
+  border-radius: 0.8rem;
+  height: ${(props) => props.height || "4.8rem"};
   width: ${(props) => props.width ?? "max-content"};
-  padding: 0 16px;
-  background-color: var(--primary-main);
-  color: #ffffff;
+  background-color: ${(props) => props.bg || " var(--primary-main)"};
+  color: ${(props) => props.color || "#ffffff"};
   font-family: var(--font_1-regular);
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0px;
+  line-height: 2.4rem;
+  letter-spacing: 0rem;
   text-align: center;
   transition: all 0.2s ease-out;
   flex-shrink: 0;
 
   .icon {
-    height: 20px;
+    height: 2rem;
 
     &.left {
-      margin-right: 8px;
+      margin-right: 0.8rem;
     }
 
     &.right {
-      margin-left: 8px;
+      margin-left: 0.8rem;
     }
   }
 
@@ -49,10 +48,10 @@ const Wrapper = styled.button`
   }
 
   &.large {
-    height: 64px;
-    width: ${(props) => props.width ?? "200px"};
-    font-size: 18px;
-    line-height: 28px;
+    height: 6.4rem;
+    width: ${(props) => props.width ?? "20.0rem"};
+    font-size: 1.8rem;
+    line-height: 2.8rem;
   }
 
   &:disabled {

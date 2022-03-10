@@ -12,13 +12,13 @@ export const FormGroupWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-radius: 8px;
-    height: ${(props) => (props.fieldStyle === "longText" ? "auto" : "56px")};
+    border-radius: .8rem;
+    height: ${(props) => (props.fieldStyle === "longText" ? "auto" : "5.6rem")};
     position: relative;
     background-color: ${(props) => props.bg ?? "var(--input-bg)"};
 
     &.error {
-      border: 1px solid var(--error-default);
+      border: .1rem solid var(--error-default);
     }
   }
 
@@ -28,11 +28,11 @@ export const FormGroupWrapper = styled.div`
     display: block;
     color: ${(props) => props.color ?? "var(--title-active)"};
     width: 100%;
-    padding: 0 24px;
+    padding: 0 2.4rem;
     background-color: transparent;
     border: none;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
     font-style: normal;
     font-weight: 400;
 
@@ -53,7 +53,7 @@ export const FormGroupWrapper = styled.div`
   &.password {
     input,
     textarea {
-      width: calc(100% - 24px);
+      width: calc(100% - 2.4rem);
     }
 
     .toggleShow {
@@ -91,12 +91,12 @@ export const FormGroupWrapper = styled.div`
 export const FormGroupLabel = styled.label`
   display: block;
   color: var(--label);
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 400;
-  line-height: 18px;
+  line-height: 1.8rem;
   text-align: left;
-  margin-top: 6px;
-  margin-left: 24px;
+  margin-top: .6rem;
+  margin-left: 2.4rem;
 `;
 
 const handleToggleShowPassword = (id) => {
