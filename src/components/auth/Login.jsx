@@ -1,21 +1,35 @@
 import closeIcon from "assets/icons/close_square.svg";
-import googleIcon from "assets/icons/google_icon.svg";
-import { Link, useNavigate } from "react-router-dom";
+// import googleIcon from "assets/icons/google_icon.svg";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import FormGroup from "components/global/FormGroup";
 import FormWrapper from "components/global/FormWrapper";
 import Button from "components/global/Button";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import CheckBox from "components/global/CheckBox";
 import { AuthWrapper } from "./AuthStyles";
 import { AuthCard } from "./AuthStyles";
-import { GoogleAuthButton } from "./AuthStyles";
-import { AuthDivider } from "./AuthStyles";
+// import { GoogleAuthButton } from "./AuthStyles";
+// import { AuthDivider } from "./AuthStyles";
+import Logo from "components/global/Logo";
+import axios from "axios";
+import { base_url } from "utils/utils";
+import {
+  clearAlert,
+  setAlertTimeout,
+  showAlert,
+} from "features/alert/alertSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setToken, setUser } from "features/auth/authSlice";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.auth.user);
 
   const schema = Yup.object({
     email: Yup.string()
@@ -38,8 +52,35 @@ const Login = () => {
 
   const handleLogin = async (cred) => {
     rememberMe(cred);
-    navigate("/user");
-    return;
+
+    try {
+      const res = await axios.post(`${base_url}/auth`, cred);
+
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+
+      if (!res) {
+        dispatch(showAlert("An error occurred"));
+        return;
+      }
+
+      if (res.data.status === "success") {
+        dispatch(setUser(res.data.data.user));
+        dispatch(setToken(res.data.data.token.token));
+        navigate("/user/wish-lists");
+        return;
+      }
+
+      dispatch(showAlert(res.data.message));
+    } catch (e) {
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+      dispatch(showAlert(e.response.data.message));
+    }
   };
 
   useEffect(() => {
@@ -52,26 +93,42 @@ const Login = () => {
     }
   });
 
+  if (token) {
+    return (
+      <Navigate
+        to={
+          user?.username
+            ? "/user/wish-lists"
+            : "/user/wish-lists/create-username"
+        }
+      />
+    );
+  }
+
   return (
     <AuthWrapper className="flexColumn alignCenter">
       <AuthCard>
         <div className="flexRow alignCenter justifySpaceBetween">
-          <Link to="/home">
-            <img src={closeIcon} alt="icon" />
-          </Link>
           <p className="subtitle-4 prompt1">
             Don't have an account?{" "}
-            <Link to="/sign-up" className="colorPrimaryMain">
+            <Link to="/home/sign-up" className="colorPrimaryMain">
               Sign up
             </Link>
           </p>
+          <Link to="/home">
+            <img src={closeIcon} alt="icon" />
+          </Link>
         </div>
         <Spacer y={2.4} />
+        <div className="flexRow justifyCenter">
+          <Logo />
+        </div>
+        <Spacer y={0.8} />
         <h1 className="title-3 textCenter colorTitleActive title">
           Login to Giftly
         </h1>
         <Spacer y={3.2} />
-        <GoogleAuthButton
+        {/* <GoogleAuthButton
           className="flexRow alignCenter justifyCenter borderLight"
           type="button"
         >
@@ -83,18 +140,15 @@ const Login = () => {
         <AuthDivider>
           <p className="text subtitle-5">OR WITH</p>
         </AuthDivider>
-        <Spacer y={3.2} />
+        <Spacer y={3.2} /> */}
         <Formik
           initialValues={{
-            first_name: "",
-            last_name: "",
-            email: "",
+            email: localStorage.username || "",
             password: "",
-            password_confirmation: "",
           }}
           validationSchema={schema}
-          onSubmit={(values) => {
-            handleLogin(values);
+          onSubmit={async (values) => {
+            await handleLogin(values);
           }}
         >
           {({ handleSubmit, isSubmitting, isValid, values }) => (
@@ -121,7 +175,10 @@ const Login = () => {
                   value="rememberMe"
                 />
                 <div>
-                  <Link to="/password-reset" className="colorPrimaryMain">
+                  <Link
+                    to="/home/password-reset"
+                    className="colorPrimaryMain label"
+                  >
                     Forgot password?
                   </Link>
                 </div>

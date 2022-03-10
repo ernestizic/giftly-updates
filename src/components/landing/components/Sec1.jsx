@@ -4,6 +4,7 @@ import styled from "styled-components";
 import hm_hero_1 from "../../../assets/images/hm_hero_1.png";
 import wave1 from "../../../assets/images/wave1.svg";
 import wave2 from "../../../assets/images/wave2.svg";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
 	padding: 0 12rem;
@@ -52,7 +53,7 @@ const Wrapper = styled.div`
 	}
 
 	.btn {
-		width: 23.2rem;
+
 		margin-top:4.8rem;
 		margin-bottom:16.42rem;
 		@media ( max-width: 760px){
@@ -93,38 +94,44 @@ const Wrapper = styled.div`
 `;
 
 const Sec1 = () => {
-	return (
-		<Wrapper>
-			<div className="header">
-				<div className="text">
-					<h1 className="title-plus">
-						Shoot a <span className="wish">Wish</span> and Share With{" "}
-						<span className="friends">Friends!</span>
-					</h1>
-					<p className="subtitle-2">
-						Create a wish list in minutes and share to your friends on your
-						favourite platforms!
-					</p>
-					<Button className="btn" text="Create a Wish list for Free" />
-				</div>
-				<div className="imgWrapper">
-					{/* Responsive image using art direction and resolution switching
+  const navigate = useNavigate();
+
+  return (
+    <Wrapper>
+      <div className="header">
+        <div className="text">
+          <h1 className="title-plus">
+            Shoot a <span className="wish">Wish</span> and Share With{" "}
+            <span className="friends">Friends!</span>
+          </h1>
+          <p className="subtitle-2">
+            Create a wish list in minutes and share to your friends on your
+            favourite platforms!
+          </p>
+          <Button
+            className="btn"
+            text="Create a Wish list for Free"
+            onClick={() => navigate("new-wishlist")}
+          />
+        </div>
+        <div className="imgWrapper">
+          {/* Responsive image using art direction and resolution switching
                     Could not use Density switching because we do not have images of different image density */}
-					{/* <picture>
+          {/* <picture>
 						<source srcSet={hm_hero_1sm} media="(max-width:76em)" /> */}
-					<img
-						// srcSet={`${hm_hero_1} 639w`}
-						// sizes="(max-width:144.0rem) 44vw, (max-width:76.0rem) 87vw, 63.9rem"
-						alt="hm_hero_1"
-						src={hm_hero_1}
-					/>
-					{/* </picture> */}
-				</div>
-			</div>
-			<img className="wave1" src={wave1} alt="wave" />
-			<img className="wave2" src={wave2} alt="wave" />
-		</Wrapper>
-	);
+          <img
+            // srcSet={`${hm_hero_1} 639w`}
+            // sizes="(max-width:144.0rem) 44vw, (max-width:76.0rem) 87vw, 63.9rem"
+            alt="hm_hero_1"
+            src={hm_hero_1}
+          />
+          {/* </picture> */}
+        </div>
+      </div>
+      <img className="wave1" src={wave1} alt="wave" />
+      <img className="wave2" src={wave2} alt="wave" />
+    </Wrapper>
+  );
 };
 
 export default Sec1;

@@ -48,8 +48,10 @@
   --background: #f7f7fc;
   --off-white: #fcfcfc;
   --white: #ffffff;
-  --shadow-1: 0px 25px 35px 0px #00000008;
-  --shadow-2: 0px 2px 5px 0px #0000000d;
+  --filter-white: brightness(0%) saturate(100%) invert(100%) sepia(9%)
+    saturate(2%) hue-rotate(284deg) brightness(113%) contrast(100%);
+  --shadow_1: 0px 25px 35px 0px #00000008;
+  --shadow_2: 0px 2px 5px 0px #0000000d;
   --font_1-regular: "Product Sans Regular";
   --font_1-bold: "Product Sans Bold";
   --font_2: "Boldenvan";
@@ -69,29 +71,37 @@
 html {
   scroll-behavior: smooth;
   font-size: 62.5%; /* This is the same as 10px */
-
-
 }
 
-@media (max-width: 78.75em) { /* 1260 px */
-  html{font-size: 56.25%;}
-
+@media (max-width: 78.75em) {
+  /* 1260 px */
+  html {
+    font-size: 56.25%;
+  }
 }
-@media (max-width: 69.375em) { /* 1110 px */
-  html{font-size: 50%;
+@media (max-width: 69.375em) {
+  /* 1110 px */
+  html {
+    font-size: 50%;
+  }
 }
+@media (max-width: 62.5em) {
+  /* 1000 px */
+  html {
+    font-size: 40%;
+  }
 }
-@media (max-width: 62.5em) { /* 1000 px */
-  html{font-size: 40%;
+@media (max-width: 53.75em) {
+  /* 860px */
+  html {
+    font-size: 36%;
+  }
 }
-}
-@media (max-width: 53.75em) { /* 860px */
-  html{font-size: 36%;
-}
-}
-@media (max-width: 47.5em) { /* 760px */
-  html{font-size: 53%;
-}
+@media (max-width: 47.5em) {
+  /* 760px */
+  html {
+    font-size: 53%;
+  }
 }
 
 body {
@@ -116,6 +126,7 @@ a {
 
 input {
   color: inherit;
+  font-family: inherit;
 }
 
 input:focus {
@@ -141,7 +152,7 @@ a {
   user-select: none;
   font-family: inherit;
   font-size: 1.6rem;
-  line-height: 2.0rem;
+  line-height: 2rem;
 }
 
 input:focus,
@@ -169,15 +180,15 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 9.6rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 .title-1 {
   font-family: "BoldenVan";
   font-size: 5.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 6.0rem;
-  letter-spacing: .0rem;
+  line-height: 6rem;
+  letter-spacing: 0rem;
 }
 
 .title-2 {
@@ -186,7 +197,7 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 5.6rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 
 .title-3 {
@@ -195,7 +206,7 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 4.8rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 
 .title-4 {
@@ -204,7 +215,7 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 3.6rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 
 /* Subtitles */
@@ -213,16 +224,16 @@ textarea {
   font-size: 2.4rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 3.0rem;
-  letter-spacing: .0rem;
+  line-height: 3rem;
+  letter-spacing: 0rem;
 }
 
 .subtitle-2 {
-  font-size: 2.0rem;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 400;
   line-height: 2.8rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 
 .subtitle-3 {
@@ -230,7 +241,7 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 2.8rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 
 .subtitle-4 {
@@ -238,7 +249,7 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 2.4rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 
 .subtitle-5 {
@@ -246,17 +257,17 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 1.8rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 
 /* Body */
 
 .body-1 {
-  font-size: 2.0rem;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 400;
   line-height: 2.8rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 
 .body-2 {
@@ -264,7 +275,7 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 2.8rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 
 .body-3 {
@@ -272,7 +283,7 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 2.4rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 
 .body-4 {
@@ -280,7 +291,7 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 1.8rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 
 /* Meta */
@@ -290,7 +301,7 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 1.8rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 
 .metadata {
@@ -298,7 +309,7 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 1.6rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
 }
 
 /* Utilities */
@@ -421,4 +432,8 @@ textarea {
 
 .colorWhite {
   color: #ffffff;
+}
+
+.colorErrorDefault {
+  color: var(--error-default);
 }

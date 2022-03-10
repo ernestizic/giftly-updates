@@ -1,69 +1,61 @@
 import styled from "styled-components";
-import checkSuccessBadge from "assets/icons/checkSuccessBadge.svg";
-import checkDangerBadge from "assets/icons/checkDangerBadge.svg";
-import Spacer from "./Spacer";
-import { connect } from "react-redux";
+import cancelIcon from "assets/icons/close_white.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { clearAlert } from "features/alert/alertSlice";
 
 const Wrapper = styled.div`
-  position: absolute;
-  // left: 50%;
-  // transform: translateX(-50%);
-  right: 2.4rem;
-  top: 1.2rem;
-  height: 5.6rem;
-  min-width: 37rem;
-  padding: 0 2.4rem;
-  background-color: #ffffff;
-  box-shadow: 0px 0px 25px 0px #0000000d;
-  border-left: 8px solid;
-  border-radius: 8px;
-  width: max-content;
-  transition: all 500ms ease-out;
+  display: grid;
+  grid-template-columns: auto 36px;
+  grid-gap: 16px;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: var(--title-active);
+  position: fixed;
+  z-index: 23456;
+  top: 108px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 327px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease-out;
 
-  &.hide {
-    opacity: 0;
-    pointer-events: none;
-    right: -100rem;
+  &.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  &.dashboard {
+    transform: translateX(-50%);
   }
 
   .cancel {
     .icon {
-      height: 1.6rem;
+      height: 20px;
     }
-  }
-
-  &.success {
-    border-color: var(--success);
-  }
-
-  &.danger {
-    border-color: var(--danger);
   }
 `;
 
-const AlertBox = ({ className, alert_details }) => {
+const AlertBox = ({ className }) => {
+  const alertMsg = useSelector((state) => state.alert.msg);
+  const dispatch = useDispatch();
+
   return (
     <Wrapper
-      className={`${className ?? ""} ${
-        alert_details?.type ?? "hide"
-      } flexRow alignCenter`}
+      className={`${className ?? ""}${
+        alertMsg ? " show" : " hide"
+      } alertBox flexRow alignCenter`}
     >
-      {alert_details?.type === "success" && (
-        <img src={checkSuccessBadge} alt="check success" />
-      )}
-      {alert_details?.type === "danger" && (
-        <img src={checkDangerBadge} alt="check danger" />
-      )}
-      <Spacer x={1.2} />
-      <span className="l2 colorGrey1">{alert_details?.msg}</span>
+      <span className="body-3 colorWhite">{alertMsg}</span>
+      <button
+        type="button"
+        className="cancel"
+        onClick={() => dispatch(clearAlert())}
+      >
+        <img src={cancelIcon} alt="check danger" className="icon" />
+      </button>
     </Wrapper>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    alert_details: state.alert_details,
-  };
-};
-
-export default connect(mapStateToProps)(AlertBox);
+export default AlertBox;

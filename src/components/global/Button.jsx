@@ -1,34 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Loader from "./Loader";
 
 const Wrapper = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: .8rem;
-  height: ${(props)=> props.height || "4.8rem"};
-  width: ${(props) => props.width ?? "12.0rem"};
-  background-color:${(props)=>props.bg || " var(--primary-main)"};
-  color: ${(props)=>props.color || "#ffffff"};
+  border-radius: 0.8rem;
+  height: ${(props) => props.height || "4.8rem"};
+  width: ${(props) => props.width ?? "max-content"};
+  background-color: ${(props) => props.bg || " var(--primary-main)"};
+  color: ${(props) => props.color || "#ffffff"};
   font-family: var(--font_1-regular);
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
   line-height: 2.4rem;
-  letter-spacing: .0rem;
+  letter-spacing: 0rem;
   text-align: center;
   transition: all 0.2s ease-out;
+  flex-shrink: 0;
+  padding: 0 24px;
 
   .icon {
-    height: 2.0rem;
+    height: 2rem;
 
     &.left {
-      margin-right: .8rem;
+      margin-right: 0.8rem;
     }
 
     &.right {
-      margin-left: .8rem;
+      margin-left: 0.8rem;
     }
   }
 
@@ -80,7 +83,7 @@ const Wrapper = styled.button`
 const Button = ({
   className,
   bg,
-  type,
+  type = "button",
   height,
   fullWidth,
   width,
@@ -108,6 +111,15 @@ const Button = ({
     href,
     onClick,
   };
+
+  if (loading) {
+    return (
+      <Wrapper {...styleProps}>
+        <Loader />
+      </Wrapper>
+    );
+  }
+
   return (
     <Wrapper {...styleProps}>
       {iconLeft && <img src={iconLeft} alt="icon" className="icon left" />}
@@ -131,6 +143,7 @@ Button.propTypes = {
   endIcon: PropTypes.string,
   href: PropTypes.string,
   onClick: PropTypes.func,
+  loading: PropTypes.bool,
 };
 
 export default Button;

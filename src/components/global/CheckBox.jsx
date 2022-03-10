@@ -48,11 +48,12 @@ const CheckBox = ({
   circle,
   label,
   value,
+  isChecked,
   required = false,
   disabled,
   onChange,
 }) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(isChecked);
 
   return (
     <Wrapper className="flexRow alignCenter">

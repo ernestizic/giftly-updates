@@ -1,27 +1,12 @@
 import React from "react";
-import handPhone from "assets/images/hand_phone.png";
+import handPhone from "assets/images/hand_phone_social.svg";
 import coolEmoji from "assets/images/cool_emoji.png";
 import Spacer from "components/global/Spacer";
-import styled from "styled-components";
 import Button from "components/global/Button";
 import { AuthWrapper } from "components/auth/AuthStyles";
 import { AuthCard } from "components/auth/AuthStyles";
 import { useNavigate } from "react-router-dom";
-
-const Card = styled(AuthCard)`
-  @media screen and (max-width: 768px) {
-  }
-`;
-
-const CardImage = styled.img`
-  display: block;
-  width: 330px;
-  margin: auto;
-
-  @media screen and (max-width: 768px) {
-    width: 160px;
-  }
-`;
+import { CardImage } from "components/auth/AuthStyles";
 
 const SignupPrompt = () => {
   const navigate = useNavigate();
