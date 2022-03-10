@@ -25,6 +25,7 @@ const CreateUsername = () => {
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.auth.user);
 
   const schema = Yup.object({
     username: Yup.string().required("Field required"),
@@ -50,6 +51,7 @@ const CreateUsername = () => {
 
       if (res.data.status === "success") {
         dispatch(showAlert(res.data.message));
+        dispatch(setUser({ ...user, username: cred.username }));
         navigate("/user/wish-lists");
         return;
       }

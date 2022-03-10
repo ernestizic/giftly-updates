@@ -5,6 +5,7 @@ const initialState = {
   tempListName: "",
   tempList: [{}],
   tempListVisibility: "public",
+  tempListSlug: "",
 };
 
 export const wishListSlice = createSlice({
@@ -24,6 +25,9 @@ export const wishListSlice = createSlice({
     setTempListVisibility: (state, action) => {
       state.tempListVisibility = action.payload;
     },
+    setTempListSlug: (state, action) => {
+      state.tempListSlug = action.payload;
+    },
     clearTempList: (state) => {
       state.tempList = [{}];
       state.tempListName = "";
@@ -37,6 +41,7 @@ export const {
   setTempListName,
   setTempList,
   setTempListVisibility,
+  setTempListSlug,
   clearTempList,
 } = wishListSlice.actions;
 
