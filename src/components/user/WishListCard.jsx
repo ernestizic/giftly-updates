@@ -62,7 +62,7 @@ const WishListCard = ({ details }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper onClick={() => dispatch(setTempListId(details.id))}>
       <div className="screen flexRow justifyCenter">
         <img src={openBox} alt="Open box" />
       </div>

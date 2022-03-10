@@ -111,6 +111,7 @@ const CreateUserWishList = ({ getWishLists }) => {
   const tempListVisibility = useSelector(
     (state) => state.wishList.tempListVisibility
   );
+  const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
   const [saving, setSaving] = useState(false);
 
@@ -168,7 +169,11 @@ const CreateUserWishList = ({ getWishLists }) => {
 
     setSaving(true);
     try {
-      const res = await axios.post(`${base_url}/wishlist`, wishList);
+      const res = await axios.post(`${base_url}/wishlist`, wishList, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const timeout = setTimeout(() => {
         dispatch(clearAlert());
@@ -200,6 +205,15 @@ const CreateUserWishList = ({ getWishLists }) => {
       dispatch(setAlertTimeout(timeout));
       dispatch(showAlert(e.response.data.message));
     }
+  };
+
+  const handleDelete = () => {
+    navigate(-1);
+    if (!tempListName || !tempListName.length || !tempList[0].name) {
+      return;
+    }
+
+    dispatch(clearTempList());
   };
 
   return (
@@ -315,7 +329,7 @@ const CreateUserWishList = ({ getWishLists }) => {
             iconLeft={deleteIcon}
             className="secondary"
             width="calc(50% - 24px)"
-            onClick={() => navigate("delete")}
+            onClick={handleDelete}
           />
         </div>
       </Card>

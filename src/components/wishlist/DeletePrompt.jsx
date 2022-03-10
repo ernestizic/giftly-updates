@@ -7,13 +7,68 @@ import { AuthWrapper } from "components/auth/AuthStyles";
 import { AuthCard } from "components/auth/AuthStyles";
 import { useNavigate } from "react-router-dom";
 import { CardImage } from "components/auth/AuthStyles";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { base_url } from "utils/utils";
+import {
+  clearAlert,
+  setAlertTimeout,
+  showAlert,
+} from "features/alert/alertSlice";
+import { clearTempList } from "features/wishList/wishListSlice";
+import { useState } from "react";
 
 const Card = styled(AuthCard)`
   background-color: var(--primary-main);
 `;
 
-const DeletePrompt = ({ callback = () => null }) => {
+const DeletePrompt = ({ getWishLists }) => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const tempListId = useSelector((state) => state.wishList.tempListId);
+  const token = useSelector((state) => state.auth.token);
+
+  const [deleting, setDeleting] = useState(false);
+
+  const deleteList = async () => {
+    if (!tempListId) return;
+    setDeleting(true);
+    try {
+      const res = await axios.delete(`${base_url}/wishlist/${tempListId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+
+      if (!res) {
+        dispatch(showAlert("An error occurred"));
+        return;
+      }
+
+      if (res.data.status === "success") {
+        getWishLists();
+        dispatch(clearTempList());
+        dispatch(showAlert("List deleted"));
+        navigate(-1);
+        return;
+      }
+
+      dispatch(showAlert(res.data.message));
+    } catch (e) {
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+      dispatch(showAlert(e.response?.data.message || "Something went wrong"));
+    }
+  };
+
   return (
     <AuthWrapper className="flexColumn alignCenter">
       <Card className="flexColumn justifyCenter">
@@ -32,7 +87,9 @@ const DeletePrompt = ({ callback = () => null }) => {
           text="Delete wish list"
           width="100%"
           className="inverted"
-          onClick={() => callback()}
+          loading={deleting}
+          disabled={deleting}
+          onClick={deleteList}
         />
         <Spacer y={1.6} />
         <Button

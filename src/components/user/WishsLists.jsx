@@ -72,7 +72,6 @@ const WishsLists = () => {
   };
 
   const getWishLists = async () => {
-    await updateTempWishList();
     try {
       const res = await axios.get(`${base_url}/wishlist`, {
         headers: {
@@ -99,6 +98,7 @@ const WishsLists = () => {
       dispatch(clearTempList());
       setLoading(false);
       dispatch(showAlert(res.data.message));
+      updateTempWishList();
     } catch (e) {
       setLoading(false);
       const timeout = setTimeout(() => {
@@ -162,16 +162,17 @@ const WishsLists = () => {
         />
       </SubHeader>
       <Spacer y={4.8} />
-      {loading && (
+      {loading ? (
         <div className="flexRow justifyCenter">
           <Loader />
         </div>
+      ) : (
+        <ListWrapper>
+          {data?.map((item, index) => (
+            <WishListCard key={index} details={item} />
+          ))}
+        </ListWrapper>
       )}
-      <ListWrapper>
-        {data?.map((item, index) => (
-          <WishListCard key={index} details={item} />
-        ))}
-      </ListWrapper>
       {!loading && !data.length && (
         <NoLists className="flexColumn justifyCenter">
           <img src={handPoint} alt="..." className="image" />
@@ -196,7 +197,10 @@ const WishsLists = () => {
           element={<EditWishList getWishLists={getWishLists} />}
         />
         <Route path="share" element={<ShareList />} />
-        <Route path="delete" element={<DeletePrompt />} />
+        <Route
+          path="delete"
+          element={<DeletePrompt getWishLists={getWishLists} />}
+        />
         <Route path="create-username" element={<CreateUsername />} />
       </Routes>
     </Wrapper>
