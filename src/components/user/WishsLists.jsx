@@ -95,7 +95,7 @@ const WishsLists = () => {
         dispatch(clearTempList());
         setLoading(false);
         setData(res.data.data.data);
-        updateTempWishList();
+        // updateTempWishList();
         return;
       }
       dispatch(clearTempList());

@@ -120,7 +120,7 @@ a {
   user-select: none;
   font-family: inherit;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 24px;
 }
 
 input:focus,
@@ -396,4 +396,8 @@ textarea {
 
 .colorErrorDefault {
   color: var(--error-default);
+}
+
+.colorAccent1Main {
+  color: var(--accent_1-main);
 }

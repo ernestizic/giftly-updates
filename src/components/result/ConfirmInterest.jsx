@@ -1,5 +1,4 @@
-import React from "react";
-import deleteIcon from "assets/icons/delete_circle.svg";
+import heartIcon from "assets/icons/heart_outline_circle.svg";
 import Spacer from "components/global/Spacer";
 import styled from "styled-components";
 import Button from "components/global/Button";
@@ -15,38 +14,32 @@ import {
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
-import { clearTempList } from "features/wishList/wishListSlice";
 import { useState } from "react";
 
 const Card = styled(AuthCard)`
   background-color: var(--primary-main);
 `;
 
-const DeletePrompt = ({ getWishLists, redirect }) => {
+const ConfirmInterest = ({ basePath, itemId, itemName, username }) => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const tempListId = useSelector((state) => state.wishList.tempListId);
   const token = useSelector((state) => state.auth.token);
 
-  const [deleting, setDeleting] = useState(false);
+  const [confirming, setConfirming] = useState(false);
 
-  const deleteList = async () => {
-    if (!tempListId || !getWishLists) {
-      redirect ? navigate(redirect) : navigate(-1);
-
-      dispatch(clearTempList());
-
-      return;
-    }
-
-    setDeleting(true);
+  const confirmInterest = async () => {
+    setConfirming(true);
     try {
-      const res = await axios.delete(`${base_url}/wishlist/${tempListId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.post(
+        `${base_url}/items/${itemId}/interest`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const timeout = setTimeout(() => {
         dispatch(clearAlert());
@@ -54,22 +47,19 @@ const DeletePrompt = ({ getWishLists, redirect }) => {
       dispatch(setAlertTimeout(timeout));
 
       if (!res) {
-        setDeleting(false);
+        setConfirming(false);
         dispatch(showAlert("An error occurred"));
         return;
       }
 
       if (res.data.status === "success") {
-        getWishLists();
-        dispatch(clearTempList());
-        dispatch(showAlert("List deleted"));
-        navigate(-1);
+        navigate(`${basePath}/item-reserved`);
         return;
       }
-      setDeleting(false);
+
       dispatch(showAlert(res.data.message));
     } catch (e) {
-      setDeleting(false);
+      setConfirming(false);
       const timeout = setTimeout(() => {
         dispatch(clearAlert());
       }, 5000);
@@ -81,24 +71,26 @@ const DeletePrompt = ({ getWishLists, redirect }) => {
   return (
     <AuthWrapper className="flexColumn alignCenter">
       <Card className="flexColumn justifyCenter">
-        <CardImage src={deleteIcon} alt="icon" className="icon" />
+        <CardImage src={heartIcon} alt="icon" className="icon" />
         <Spacer y={2.4} />
         <h3 className="title-4 colorWhite title flexRow alignCenter justifyCenter">
-          Delete wish list
+          Confirm interest
         </h3>
         <Spacer y={0.8} />
+        <p className="subtitle-2 colorWhite textCenter">{itemName}</p>
+        <Spacer y={0.8} />
         <p className="subtitle-3 colorWhite textCenter">
-          Are you sure you want to delete this list? Note: By deleting, all
-          wishes will be deleted with it.
+          {username} will be notified that you have indicated interest to
+          purchase this item anonymously and may check it off their wish list.
         </p>
         <Spacer y={2.4} />
         <Button
-          text="Delete wish list"
+          text="Confirm"
           width="100%"
           className="inverted"
-          loading={deleting}
-          disabled={deleting}
-          onClick={deleteList}
+          loading={confirming}
+          disabled={confirming}
+          onClick={confirmInterest}
         />
         <Spacer y={1.6} />
         <Button
@@ -112,4 +104,4 @@ const DeletePrompt = ({ getWishLists, redirect }) => {
   );
 };
 
-export default DeletePrompt;
+export default ConfirmInterest;
