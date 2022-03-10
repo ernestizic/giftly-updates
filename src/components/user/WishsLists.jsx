@@ -33,6 +33,7 @@ import axios from "axios";
 import Loader from "components/global/Loader";
 import { NoLists } from "./WishListsStyles";
 import { clearTempList } from "features/wishList/wishListSlice";
+import Logo from "components/global/Logo";
 
 const Wrapper = styled.div``;
 
@@ -52,7 +53,7 @@ const WishsLists = () => {
   const dispatch = useDispatch();
 
   const updateTempWishList = async () => {
-    if (!tempList?.length || !tempList[0].name) {
+    if (!tempListId || !tempList?.length || !tempList[0].name) {
       return;
     }
 
@@ -91,14 +92,15 @@ const WishsLists = () => {
       }
 
       if (res.data.status === "success") {
+        dispatch(clearTempList());
         setLoading(false);
         setData(res.data.data.data);
+        updateTempWishList();
         return;
       }
       dispatch(clearTempList());
       setLoading(false);
       dispatch(showAlert(res.data.message));
-      updateTempWishList();
     } catch (e) {
       setLoading(false);
       const timeout = setTimeout(() => {
@@ -117,6 +119,7 @@ const WishsLists = () => {
   return (
     <Wrapper>
       <Header className="flexRow alignCenter justifySpaceBetween">
+        <Logo />
         <Search>
           <div className="flexRow alignCenter dropdownWrapper">
             <Dropdown
@@ -153,13 +156,14 @@ const WishsLists = () => {
           <img src={heartIcon} alt="heart" className="heartIcon" />
           <Spacer x={1.6} />
           <div>
-            <h4 className="title-4 colorTitleActive">My wish lists</h4>
+            <h4 className="title-4 colorTitleActive title">My wish lists</h4>
             <Spacer y={0.4} />
-            <p className="subtitle-3">The things I want for myself</p>
+            <p className="subtitle-3 subtitle">The things I want for myself</p>
           </div>
         </div>
         <Button
           text="Create wish list"
+          className="createButton"
           iconLeft={plusIcon}
           onClick={() => navigate("new")}
         />
@@ -206,6 +210,7 @@ const WishsLists = () => {
         />
         <Route path="create-username" element={<CreateUsername />} />
       </Routes>
+      <Spacer y={4.8} />
     </Wrapper>
   );
 };

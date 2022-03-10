@@ -29,6 +29,7 @@ export const wishListSlice = createSlice({
       state.tempListSlug = action.payload;
     },
     clearTempList: (state) => {
+      state.tempListId = null;
       state.tempList = [{}];
       state.tempListName = "";
       state.tempListVisibility = "public";

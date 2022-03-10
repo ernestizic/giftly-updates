@@ -5,6 +5,18 @@ export const Header = styled.div`
   top: 0;
   background-color: #ffffff;
   padding: 24px 48px;
+
+  .logo {
+    display: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 16px 24px;
+
+    .logo {
+      display: block;
+    }
+  }
 `;
 
 export const Search = styled.div`
@@ -39,6 +51,10 @@ export const Search = styled.div`
   .fieldWrapper {
     height: 100%;
   }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const Initials = styled.div`
@@ -62,6 +78,42 @@ export const Initials = styled.div`
 
 export const SubHeader = styled.div`
   padding: 0 48px;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 24px;
+    flex-direction: column;
+
+    .captionWrapper {
+      flex-direction: column;
+
+      .title,
+      subtitle {
+        text-align: center;
+      }
+
+      .heartIcon {
+        margin-bottom: 16px;
+      }
+    }
+
+    .createButton {
+      position: fixed;
+      bottom: 60px;
+      right: 24px;
+      z-index: 5;
+      border-radius: 50%;
+      height: 48px;
+      width: 48px;
+
+      span {
+        display: none;
+      }
+
+      .icon {
+        margin: 0;
+      }
+    }
+  }
 `;
 
 export const ListWrapper = styled.div`
