@@ -119,7 +119,11 @@ const WishsLists = () => {
   return (
     <Wrapper>
       <Header className="flexRow alignCenter justifySpaceBetween">
-        <Logo />
+        <Logo
+          onClick={() =>
+            document.querySelector(".sidebar").classList.add("open")
+          }
+        />
         <Search>
           <div className="flexRow alignCenter dropdownWrapper">
             <Dropdown

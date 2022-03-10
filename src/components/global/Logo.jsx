@@ -9,9 +9,9 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function Logo() {
+export default function Logo({ onClick = () => null }) {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <img src={logo} alt="PostPaddy" />
     </Wrapper>
   );
