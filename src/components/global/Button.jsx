@@ -21,6 +21,7 @@ const Wrapper = styled.button`
   text-align: center;
   transition: all 0.2s ease-out;
   flex-shrink: 0;
+  padding: 0 24px;
 
   .icon {
     height: 2rem;

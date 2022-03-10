@@ -80,6 +80,12 @@ const Menu = styled.ul`
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+    .item {
+      justify-content: center;
+    }
+  }
 `;
 
 const menuList = [
