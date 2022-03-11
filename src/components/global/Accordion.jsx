@@ -5,7 +5,12 @@ import down_arrow from "assets/icons/down_arrow.svg";
 
 const Wrapper = styled.div`
 	position: relative;
-	padding: 0 2.4rem;
+	padding: 
+	${props=> props.withPadding  ? "0 " : "0 2.4rem" };
+	@media (max-width: 760px){
+		padding: 0 2.4rem;
+
+		}
 	transition: all 0.3s;
 	border-radius: 0.8rem;
 
@@ -45,7 +50,7 @@ const Wrapper = styled.div`
 	}
 `;
 
-const Accordion = ({ question, answer, className }) => {
+const Accordion = ({ question, answer, className,withPadding }) => {
 	const [isOpen, setIsOpen] = React.useState(false);
 
 	const handleClick = () => {
@@ -54,6 +59,7 @@ const Accordion = ({ question, answer, className }) => {
 
 	return (
 		<Wrapper
+		withPadding={withPadding}
 			className={`${className || ""} ${isOpen ? "open" : ""}`}
 			onClick={handleClick}
 		>

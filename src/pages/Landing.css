@@ -1,0 +1,440 @@
+@font-face {
+    font-family: "Product Sans Bold";
+    src: url("../assets/fonts/product_sans/ProductSans-Bold.ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Product Sans Regular";
+    src: url("../assets/fonts/product_sans/ProductSans-Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Boldenvan";
+    src: url("../assets/fonts/boldenvan/BoldenVan.ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  :root {
+    --primary-main: #ee2a7b;
+    --primary-dark: #c62367;
+    --primary-light: #fcd4e5;
+    --accent_1-main: #fc94ff;
+    --accent_1-dark: #d27bd4;
+    --accent_1-light: #fdb8ff;
+    --accent_2-main: #fff4f9;
+    --accent_2-dark: #d4cbcf;
+    --accent_2-light: #fffdfe;
+    --accent_3-main: #020162;
+    --accent_3-dark: #010141;
+    --accent_3-light: #e1e8f2;
+    --success-default: #219653;
+    --success-light: #f2fffb;
+    --error-default: #be0e0f;
+    --error-light: #fff3f8;
+    --title-active: #14142b;
+    --body: #6f7273;
+    --label: #6e7191;
+    --placeholder: #a0a3bd;
+    --line: #d5d8df;
+    --input-bg: #fbfbfb;
+    --background: #f7f7fc;
+    --off-white: #fcfcfc;
+    --white: #ffffff;
+    --filter-white: brightness(0%) saturate(100%) invert(100%) sepia(9%)
+      saturate(2%) hue-rotate(284deg) brightness(113%) contrast(100%);
+    --shadow_1: 0px 25px 35px 0px #00000008;
+    --shadow_2: 0px 2px 5px 0px #0000000d;
+    --font_1-regular: "Product Sans Regular";
+    --font_1-bold: "Product Sans Bold";
+    --font_2: "Boldenvan";
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    font-style: normal;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    font-size: 62.5%; /* This is the same as 10px */
+  }
+  
+  @media (max-width: 78.75em) {
+    /* 1260 px */
+    html {
+      font-size: 56.25%;
+    }
+  }
+  @media (max-width: 69.375em) {
+    /* 1110 px */
+    html {
+      font-size: 50%;
+    }
+  }
+  @media (max-width: 62.5em) {
+    /* 1000 px */
+    html {
+      font-size: 40%;
+    }
+  }
+  @media (max-width: 53.75em) {
+    /* 860px */
+    html {
+      font-size: 36%;
+    }
+  }
+  @media (max-width: 47.5em) {
+    /* 760px */
+    html {
+      font-size: 53%;
+    }
+  }
+  
+  body {
+    color: var(--body);
+    margin: 0;
+    font-family: var(--font_1-regular), -apple-system, BlinkMacSystemFont,
+      "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+      "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: inherit;
+  }
+  
+  input {
+    color: inherit;
+    font-family: inherit;
+  }
+  
+  input:focus {
+    outline: none;
+  }
+  
+  input:-internal-autofill-selected,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    background: transparent !important;
+  }
+  
+  button,
+  a {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: inherit;
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+  
+  input:focus,
+  button:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+  }
+  
+  select {
+    font-family: inherit;
+    appearance: none;
+  }
+  
+  textarea {
+    font-family: inherit;
+    resize: none;
+  }
+  
+  /* Title */
+  
+  .title-plus {
+    font-family: "BoldenVan";
+    font-size: 9.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 9.6rem;
+    letter-spacing: 0rem;
+  }
+  .title-1 {
+    font-family: "BoldenVan";
+    font-size: 5.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 6rem;
+    letter-spacing: 0rem;
+  }
+  
+  .title-2 {
+    font-family: "BoldenVan";
+    font-size: 4.8rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 5.6rem;
+    letter-spacing: 0rem;
+  }
+  
+  .title-3 {
+    font-family: "BoldenVan";
+    font-size: 3.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 4.8rem;
+    letter-spacing: 0rem;
+  }
+  
+  .title-4 {
+    font-family: "BoldenVan";
+    font-size: 2.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 3.6rem;
+    letter-spacing: 0rem;
+  }
+  
+  /* Subtitles */
+  
+  .subtitle-1 {
+    font-size: 2.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 3rem;
+    letter-spacing: 0rem;
+  }
+  
+  .subtitle-2 {
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.8rem;
+    letter-spacing: 0rem;
+  }
+  
+  .subtitle-3 {
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.8rem;
+    letter-spacing: 0rem;
+  }
+  
+  .subtitle-4 {
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.4rem;
+    letter-spacing: 0rem;
+  }
+  
+  .subtitle-5 {
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.8rem;
+    letter-spacing: 0rem;
+  }
+  
+  /* Body */
+  
+  .body-1 {
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.8rem;
+    letter-spacing: 0rem;
+  }
+  
+  .body-2 {
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.8rem;
+    letter-spacing: 0rem;
+  }
+  
+  .body-3 {
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.4rem;
+    letter-spacing: 0rem;
+  }
+  
+  .body-4 {
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.8rem;
+    letter-spacing: 0rem;
+  }
+  
+  /* Meta */
+  
+  .label {
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.8rem;
+    letter-spacing: 0rem;
+  }
+  
+  .metadata {
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.6rem;
+    letter-spacing: 0rem;
+  }
+  
+  /* Utilities */
+  
+  .fullWidth {
+    width: 100%;
+  }
+  
+  .flexRow {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .flexColumn {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .alignCenter {
+    align-items: center;
+  }
+  
+  .alignEnd {
+    align-items: flex-end;
+  }
+  
+  .alignStart {
+    align-items: flex-start;
+  }
+  
+  .alignSpaceBetween {
+    align-items: space-between;
+  }
+  .justifyCenter {
+    justify-content: center;
+  }
+  
+  .justifyEnd {
+    justify-content: flex-end;
+  }
+  
+  .justifyStart {
+    justify-content: flex-start;
+  }
+  
+  .justifySpaceBetween {
+    justify-content: space-between;
+  }
+  
+  .justifySpaceAround {
+    justify-content: space-around;
+  }
+  
+  .textCenter {
+    text-align: center;
+  }
+  
+  .textRight {
+    text-align: right;
+  }
+  
+  .textLeft {
+    text-align: left;
+  }
+  
+  .textUppercase {
+    text-transform: uppercase;
+  }
+  
+  .textCapitalize {
+    text-transform: capitalize;
+  }
+  
+  .cursorPointer {
+    cursor: pointer;
+  }
+  
+  .circle {
+    border-radius: 50%;
+  }
+  
+  .upperCase {
+    text-transform: uppercase;
+  }
+  
+  .bold {
+    font-weight: 700;
+  }
+  
+  .noTextWrap {
+    white-space: nowrap;
+  }
+  
+  .stickyTop {
+    position: sticky;
+    top: 0;
+  }
+  
+  .borderLight {
+    border: 1px solid var(--line);
+  }
+  
+  /* Colors */
+  
+  .colorPrimaryMain {
+    color: var(--primary-main);
+  }
+  
+  .colorBody {
+    color: var(--body);
+  }
+  
+  .colorTitleActive {
+    color: var(--title-active);
+  }
+  
+  .colorTextDescription {
+    color: #8d9091;
+  }
+  
+  .colorWhite {
+    color: #ffffff;
+  }
+  
+  .colorErrorDefault {
+    color: var(--error-default);
+  }
+  

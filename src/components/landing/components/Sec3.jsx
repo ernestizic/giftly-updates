@@ -94,7 +94,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Sect3 = () => {
+const Sec3 = () => {
 
 	// return (
 	// 	<Wrapper>
@@ -139,4 +139,4 @@ const Sect3 = () => {
   );
 };
 
-export default Sect3;
+export default Sec3;

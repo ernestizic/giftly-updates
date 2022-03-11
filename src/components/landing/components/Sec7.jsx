@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "components/global/Button";
-import Accordion from "./Accordion";
+import Accordion from "../../global/Accordion";
 
 const FAQS = [
 	{

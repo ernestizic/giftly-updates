@@ -47,7 +47,6 @@
   --input-bg: #fbfbfb;
   --background: #f7f7fc;
   --off-white: #fcfcfc;
-  --white: #ffffff;
   --filter-white: brightness(0%) saturate(100%) invert(100%) sepia(9%)
     saturate(2%) hue-rotate(284deg) brightness(113%) contrast(100%);
   --shadow_1: 0px 25px 35px 0px #00000008;
@@ -70,38 +69,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 62.5%; /* This is the same as 10px */
-}
-
-@media (max-width: 78.75em) {
-  /* 1260 px */
-  html {
-    font-size: 56.25%;
-  }
-}
-@media (max-width: 69.375em) {
-  /* 1110 px */
-  html {
-    font-size: 50%;
-  }
-}
-@media (max-width: 62.5em) {
-  /* 1000 px */
-  html {
-    font-size: 40%;
-  }
-}
-@media (max-width: 53.75em) {
-  /* 860px */
-  html {
-    font-size: 36%;
-  }
-}
-@media (max-width: 47.5em) {
-  /* 760px */
-  html {
-    font-size: 53%;
-  }
+  font-size: 10px;
 }
 
 body {
@@ -151,8 +119,8 @@ a {
   -ms-user-select: none;
   user-select: none;
   font-family: inherit;
-  font-size: 1.6rem;
-  line-height: 2rem;
+  font-size: 16px;
+  line-height: 20px;
 }
 
 input:focus,
@@ -174,142 +142,134 @@ textarea {
 
 /* Title */
 
-.title-plus {
-  font-family: "BoldenVan";
-  font-size: 9.6rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 9.6rem;
-  letter-spacing: 0rem;
-}
 .title-1 {
   font-family: "BoldenVan";
-  font-size: 5.6rem;
+  font-size: 56px;
   font-style: normal;
   font-weight: 400;
-  line-height: 6rem;
-  letter-spacing: 0rem;
+  line-height: 60px;
+  letter-spacing: 0px;
 }
 
 .title-2 {
   font-family: "BoldenVan";
-  font-size: 4.8rem;
+  font-size: 48px;
   font-style: normal;
   font-weight: 400;
-  line-height: 5.6rem;
-  letter-spacing: 0rem;
+  line-height: 56px;
+  letter-spacing: 0px;
 }
 
 .title-3 {
   font-family: "BoldenVan";
-  font-size: 3.6rem;
+  font-size: 36px;
   font-style: normal;
   font-weight: 400;
-  line-height: 4.8rem;
-  letter-spacing: 0rem;
+  line-height: 48px;
+  letter-spacing: 0px;
 }
 
 .title-4 {
   font-family: "BoldenVan";
-  font-size: 2.4rem;
+  font-size: 24px;
   font-style: normal;
   font-weight: 400;
-  line-height: 3.6rem;
-  letter-spacing: 0rem;
+  line-height: 36px;
+  letter-spacing: 0px;
 }
 
 /* Subtitles */
 
 .subtitle-1 {
-  font-size: 2.4rem;
+  font-size: 24px;
   font-style: normal;
   font-weight: 400;
-  line-height: 3rem;
-  letter-spacing: 0rem;
+  line-height: 30px;
+  letter-spacing: 0px;
 }
 
 .subtitle-2 {
-  font-size: 2rem;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 2.8rem;
-  letter-spacing: 0rem;
+  line-height: 28px;
+  letter-spacing: 0px;
 }
 
 .subtitle-3 {
-  font-size: 1.8rem;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 2.8rem;
-  letter-spacing: 0rem;
+  line-height: 28px;
+  letter-spacing: 0px;
 }
 
 .subtitle-4 {
-  font-size: 1.6rem;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 2.4rem;
-  letter-spacing: 0rem;
+  line-height: 24px;
+  letter-spacing: 0px;
 }
 
 .subtitle-5 {
-  font-size: 1.4rem;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.8rem;
-  letter-spacing: 0rem;
+  line-height: 18px;
+  letter-spacing: 0px;
 }
 
 /* Body */
 
 .body-1 {
-  font-size: 2rem;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 2.8rem;
-  letter-spacing: 0rem;
+  line-height: 28px;
+  letter-spacing: 0px;
 }
 
 .body-2 {
-  font-size: 1.8rem;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 2.8rem;
-  letter-spacing: 0rem;
+  line-height: 28px;
+  letter-spacing: 0px;
 }
 
 .body-3 {
-  font-size: 1.6rem;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 2.4rem;
-  letter-spacing: 0rem;
+  line-height: 24px;
+  letter-spacing: 0px;
 }
 
 .body-4 {
-  font-size: 1.4rem;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.8rem;
-  letter-spacing: 0rem;
+  line-height: 18px;
+  letter-spacing: 0px;
 }
 
 /* Meta */
 
 .label {
-  font-size: 1.4rem;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.8rem;
-  letter-spacing: 0rem;
+  line-height: 18px;
+  letter-spacing: 0px;
 }
 
 .metadata {
-  font-size: 1.2rem;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.6rem;
-  letter-spacing: 0rem;
+  line-height: 16px;
+  letter-spacing: 0px;
 }
 
 /* Utilities */
