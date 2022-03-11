@@ -22,7 +22,6 @@ const Wrapper = styled.div`
   box-shadow: var(--shadow_1);
   position: relative;
   transition: all 0.2s ease-out;
-  cursor: pointer;
 
   &:hover {
     transform: translateY(-8px);
@@ -31,10 +30,15 @@ const Wrapper = styled.div`
   .screen {
     height: 120px;
     background-color: var(--background);
+    cursor: pointer;
 
     img {
       height: 100%;
     }
+  }
+
+  .body {
+    cursor: pointer;
   }
 
   .title {
@@ -85,10 +89,7 @@ const WishListCard = ({ details }) => {
       </div>
       <Spacer y={1.6} />
       <div className="bottom flexRow alignCenter justifySpaceBetween">
-        <button
-          className="flexRow alignCenter togglePrivacy"
-          id="togglePrivacy"
-        >
+        <div className="flexRow alignCenter togglePrivacy" id="togglePrivacy">
           {details?.visibility === "public" && (
             <img src={unlockedIcon} alt="lock" className="icon" />
           )}
@@ -96,10 +97,10 @@ const WishListCard = ({ details }) => {
             <img src={lockedIcon} alt="lock" className="icon" />
           )}
           <Spacer x={0.8} />
-          <span className="body-3 text textCapitalize">
+          <span className="body-3 text textCapitalize colorTitleActive">
             {details?.visibility}
           </span>
-        </button>
+        </div>
         <button
           id="toggleOptions"
           className="flexRow alignCenter toggleOptions"

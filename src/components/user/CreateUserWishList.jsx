@@ -155,11 +155,6 @@ const CreateUserWishList = ({ getWishLists }) => {
       return;
     }
 
-    if (!tempList[0].name) {
-      dispatch(showAlert("Please add at least one item"));
-      return;
-    }
-
     dispatch(clearAlert());
 
     const wishList = {
@@ -182,16 +177,17 @@ const CreateUserWishList = ({ getWishLists }) => {
       dispatch(setAlertTimeout(timeout));
 
       if (!res) {
+        setSaving(false);
         dispatch(showAlert("An error occurred"));
         return;
       }
 
       if (res.data.status === "success") {
         getWishLists();
+        setSaving(false);
         dispatch(setTempListSlug(res.data.data.slug));
         dispatch(showAlert("Wish list saved"));
         dispatch(clearTempList());
-        setSaving(false);
         action === "share"
           ? navigate("/user/wish-lists/share")
           : navigate("/user/wish-lists");
@@ -257,6 +253,7 @@ const CreateUserWishList = ({ getWishLists }) => {
               removeRow={removeRow}
               rowValues={row}
               setFieldValue={setFieldValue}
+              noCheck
             />
           ))}
         </div>

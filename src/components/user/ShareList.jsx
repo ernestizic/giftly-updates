@@ -49,6 +49,10 @@ const Card = styled(AuthCard)`
     width: max-content;
   }
 
+  .copyLink {
+    display: none;
+  }
+
   @media screen and (max-width: 768px) {
     .shareOptions {
       padding: 24px 48px;
@@ -69,6 +73,10 @@ const Card = styled(AuthCard)`
 
     .copyWrapper {
       display: none;
+    }
+
+    .copyLink {
+      display: flex;
     }
   }
 `;

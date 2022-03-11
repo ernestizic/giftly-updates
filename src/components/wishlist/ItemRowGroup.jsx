@@ -38,6 +38,10 @@ const RowWrapper = styled.form`
     padding-left: 48px;
     height: 36px;
 
+    &.noCheck {
+      padding-left: 24px;
+    }
+
     input {
       display: block;
       color: var(--title-active);
@@ -62,8 +66,9 @@ const ItemRowGroup = ({
   removeRow,
   rowValues,
   setFieldValue,
+  noCheck,
 }) => {
-  const [status, setStatus] = useState(false);
+  // const [status, setStatus] = useState(false);
   return (
     <Formik
       initialValues={{
@@ -75,14 +80,24 @@ const ItemRowGroup = ({
         <RowWrapper onSubmit={handleSubmit}>
           <div className="inputWrapper">
             <div className="flexRow alignCenter">
-              {rowValues?.name && (
+              {rowValues?.name && !noCheck && (
                 <>
                   <Spacer x={2.4} />
                   <CheckBox
-                    id="status"
-                    name="status"
-                    isChecked={status}
-                    onChange={(e) => setStatus(e.target.checked)}
+                    id={`status_${rowValues.id}`}
+                    name={`status_${rowValues.id}`}
+                    isChecked={
+                      rowValues.status && rowValues.status !== "pending"
+                    }
+                    onChange={() => {
+                      setFieldValue(
+                        index,
+                        "status",
+                        `${
+                          rowValues.status === "pending" ? "checked" : "pending"
+                        }`
+                      );
+                    }}
                   />
                 </>
               )}
@@ -98,7 +113,11 @@ const ItemRowGroup = ({
               />
             </div>
             {rowValues?.name && (
-              <div className="linkInput flexRow alignCenter">
+              <div
+                className={`linkInput flexRow alignCenter${
+                  noCheck ? " noCheck" : ""
+                }`}
+              >
                 <img src={linkIcon} alt="link" className="icon" />
                 <Spacer x={0.8} />
                 <input

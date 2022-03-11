@@ -53,7 +53,7 @@ const WishsLists = () => {
   const dispatch = useDispatch();
 
   const updateTempWishList = async () => {
-    if (!tempListId || !tempList?.length || !tempList[0].name) {
+    if (user.username) {
       return;
     }
 
@@ -73,6 +73,8 @@ const WishsLists = () => {
   };
 
   const getWishLists = async () => {
+    updateTempWishList();
+
     try {
       const res = await axios.get(`${base_url}/wishlist`, {
         headers: {
@@ -92,13 +94,10 @@ const WishsLists = () => {
       }
 
       if (res.data.status === "success") {
-        dispatch(clearTempList());
         setLoading(false);
         setData(res.data.data.data);
-        // updateTempWishList();
         return;
       }
-      dispatch(clearTempList());
       setLoading(false);
       dispatch(showAlert(res.data.message));
     } catch (e) {
@@ -169,7 +168,10 @@ const WishsLists = () => {
           text="Create wish list"
           className="createButton"
           iconLeft={plusIcon}
-          onClick={() => navigate("new")}
+          onClick={() => {
+            dispatch(clearTempList());
+            navigate("new");
+          }}
         />
       </SubHeader>
       <Spacer y={4.8} />

@@ -5,7 +5,7 @@ import addIcon from "assets/icons/plus.svg";
 import settingsIcon from "assets/icons/settings.svg";
 import shareIcon from "assets/icons/share_primary.svg";
 import saveIcon from "assets/icons/save_white.svg";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { useState } from "react";
 import ItemRowGroup from "../wishlist/ItemRowGroup";
@@ -28,7 +28,7 @@ import {
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
-import { base_url } from "utils/utils";
+import { base_url, debounce } from "utils/utils";
 import axios from "axios";
 import Loader from "components/global/Loader";
 
@@ -117,12 +117,37 @@ const EditWishList = ({ getWishLists }) => {
   const dispatch = useDispatch();
   const [saving, setSaving] = useState(false);
 
+  const updateListItem = async (data) => {
+    try {
+      const res = await axios.patch(`${base_url}/items/${tempListId}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      getWishLists();
+    } catch (e) {
+      console.log(e);
+    }
+
+    // const wishListRes = await axios.get(`${base_url}/wishlist/${tempListId}`, {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // });
+  };
+
   const setFieldValue = (rowIndex, fieldName, fieldValue) => {
     let temp = tempList.map((item) => Object.assign({}, item));
 
     temp[rowIndex][fieldName] = fieldValue;
 
     dispatch(setTempList(temp));
+
+    // update list items
+    const update = debounce(() => updateListItem(temp[rowIndex]));
+
+    update();
   };
 
   const removeRow = (index) => {
@@ -136,7 +161,7 @@ const EditWishList = ({ getWishLists }) => {
   const addMore = () => {
     let temp = tempList.map((item) => Object.assign({}, item));
 
-    temp.push({ name: "", link: "" });
+    temp.push({ name: "", link: "", status: "pending" });
 
     dispatch(setTempList(temp));
   };
@@ -156,17 +181,9 @@ const EditWishList = ({ getWishLists }) => {
       return;
     }
 
-    if (!tempList[0].name) {
-      dispatch(showAlert("Please add at least one item"));
-      return;
-    }
-
-    dispatch(clearAlert());
-
     const wishList = {
       title: tempListName,
       visibility: tempListVisibility,
-      items: tempList,
     };
 
     const res = await axios.patch(
@@ -197,7 +214,7 @@ const EditWishList = ({ getWishLists }) => {
       dispatch(setAlertTimeout(timeout));
 
       if (!res) {
-        dispatch(showAlert("An error occurred"));
+        setSaving(false);
         return;
       }
 
@@ -223,6 +240,10 @@ const EditWishList = ({ getWishLists }) => {
     }
   };
 
+  if (!tempListId) {
+    return <Navigate to="/user/wish-lists" />;
+  }
+
   return (
     <Wrapper className="flexColumn alignCenter">
       <Card>
@@ -230,7 +251,6 @@ const EditWishList = ({ getWishLists }) => {
           <button
             type="button"
             onClick={() => {
-              updateDetails();
               navigate(-1);
             }}
           >
