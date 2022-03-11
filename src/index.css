@@ -401,3 +401,7 @@ textarea {
 .colorAccent1Main {
   color: var(--accent_1-main);
 }
+
+.colorLink {
+  color: #407bff;
+}

@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   border-radius: 8px;
   background-color: #ffffff;
   animation: ${fadeIn} 0.2s ease forwards;
-  z-index: 5;
+  z-index: 2;
 
   .item {
     padding: 16px;

@@ -20,8 +20,9 @@ const Card = styled(AuthCard)`
   background-color: var(--primary-main);
 `;
 
-const ConfirmInterest = ({ basePath, itemId, itemName, username }) => {
+const ConfirmInterest = ({ itemId, itemName, username, slug }) => {
   const navigate = useNavigate();
+  const basePath = `${username}/${slug}`;
 
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
