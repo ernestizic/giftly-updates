@@ -5,6 +5,7 @@ export const Header = styled.div`
   top: 0;
   background-color: #ffffff;
   padding: 24px 48px;
+  z-index: 1;
 
   .logo {
     display: none;

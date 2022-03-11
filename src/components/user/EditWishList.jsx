@@ -119,7 +119,7 @@ const EditWishList = ({ getWishLists }) => {
 
   const updateListItem = async (data) => {
     try {
-      const res = await axios.patch(`${base_url}/items/${tempListId}`, data, {
+      await axios.patch(`${base_url}/items/${data.id}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -129,12 +129,36 @@ const EditWishList = ({ getWishLists }) => {
     } catch (e) {
       console.log(e);
     }
+  };
 
-    // const wishListRes = await axios.get(`${base_url}/wishlist/${tempListId}`, {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // });
+  const deleteListItem = async (id) => {
+    if (!id) return;
+
+    try {
+      await axios.delete(`${base_url}/items/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      getWishLists();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const addListItem = async (data) => {
+    try {
+      await axios.post(`${base_url}/items/${tempListId}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      getWishLists();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const setFieldValue = (rowIndex, fieldName, fieldValue) => {
@@ -155,15 +179,19 @@ const EditWishList = ({ getWishLists }) => {
       let temp = [...tempList];
       temp.splice(index, 1);
       dispatch(setTempList(temp));
+      deleteListItem(tempList[index].id);
     }
   };
 
   const addMore = () => {
     let temp = tempList.map((item) => Object.assign({}, item));
 
-    temp.push({ name: "", link: "", status: "pending" });
+    const data = { name: "", link: "", status: "pending" };
+
+    temp.push(data);
 
     dispatch(setTempList(temp));
+    addListItem(data);
   };
 
   const togglePrivacyOptions = () => {
