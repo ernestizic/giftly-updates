@@ -4,7 +4,6 @@ import FormGroup from "components/global/FormGroup";
 import removeIcon from "assets/icons/close_square.svg";
 import CheckBox from "components/global/CheckBox";
 import Spacer from "components/global/Spacer";
-import { useState } from "react";
 import linkIcon from "assets/icons/link.svg";
 
 const RowWrapper = styled.form`

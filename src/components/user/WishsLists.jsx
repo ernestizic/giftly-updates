@@ -48,7 +48,6 @@ const WishsLists = () => {
 
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.auth.user);
-  const tempList = useSelector((state) => state.wishList.tempList);
   const tempListId = useSelector((state) => state.wishList.tempListId);
   const dispatch = useDispatch();
 
