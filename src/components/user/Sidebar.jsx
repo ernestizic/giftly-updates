@@ -46,7 +46,6 @@ const Wrapper = styled.div`
         top: 0;
         height: 100vh;
         width: 100vw;
-        z-index: 2;
       }
     }
 
@@ -94,9 +93,8 @@ const Menu = styled.ul`
   }
 
   @media screen and (max-width: 768px) {
-    .item {
-      // justify-content: center;
-    }
+    position: relative;
+    a-index: 6;
   }
 `;
 

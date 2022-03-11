@@ -101,7 +101,7 @@ export const SubHeader = styled.div`
       position: fixed;
       bottom: 60px;
       right: 24px;
-      z-index: 5;
+      z-index: 2;
       border-radius: 50%;
       height: 56px;
       width: 56px;
