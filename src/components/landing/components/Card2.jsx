@@ -45,6 +45,14 @@ const ICONS = [
 ];
 
 const Wrapper = styled.div`
+
+	/* border-radius: 0.8rem;
+	background-color: var(--accent_2-main);
+	z-index: 2;
+	width: 45.6rem;
+	overflow: hidden;
+	@media (max-width:760px){ */
+
   border-radius: 0.8rem;
   background-color: var(--accent_2-main);
   width: 45.6rem;

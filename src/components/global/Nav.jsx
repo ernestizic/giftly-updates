@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const Wrapper = styled.nav`
   height: 9.6rem;
   padding: 0 12rem;
-  background-color: var(--title-active);
+  background-color:${props => props.wt ? "white" :" var(--title-active);"};
   display: flex;
   align-items: center;
   @media (max-width: 760px) {
@@ -59,12 +59,12 @@ const Wrapper = styled.nav`
   }
 `;
 
-const Nav = () => {
+const Nav = ({wt}) => {
   const navigate = useNavigate();
   const [showInput, setShowInput] = React.useState(false);
 
   return (
-    <Wrapper>
+    <Wrapper wt={wt}>
       <Logo />
       <Formik
         initialValues={{
