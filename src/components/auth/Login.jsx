@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import FormGroup from "components/global/FormGroup";
 import FormWrapper from "components/global/FormWrapper";
 import Button from "components/global/Button";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CheckBox from "components/global/CheckBox";
 import { AuthWrapper } from "./AuthStyles";
 import { AuthCard } from "./AuthStyles";
@@ -30,6 +30,8 @@ const Login = () => {
 
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.auth.user);
+
+  const [isChecked, setChecked] = useState(false);
 
   const schema = Yup.object({
     email: Yup.string()
@@ -84,14 +86,13 @@ const Login = () => {
   };
 
   useEffect(() => {
-    const rmCheck = document.getElementById("rememberMe");
-
     if (localStorage.checkbox && localStorage.checkbox !== "") {
-      rmCheck?.click();
+      setChecked(true);
     } else {
-      rmCheck?.removeAttribute("checked");
+      setChecked(false);
     }
-  });
+    // eslint-disable-next-line
+  }, []);
 
   if (token) {
     return (
@@ -108,13 +109,7 @@ const Login = () => {
   return (
     <AuthWrapper className="flexColumn alignCenter">
       <AuthCard>
-        <div className="flexRow alignCenter justifySpaceBetween">
-          <p className="subtitle-4 prompt1">
-            Don't have an account?{" "}
-            <Link to="/home/sign-up" className="colorPrimaryMain">
-              Sign up
-            </Link>
-          </p>
+        <div className="flexRow alignCenter">
           <Link to="/home">
             <img src={closeIcon} alt="icon" />
           </Link>
@@ -173,15 +168,16 @@ const Login = () => {
                   name="rememberMe"
                   label="Remember me"
                   value="rememberMe"
+                  isChecked={isChecked}
                 />
-                <div>
+                {/* <div>
                   <Link
                     to="/home/password-reset"
                     className="colorPrimaryMain label"
                   >
                     Forgot password?
                   </Link>
-                </div>
+                </div> */}
               </div>
 
               <Button
@@ -194,6 +190,12 @@ const Login = () => {
                   isSubmitting || !isValid || !values.email || !values.password
                 }
               />
+              <p className="subtitle-4 prompt1 spanFull">
+                Don't have an account?{" "}
+                <Link to="/home/sign-up" className="colorPrimaryMain">
+                  Sign up
+                </Link>
+              </p>
             </FormWrapper>
           )}
         </Formik>

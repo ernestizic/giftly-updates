@@ -105,7 +105,7 @@ const WishsLists = () => {
         dispatch(clearAlert());
       }, 5000);
       dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response.data.message || "Something went wrong"));
+      dispatch(showAlert(e.response?.data.message || "Something went wrong"));
     }
   };
 

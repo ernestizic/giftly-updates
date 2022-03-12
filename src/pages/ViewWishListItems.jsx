@@ -111,7 +111,7 @@ const ViewWishListItems = () => {
   const { slug } = useParams();
   const [wishList, setWishList] = useState();
   const [item, setItem] = useState();
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -174,7 +174,7 @@ const ViewWishListItems = () => {
       {loading ? (
         <>
           <Spacer y={4.8} />
-          <div className="flexRow alignCenter">
+          <div className="flexRow justifyCenter">
             <Loader />
           </div>
           <Spacer y={4.8} />
@@ -195,7 +195,7 @@ const ViewWishListItems = () => {
             </p>
           </Header>
           <ListItems>
-            <div className="flexRow justifyEnd">
+            <div className="flexRow">
               <div className="flexRow alignCenter">
                 <p className="body-3 colorTitleActive prompt1">
                   Reserve items here

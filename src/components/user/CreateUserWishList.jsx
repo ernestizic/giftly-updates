@@ -34,6 +34,7 @@ import Loader from "components/global/Loader";
 
 const Wrapper = styled(Backdrop)`
   padding: 72px 0;
+  z-index: 20;
 
   @media screen and (max-width: 768px) {
     padding: 32px 8px;
@@ -213,7 +214,7 @@ const CreateUserWishList = ({ getWishLists }) => {
   return (
     <Wrapper className="flexColumn alignCenter">
       <Card>
-        <div className="flexRow alignCenter justifyEnd">
+        <div className="flexRow alignCenter">
           <button type="button" onClick={() => navigate(-1)}>
             <img src={closeIcon} alt="icon" />
           </button>

@@ -110,7 +110,7 @@ const ForgotPassword = () => {
         element={
           <AuthWrapper className="flexColumn alignCenter">
             <AuthCard>
-              <div className="flexRow alignCenter justifyEnd">
+              <div className="flexRow alignCenter">
                 <Link to="/home/login">
                   <img src={closeIcon} alt="icon" />
                 </Link>
@@ -194,7 +194,7 @@ const ForgotPassword = () => {
         element={
           <AuthWrapper className="flexColumn alignCenter">
             <AuthCard>
-              <div className="flexRow alignCenter justifyEnd">
+              <div className="flexRow alignCenter">
                 <Link to="/home/login">
                   <img src={closeIcon} alt="icon" />
                 </Link>

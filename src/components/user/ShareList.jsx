@@ -162,7 +162,7 @@ const ShareList = () => {
     <Wrapper className="flexColumn alignCenter">
       <Card>
         <div className="shareOptions">
-          <div className="flexRow alignCenter justifyEnd closeWrapper">
+          <div className="flexRow alignCenter closeWrapper">
             <Link to="/user/wish-lists">
               <img src={closeIcon} alt="icon" />
             </Link>
