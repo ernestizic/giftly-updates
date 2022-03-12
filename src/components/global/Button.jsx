@@ -7,31 +7,32 @@ const Wrapper = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.8rem;
-  height: ${(props) => props.height || "4.8rem"};
+  border-radius: 8px;
+  height: ${(props) => props.height || "48px"};
   width: ${(props) => props.width ?? "max-content"};
   background-color: ${(props) => props.bg || " var(--primary-main)"};
   color: ${(props) => props.color || "#ffffff"};
   font-family: var(--font_1-regular);
-  font-size: 1.6rem;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 2.4rem;
+  line-height: 24px;
   letter-spacing: 0rem;
   text-align: center;
   transition: all 0.2s ease-out;
   flex-shrink: 0;
   padding: 0 24px;
+  white-space: nowrap;
 
   .icon {
-    height: 2rem;
+    height: 20px;
 
     &.left {
-      margin-right: 0.8rem;
+      margin-right: 8px;
     }
 
     &.right {
-      margin-left: 0.8rem;
+      margin-left: 8px;
     }
   }
 
@@ -49,10 +50,9 @@ const Wrapper = styled.button`
   }
 
   &.large {
-    height: 6.4rem;
-    width: ${(props) => props.width ?? "20.0rem"};
-    font-size: 1.8rem;
-    line-height: 2.8rem;
+    height: 64px;
+    font-size: 18px;
+    line-height: 28px;
   }
 
   &:disabled {
@@ -76,6 +76,20 @@ const Wrapper = styled.button`
 
     &:hover {
       background-color: var(--primary-light);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    &.large {
+      height: 48px;
+      width: ${(props) => props.width ?? "max-content"};
+      background-color: ${(props) => props.bg || " var(--primary-main)"};
+      color: ${(props) => props.color || "#ffffff"};
+      font-family: var(--font_1-regular);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
     }
   }
 `;

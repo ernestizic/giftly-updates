@@ -12,13 +12,13 @@ export const FormGroupWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-radius: .8rem;
-    height: ${(props) => (props.fieldStyle === "longText" ? "auto" : "5.6rem")};
+    border-radius: 8px;
+    height: ${(props) => (props.fieldStyle === "longText" ? "auto" : "48px")};
     position: relative;
     background-color: ${(props) => props.bg ?? "var(--input-bg)"};
 
     &.error {
-      border: .1rem solid var(--error-default);
+      border: 0.1rem solid var(--error-default);
     }
   }
 
@@ -28,11 +28,11 @@ export const FormGroupWrapper = styled.div`
     display: block;
     color: ${(props) => props.color ?? "var(--title-active)"};
     width: 100%;
-    padding: 0 2.4rem;
+    padding: 0 24px;
     background-color: transparent;
     border: none;
-    font-size: 1.6rem;
-    line-height: 2.4rem;
+    font-size: 16px;
+    line-height: 24px;
     font-style: normal;
     font-weight: 400;
 
@@ -53,7 +53,7 @@ export const FormGroupWrapper = styled.div`
   &.password {
     input,
     textarea {
-      width: calc(100% - 2.4rem);
+      width: calc(100% - 24px);
     }
 
     .toggleShow {
@@ -61,21 +61,21 @@ export const FormGroupWrapper = styled.div`
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      right: 1.5rem;
-      height: 2rem;
+      right: 16px;
+      height: 24px;
     }
   }
 
   textarea {
-    height: 14.4rem;
-    padding: 1.5rem;
+    height: 144px;
+    padding: 16px;
   }
 
   .dropdownIcon {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 1.5rem;
+    right: 16px;
     pointer-events: none;
   }
 
@@ -83,7 +83,7 @@ export const FormGroupWrapper = styled.div`
     display: block;
     width: 100%;
     text-align: left;
-    margin-top: 0.6rem;
+    margin-top: 6px;
     color: var(--error-default);
   }
 `;
@@ -91,12 +91,12 @@ export const FormGroupWrapper = styled.div`
 export const FormGroupLabel = styled.label`
   display: block;
   color: var(--label);
-  font-size: 1.4rem;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 1.8rem;
+  line-height: 18px;
   text-align: left;
-  margin-top: .6rem;
-  margin-left: 2.4rem;
+  margin-top: 6px;
+  margin-left: 24px;
 `;
 
 const handleToggleShowPassword = (id) => {

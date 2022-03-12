@@ -7,6 +7,7 @@ import curve3 from "assets/images/curve3.svg";
 import curve4 from "assets/images/curve4.svg";
 import Button from "components/global/Button";
 import { useNavigate } from "react-router-dom";
+import Spacer from "components/global/Spacer";
 
 const Wrapper = styled.div`
   position: relative;
@@ -17,9 +18,6 @@ const Wrapper = styled.div`
   .inner {
     overflow: hidden;
     position: relative;
-  }
-
-  .inner {
     display: flex;
     border-radius: 0.8rem;
     background-color: var(--title-active);
@@ -30,15 +28,18 @@ const Wrapper = styled.div`
       color: var(--primary-light);
       z-index: 3;
     }
+
     img {
       width: 100%;
     }
+
     .cur1 {
       top: 0;
       left: 0;
       height: 45rem;
       position: absolute;
     }
+
     .cur2 {
       top: 0;
       left: 0;
@@ -49,6 +50,7 @@ const Wrapper = styled.div`
       right: -48px;
       position: absolute;
     }
+
     .cur4 {
       bottom: 0;
       right: 0;
@@ -80,12 +82,8 @@ const Wrapper = styled.div`
     }
 
     button {
-      margin: auto 0 auto auto;
+      margin: auto;
       position: relative;
-      @media (max-width: 760px) {
-        margin: 4.8rem auto 4rem;
-        height: 4.8rem;
-      }
     }
   }
 
@@ -127,6 +125,7 @@ const Sec8 = () => {
             Let friends and family know the gifts you truly want and need.
           </p>
         </div>
+        <Spacer y={4.8} />
         <Button
           height="6.4rem"
           width="200px"
