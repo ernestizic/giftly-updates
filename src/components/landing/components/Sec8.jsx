@@ -93,6 +93,16 @@ const Wrapper = styled.div`
     .inner {
       flex-direction: column;
       padding: 96px 16px;
+
+      .cur2 {
+        display: none;
+      }
+
+      .cur3 {
+        width: 200%;
+        top: 20%;
+        right: -50%;
+      }
     }
 
     .title {
