@@ -12,6 +12,7 @@ import {
   setTempList,
   setTempListId,
   setTempListName,
+  setTempListSlug,
   setTempListVisibility,
 } from "features/wishList/wishListSlice";
 
@@ -69,6 +70,7 @@ const WishListCard = ({ details }) => {
 
     dispatch(setTempListId(details.id));
     dispatch(setTempListName(details.title));
+    dispatch(setTempListSlug(details.slug));
     dispatch(setTempList(details.items));
     dispatch(setTempListVisibility(details.visibility));
 
@@ -77,7 +79,12 @@ const WishListCard = ({ details }) => {
 
   return (
     <Container>
-      <Wrapper onClick={() => dispatch(setTempListId(details.id))}>
+      <Wrapper
+        onClick={() => {
+          dispatch(setTempListSlug(details.slug));
+          dispatch(setTempListId(details.id));
+        }}
+      >
         <div className="screen flexRow justifyCenter" onClick={handleOpen}>
           <img src={openBox} alt="Open box" />
         </div>

@@ -83,7 +83,7 @@ const Card = styled(AuthCard)`
 
 const shareOnFB = (shareLink) => {
   const url = `https://www.facebook.com/sharer/sharer.php?u=${shareLink}&t=${encodeURI(
-    "Checkout my wish list on giftly.me"
+    "Checkout my wish list on giftly"
   )}`;
   window.open(url, "");
   return;
@@ -91,7 +91,7 @@ const shareOnFB = (shareLink) => {
 
 const shareOntwitter = (shareLink) => {
   const url = `https://twitter.com/intent/tweet?url=${shareLink}&via=giftly&text=${encodeURI(
-    "Checkout my wish list on giftly.me"
+    "Checkout my wish list on giftly"
   )}`;
   window.open(url);
   return;
@@ -99,7 +99,7 @@ const shareOntwitter = (shareLink) => {
 
 const shareOnWhatsapp = (shareLink) => {
   const url = `whatsapp://send?text=${encodeURI(
-    `Checkout my wish list on giftly.me\n${shareLink}`
+    `Checkout my wish list on giftly\n${shareLink}`
   )}`;
   window.open(url);
   return;
@@ -107,7 +107,7 @@ const shareOnWhatsapp = (shareLink) => {
 
 const shareOnTelegram = (shareLink) => {
   const url = `https://telegram.me/share/url?url=${shareLink}&text=${encodeURI(
-    "Checkout my wish list on giftly.me"
+    "Checkout my wish list on giftly"
   )}`;
   window.open(url);
   return;
@@ -175,7 +175,11 @@ const ShareList = () => {
               <button
                 key={index}
                 className="flexColumn justifyCenter alignCenter item"
-                onClick={() => socials[key].share(shareLink)}
+                onClick={() =>
+                  socials[key].share(
+                    `https://giftly.me/${user?.username}/${tempListSlug}`
+                  )
+                }
               >
                 <img src={socials[key].icon} alt="" className="icon" />
                 <Spacer y={0.4} />
