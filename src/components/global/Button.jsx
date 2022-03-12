@@ -35,9 +35,9 @@ const Wrapper = styled.button`
     }
   }
 
-  &:hover {
-    background-color: var(--primary-dark);
-  }
+  // &:hover {
+  //   background-color: var(--primary-dark);
+  // }
 
   &.secondary {
     background-color: var(--accent_2-main);

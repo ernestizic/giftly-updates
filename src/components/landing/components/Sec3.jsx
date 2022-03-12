@@ -3,12 +3,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Card2 from "./Card2";
-import wave3 from "assets/images/wave3.svg"
-import wave4 from "assets/images/wave4.svg"
+// import wave3 from "assets/images/wave3.svg"
+// import wave4 from "assets/images/wave4.svg"
 
 const Wrapper = styled.div`
-
-	/* display: flex;
+  /* display: flex;
 	background-color: var(--white);
 	padding: 10.6rem 12rem 8rem;
 	justify-content: space-between;
@@ -83,7 +82,6 @@ const Wrapper = styled.div`
       margin: 2.4rem 0 4.8rem;
     }
 
-
     @media (max-width: 760px) {
       width: auto;
       text-align: center;
@@ -95,25 +93,24 @@ const Wrapper = styled.div`
 `;
 
 const Sec3 = () => {
-
-	// return (
-	// 	<Wrapper>
-	// 		<img className="img__tp" src={wave3} alt="wave3" />
-	// 		<Card2 />
-	// 		<div className="text">
-	// 			<h1 className="title-plus">
-	// 				Build a list, <span>share</span> with ease.
-	// 			</h1>
-	// 			<p className="subtitle-2">
-	// 				Not just for birthdays! Create a wishlist for any special occasion and
-	// 				share with your family, friends and loved ones on any of these
-	// 				platforms.
-	// 			</p>
-	// 			<Button width="23.2rem" height="6.4rem" text="Sign up now" />
-	// 		</div>
-	// 		<img className="img__btm" src={wave4} alt="wave4" />
-	// 	</Wrapper>
-	// );
+  // return (
+  // 	<Wrapper>
+  // 		<img className="img__tp" src={wave3} alt="wave3" />
+  // 		<Card2 />
+  // 		<div className="text">
+  // 			<h1 className="title-plus">
+  // 				Build a list, <span>share</span> with ease.
+  // 			</h1>
+  // 			<p className="subtitle-2">
+  // 				Not just for birthdays! Create a wishlist for any special occasion and
+  // 				share with your family, friends and loved ones on any of these
+  // 				platforms.
+  // 			</p>
+  // 			<Button width="23.2rem" height="6.4rem" text="Sign up now" />
+  // 		</div>
+  // 		<img className="img__btm" src={wave4} alt="wave4" />
+  // 	</Wrapper>
+  // );
 
   const navigate = useNavigate();
   return (

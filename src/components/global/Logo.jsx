@@ -3,6 +3,7 @@ import logo from "assets/images/logo.svg";
 
 const Wrapper = styled.div`
   width: max-content;
+  cursor: pointer;
 
   img {
     height: 3.8rem;

@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import AlertBox from "components/global/AlertBox";
 import ViewWishListItems from "pages/ViewWishListItems";
+import FAQs from "components/landing/FAQs";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/user" element={<Navigate to="/user/wish-lists" />} />
             <Route path="/user/*" element={<Dashboard />} />
             <Route path="/:username/:slug/*" element={<ViewWishListItems />} />
+            <Route path="/faqs" element={<FAQs />} />
 
             {/* No match */}
             <Route path="*" element={<Navigate to="/home" />} />
