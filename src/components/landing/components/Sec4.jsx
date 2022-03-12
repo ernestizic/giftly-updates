@@ -37,8 +37,8 @@ const Wrapper = styled.div`
 
   p {
     @media (max-width: 760px) {
-      font-size: 8rem;
-      line-height: 8rem;
+      font-size: 48px;
+      line-height: 48px;
     }
 
     display: flex;
@@ -66,6 +66,15 @@ const Wrapper = styled.div`
     width: max-content;
     white-space: nowrap;
   }
+
+  @media screen and (max-width: 768px) {
+    padding: 48px 0;
+    height: auto;
+
+    .mb {
+      gap: 32px;
+    }
+  }
 `;
 const Star = () => <img src={star} alt="start" />;
 
@@ -79,8 +88,8 @@ const Sec4 = () => {
           <Star /> <span>Wedding</span>
         </p>
         <p className="title-plus">
-          <span className="shift">by Shower</span> <Star />
-          <span>house warming</span>
+          <span className="shift">Baby Shower</span> <Star />
+          <span>House warming</span>
           <Star /> <span>Christmas</span>
         </p>
         <p className="title-plus">
@@ -95,20 +104,20 @@ const Sec4 = () => {
       <div className="mb">
         <p className="title-plus">
           Birthdays <Star />
-          Secr
+          SecretSanta
         </p>
         <p className="title-plus">
-          Shower <Star />
-          Weddi
+          Baby Shower <Star />
+          Weddings
         </p>
         <p className="title-plus">
           Birthdays
           <Star />
-          Secr
+          Secret Santa
         </p>
         <p className="title-plus">
-          Shower <Star />
-          Weddi
+          Baby Shower <Star />
+          Weddings
         </p>
       </div>
     </Wrapper>

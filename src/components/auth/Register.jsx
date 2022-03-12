@@ -74,7 +74,7 @@ const Register = () => {
   };
 
   return (
-    <AuthWrapper>
+    <AuthWrapper className="flexColumn alignCenter">
       <AuthCard>
         <div className="flexRow alignCenter">
           <Link to="/home">

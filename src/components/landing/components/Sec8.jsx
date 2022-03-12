@@ -12,63 +12,56 @@ const Wrapper = styled.div`
   position: relative;
   padding: 9.6rem 12rem;
   overflow: hidden;
-  @media (max-width: 760px) {
-    padding: 4.8rem 2.4rem;
-  }
   background-color: var(--accent_2-main);
-  & > div {
+
+  .inner {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .inner {
     display: flex;
     border-radius: 0.8rem;
     background-color: var(--title-active);
     padding: 9.6rem;
     height: fit-content;
-    @media (max-width: 760px) {
-      flex-direction: column;
-      padding: 1.5rem;
-    }
 
     h1 {
       color: var(--primary-light);
       z-index: 3;
-      @media (max-width: 760px) {
-        font-size: 4.8rem;
-        line-height: 5.6rem;
-      }
     }
     img {
       width: 100%;
     }
     .cur1 {
-      top: 9.6rem;
-      left: 12rem;
+      top: 0;
+      left: 0;
       height: 45rem;
       position: absolute;
     }
     .cur2 {
-      top: 9.6rem;
-      left: 12rem;
+      top: 0;
+      left: 0;
       position: absolute;
     }
     .cur3 {
-      top: 9rem;
-      left: 29rem;
+      top: 0;
+      right: -48px;
       position: absolute;
     }
     .cur4 {
-      bottom: 9.6rem;
-      right: 12rem;
+      bottom: 0;
+      right: 0;
       position: absolute;
-    }
-
-    [class*="cur"] {
-      display: none;
     }
 
     .text {
       width: 59.8rem;
+
       @media (max-width: 760px) {
         width: auto;
       }
+
       p {
         position: relative;
         color: var(--white);
@@ -85,14 +78,28 @@ const Wrapper = styled.div`
         position: relative;
       }
     }
+
     button {
       margin: auto 0 auto auto;
       position: relative;
       @media (max-width: 760px) {
-        /* width: auto; */
         margin: 4.8rem auto 4rem;
         height: 4.8rem;
       }
+    }
+  }
+
+  @media (max-width: 760px) {
+    padding: 4.8rem 2.4rem;
+
+    .inner {
+      flex-direction: column;
+      padding: 96px 16px;
+    }
+
+    .title {
+      font-size: 48px;
+      line-height: 56px;
     }
   }
 `;
@@ -101,7 +108,7 @@ const Sec8 = () => {
   const navigate = useNavigate();
   return (
     <Wrapper>
-      <div>
+      <div className="inner">
         <div className="cur1">
           <img src={curve1} alt="curve" />
         </div>
@@ -115,8 +122,8 @@ const Sec8 = () => {
           <img src={curve4} alt="curve" />
         </div>
         <div className="text">
-          <h1 className="title-plus">Get started for free now.</h1>
-          <p className="subtitle-2">
+          <h1 className="title-plus title">Get started for free now.</h1>
+          <p className="subtitle-2 subtitle">
             Let friends and family know the gifts you truly want and need.
           </p>
         </div>

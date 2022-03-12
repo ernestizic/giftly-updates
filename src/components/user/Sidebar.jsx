@@ -106,7 +106,7 @@ const menuList = [
   },
   {
     title: "FAQ",
-    slug: "/home/faqs",
+    slug: "/faqs",
     icon: faqIcon,
   },
   // {
