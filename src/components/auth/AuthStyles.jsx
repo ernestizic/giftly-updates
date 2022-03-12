@@ -3,6 +3,7 @@ import Backdrop from "../global/Backdrop";
 
 export const AuthWrapper = styled(Backdrop)`
   padding: 72px 0;
+  z-index: 20;
 
   @media screen and (max-width: 768px) {
     padding: 32px 8px;
@@ -11,8 +12,8 @@ export const AuthWrapper = styled(Backdrop)`
 
 export const AuthCard = styled.div`
   width: 480px;
-  max-height: 640px;
-  overflow: auto;
+  // max-height: 640px;
+  // overflow: auto;
   margin: auto;
   background-color: #ffffff;
   border-radius: 16px;

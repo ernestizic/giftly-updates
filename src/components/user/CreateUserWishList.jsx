@@ -3,8 +3,8 @@ import styled from "styled-components";
 import closeIcon from "assets/icons/close_square.svg";
 import addIcon from "assets/icons/plus.svg";
 import settingsIcon from "assets/icons/settings.svg";
-import shareIcon from "assets/icons/share_white.svg";
-import deleteIcon from "assets/icons/trash.svg";
+import shareIcon from "assets/icons/share_primary.svg";
+import saveIcon from "assets/icons/save_white.svg";
 import { Navigate, useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { useState } from "react";
@@ -30,9 +30,11 @@ import {
 } from "features/alert/alertSlice";
 import { base_url } from "utils/utils";
 import axios from "axios";
+import Loader from "components/global/Loader";
 
 const Wrapper = styled(Backdrop)`
   padding: 72px 0;
+  z-index: 20;
 
   @media screen and (max-width: 768px) {
     padding: 32px 8px;
@@ -143,7 +145,7 @@ const CreateUserWishList = ({ getWishLists }) => {
     document.querySelector("form.options").classList.toggle("show");
   };
 
-  const handleShare = async () => {
+  const handleSave = async (action) => {
     let timeout = setTimeout(() => {
       dispatch(clearAlert());
     }, 5000);
@@ -151,11 +153,6 @@ const CreateUserWishList = ({ getWishLists }) => {
 
     if (!tempListName || !tempListName.length) {
       dispatch(showAlert("Please name your wish list"));
-      return;
-    }
-
-    if (!tempList[0].name) {
-      dispatch(showAlert("Please add at least one item"));
       return;
     }
 
@@ -181,17 +178,20 @@ const CreateUserWishList = ({ getWishLists }) => {
       dispatch(setAlertTimeout(timeout));
 
       if (!res) {
+        setSaving(false);
         dispatch(showAlert("An error occurred"));
         return;
       }
 
       if (res.data.status === "success") {
         getWishLists();
+        setSaving(false);
         dispatch(setTempListSlug(res.data.data.slug));
         dispatch(showAlert("Wish list saved"));
         dispatch(clearTempList());
-        setSaving(false);
-        navigate("/user/wish-lists/share");
+        action === "share"
+          ? navigate("/user/wish-lists/share")
+          : navigate("/user/wish-lists");
         return;
       }
 
@@ -207,10 +207,6 @@ const CreateUserWishList = ({ getWishLists }) => {
     }
   };
 
-  const handleDelete = () => {
-    navigate("/user/wish-lists/delete");
-  };
-
   if (!user.username) {
     return <Navigate to="/user/wish-lists/create-username" />;
   }
@@ -218,7 +214,7 @@ const CreateUserWishList = ({ getWishLists }) => {
   return (
     <Wrapper className="flexColumn alignCenter">
       <Card>
-        <div className="flexRow alignCenter justifyEnd">
+        <div className="flexRow alignCenter">
           <button type="button" onClick={() => navigate(-1)}>
             <img src={closeIcon} alt="icon" />
           </button>
@@ -258,6 +254,7 @@ const CreateUserWishList = ({ getWishLists }) => {
               removeRow={removeRow}
               rowValues={row}
               setFieldValue={setFieldValue}
+              noCheck
             />
           ))}
         </div>
@@ -313,24 +310,32 @@ const CreateUserWishList = ({ getWishLists }) => {
           </form>
         </PrivacyOptions>
         <Spacer y={2.4} />
-        <div className="flexRow justifyCenter actionBtns">
-          <Button
-            text="Share"
-            iconLeft={shareIcon}
-            disabled={saving}
-            loading={saving}
-            width="calc(50% - 12px)"
-            onClick={handleShare}
-          />
-          <Spacer x={2.4} />
-          <Button
-            text="Delete"
-            iconLeft={deleteIcon}
-            className="secondary"
-            width="calc(50% - 24px)"
-            onClick={handleDelete}
-          />
-        </div>
+        {saving ? (
+          <div className="flexRow justifyCenter">
+            <Loader />
+          </div>
+        ) : (
+          <div className="flexRow justifyCenter actionBtns">
+            <Button
+              text="Share"
+              className="secondary"
+              iconLeft={shareIcon}
+              disabled={saving}
+              loading={saving}
+              width="calc(50% - 12px)"
+              onClick={() => handleSave("share")}
+            />
+            <Spacer x={2.4} />
+            <Button
+              text="Save"
+              iconLeft={saveIcon}
+              disabled={saving}
+              loading={saving}
+              width="calc(50% - 24px)"
+              onClick={handleSave}
+            />
+          </div>
+        )}
       </Card>
     </Wrapper>
   );

@@ -3,16 +3,17 @@ import logo from "assets/images/logo.svg";
 
 const Wrapper = styled.div`
   width: max-content;
+  cursor: pointer;
 
   img {
     height: 3.8rem;
   }
 `;
 
-export default function Logo({className, onClick = () => null }) {
+export default function Logo({ className, onClick = () => null }) {
   return (
-    <Wrapper className={className} onClick={onClick}>
-      <img src={logo} alt="PostPaddy" />
+    <Wrapper className={`${className ?? ""} logo`} onClick={onClick}>
+      <img src={logo} alt="Giftly" />
     </Wrapper>
   );
 }

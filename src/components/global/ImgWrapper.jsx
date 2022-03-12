@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const ImgWrapper = styled.div`
   height: ${(props) => props.size ?? "4.8"}rem;
-  aspect-ratio: 1/1;
+  width: ${(props) => props.size ?? "4.8"}rem;
   display: flex;
   align-items: center;
   justify-content: center;

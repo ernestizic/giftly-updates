@@ -12,28 +12,37 @@ import {
   setTempList,
   setTempListId,
   setTempListName,
+  setTempListSlug,
   setTempListVisibility,
 } from "features/wishList/wishListSlice";
+
+const Container = styled.div`
+  position: relative;
+`;
 
 const Wrapper = styled.div`
   padding: 8px;
   border-radius: 8px;
   background-color: #ffffff;
   box-shadow: var(--shadow_1);
-  position: relative;
   transition: all 0.2s ease-out;
 
   &:hover {
-    transform: translateY(-8px);
+    transform: scale(1.05);
   }
 
   .screen {
     height: 120px;
     background-color: var(--background);
+    cursor: pointer;
 
     img {
       height: 100%;
     }
+  }
+
+  .body {
+    cursor: pointer;
   }
 
   .title {
@@ -42,6 +51,12 @@ const Wrapper = styled.div`
     &:hover {
       color: var(--primary-main);
     }
+  }
+
+  @media screen and (max-width: 768px) {
+    position: unset;
+    margin: auto;
+    width: 240px;
   }
 `;
 
@@ -55,6 +70,7 @@ const WishListCard = ({ details }) => {
 
     dispatch(setTempListId(details.id));
     dispatch(setTempListName(details.title));
+    dispatch(setTempListSlug(details.slug));
     dispatch(setTempList(details.items));
     dispatch(setTempListVisibility(details.visibility));
 
@@ -62,48 +78,52 @@ const WishListCard = ({ details }) => {
   };
 
   return (
-    <Wrapper onClick={() => dispatch(setTempListId(details.id))}>
-      <div className="screen flexRow justifyCenter">
-        <img src={openBox} alt="Open box" />
-      </div>
-      <Spacer y={1.6} />
-      <div className="body">
-        <button
-          className="body-3 colorTitleActive title textCenter flexRow justifyCenter"
-          onClick={handleOpen}
-        >
-          {details.title}
-        </button>
-        <Spacer y={0.4} />
-        <p className="label subtitle colorLabelText textCenter">
-          {details?.items.length} wish{details?.items.length > 1 ? "es" : ""}
-        </p>
-      </div>
-      <Spacer y={1.6} />
-      <div className="bottom flexRow alignCenter justifySpaceBetween">
-        <button className="flexRow alignCenter togglePrivacy">
-          {details?.visibility === "public" && (
-            <img src={unlockedIcon} alt="lock" className="icon" />
-          )}
-          {details?.visibility === "private" && (
-            <img src={lockedIcon} alt="lock" className="icon" />
-          )}
-          <Spacer x={0.8} />
-          <span className="body-3 text textCapitalize">
-            {details?.visibility}
-          </span>
-        </button>
-        <button
-          className="flexRow alignCenter toggleOptions"
-          onClick={() => setOptionsOpen((prev) => !prev)}
-        >
-          <img src={moreIcon} alt="lock" className="icon" />
-        </button>
-      </div>
-
+    <Container>
+      <Wrapper
+        onClick={() => {
+          dispatch(setTempListSlug(details.slug));
+          dispatch(setTempListId(details.id));
+        }}
+      >
+        <div className="screen flexRow justifyCenter" onClick={handleOpen}>
+          <img src={openBox} alt="Open box" />
+        </div>
+        <Spacer y={1.6} />
+        <div className="body" onClick={handleOpen}>
+          <button className="body-3 colorTitleActive title textCenter flexRow justifyCenter">
+            {details.title}
+          </button>
+          <Spacer y={0.4} />
+          <p className="label subtitle colorLabelText textCenter">
+            {details?.items.length} wish{details?.items.length > 1 ? "es" : ""}
+          </p>
+        </div>
+        <Spacer y={1.6} />
+        <div className="bottom flexRow alignCenter justifySpaceBetween">
+          <div className="flexRow alignCenter togglePrivacy" id="togglePrivacy">
+            {details?.visibility === "public" && (
+              <img src={unlockedIcon} alt="lock" className="icon" />
+            )}
+            {details?.visibility === "private" && (
+              <img src={lockedIcon} alt="lock" className="icon" />
+            )}
+            <Spacer x={0.8} />
+            <span className="body-3 text textCapitalize colorTitleActive">
+              {details?.visibility}
+            </span>
+          </div>
+          <button
+            id="toggleOptions"
+            className="flexRow alignCenter toggleOptions"
+            onClick={() => setOptionsOpen((prev) => !prev)}
+          >
+            <img src={moreIcon} alt="lock" className="icon" />
+          </button>
+        </div>
+      </Wrapper>
       {/* Options */}
       {optionsOpen && <CardOptions setOpen={setOptionsOpen} />}
-    </Wrapper>
+    </Container>
   );
 };
 

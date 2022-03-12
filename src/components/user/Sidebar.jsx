@@ -23,7 +23,8 @@ const Wrapper = styled.div`
     }
   }
 
-  .toggle {
+  .toggle,
+  .backDrop {
     display: none;
   }
 
@@ -33,9 +34,19 @@ const Wrapper = styled.div`
     bottom: -100vh;
     min-height: 50vh;
     transition: all 0.2s ease-out;
+    z-index: 5;
 
     &.open {
       bottom: 0;
+
+      .backDrop {
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 100vw;
+      }
     }
 
     .brand {
@@ -82,9 +93,8 @@ const Menu = styled.ul`
   }
 
   @media screen and (max-width: 768px) {
-    .item {
-      justify-content: center;
-    }
+    position: relative;
+    a-index: 6;
   }
 `;
 
@@ -96,7 +106,7 @@ const menuList = [
   },
   {
     title: "FAQ",
-    slug: "/home/faq",
+    slug: "/faqs",
     icon: faqIcon,
   },
   // {
@@ -116,6 +126,12 @@ const Sidebar = () => {
 
   return (
     <Wrapper className="sidebar">
+      <div
+        className="backDrop"
+        onClick={() =>
+          document.querySelector(".sidebar").classList.remove("open")
+        }
+      ></div>
       <button
         type="button"
         className="toggle"

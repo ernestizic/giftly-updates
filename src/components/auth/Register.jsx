@@ -74,15 +74,9 @@ const Register = () => {
   };
 
   return (
-    <AuthWrapper>
+    <AuthWrapper className="flexColumn alignCenter">
       <AuthCard>
-        <div className="flexRow alignCenter justifySpaceBetween">
-          <p className="subtitle-4 prompt1">
-            Already have an account?{" "}
-            <Link to="/home/login" className="colorPrimaryMain">
-              Login
-            </Link>
-          </p>
+        <div className="flexRow alignCenter">
           <Link to="/home">
             <img src={closeIcon} alt="icon" />
           </Link>
@@ -192,6 +186,12 @@ const Register = () => {
                   !agreedToTerms
                 }
               />
+              <p className="subtitle-4 prompt1 spanFull">
+                Already have an account?{" "}
+                <Link to="/home/login" className="colorPrimaryMain">
+                  Login
+                </Link>
+              </p>
             </FormWrapper>
           )}
         </Formik>

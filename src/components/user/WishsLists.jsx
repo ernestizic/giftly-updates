@@ -48,12 +48,11 @@ const WishsLists = () => {
 
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.auth.user);
-  const tempList = useSelector((state) => state.wishList.tempList);
   const tempListId = useSelector((state) => state.wishList.tempListId);
   const dispatch = useDispatch();
 
   const updateTempWishList = async () => {
-    if (!tempListId || !tempList?.length || !tempList[0].name) {
+    if (user.username) {
       return;
     }
 
@@ -73,6 +72,8 @@ const WishsLists = () => {
   };
 
   const getWishLists = async () => {
+    updateTempWishList();
+
     try {
       const res = await axios.get(`${base_url}/wishlist`, {
         headers: {
@@ -92,13 +93,10 @@ const WishsLists = () => {
       }
 
       if (res.data.status === "success") {
-        dispatch(clearTempList());
         setLoading(false);
         setData(res.data.data.data);
-        updateTempWishList();
         return;
       }
-      dispatch(clearTempList());
       setLoading(false);
       dispatch(showAlert(res.data.message));
     } catch (e) {
@@ -107,7 +105,7 @@ const WishsLists = () => {
         dispatch(clearAlert());
       }, 5000);
       dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response.data.message || "Something went wrong"));
+      dispatch(showAlert(e.response?.data.message || "Something went wrong"));
     }
   };
 
@@ -169,7 +167,10 @@ const WishsLists = () => {
           text="Create wish list"
           className="createButton"
           iconLeft={plusIcon}
-          onClick={() => navigate("new")}
+          onClick={() => {
+            dispatch(clearTempList());
+            navigate("new");
+          }}
         />
       </SubHeader>
       <Spacer y={4.8} />

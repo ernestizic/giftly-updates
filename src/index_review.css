@@ -47,6 +47,7 @@
   --input-bg: #fbfbfb;
   --background: #f7f7fc;
   --off-white: #fcfcfc;
+  --white: #ffffff;
   --filter-white: brightness(0%) saturate(100%) invert(100%) sepia(9%)
     saturate(2%) hue-rotate(284deg) brightness(113%) contrast(100%);
   --shadow_1: 0px 25px 35px 0px #00000008;
@@ -69,7 +70,38 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 10px;
+  font-size: 62.5%; /* This is the same as 10px */
+}
+
+@media (max-width: 78.75em) {
+  /* 1260 px */
+  html {
+    font-size: 56.25%;
+  }
+}
+@media (max-width: 69.375em) {
+  /* 1110 px */
+  html {
+    font-size: 50%;
+  }
+}
+@media (max-width: 62.5em) {
+  /* 1000 px */
+  html {
+    font-size: 40%;
+  }
+}
+@media (max-width: 53.75em) {
+  /* 860px */
+  html {
+    font-size: 36%;
+  }
+}
+@media (max-width: 47.5em) {
+  /* 760px */
+  html {
+    font-size: 53%;
+  }
 }
 
 body {
@@ -119,8 +151,8 @@ a {
   -ms-user-select: none;
   user-select: none;
   font-family: inherit;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1.6rem;
+  line-height: 2rem;
 }
 
 input:focus,
@@ -142,134 +174,142 @@ textarea {
 
 /* Title */
 
-.title-1 {
+.title-plus {
   font-family: "BoldenVan";
-  font-size: 56px;
+  font-size: 9.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 60px;
-  letter-spacing: 0px;
+  line-height: 9.6rem;
+  letter-spacing: 0rem;
+}
+.title-1 {
+  font-family: "BoldenVan";
+  font-size: 5.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 6rem;
+  letter-spacing: 0rem;
 }
 
 .title-2 {
   font-family: "BoldenVan";
-  font-size: 48px;
+  font-size: 4.8rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 56px;
-  letter-spacing: 0px;
+  line-height: 5.6rem;
+  letter-spacing: 0rem;
 }
 
 .title-3 {
   font-family: "BoldenVan";
-  font-size: 36px;
+  font-size: 3.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 48px;
-  letter-spacing: 0px;
+  line-height: 4.8rem;
+  letter-spacing: 0rem;
 }
 
 .title-4 {
   font-family: "BoldenVan";
-  font-size: 24px;
+  font-size: 2.4rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 36px;
-  letter-spacing: 0px;
+  line-height: 3.6rem;
+  letter-spacing: 0rem;
 }
 
 /* Subtitles */
 
 .subtitle-1 {
-  font-size: 24px;
+  font-size: 2.4rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 30px;
-  letter-spacing: 0px;
+  line-height: 3rem;
+  letter-spacing: 0rem;
 }
 
 .subtitle-2 {
-  font-size: 20px;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 28px;
-  letter-spacing: 0px;
+  line-height: 2.8rem;
+  letter-spacing: 0rem;
 }
 
 .subtitle-3 {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 28px;
-  letter-spacing: 0px;
+  line-height: 2.8rem;
+  letter-spacing: 0rem;
 }
 
 .subtitle-4 {
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0px;
+  line-height: 2.4rem;
+  letter-spacing: 0rem;
 }
 
 .subtitle-5 {
-  font-size: 14px;
+  font-size: 1.4rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0px;
+  line-height: 1.8rem;
+  letter-spacing: 0rem;
 }
 
 /* Body */
 
 .body-1 {
-  font-size: 20px;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 28px;
-  letter-spacing: 0px;
+  line-height: 2.8rem;
+  letter-spacing: 0rem;
 }
 
 .body-2 {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 28px;
-  letter-spacing: 0px;
+  line-height: 2.8rem;
+  letter-spacing: 0rem;
 }
 
 .body-3 {
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0px;
+  line-height: 2.4rem;
+  letter-spacing: 0rem;
 }
 
 .body-4 {
-  font-size: 14px;
+  font-size: 1.4rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0px;
+  line-height: 1.8rem;
+  letter-spacing: 0rem;
 }
 
 /* Meta */
 
 .label {
-  font-size: 14px;
+  font-size: 1.4rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0px;
+  line-height: 1.8rem;
+  letter-spacing: 0rem;
 }
 
 .metadata {
-  font-size: 12px;
+  font-size: 1.2rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0px;
+  line-height: 1.6rem;
+  letter-spacing: 0rem;
 }
 
 /* Utilities */
@@ -396,12 +436,4 @@ textarea {
 
 .colorErrorDefault {
   color: var(--error-default);
-}
-
-.colorAccent1Main {
-  color: var(--accent_1-main);
-}
-
-.colorLink {
-  color: #407bff;
 }

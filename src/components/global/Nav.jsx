@@ -1,22 +1,27 @@
 import React from "react";
 import styled from "styled-components";
-import FormGroup from "./FormGroup";
+// import FormGroup from "./FormGroup";
 import Logo from "./Logo";
-import { Formik } from "formik";
-import FormWrapper from "./FormWrapper";
-import search from "../../assets/icons/search.svg";
+// import { Formik } from "formik";
+// import FormWrapper from "./FormWrapper";
+// import search from "../../assets/icons/search.svg";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import Spacer from "./Spacer";
 
 const Wrapper = styled.nav`
   height: 9.6rem;
   padding: 0 12rem;
-  background-color:${props => props.wt ? "white" :" var(--title-active);"};
+  background-color: ${(props) =>
+    props.wt ? "white" : " var(--title-active);"};
   display: flex;
+  justify-content: space-between;
   align-items: center;
+
   @media (max-width: 760px) {
     padding: 0 2rem;
   }
+
   form {
     width: 32rem;
     position: relative;
@@ -59,14 +64,15 @@ const Wrapper = styled.nav`
   }
 `;
 
-const Nav = ({wt}) => {
+const Nav = ({ wt }) => {
   const navigate = useNavigate();
-  const [showInput, setShowInput] = React.useState(false);
+  // const [showInput, setShowInput] = React.useState(false);
 
   return (
     <Wrapper wt={wt}>
-      <Logo />
-      <Formik
+      <div className="flexRow alignCenter">
+        <Logo onClick={() => navigate("/home")} />
+        {/* <Formik
         initialValues={{
           search: "",
         }}
@@ -90,14 +96,18 @@ const Nav = ({wt}) => {
             />
           </FormWrapper>
         )}
-      </Formik>
-      <Button
-        bg="white"
-        color="var(--primary-main)"
-        text="Login"
-        onClick={() => navigate("/home/login")}
-      />
-      <Button text="Sign up" onClick={() => navigate("/home/sign-up")} />
+      </Formik> */}
+      </div>
+      <div className="flexRow alignCenter">
+        <Button
+          bg="white"
+          color="var(--primary-main)"
+          text="Login"
+          onClick={() => navigate("/home/login")}
+        />
+        <Spacer x={2.4} xMobile={1.6} />
+        <Button text="Sign up" onClick={() => navigate("/home/sign-up")} />
+      </div>
     </Wrapper>
   );
 };

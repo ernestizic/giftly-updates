@@ -45,19 +45,20 @@ const ICONS = [
 ];
 
 const Wrapper = styled.div`
-
-	/* border-radius: 0.8rem;
+  /* border-radius: 0.8rem;
 	background-color: var(--accent_2-main);
 	z-index: 2;
 	width: 45.6rem;
 	overflow: hidden;
 	@media (max-width:760px){ */
 
-  border-radius: 0.8rem;
+  border-radius: 16px;
   background-color: var(--accent_2-main);
   width: 45.6rem;
   overflow: hidden;
   pointer-events: none;
+  position: relative;
+  z-index: 2;
 
   @media (max-width: 760px) {
     width: auto;
@@ -82,8 +83,9 @@ const Wrapper = styled.div`
     }
   }
   .top {
-    margin: 3.2rem 4.1rem;
-    padding: 2.4rem 2.4rem 2.8rem;
+    width: calc(100% - 82px);
+    margin: 32px auto;
+    padding: 24px;
     background-color: var(--white);
     color: var(--title-active);
   }
@@ -103,10 +105,7 @@ const Wrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(3, auto);
     justify-content: space-between;
-
-    .item + .item {
-      margin-bottom: 2.8rem;
-    }
+    grid-row-gap: 24px;
 
     p {
       width: fit-content;
@@ -123,6 +122,49 @@ const Wrapper = styled.div`
       width: 4.8rem;
       height: 4.8rem;
       margin: auto;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .inputField {
+    input {
+      width: calc(100% - 32px);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .top {
+      width: calc(100% - 64px);
+      margin: 24px auto;
+
+      .p1 {
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      .img-ctn {
+        width: 32px;
+        height: 32px;
+      }
+
+      .img-label {
+        font-size: 12px;
+      }
+    }
+
+    .inputField {
+      input {
+        font-size: 12px;
+      }
+    }
+
+    .btm {
+      .copy {
+        height: 20px;
+      }
     }
   }
 `;
@@ -136,12 +178,12 @@ const Card2 = () => {
           {ICONS.map((item) => (
             <div className="item" key={item.name}>
               <div
-                style={{ backgroundColor: `${item.bc}` }}
+                // style={{ backgroundColor: `${item.bc}` }}
                 className="img-ctn"
               >
                 <img src={item.iconName} alt="icon" />
               </div>
-              <p className="subtitle-4">{item.name}</p>
+              <p className="subtitle-4 img-label">{item.name}</p>
             </div>
           ))}
         </div>
@@ -153,10 +195,10 @@ const Card2 = () => {
             link: "",
           }}
           onSubmit={(values) => {
-            // handleRegister(values);
+            return values;
           }}
         >
-          {({ handleSubmit, isSubmitting, isValid, values }) => (
+          {({ handleSubmit }) => (
             <FormWrapper onSubmit={handleSubmit}>
               <img
                 // onClick={() => setShowInput(!showInput)}
@@ -169,7 +211,7 @@ const Card2 = () => {
                 label="Find friends"
                 name="link"
                 value="https://www.giftly.me/Natasha/Doja"
-                // className={`input ${showInput ? "mb" : ""}`}
+                className={`inputField`}
               />
             </FormWrapper>
           )}
