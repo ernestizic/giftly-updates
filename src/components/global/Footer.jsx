@@ -106,12 +106,20 @@ const Wrapper = styled.div`
 `;
 
 const MEDIA = [
-  { icon: instagram, name: "instagram", link: "instagram-link" },
-  { icon: facebook, name: "facebook", link: "facebook-link" },
+  {
+    icon: instagram,
+    name: "instagram",
+    link: "https://instagram.com/giftlydotme",
+  },
+  {
+    icon: facebook,
+    name: "facebook",
+    link: "https://facebook.com/giftlydotme",
+  },
   {
     icon: twitter,
     name: "twitter",
-    link: "twitter-link",
+    link: "https://twitter.com/giftlydotme",
   },
 ];
 
@@ -130,7 +138,13 @@ const Footer = () => {
         </p>
         <p className="media">
           {MEDIA.map((ele, index) => (
-            <a key={index} className="icon" href={ele.link}>
+            <a
+              key={index}
+              className="icon"
+              href={ele.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img src={ele.icon} alt={ele.name} />
             </a>
           ))}
