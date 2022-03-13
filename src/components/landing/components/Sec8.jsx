@@ -7,7 +7,6 @@ import curve3 from "assets/images/curve3.svg";
 import curve4 from "assets/images/curve4.svg";
 import Button from "components/global/Button";
 import { useNavigate } from "react-router-dom";
-import Spacer from "components/global/Spacer";
 
 const Wrapper = styled.div`
   position: relative;
@@ -103,6 +102,10 @@ const Wrapper = styled.div`
         top: 20%;
         right: -50%;
       }
+
+      .actionBtn {
+        margin-top: 48px;
+      }
     }
 
     .title {
@@ -135,8 +138,8 @@ const Sec8 = () => {
             Let friends and family know the gifts you truly want and need.
           </p>
         </div>
-        <Spacer y={4.8} />
         <Button
+          className="actionBtn"
           height="6.4rem"
           width="200px"
           text="Sign me up"
