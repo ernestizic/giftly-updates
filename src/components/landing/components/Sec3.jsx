@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 
   .img__btm {
     position: absolute;
-    bottom: 29px;
+    bottom: 64px;
     left: 31px;
     width: 200px;
     z-index: 1;

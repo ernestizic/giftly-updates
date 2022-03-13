@@ -56,9 +56,9 @@ const Wrapper = styled.div`
   background-color: var(--accent_2-main);
   width: 45.6rem;
   overflow: hidden;
-  pointer-events: none;
   position: relative;
   z-index: 2;
+  height: max-content;
 
   @media (max-width: 760px) {
     width: auto;
@@ -78,6 +78,8 @@ const Wrapper = styled.div`
     width: 100%;
     position: relative;
     grid-template-columns: 1fr;
+    pointer-events: none;
+
     input {
       color: var(--placeholder);
     }
@@ -93,8 +95,8 @@ const Wrapper = styled.div`
     position: absolute;
     right: 2.6rem;
     z-index: 3;
-
-    transform: translateY(65%);
+    top: 50%;
+    transform: translateY(-50%);
   }
   .btm {
     padding: 2.9rem 4.8rem;
