@@ -196,7 +196,7 @@ const ViewWishListItems = () => {
           </Header>
           <ListItems>
             <div className="flexRow">
-              <div className="flexRow alignCenter">
+              <div className="flexRow alignCenter justifyEnd">
                 <p className="body-3 colorTitleActive prompt1">
                   Reserve items here
                 </p>

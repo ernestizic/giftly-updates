@@ -13,7 +13,7 @@ export const FormGroupWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     border-radius: 8px;
-    height: ${(props) => (props.fieldStyle === "longText" ? "auto" : "48px")};
+    height: ${(props) => (props.fieldStyle === "longText" ? "auto" : "56px")};
     position: relative;
     background-color: ${(props) => props.bg ?? "var(--input-bg)"};
 
