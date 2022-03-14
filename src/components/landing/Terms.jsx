@@ -2,8 +2,23 @@ import Footer from "components/global/Footer";
 import Nav from "components/global/Nav";
 import React from "react";
 import styled from "styled-components";
+import Nav2 from "./components/Nav2";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+	.ctn {
+		padding: 9.6rem 0 10.1rem 12rem;
+		display: flex;
+		&>:first-child{
+			width: 95.5rem;
+
+		}
+		
+		@media (max-width: 760px){
+			width: auto;
+			padding: 4.8rem 2.4rem;
+		}
+	}
+`;
 
 const details = [
 	`“Affiliate” means an entity that controls is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest, or other securities entitled to vote for the election of directors or other managing authority.`,
@@ -120,91 +135,90 @@ const Term = () => {
 	return (
 		<Wrapper>
 			<Nav wt />
-			<h1 className="title-2">Terms of Use</h1>
-			<p>Our Terms of Use were last updated on the 28th of February, 2022. </p>
-			<p>
-				{" "}
-				Please read these terms and conditions carefully before using Our
-				Service.
-			</p>
-			<h3 className="title-3">Interpretation</h3>
-			<p>
-				The words in which the initial letter is capitalized have meanings
-				defined under the following conditions. The following definitions shall
-				have the same meaning regardless of whether they appear singular or
-				plural
-			</p>
-			<h3 className="title-3">Definitions</h3>
-			<ul>
-				{details.map((item) => (
-					<li key={item}>{item}</li>
-				))}
-			</ul>
-
-			<h3 className="title-3">Acknowledgment</h3>
-			{acknowledgment.map((item) => (
-				<p key={item}>{item}</p>
-			))}
-
-			<h3 className="title-3">Access And Use Of Site </h3>
-			<ul>
-				{access.map((item) => (
-					<ol key={item}>{item}</ol>
-				))}
-			</ul>
-			<h3 className="title-3">Content </h3>
-			<h4>Your Right to Post Content</h4>
-			{contentRight.map((item) => (
-				<p key={item}>{item}</p>
-			))}
-
-			<h4>Content Restrictions</h4>
-			{contentRestriction.map((item) => (
-				<p key={item}>{item}</p>
-			))}
-
-			<h4> Content Backups</h4>
-			{contentBackups.map((item) => (
-				<p key={item}>{item}</p>
-			))}
-
-			<h3 className="title-3">Intellectual Property </h3>
-			{intellectualProperty.map((item) => (
-				<p key={item}>{item}</p>
-			))}
-			<h3>Your Feedback to Us</h3>
-			{feedback.map((item) => (
-				<p key={item}>{item}</p>
-			))}
-			<h3>Links to Other Websites</h3>
-			{linkToWebsite.map((item) => (
-				<p key={item}>{item}</p>
-			))}
-			<h3>Termination</h3>
-			{termination.map((item) => (
-				<p key={item}>{item}</p>
-			))}
-			<h3>Governing Law</h3>
-			{governingLaw.map((item) => (
-				<p key={item}>{item}</p>
-			))}
-
-			<h3>Disputes Resolution</h3>
-			{disputeResolution.map((item) => (
-				<p key={item}>{item}</p>
-			))}
-			<h3>Severability and Waiver </h3>
-			{severability.map((item) => (
-				<p key={item}>{item}</p>
-			))}
-			<h3> Changes to These Terms of Use </h3>
-			{changesTerms.map((item) => (
-				<p key={item}>{item}</p>
-			))}
-			<h3> Contact Us</h3>
-			{contactUs.map((item) => (
-				<p key={item}>{item}</p>
-			))}
+			<div className="ctn">
+				<div>
+					<h1 className="title-2">Terms of Use</h1>
+					<p>Our Terms of Use were last updated on the 28th of February, 2022. </p>
+					<p>
+						{" "}
+						Please read these terms and conditions carefully before using Our
+						Service.
+					</p>
+					<h3 className="title-3">Interpretation</h3>
+					<p>
+						The words in which the initial letter is capitalized have meanings
+						defined under the following conditions. The following definitions shall
+						have the same meaning regardless of whether they appear singular or
+						plural
+					</p>
+					<h3 className="title-3">Definitions</h3>
+					<ul>
+						{details.map((item) => (
+							<li key={item}>{item}</li>
+						))}
+					</ul>
+					<h3 className="title-3">Acknowledgment</h3>
+					{acknowledgment.map((item) => (
+						<p key={item}>{item}</p>
+					))}
+					<h3 className="title-3">Access And Use Of Site </h3>
+					<ul>
+						{access.map((item) => (
+							<ol key={item}>{item}</ol>
+						))}
+					</ul>
+					<h3 className="title-3">Content </h3>
+					<h4>Your Right to Post Content</h4>
+					{contentRight.map((item) => (
+						<p key={item}>{item}</p>
+					))}
+					<h4>Content Restrictions</h4>
+					{contentRestriction.map((item) => (
+						<p key={item}>{item}</p>
+					))}
+					<h4> Content Backups</h4>
+					{contentBackups.map((item) => (
+						<p key={item}>{item}</p>
+					))}
+					<h3 className="title-3">Intellectual Property </h3>
+					{intellectualProperty.map((item) => (
+						<p key={item}>{item}</p>
+					))}
+					<h3>Your Feedback to Us</h3>
+					{feedback.map((item) => (
+						<p key={item}>{item}</p>
+					))}
+					<h3>Links to Other Websites</h3>
+					{linkToWebsite.map((item) => (
+						<p key={item}>{item}</p>
+					))}
+					<h3>Termination</h3>
+					{termination.map((item) => (
+						<p key={item}>{item}</p>
+					))}
+					<h3>Governing Law</h3>
+					{governingLaw.map((item) => (
+						<p key={item}>{item}</p>
+					))}
+					<h3>Disputes Resolution</h3>
+					{disputeResolution.map((item) => (
+						<p key={item}>{item}</p>
+					))}
+					<h3>Severability and Waiver </h3>
+					{severability.map((item) => (
+						<p key={item}>{item}</p>
+					))}
+					<h3> Changes to These Terms of Use </h3>
+					{changesTerms.map((item) => (
+						<p key={item}>{item}</p>
+					))}
+					<h3> Contact Us</h3>
+					{contactUs.map((item) => (
+						<p key={item}>{item}</p>
+					))}
+				</div>
+				<Nav2/>
+			</div>
 
 			<Footer />
 		</Wrapper>
