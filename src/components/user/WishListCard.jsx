@@ -60,7 +60,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const WishListCard = ({ details }) => {
+const WishListCard = ({
+  details,
+  fromSearch,
+  handleSearchNavigate = () => null,
+}) => {
   const navigate = useNavigate();
   const [optionsOpen, setOptionsOpen] = useState(false);
   const dispatch = useDispatch();
@@ -80,16 +84,30 @@ const WishListCard = ({ details }) => {
   return (
     <Container>
       <Wrapper
-        onClick={() => {
+        onClick={(e) => {
+          if (fromSearch) {
+            e.stopPropagation();
+            return;
+          }
           dispatch(setTempListSlug(details.slug));
           dispatch(setTempListId(details.id));
         }}
       >
-        <div className="screen flexRow justifyCenter" onClick={handleOpen}>
+        <div
+          className="screen flexRow justifyCenter"
+          onClick={
+            fromSearch ? () => handleSearchNavigate(details.slug) : handleOpen
+          }
+        >
           <img src={openBox} alt="Open box" />
         </div>
         <Spacer y={1.6} />
-        <div className="body" onClick={handleOpen}>
+        <div
+          className="body"
+          onClick={
+            fromSearch ? () => handleSearchNavigate(details.slug) : handleOpen
+          }
+        >
           <button className="body-3 colorTitleActive title textCenter flexRow justifyCenter">
             {details.title}
           </button>
@@ -98,28 +116,35 @@ const WishListCard = ({ details }) => {
             {details?.items.length} wish{details?.items.length > 1 ? "es" : ""}
           </p>
         </div>
-        <Spacer y={1.6} />
-        <div className="bottom flexRow alignCenter justifySpaceBetween">
-          <div className="flexRow alignCenter togglePrivacy" id="togglePrivacy">
-            {details?.visibility === "public" && (
-              <img src={unlockedIcon} alt="lock" className="icon" />
-            )}
-            {details?.visibility === "private" && (
-              <img src={lockedIcon} alt="lock" className="icon" />
-            )}
-            <Spacer x={0.8} />
-            <span className="body-3 text textCapitalize colorTitleActive">
-              {details?.visibility}
-            </span>
-          </div>
-          <button
-            id="toggleOptions"
-            className="flexRow alignCenter toggleOptions"
-            onClick={() => setOptionsOpen((prev) => !prev)}
-          >
-            <img src={moreIcon} alt="lock" className="icon" />
-          </button>
-        </div>
+        {!fromSearch && (
+          <>
+            <Spacer y={1.6} />
+            <div className="bottom flexRow alignCenter justifySpaceBetween">
+              <div
+                className="flexRow alignCenter togglePrivacy"
+                id="togglePrivacy"
+              >
+                {details?.visibility === "public" && (
+                  <img src={unlockedIcon} alt="lock" className="icon" />
+                )}
+                {details?.visibility === "private" && (
+                  <img src={lockedIcon} alt="lock" className="icon" />
+                )}
+                <Spacer x={0.8} />
+                <span className="body-3 text textCapitalize colorTitleActive">
+                  {details?.visibility}
+                </span>
+              </div>
+              <button
+                id="toggleOptions"
+                className="flexRow alignCenter toggleOptions"
+                onClick={() => setOptionsOpen((prev) => !prev)}
+              >
+                <img src={moreIcon} alt="lock" className="icon" />
+              </button>
+            </div>
+          </>
+        )}
       </Wrapper>
       {/* Options */}
       {optionsOpen && <CardOptions setOpen={setOptionsOpen} />}

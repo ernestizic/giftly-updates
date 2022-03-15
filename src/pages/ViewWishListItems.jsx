@@ -21,6 +21,8 @@ import { base_url } from "utils/utils";
 import axios from "axios";
 import { useEffect } from "react";
 import Loader from "components/global/Loader";
+import Footer from "components/global/Footer";
+import Sec8 from "components/landing/components/Sec8";
 
 const Wrapper = styled.div`
   @media screen and (max-width: 768px) {
@@ -69,6 +71,10 @@ const Banner = styled.div`
   }
 
   .showInterest {
+    padding: 8px;
+    background-color: var(--accent_2-main);
+    border-radius: 8px;
+
     .text {
       margin-left: 8px;
     }
@@ -153,6 +159,7 @@ const ViewWishListItems = () => {
   };
 
   useEffect(() => {
+    document.querySelector("html").scrollTo(0, 0);
     getWishList();
     // eslint-disable-next-line
   }, []);
@@ -195,8 +202,8 @@ const ViewWishListItems = () => {
             </p>
           </Header>
           <ListItems>
-            <div className="flexRow">
-              <div className="flexRow alignCenter justifyEnd">
+            <div className="flexRow justifyEnd">
+              <div className="flexRow alignCenter">
                 <p className="body-3 colorTitleActive prompt1">
                   Reserve items here
                 </p>
@@ -241,6 +248,8 @@ const ViewWishListItems = () => {
         </>
       ) : null}
       <Sec2 />
+      <Sec8 />
+      <Footer />
 
       {/* Confirm interest */}
       <Routes>

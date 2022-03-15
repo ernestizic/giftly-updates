@@ -125,8 +125,6 @@ const WishsLists = () => {
 
       if (res.data.status === "success") {
         setFriends(res.data.data);
-      } else {
-        setFriends([]);
       }
 
       setFinding(false);
@@ -136,6 +134,7 @@ const WishsLists = () => {
     }
   };
 
+  // eslint-disable-next-line
   const findFriends = useCallback(debounce(handleFind, 500), []);
 
   const showMobileSearch = () => {
@@ -143,7 +142,9 @@ const WishsLists = () => {
   };
 
   const hideMobileSearch = () => {
+    document.querySelector(`input[name=search]`).value = "";
     document.querySelector(".searchBox").classList.remove("open");
+    setSearch("");
   };
 
   useEffect(() => {
@@ -222,7 +223,8 @@ const WishsLists = () => {
                           </ImgWrapper>
                         ) : (
                           <Initials size="40" textSize="18" bg="#032250">
-                            AS
+                            {user?.username.charAt(0)}
+                            {user?.username.charAt(1)}
                           </Initials>
                         )}
                         <Spacer x={1.6} />
@@ -287,7 +289,7 @@ const WishsLists = () => {
         <div className="flexRow justifyCenter">
           <Loader />
         </div>
-      ) : (
+      ) : !!data.length ? (
         <ListWrapper>
           {data
             ?.filter((item) =>
@@ -299,7 +301,7 @@ const WishsLists = () => {
               <WishListCard key={index} details={item} />
             ))}
         </ListWrapper>
-      )}
+      ) : null}
       {!loading && !data.length && (
         <NoLists className="flexColumn justifyCenter">
           <img src={handPoint} alt="..." className="image" />

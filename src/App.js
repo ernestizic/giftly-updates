@@ -12,6 +12,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import AlertBox from "components/global/AlertBox";
 import ViewWishListItems from "pages/ViewWishListItems";
 import FAQs from "components/landing/FAQs";
+import ViewUserWishLists from "pages/ViewUserWishLists";
 
 function App() {
   return (
@@ -24,8 +25,9 @@ function App() {
             <Route path="/home/*" element={<Landing />} />
             <Route path="/user" element={<Navigate to="/user/wish-lists" />} />
             <Route path="/user/*" element={<Dashboard />} />
-            <Route path="/:username/:slug/*" element={<ViewWishListItems />} />
             <Route path="/faqs" element={<FAQs />} />
+            <Route path="/:username/:slug/*" element={<ViewWishListItems />} />
+            <Route path="/:username" element={<ViewUserWishLists />} />
 
             {/* No match */}
             <Route path="*" element={<Navigate to="/home" />} />

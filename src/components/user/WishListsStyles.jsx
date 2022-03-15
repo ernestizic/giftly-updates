@@ -11,10 +11,18 @@ export const Header = styled.div`
     display: none;
   }
 
+  .searchTrigger {
+    display: none;
+  }
+
   @media screen and (max-width: 768px) {
     padding: 16px 24px;
 
     .logo {
+      display: block;
+    }
+
+    .searchTrigger {
       display: block;
     }
   }
