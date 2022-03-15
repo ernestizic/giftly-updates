@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import FormGroup from "./FormGroup";
+import searchIcon from "assets/icons/search.svg";
+import closeIcon from "assets/icons/close_square.svg";
 import Logo from "./Logo";
-import { Formik } from "formik";
-import FormWrapper from "./FormWrapper";
-import search from "../../assets/icons/search.svg";
 import Button from "./Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Spacer from "./Spacer";
+import { Search } from "components/user/WishListsStyles";
+import axios from "axios";
+import { base_url, debounce } from "utils/utils";
+import FormGroupCustom from "./FormGroupCustom";
+import Loader from "./Loader";
+import ImgWrapper from "./ImgWrapper";
+import { Initials } from "components/user/WishListsStyles";
 
 const Wrapper = styled.nav`
   height: 9.6rem;
@@ -62,41 +67,183 @@ const Wrapper = styled.nav`
   & > button:last-child {
     margin-left: 2.4rem;
   }
+
+  .searchTrigger {
+    display: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    .searchTrigger {
+      display: block;
+      margin-left: 48px;
+
+      .icon {
+        filter: var(--filter-white);
+      }
+    }
+  }
+`;
+
+const SearchBox = styled(Search)`
+  display: flex;
+  align-items: center;
+  margin-left: 48px;
+  padding: 0 24px;
+  width: 320px;
+  position: relative;
+
+  .searchInputWrapper {
+    width: 100%;
+    grid-template-columns: 24px auto 24px;
+    align-items: center;
+  }
+
+  .fieldWrapper {
+    padding: 0 8px;
+
+    input {
+      padding: 0;
+    }
+
+    label {
+      margin: 0;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    margin-left: 0;
+  }
 `;
 
 const Nav = ({ wt }) => {
   const navigate = useNavigate();
-  const [showInput, setShowInput] = React.useState(false);
+  const [search, setSearch] = useState("");
+  const [friends, setFriends] = useState([]);
+  const [finding, setFinding] = useState(false);
+
+  const handleFind = async (e) => {
+    const q = e.target.value;
+
+    setSearch(q);
+
+    if (!q) return;
+
+    try {
+      setFinding(true);
+      const res = await axios.get(`${base_url}/user/search?q=${q}`);
+
+      if (res.data.status === "success") {
+        setFriends(res.data.data);
+      }
+
+      setFinding(false);
+    } catch (e) {
+      setFinding(false);
+      console.log(e);
+    }
+  };
+
+  // eslint-disable-next-line
+  const findFriends = useCallback(debounce(handleFind, 500), []);
+
+  const showMobileSearch = () => {
+    document.querySelector(".searchBox").classList.add("open");
+  };
+
+  const hideMobileSearch = () => {
+    document.querySelector(".searchBox").classList.remove("open");
+    setSearch("");
+  };
 
   return (
     <Wrapper wt={wt}>
       <div className="flexRow alignCenter">
         <Logo onClick={() => navigate("/home")} />
-        <Formik
-          initialValues={{
-            search: "",
-          }}
-          onSubmit={(values) => {
-            return values;
-          }}
+        <button
+          type="button"
+          className="searchTrigger"
+          onClick={showMobileSearch}
         >
-          {({ handleSubmit, isSubmitting, isValid, values }) => (
-            <FormWrapper onSubmit={handleSubmit}>
+          <img src={searchIcon} alt="search" className="icon" />
+        </button>
+        <SearchBox className="searchBox">
+          <div className="flexRow alignCenter searchInputWrapper">
+            <img src={searchIcon} alt="search" className="icon" />
+            <FormGroupCustom
+              fieldStyle="shortText"
+              name="search"
+              label="Find friends"
+              onChange={findFriends}
+              bg="#ffffff"
+              noLabel
+            />
+
+            <img
+              src={closeIcon}
+              alt="search"
+              className="icon mb"
+              onClick={() => {
+                hideMobileSearch();
+              }}
+            />
+
+            {search && (
               <img
-                onClick={() => setShowInput(!showInput)}
-                src={search}
+                src={closeIcon}
                 alt="search"
-                className="search"
+                className="icon lg"
+                onClick={() => {
+                  document.querySelector(`input[name=search]`).value = "";
+                  setSearch("");
+                }}
               />
-              <FormGroup
-                fieldStyle="shortText"
-                label="Find friends"
-                name="search"
-                className={`input ${showInput ? "mb" : ""}`}
-              />
-            </FormWrapper>
+            )}
+          </div>
+          {search && (
+            <div className="searchResults">
+              {finding ? (
+                <div className="flexColumn alignCenter">
+                  <Spacer y={2.4} />
+                  <Loader />
+                  <Spacer y={2.4} />
+                </div>
+              ) : (
+                <>
+                  {friends?.map((item, index) => (
+                    <Link
+                      key={index}
+                      to={`/${item.username}`}
+                      className="flexRow alignCenter item colorTitleActive"
+                    >
+                      {item.avatar ? (
+                        <ImgWrapper size={40} imgHeight="100%">
+                          <img src={item.avatar} alt="." />
+                        </ImgWrapper>
+                      ) : (
+                        <Initials size="40" textSize="18" bg="#032250">
+                          {item?.username.charAt(0)}
+                          {item?.username.charAt(1)}
+                        </Initials>
+                      )}
+                      <Spacer x={1.6} />
+                      <span className="subtitle-4 text">{item.username}</span>
+                    </Link>
+                  ))}
+                </>
+              )}
+              {!finding && !friends.length && (
+                <div className="notFound colorTitleActive">
+                  <h4 className="title-4">Oops!</h4>
+                  <Spacer y={0.4} />
+                  <p className="subtitle-4 subtitle">
+                    Nothing found for {search}
+                  </p>
+                </div>
+              )}
+            </div>
           )}
-        </Formik>
+        </SearchBox>
       </div>
       <div className="flexRow alignCenter">
         <Button

@@ -120,6 +120,7 @@ const FormGroupCustom = ({
   bg,
   onChange,
   rowIndex,
+  noLabel,
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -134,7 +135,12 @@ const FormGroupCustom = ({
   };
 
   useEffect(() => {
-    if (defaultValue?.length) {
+    if (
+      defaultValue?.length ||
+      defaultValue !== undefined ||
+      defaultValue !== null ||
+      defaultValue
+    ) {
       setShowLabel(true);
     }
   }, [defaultValue]);
@@ -157,7 +163,7 @@ const FormGroupCustom = ({
         color={color}
       >
         <div className={`fieldWrapper`}>
-          {label && showLabel && (
+          {label && !noLabel && showLabel && (
             <FormGroupLabel htmlFor={name}>{label}</FormGroupLabel>
           )}
           {fieldStyle === "shortText" && (

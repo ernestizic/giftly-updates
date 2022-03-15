@@ -223,8 +223,8 @@ const WishsLists = () => {
                           </ImgWrapper>
                         ) : (
                           <Initials size="40" textSize="18" bg="#032250">
-                            {user?.username.charAt(0)}
-                            {user?.username.charAt(1)}
+                            {item.username.charAt(0)}
+                            {item.username.charAt(1)}
                           </Initials>
                         )}
                         <Spacer x={1.6} />
