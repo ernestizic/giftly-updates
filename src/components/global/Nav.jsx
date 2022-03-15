@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-// import FormGroup from "./FormGroup";
+import FormGroup from "./FormGroup";
 import Logo from "./Logo";
-// import { Formik } from "formik";
-// import FormWrapper from "./FormWrapper";
-// import search from "../../assets/icons/search.svg";
+import { Formik } from "formik";
+import FormWrapper from "./FormWrapper";
+import search from "../../assets/icons/search.svg";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import Spacer from "./Spacer";
@@ -66,37 +66,37 @@ const Wrapper = styled.nav`
 
 const Nav = ({ wt }) => {
   const navigate = useNavigate();
-  // const [showInput, setShowInput] = React.useState(false);
+  const [showInput, setShowInput] = React.useState(false);
 
   return (
     <Wrapper wt={wt}>
       <div className="flexRow alignCenter">
         <Logo onClick={() => navigate("/home")} />
-        {/* <Formik
-        initialValues={{
-          search: "",
-        }}
-        onSubmit={(values) => {
-          return values;
-        }}
-      >
-        {({ handleSubmit, isSubmitting, isValid, values }) => (
-          <FormWrapper onSubmit={handleSubmit}>
-            <img
-              onClick={() => setShowInput(!showInput)}
-              src={search}
-              alt="search"
-              className="search"
-            />
-            <FormGroup
-              fieldStyle="shortText"
-              label="Find friends"
-              name="search"
-              className={`input ${showInput ? "mb" : ""}`}
-            />
-          </FormWrapper>
-        )}
-      </Formik> */}
+        <Formik
+          initialValues={{
+            search: "",
+          }}
+          onSubmit={(values) => {
+            return values;
+          }}
+        >
+          {({ handleSubmit, isSubmitting, isValid, values }) => (
+            <FormWrapper onSubmit={handleSubmit}>
+              <img
+                onClick={() => setShowInput(!showInput)}
+                src={search}
+                alt="search"
+                className="search"
+              />
+              <FormGroup
+                fieldStyle="shortText"
+                label="Find friends"
+                name="search"
+                className={`input ${showInput ? "mb" : ""}`}
+              />
+            </FormWrapper>
+          )}
+        </Formik>
       </div>
       <div className="flexRow alignCenter">
         <Button
