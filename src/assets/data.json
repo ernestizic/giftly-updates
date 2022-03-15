@@ -1,0 +1,319 @@
+{"faqs":[
+	{
+		"question": "What is Giftly?",
+		"answer":
+			"Giftly is a platform that makes it easy for your friends to get you the best gifts. Create your wish lists and share them with your friends."
+	},
+	{
+		"question": "How can I share my wish lists?",
+		"answer":
+			" Once you have signed up and created your wish list, all you have to do is share your wish list link on your email or social media sites."
+	},
+	{
+		"question": "How do I sign up for Giftly?",
+		"answer":
+			"It is quite easy to sign up for Giftly. You can sign up through Google or fill the sign-up form.The form requires you to input your details, including your: *Name (First and Last) *Email address*Phone number*Password "
+	},
+	{
+		"question": "How do I add an item to my wish list?",
+		"answer":
+			"You can add items to your wish list once you click on ‘Create wish list.’ After adding an item, include a link to purchase the item. To add an item to your wish list after creating the wish list, click on ‘Add item.’ "
+	},
+	{
+		"question": "How many wish lists can I create?",
+		"answer":
+			"You can create multiple wish lists for various occasions on Giftly. You can also add as many items as you want to your wish list."
+	},
+	{
+		"question": "What if my friends pick the same item on my wish list?",
+		"answer":
+			"You don’t have to worry about your friends picking the same item on your wish list. Once an item has been claimed, it gets ticked off your wish list. "
+	},
+	{
+		"question": "How do I know who has claimed items on my wish list?",
+		"answer":
+			" Unfortunately, you cannot see the people who have claimed items on your list. They would remain anonymous unless they chose to inform you through other means.    "
+	},
+	{
+		"question": "Who can see my wish list?",
+		"answer":
+			"Your wish list is visible to people who have your username and search for it. You can also lock your wish list and unlock it with a passcode."
+	},
+	{
+		"question": "How do I find someone on Giftly?",
+		"answer":
+			" To search for a profile on Giftly, you need to know their specific username. Once you find them, you can view their wish list, except it's on lock mode.Alternatively, if they have shared their wish list link with you, click on it, and it will direct you to their wish list."
+	},
+	{
+		"question": "What happens if I forget my password?",
+		"answer":
+			" If you happen to forget your account password, click on ‘Change Password,’ you'll receive an email to verify your password change."
+	},
+	{
+		"question": "Do I have to drop the URL of an item?",
+		"answer":
+			"No, you don't need to input a link for an item. It is, however, advisable to add a link if you can. Adding a link will make the purchasing process easy for your friends. "
+	},
+	{
+		"question": "Do my friends need a Giftly account to view my wish list?",
+		"answer":
+			"No, your friends do not have to be on Giftly to view and claim items on your wish list. "
+	},
+	{
+		"question": "Do I have to drop the URL of an item?",
+		"answer":
+			"You can choose to delete a wish list you no longer require. You can also edit the details of the wish list. "
+	},
+
+	{
+		"question": "What happens when I’m done with a wish list?",
+		"answer":
+			"You can choose to delete a wish list you no longer require. You can also edit the details of the wish list. "
+	},
+	{
+		"question": "For what occasions can I create a wish list?",
+		"answer":
+			"You can create a wish list for several occasions, including but not limited to; birthdays, baby and bridal showers, Secret Santa, private get-togethers, to mention a few. "
+	}
+],
+	"privacyPolicy": {
+		"privacy": [
+			"Last updated: February 28, 2022",
+			"This Privacy Policy describes Our policies and procedures on the collection, use, and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.",
+			"We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the Privacy Policy Template."
+		],
+
+		"interpretation": [
+			"The words in which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear singular or plural."
+		],
+		"definition": [
+			"Account: means a unique account created for You to access our Service or parts of our Service. ",
+			"Affiliate: means an entity that controls, is controlled by, or is under common control with a party, where \"control\" means ownership of 50% or more of the shares, equity interest, or other securities entitled to vote for the election of directors or other managing authority.",
+			"Application: The software program provided by the Company downloaded by You on any electronic device, named Giftly.",
+			"Company: (referred to as either \"the Company,\" \"We\", \"Us,\" or \"Our\" in this Agreement) refers to Giftly.me, 1309 Coffeen Avenue STE 1200, Sheridan, Wyoming, 82801.",
+			"Cookies: are small files placed on Your computer, mobile device,- or any other device by a website, containing the details of Your browsing history on that website among its many uses.",
+			"Country: refers to United States of America.",
+			"Device: means any device that can access the Service such as a computer, a cellphone, or a digital tablet.",
+			"Personal Data: is any information related to an identified or identifiable individual.",
+			"Service: refers to the Application or the Website, or both. ",
+			" Service Provider: means any natural or legal person who processes the data on behalf of the Company. It refers to third-party companies or individuals employed by the Company to facilitate the Service, provide the Service on behalf of the Company, perform services related to the Service, or assist the Company in analyzing how the Service is used.",
+			"Usage Data: refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself (for example, the duration of a page visit). ",
+			"Website: refers to Giftly, accessible from http://giftly.me",
+			"You: means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable."
+		],
+
+		"personalData": [
+			" Personal Data",
+			"While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally, identifiable information may include, but is not limited to:",
+			"Email address",
+			"First name and last name ",
+			"Phone number",
+			"Usage Data",
+			"Usage Data is collected automatically when using the Service.",
+			"Usage Data may include information such as Your Device's Internet Protocol address (e.g., IP address), browser type, browser version, the pages of our Service that You visit, the time and date of Your visit, the time spent on those pages, unique device identifiers and other diagnostic data. When You access the Service by or through a mobile device, We may collect certain information automatically, including, but not limited to, the type of mobile device You use, Your mobile device unique ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet browser You use, unique device identifiers and other diagnostic data. ",
+			"When You access the Service by or through a mobile device, We may collect certain information automatically, including, but not limited to, the type of mobile device You use, Your mobile device unique ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet browser You use, unique device identifiers and other diagnostic data.",
+			"We may also collect information that Your browser sends whenever You visit our Service or access the Service by or through a mobile device.",
+			"Information from Third-Party Social Media Services",
+			"The Company allows You to create an account and log in to use the Service through the following Third-party Social Media Services: ",
+			"Google",
+			" Suppose You decide to register through or otherwise grant us access to a Third-Party Social Media Service; in that case, We may collect Personal data that is already associated with Your Third-Party Social Media Service's account, such as Your name, Your email address, Your activities, or Your contact list associated with that account.",
+			"You may also have the option of sharing additional information with the Company through Your Third-Party Social Media Service's account. Suppose You choose to provide such information and Personal Data during registration or otherwise; in that case, You are giving the Company permission to use, share, and store it in a manner consistent with this Privacy Policy.",
+			"Tracking Technologies and Cookies",
+			"We use cookies and similar tracking technologies to track the activity on Our Service and store certain information. Tracking technologies used are beacons, tags, and scripts to collect and track information and improve and analyze Our Service. The technologies We use may include:",
+			"Cookies or Browser Cookies. A cookie is a small file placed on Your Device. You can instruct Your browser to refuse all Cookies or indicate when a Cookie is being sent. However, if You do not accept Cookies, You may not be able to use some parts of our Service. Unless you have adjusted Your browser setting to refuse Cookies, our Service may use Cookies. ",
+			"Flash Cookies are not managed by the same browser settings as those used for Browser Cookies. For more information on how You can delete Flash Cookies, please read \"Where can I change the settings for disabling, or deleting local shared objects?\" available at https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html#main_Where_can_I_change",
+			"Web Beacons. Certain sections of our Service and our emails may contain small electronic files known as web beacons (also referred to as clear gifs, pixel tags, and single-pixel gifs) that permit the Company, for example, to count users who have visited those pages or opened an email and for other related website statistics (for example, recording the popularity of a certain section and verifying system and server integrity).",
+			"Cookies can be \"Persistent\" or \"Session\" Cookies. Persistent Cookies remain on Your personal computer or mobile device when You go offline, while Session Cookies are deleted as soon as You close Your web browser. Learn more about cookies: Use of Cookies by Free Privacy Policy. ",
+			" We use both Session and Persistent Cookies for the purposes set out below:",
+			"Necessary / Essential Cookies",
+			"Type: Session Cookies",
+			"Administered by: Us",
+			"Purpose: These Cookies are essential to provide You with services available through the Website and to enable You to use some of its features. They help to authenticate users and prevent fraudulent use of user accounts. Without these Cookies, the services that You have asked for cannot be provided, and We only use these Cookies to provide You with those services.",
+			"Cookies Policy / Notice Acceptance Cookies",
+			"Type: Persistent Cookies",
+			"Purpose: These Cookies identify if users have accepted the use of cookies on the Website.",
+			"Functionality Cookies",
+			"Type: Persistent Cookies",
+			"Administered by: Us ",
+			"Purpose: These Cookies allow us to remember choices You make when You use the Website, such as remembering your login details or language preference. The purpose of these Cookies is to provide You with a more personal experience and to avoid You having to re-enter your preferences every time You use the Website.",
+			"For more information about the cookies we use and your choices regarding cookies, please visit our Cookies Policy or the Cookies section of our Privacy Policy. ",
+			" Use of Your Personal Data",
+			"The Company may use Personal Data for the following purposes:",
+			"To provide and maintain our Service, including to monitor the usage of our Service. ",
+			"To manage Your Account: to manage Your registration as a user of the Service. The Personal Data You provide can give You access to different functionalities of the Service that are available to You as a registered user.",
+			"For the performance of a contract: the development, compliance, and undertaking of the purchase contract for the products, items, or services You have purchased or of any other contract with Us through the Service. ",
+			"To contact You: To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, products, or contracted services, including the security updates, when necessary or reasonable for their implementation.",
+			"To provide You with news, special offers, and general information about other goods, services, and events that we offer that are similar to those that you have already purchased or enquired about unless You have opted not to receive such information. ",
+			"To manage Your requests: To attend and manage Your requests to Us.",
+			"For business transfers: We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or any other sale or transfer of some or all of Our assets, whether as a going concern or as part of bankruptcy, liquidation, or similar proceeding, in which Personal Data held by Us about our Service users is among the assets transferred.",
+			"For other purposes: We may use Your information for other purposes, such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns, and evaluating and improving our Service, products, services, marketing, and your experience.",
+			"We may share Your personal information in the following situations:",
+			"With Service Providers: We may share Your personal information with Service Providers to monitor and analyze the use of our Service, to contact You. ",
+			"For business transfers: We may share or transfer Your personal information in connection with, or during negotiations of, any merger, sale of Company assets, financing, or acquisition of all or a portion of Our business to another company.",
+			"With Affiliates: We may share Your information with Our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include Our parent company and any other subsidiaries, joint venture partners, or other companies that We control or that are under common control with Us.",
+			"With business partners: We may share Your information with Our business partners to offer You certain products, services, or promotions. ",
+			"With other users: When You share personal information or otherwise interact in the public areas with other users, such information may be viewed by all users and may be publicly distributed outside. Suppose You interact with other users or register through a Third-Party Social Media Service; in that case, Your contacts on the Third-Party Social Media Service may see Your name, profile, pictures, and description of Your activity. Similarly, other users will be able to view descriptions of Your activity, communicate with You, and view Your profile.",
+			"With Your consent: We may disclose Your personal information for any other purpose with Your consent.",
+			" Retention of Your Personal Data",
+			"The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies. The Company will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period, except when this data is used to strengthen the security or improve the functionality of Our Service. We are legally obligated to retain this data for longer periods.",
+			"Transfer of Your Personal Data",
+			"Your information, including Personal Data, is processed at the Company's operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of Your state, province, country, or other governmental jurisdiction where the data protection laws may differ from those of Your jurisdiction.",
+			"Your consent to this Privacy Policy followed by Your submission of such information represents Your agreement to that transfer.",
+			"The Company will take all steps reasonably necessary to ensure that Your data is treated securely and in accordance with this Privacy Policy and no transfer of Your Personal Data will take place to an organization or a country unless there are adequate controls in place, including the security of Your data and other personal information.",
+			"Disclosure of Your Personal Data ",
+			"Business Transactions",
+			"If the Company is involved in a merger, acquisition, or asset sale, Your Personal Data may be transferred. We will provide notice before Your Personal Data is transferred and becomes subject to a different Privacy Policy.",
+			"Law Enforcement",
+			"Under certain circumstances, the Company may be required to disclose Your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g., a court or a government agency).",
+			"Other Legal Requirements ",
+			"Other Legal Requirements The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:",
+			"Comply with a legal obligation",
+			"Protect and defend the rights or property of the Company",
+			"Prevent or investigate possible wrongdoing in connection with the Service",
+			"Protect the personal safety of Users of the Service or the public ",
+			"Protect against legal liability",
+			"Security of Your Personal Data ",
+			"The security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet or electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security."
+		],
+
+		"childrensPrivacy": [
+			"Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If You are a parent or guardian and know that Your child has provided Us with Personal Data, please contact Us.",
+			"Suppose We become aware that We have collected Personal Data from anyone under the age of 13 without verification of parental consent; in that case, We take steps to remove that information from Our servers.",
+			"Suppose We need to rely on consent as a legal basis for processing Your information and Your country requires approval from a parent; in that case, We may require Your parent's permission before We collect and use that information."
+		],
+
+		"linkToWebsite": [
+			"Our Service may contain links to other websites that We do not operate. If You click on a third-party link, You will be directed to that third party's site. We strongly advise You to review the Privacy Policy of every site You visit.",
+			"We have no control over and assume no responsibility for any third-party sites or services' content, privacy policies, or practices."
+		],
+		"changeToPrivacy": [
+			"We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page.",
+			"We will notify You via email and/or a prominent notice on Our Service prior to the change becoming effective and update the \"Last updated\" date at the top of this Privacy Policy.",
+			"You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective immediately they are posted on this page."
+		],
+		"contactUs": [
+			"If you have any questions about this Privacy Policy, You can contact us:",
+			"By visiting this page on our website: giftly.me",
+			"By sending us an email: info@giftly.me"
+		]
+	},
+
+
+
+
+
+
+	"terms": { "details" : [
+		"\"Affiliate\" means an entity that controls is controlled by or is under common control with a party, where \"control\" means ownership of 50% or more of the shares, equity interest, or other securities entitled to vote for the election of directors or other managing authority.",
+		"\"Account\" means an individual account created for You to access our Service or parts of our Service.",
+		"\"Company\" (referred to as either \"the Company,\" \"We\", \"Us,\" or \"Our\" in this Agreement) refers to [GIFTLY].",
+		"\"Content\" refers to content such as text, images, or other information that can be posted, uploaded, linked to, or otherwise made available by You, regardless of the form of that content.",
+		"\"Device\" means any device that can access the Service, such as a computer, a cell phone, or a digital tablet. " ,
+		"\"Feedback\" means feedback, innovations, or suggestions sent by You regarding the attributes, performance, or features of our Service. ",
+		"\"Service\" refers to the Website.",
+		"Terms of Use\" (also referred to as \"Terms\") mean these Terms of Use that form the entire agreement between You and Giftly regarding the use of the Service.",
+		"Third-party Social Media Service\" means any services or content (including data, information, products, or services) provided by a third party that may be displayed, included, or made available by the Service.",
+		"\"Website\" refers to [Giftly.me], accessible from [Giftly.me] ",
+		"\"You\" means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable."
+	]
+	
+	, "acknowledgment" : [
+		"These are the Terms of Use governing the use of this Service and the agreement that operates between You and Giftly. These Terms of Use set out the rights and obligations of all users regarding the use of the Service.",
+		"Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms of Use. These Terms of Use apply to all visitors, users, and others who access or use the Service.",
+		" By accessing or using the Service, You agree to be bound by these Terms of Use. If You disagree with any part of these Terms of Use, then You may not access the Service. ",
+		"You represent that you are over the age of 18. Giftly does not permit those under 18 to use the Service. ",
+		"Your access to and use of the Service is also conditioned on Your acceptance of and compliance with Giftly's Privacy Policy. Our Privacy Policy describes Our policies and procedures on the collection, use, and disclosure of Your personal information when You use the Application or the Website and tells You about Your privacy rights and how the law protects You. Please read Our Privacy Policy carefully before using Our Service."
+	]
+	
+	, "access" : [
+		"Users: Those who may use our Website may include gift-givers, benefactors, and/or other users (collectively, the “Users”). Our Website is designed to allow users to perform various actions, including creating and posting wish lists, benefactors making claims on items, and linking out to third-party websites.",
+		"Registration. To utilize Giftly, you may be required to complete a registration with us. You agree to enter and maintain true, accurate, and up-to-date information. You will not register with a pseudonym, false identity, avatar, or false image. Nor shall you submit or post any false or misleading information on our Website.",
+		"Account Security. To conduct certain activities and functionalities of the Website, you may need to register for an account, including creating access credentials, such as an email address and password. You are solely responsible for (1) monitoring, controlling access to, and maintaining the strict confidentiality of your access credentials, (2) not allowing another person to use your access credentials, and (3) any charges or damages that may be incurred as a result of your failure to maintain the strict confidentiality of your access credentials. We are not responsible for any harm relating to the theft of access credentials resulting from your actions, your disclosure of access credentials, or your decision in violation of these Terms to allow another person or entity to access and use our Website using your access credentials. You must immediately notify us regarding any unauthorized use of your account or access credentials, or any other concerns that you have about the misuse or security of your account, by contacting us at the mailing or email address listed below. You acknowledge and agree that you are solely responsible for maintaining the safety of the devices you may use to access the Website. We are not liable for any losses resulting from the loss or theft of any such device.",
+		"Availability. The website is not intended for distribution to, or use by, any person or entity in any city, county, state, or country where its distribution or use would be contrary to its respective law or regulation. By offering our Services, no distribution or solicitation is made by us to any person to use our Services in jurisdictions where the provision of our Site is prohibited by law. We are also not responsible for system outages, slowdowns, or capacity limitations",
+		" Monitoring Our Website. We have no obligation to monitor our Website; however, you acknowledge and agree that we have the right to monitor our Website from time to time and disclose any information as necessary or appropriate to satisfy any law, regulation, governmental request to operate or improve our Website, or to protect ourselves or Users of our Website.",
+		"Information Publicly Available. Some information you provide us, such as profile information or information about wish lists, may be publicly available on our Website. Please review our Privacy Policy before using our Website."
+	]
+	
+	, "contentRight" : [
+		"Our Service allows You to post Content. You are responsible for the Content that You post to the Service, including its legality, reliability, and appropriateness.",
+		"By posting Content to the Service, You grant Giftly the right and license to use, modify, publicly perform, publicly display, reproduce, and distribute such Content on and through the Service. You retain all of Your rights to any Content You submit, post, or display on or through the Service, and You are responsible for protecting those rights. You agree that this license includes the right for Giflty to make Your Content available to other users of the Service, who may also use Your Content subject to these Terms.",
+		"You represent and warrant that: (i) the Content is Yours (You own it) or You have the right to use it and grant Us the rights and license as provided in these Terms, and (ii) the posting of Your Content on or through the Service does not violate the privacy rights, publicity rights, copyrights, contract rights or any other rights of any person."
+	]
+	
+	, "contentRestriction" : [
+		"The Company is not responsible for the content of the Service's users. You expressly understand and agree that You are solely responsible for the Content and for all activity that occurs under your account, whether done so by You or any third person using Your account. ",
+		"You may not transmit any unlawful Content, offensive, upsetting, intended to disgust, threaten, libellous, defamatory, obscene, or otherwise objectionable. Examples of such objectionable Content include, but are not limited to, the following:",
+		"Unlawful or promoting unlawful activity. Defamatory, discriminatory, or mean-spirited content, including references or commentary about religion, race, sexual orientation, gender, national/ethnic origin, or other targeted groups. Spam, machine – or randomly-generated, constituting unauthorized or unsolicited advertising, chain letters, any other form of unauthorized solicitation, or any form of lottery or gambling. To Install any viruses, worms, malware, trojan horses, or other content designed or intended to disrupt, damage, or limit the functioning of any software, hardware, or telecommunications equipment or to damage or obtain unauthorized access to any data or other information of a third person. Infringing on the proprietary rights of any party, including patent, trademark, trade secret, copyright, right of publicity, or other rights. Impersonating any person or entity, including the Company and its employees or representatives. Violating the privacy of any third person. False information and features. ",
+		" The Company reserves the right, but not the obligation, to, in its sole discretion, determine whether or not any Content is appropriate and complies with this Terms, refuse or remove this Content. The Company further reserves the right to make formatting and edits and change the manner of any Content. The Company can also limit or revoke the use of the Service if You post such objectionable Content.",
+		" As Giftly cannot control all Content posted by users and/or third parties on the Service, you agree to use the Service at your own risk. You understand that by using the Service, You may be exposed to content that You may find offensive, indecent, incorrect, or objectionable, and You agree that under no circumstances will the Company be liable in any way for any content, including any errors or omissions in any content, or any loss or damage of any kind incurred as a result of your use of any content. "
+	]
+	, "contentBackups" : [
+		"Although regular backups of Content are performed, Giftly guarantees no loss or corruption of data. ",
+		"Corrupt or invalid backup points may be caused by corrupted content prior to being backed up or changes when a backup is performed.",
+		"The Company will provide support and attempt to troubleshoot any known or discovered issues that may affect the backups of Content. But You acknowledge that the Company has no liability related to the integrity of Content or the failure to restore Content to a usable state successfully.",
+		"You agree to maintain a complete and accurate copy of any Content in a location independent of the Service."
+	]
+	
+	, "intellectualProperty" : [
+		"The Service and its original content (excluding Content provided by You or other users), features, and functionality are and will remain Giftly's exclusive property and that of its licensors.",
+		"The Service is protected by copyright, trademark, and other laws of both the Country and foreign countries.",
+		"Our trademarks and trade dress may not be used in connection with any product or service without Giftly's prior written consent."
+	]
+	
+	, "feedback" : [
+		"You assign all rights, title, and interest in any Feedback You provide the Company. Suppose for any reason such assignment is ineffective; in that case, You agree to grant the Company a non-exclusive, perpetual, irrevocable, royalty-free, worldwide right and license to use, reproduce, disclose, sub-license, distribute, modify and exploit such Feedback without restriction.",
+		"No Endorsement",
+		"We do not endorse and are not responsible for any User, wish list, benefactor, or individual using our Website. Any wish lists you claim are at your own risk. It is your responsibility to determine whether you feel your wish list claim is a sound decision.",
+		"No Guarantees ",
+		" We do not guarantee that any wish list will get the claimed items from benefactors. We disclaim any liability or responsibility for the success or outcome of a wish list. Furthermore, we don’t and cannot verify the information a User provides on their wish list.",
+		"Content Backups ",
+		" Although regular backups of Content are performed, Giftly guarantees no loss or corruption of data. Corrupt or invalid backup points may be caused by corrupted content prior to being backed up or changes when a backup is performed. The Company will provide support and attempt to troubleshoot any known or discovered issues that may affect the backups of Content. But You acknowledge that the Company has no liability related to the integrity of Content or the failure to restore Content to a usable state successfully. You agree to maintain a complete and accurate copy of any Content in a location independent of the Service."
+	]
+	
+	, "linkToWebsite" : [
+		"Our Service may contain links to third-party websites or services not owned or controlled by the Company.",
+		"Giftly has no control over and assumes no responsibility for any third-party websites or services' content, privacy policies, or practices. You further acknowledge and agree that the Company shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods, or services available on or through any such web sites or services.",
+		"We strongly advise You to read the terms and conditions and privacy policies of any third-party websites or services that You visit."
+	]
+	
+	, "termination" : [
+		"Giftly may terminate or suspend Your Account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms of Use.",
+		"Upon termination, Your right to use the Service will cease immediately. If You wish to terminate Your Account, You may simply discontinue using the Service.",
+		"Limitation of Liability",
+		"To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data, or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service, third-party software and/or third-party hardware used with the Service, or otherwise in connection with any provision of this Terms), even if the Company or any supplier has been advised of the possibility of such damages and even if the remedy fails of its essential purpose.",
+		"\"AS IS\" and \"AS AVAILABLE\" Disclaimer",
+		"The Service is provided to You \"AS IS\" and \"AS AVAILABLE\" and with all faults and defects without warranty of any kind.",
+		"To the maximum extent permitted under applicable law, the Company, on its behalf and behalf of its Affiliates and its and their respective licensors and service providers, expressly disclaims all warranties, whether express, implied, statutory, or otherwise, concerning the Service, including all implied warranties of merchantability, fitness for a particular purpose, title and non-infringement, and warranties that may arise out of a course of dealing, course of performance, usage or trade practice.",
+		"Without limitation to the foregoing, the Company provides no warranty or undertaking, and makes no representation of any kind that the Service will meet Your requirements, achieve any intended results, be compatible or work with any other software, applications, systems or services, operate without interruption, meet any performance or reliability standards or be error-free or that any errors or defects can or will be corrected. ",
+		" Without limitation to the foregoing, the Company provides no warranty or undertaking, and makes no representation of any kind that the Service will meet Your requirements, achieve any intended results, be compatible or work with any other software, applications, systems or services, operate without interruption, meet any performance or reliability standards or be error-free or that any errors or defects can or will be corrected. Without limiting the foregoing, neither the Company nor any of the company's provider makes any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the Service, or the information, content, and materials or products included thereon; (ii) that the Service will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Service; or (iv) that the Service, its servers, the content, or e-mails sent from or on behalf of the Company are free of viruses, scripts, trojan horses, worms, malware, timebombs or other harmful components."
+	]
+	
+	, "governingLaw" : [
+		"The laws of the Country, excluding its conflicts of law rules, shall govern this Terms and Your use of the Service. Your use of the Application may also be subject to other local, state, national, or international laws."
+	]
+	
+	, "disputeResolution" : [
+		"If You have any concern or dispute about the Service, You agree first to try resolving the dispute informally by contacting the Company. "
+	]
+	
+	, "severability" : [
+		"Severability",
+		"Suppose any provision of these Terms is held to be unenforceable or invalid; in that case, such provision will be changed and interpreted to accomplish the objectives of the provision to the greatest extent possible under applicable law. The remaining provisions will continue in full force and effect.",
+		"Waiver",
+		"Except as provided herein, the failure to exercise a right or to require performance of an obligation under these Terms shall not affect a party's ability to exercise such right or require such performance at any time after that, nor shall the waiver of a breach constitute a waiver of any subsequent breach."
+	]
+	
+	, "changesTerms" : [
+		"We reserve the right, at Our sole discretion, to modify or replace these Terms at any time. If a revision is a material, we will make reasonable efforts to provide at least 30 days' notice before any new terms take effect. What constitutes a material change will be determined at Our sole discretion. ",
+		"By continuing to access or use Our Service after those revisions become effective, You agree to be bound by the revised terms. If You do not agree to the new terms, in whole or in part, please stop using the website and the Service. "
+	]
+	
+	, "contactUs" : [
+		"If you have any questions about these Terms of Use, You can contact us: ",
+		"By visiting this page on our website: giftly.me ",
+		"By sending us an email: info@giftly.me "
+	]}
+
+
+
+}

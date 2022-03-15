@@ -13,6 +13,8 @@ import AlertBox from "components/global/AlertBox";
 import ViewWishListItems from "pages/ViewWishListItems";
 import FAQs from "components/landing/FAQs";
 import ViewUserWishLists from "pages/ViewUserWishLists";
+import Terms from "components/landing/Terms";
+import Privacy from "components/landing/Privacy";
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
             <Route path="/faqs" element={<FAQs />} />
             <Route path="/:username/:slug/*" element={<ViewWishListItems />} />
             <Route path="/:username" element={<ViewUserWishLists />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy-policy" element={<Privacy />} />
 
             {/* No match */}
             <Route path="*" element={<Navigate to="/home" />} />

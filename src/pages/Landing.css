@@ -70,25 +70,25 @@
   
   html {
     scroll-behavior: smooth;
-    font-size: 62.5%; /* This is the same as 10px */
+    /* font-size: 62.5%; This is the same as 10px */
   }
   
   @media (max-width: 78.75em) {
     /* 1260 px */
     html {
-      font-size: 56.25%;
+      /* font-size: 56.25%; */
     }
   }
   @media (max-width: 69.375em) {
     /* 1110 px */
     html {
-      font-size: 50%;
+      /* font-size: 50%; */
     }
   }
   @media (max-width: 62.5em) {
     /* 1000 px */
     html {
-      font-size: 40%;
+      /* font-size: 40%; */
     }
   }
   @media (max-width: 53.75em) {
