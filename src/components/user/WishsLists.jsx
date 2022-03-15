@@ -174,7 +174,13 @@ const WishsLists = () => {
             <FormGroupCustom
               fieldStyle="shortText"
               name="search"
-              onChange={findFriends}
+              onChange={(e) => {
+                if (category === searchCategories[1]) {
+                  setSearch(e.target.value);
+                  return;
+                }
+                findFriends(e);
+              }}
               bg="#ffffff"
             />
             <img
@@ -194,7 +200,7 @@ const WishsLists = () => {
                 hideMobileSearch();
               }}
             />
-            {search && (
+            {search && category === searchCategories[0] && (
               <div className="searchResults">
                 {finding ? (
                   <div className="flexColumn alignCenter">
@@ -283,9 +289,15 @@ const WishsLists = () => {
         </div>
       ) : (
         <ListWrapper>
-          {data?.map((item, index) => (
-            <WishListCard key={index} details={item} />
-          ))}
+          {data
+            ?.filter((item) =>
+              category === searchCategories[1] && search
+                ? item.title.toLowerCase().match(search.toLowerCase())
+                : true
+            )
+            .map((item, index) => (
+              <WishListCard key={index} details={item} />
+            ))}
         </ListWrapper>
       )}
       {!loading && !data.length && (
