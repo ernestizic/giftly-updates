@@ -13,6 +13,9 @@ const Wrapper = styled.div`
 			width: 95.5rem;
 
 		}
+		&>:last-child{
+			margin-left: auto;
+		}
 		
 		@media (max-width: 760px){
 			width: auto;
