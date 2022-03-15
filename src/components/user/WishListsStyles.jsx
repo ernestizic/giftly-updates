@@ -28,6 +28,7 @@ export const Search = styled.div`
   padding: 8px 0;
   display: grid;
   grid-template-columns: 140px auto;
+  background-color: #ffffff;
 
   .dropdownWrapper {
     height: 100%;
@@ -36,6 +37,53 @@ export const Search = styled.div`
   .searchInputWrapper {
     display: grid;
     grid-template-columns: auto 44px;
+    position: relative;
+
+    .icon {
+      &.mb {
+        display: none;
+      }
+    }
+  }
+
+  .searchResults {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    background-color: #ffffff;
+    border-radius: 8px;
+    max-height: 248px;
+    // padding: 24px 0;
+    box-shadow: var(--shadow_1);
+    overflow: auto;
+
+    .item {
+      padding: 12px 24px;
+
+      .text {
+        width: calc(100% - 56px);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      &:hover {
+        background-color: var(--background);
+      }
+    }
+
+    .notFound {
+      padding: 24px;
+
+      .subtitle {
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
   }
 
   .divider {
@@ -54,25 +102,50 @@ export const Search = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    display: none;
+    position: fixed;
+    top: -60px;
+    left: 24px;
+    z-index: 7;
+    width: calc(100vw - 48px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease-out;
+
+    &.open {
+      opacity: 1;
+      pointer-events: all;
+      top: 20px;
+    }
+
+    .searchInputWrapper {
+      .icon {
+        &.mb {
+          display: block;
+        }
+
+        &.lg {
+          display: none;
+        }
+      }
+    }
   }
 `;
 
 export const Initials = styled.div`
-  background-color: var(--primary-main);
+  background-color: ${(props) => props.bg ?? "var(--primary-main)"};
   color: #ffffff;
-  width: 48px;
-  height: 48px;
+  width: ${(props) => props.size ?? "48"}px;
+  height: ${(props) => props.size ?? "48"}px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
 
   .text {
-    font-size: 24px;
+    font-size: ${(props) => props.textSize ?? "24"}px;
     font-style: normal;
     font-weight: 900;
-    line-height: 30px;
+    line-height: auto;
     letter-spacing: 0px;
   }
 `;

@@ -234,12 +234,12 @@ export const getFileSize = (size) => {
     : `${(size / 1000 / 1000).toFixed(1)} mb`;
 };
 
-export function debounce(func, timeout = 1000, cancelAsync) {
+export function debounce(func, timeout = 1000) {
   let timer;
   return (...args) => {
-    cancelAsync && cancelAsync();
-    clearTimeout(timer);
+    if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
+      timer = null;
       func.apply(this, args);
     }, timeout);
   };

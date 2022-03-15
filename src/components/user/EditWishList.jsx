@@ -162,6 +162,8 @@ const EditWishList = ({ getWishLists }) => {
     }
   };
 
+  // REFACTOR DEBOUNCE
+
   const setFieldValue = (rowIndex, fieldName, fieldValue) => {
     let temp = tempList.map((item) => Object.assign({}, item));
 

@@ -1,16 +1,17 @@
 import styled from "styled-components";
 import searchIcon from "assets/icons/search.svg";
+import closeIcon from "assets/icons/close_square.svg";
 import plusIcon from "assets/icons/plus_white.svg";
 import heartIcon from "assets/icons/heart_primary_circle.svg";
 import handPoint from "assets/images/hand_phone.svg";
 import Dropdown from "components/user/Dropdown";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import FormGroupCustom from "components/global/FormGroupCustom";
 import Spacer from "components/global/Spacer";
 import Button from "components/global/Button";
 import { useNavigate } from "react-router";
 import WishListCard from "./WishListCard";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import ShareList from "./ShareList";
 import DeletePrompt from "components/wishlist/DeletePrompt";
 import EditWishList from "components/user/EditWishList";
@@ -28,12 +29,13 @@ import {
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
-import { base_url } from "utils/utils";
+import { base_url, debounce } from "utils/utils";
 import axios from "axios";
 import Loader from "components/global/Loader";
 import { NoLists } from "./WishListsStyles";
 import { clearTempList } from "features/wishList/wishListSlice";
 import Logo from "components/global/Logo";
+import ImgWrapper from "components/global/ImgWrapper";
 
 const Wrapper = styled.div``;
 
@@ -42,10 +44,11 @@ const searchCategories = ["Friends", "Wish list"];
 const WishsLists = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState("Friends");
-  const [setSearch] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [search, setSearch] = useState("");
+  const [friends, setFriends] = useState([]);
+  const [finding, setFinding] = useState(false);
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.auth.user);
   const tempListId = useSelector((state) => state.wishList.tempListId);
@@ -109,6 +112,40 @@ const WishsLists = () => {
     }
   };
 
+  const handleFind = async (e) => {
+    const q = e.target.value;
+
+    setSearch(q);
+
+    if (!q) return;
+
+    try {
+      setFinding(true);
+      const res = await axios.get(`${base_url}/user/search?q=${q}`);
+
+      if (res.data.status === "success") {
+        setFriends(res.data.data);
+      } else {
+        setFriends([]);
+      }
+
+      setFinding(false);
+    } catch (e) {
+      setFinding(false);
+      console.log(e);
+    }
+  };
+
+  const findFriends = useCallback(debounce(handleFind, 500), []);
+
+  const showMobileSearch = () => {
+    document.querySelector(".searchBox").classList.add("open");
+  };
+
+  const hideMobileSearch = () => {
+    document.querySelector(".searchBox").classList.remove("open");
+  };
+
   useEffect(() => {
     getWishLists();
     // eslint-disable-next-line
@@ -122,7 +159,7 @@ const WishsLists = () => {
             document.querySelector(".sidebar").classList.add("open")
           }
         />
-        <Search>
+        <Search className="searchBox">
           <div className="flexRow alignCenter dropdownWrapper">
             <Dropdown
               name="category"
@@ -137,13 +174,79 @@ const WishsLists = () => {
             <FormGroupCustom
               fieldStyle="shortText"
               name="search"
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={findFriends}
               bg="#ffffff"
             />
-            <img src={searchIcon} alt="search" className="icon" />
+            <img
+              src={search ? closeIcon : searchIcon}
+              alt="search"
+              className="icon lg"
+              onClick={() => {
+                document.querySelector(`input[name=search]`).value = "";
+                setSearch("");
+              }}
+            />
+            <img
+              src={closeIcon}
+              alt="search"
+              className="icon mb"
+              onClick={() => {
+                hideMobileSearch();
+              }}
+            />
+            {search && (
+              <div className="searchResults">
+                {finding ? (
+                  <div className="flexColumn alignCenter">
+                    <Spacer y={2.4} />
+                    <Loader />
+                    <Spacer y={2.4} />
+                  </div>
+                ) : (
+                  <>
+                    {friends?.map((item, index) => (
+                      <Link
+                        key={index}
+                        to={`/${item.username}`}
+                        className="flexRow alignCenter item colorTitleActive"
+                      >
+                        {item.avatar ? (
+                          <ImgWrapper size={40} imgHeight="100%">
+                            <img src={item.avatar} alt="." />
+                          </ImgWrapper>
+                        ) : (
+                          <Initials size="40" textSize="18" bg="#032250">
+                            AS
+                          </Initials>
+                        )}
+                        <Spacer x={1.6} />
+                        <span className="subtitle-4 text">{item.username}</span>
+                      </Link>
+                    ))}
+                  </>
+                )}
+                {!finding && !friends.length && (
+                  <div className="notFound colorTitleActive">
+                    <h4 className="title-4">Oops!</h4>
+                    <Spacer y={0.4} />
+                    <p className="subtitle-4 subtitle">
+                      Nothing found for {search}
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </Search>
-        <div>
+        <div className="flexRow alignCenter">
+          <button
+            type="button"
+            className="searchTrigger"
+            onClick={showMobileSearch}
+          >
+            <img src={searchIcon} alt="search" className="icon" />
+          </button>
+          <Spacer x={2.4} />
           <Initials>
             <span className="text textCenter textUppercase">
               {user?.first_name.charAt(0)}

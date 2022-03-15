@@ -166,6 +166,7 @@ const FormGroupCustom = ({
                 {...props}
                 className="textSmall"
                 id={name}
+                name={name}
                 type={type}
                 defaultValue={defaultValue}
                 onChange={(e) => {
