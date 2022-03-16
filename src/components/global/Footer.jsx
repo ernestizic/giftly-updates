@@ -4,16 +4,17 @@ import Logo from "./Logo";
 import instagram from "assets/icons/instagram_wt.svg";
 import facebook from "assets/icons/facebook_wt.svg";
 import twitter from "assets/icons/twitter_wt.svg";
-import send from "assets/icons/send_wt.svg";
+// import send from "assets/icons/send_wt.svg";
+import { Link } from "react-router-dom";
 const Wrapper = styled.div`
-  padding: 12rem 4.8rem;
+  padding: 48px 120px;
   display: flex;
   font-size: 1.6rem;
   line-height: 2.4rem;
   background-color: var(--title-active);
 
   @media (max-width: 760px) {
-    padding: 7.3rem 2.4rem;
+    padding: 72px 24px;
     flex-direction: column;
     font-size: 1.4rem;
     line-height: 1.8rem;
@@ -48,8 +49,12 @@ const Wrapper = styled.div`
   .item_2 {
     display: flex;
     margin-top: 5.1rem;
-
     color: var(--white);
+
+    .link {
+      display: block;
+      margin-bottom: 12px;
+    }
 
     @media (max-width: 760px) {
       flex-direction: column;
@@ -152,18 +157,29 @@ const Footer = () => {
       </div>
       <div className="item_2">
         <div>
-          <p>Find friends</p>
-          <p>FAQs</p>
-          <p> Terms of use</p>
-          <p>Privacy policy </p>
+          <Link to="/faqs" className="link colorWhite">
+            FAQs
+          </Link>
+          <Link to="/terms" className="link colorWhite">
+            {" "}
+            Terms of use
+          </Link>
+          <Link to="/privacy-policy" className="link colorWhite">
+            Privacy policy{" "}
+          </Link>
         </div>
         <div>
+          <a href="/home" className="link colorWhite">
+            Find friends
+          </a>
+        </div>
+        {/* <div>
           <p>Sign up to our newsletter</p>
           <form action="">
             <input placeholder="Your email address" type="text" />
             <img src={send} alt="send" />
           </form>
-        </div>
+        </div> */}
       </div>
     </Wrapper>
   );
