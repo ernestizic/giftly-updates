@@ -84,7 +84,7 @@ const Sec7 = () => {
         width="18rem"
         height="7.4rem"
         text="Create a wishlist"
-        onClick={() => navigate("new-wishlist")}
+        onClick={() => navigate("/home/new-wishlist")}
       />
     </Wrapper>
   );

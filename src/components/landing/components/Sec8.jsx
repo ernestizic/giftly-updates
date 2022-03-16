@@ -143,7 +143,7 @@ const Sec8 = () => {
           height="6.4rem"
           width="200px"
           text="Sign me up"
-          onClick={() => navigate("sign-up")}
+          onClick={() => navigate("/home/sign-up")}
         />
       </div>
     </Wrapper>
