@@ -12,10 +12,20 @@ import closeIcon from "assets/icons/close_square.svg";
 import handPoint from "assets/images/hand_point.svg";
 import { useState } from "react";
 import { CardImage } from "./AuthStyles";
+import { useDispatch } from "react-redux";
+import { base_url } from "utils/utils";
+import {
+  clearAlert,
+  setAlertTimeout,
+  showAlert,
+} from "features/alert/alertSlice";
+import axios from "axios";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const [emailAddress, setEmailAddress] = useState("");
+
+  const dispatch = useDispatch();
 
   const schema_email = Yup.object({
     email: Yup.string()
@@ -24,82 +34,75 @@ const ForgotPassword = () => {
   });
 
   const schema_password = Yup.object({
-    new_password: Yup.string()
-      .min(8, "Must be at least eight characters")
-      .required("Field required"),
-    new_password_confirmation: Yup.string()
-      .min(8, "Must be at least eight characters")
-      .oneOf([Yup.ref("new_password"), null], "Passwords must match")
+    password: Yup.string().required("Field required"),
+    password_confirmation: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Field required"),
   });
 
   const submitEmail = async (values) => {
     setEmailAddress(values.email);
-    navigate("/home/password-reset/mail-sent");
-    // try {
-    //   let res = await axios.post(
-    //     `${initialState.api_host}/PasswordReset/Request`,
-    //     values
-    //   );
 
-    //   if (res.data.status === "success") {
-    //     navigate("/forgot-password/mail-sent");
-    //     showAlert({
-    //       msg: res.data.message,
-    //       type: "success",
-    //     });
-    //   } else if (res.data.status === "failure") {
-    //     showAlert({
-    //       msg: res.data.message,
-    //       type: "danger",
-    //     });
-    //   } else {
-    //     showAlert({
-    //       msg: "An error occurred. Try again.",
-    //       type: "danger",
-    //     });
-    //   }
-    // } catch (e) {
-    //   showAlert({
-    //     msg: "Invalid request. Try again.",
-    //     type: "danger",
-    //   });
-    // }
+    try {
+      let res = await axios.post(`${base_url}/auth/forgot-password`, values);
+
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+
+      if (res.data.status === "success") {
+        dispatch(showAlert(res.data.message));
+        navigate("/home/password-reset/mail-sent");
+      } else if (res.data.status === "failure") {
+        dispatch(showAlert(res.data.message));
+      } else {
+        dispatch(showAlert("An error occurred"));
+      }
+    } catch (e) {
+      console.log(e);
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+      dispatch(
+        showAlert(e.response.data.message || "Invalid request. Try again.")
+      );
+    }
   };
 
   const submitPassword = async (values) => {
-    // const token = window.location.pathname.split("/")[2];
-    // const data = { ...values, token };
+    const token = window.location.pathname.split("/")[3];
     navigate("/home/login");
-    // try {
-    //   let res = await axios.post(
-    //     `${initialState.api_host}/PasswordReset/SetNow`,
-    //     data
-    //   );
+    try {
+      let res = await axios.post(
+        `${base_url}/auth/reset-password/${token}`,
+        values
+      );
 
-    //   if (res.data.status === "success") {
-    //     navigate("/sign-in");
-    //     showAlert({
-    //       msg: "Password changed sucessfully, sign in to continue using PostPaddy",
-    //       type: "success",
-    //     });
-    //   } else if (res.data.status === "failure") {
-    //     showAlert({
-    //       msg: "An error occurred. Please try again",
-    //       type: "danger",
-    //     });
-    //   } else {
-    //     showAlert({
-    //       msg: "Something went wrong",
-    //       type: "danger",
-    //     });
-    //   }
-    // } catch (e) {
-    //   showAlert({
-    //     msg: "Invalid request. Try again.",
-    //     type: "danger",
-    //   });
-    // }
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+
+      if (res.data.status === "success") {
+        dispatch(showAlert(res.data.message));
+        navigate("/home/login");
+      } else if (res.data.status === "failure") {
+        dispatch(showAlert(res.data.message));
+      } else {
+        dispatch(showAlert("An error occurred"));
+      }
+    } catch (e) {
+      console.log(e);
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+      dispatch(
+        showAlert(e.response.data.message || "Invalid request. Try again.")
+      );
+    }
   };
 
   return (
@@ -203,16 +206,16 @@ const ForgotPassword = () => {
               <h1 className="title-3 textCenter colorTitleActive title">
                 Create New Password
               </h1>
-              <Spacer y={0.8} />
+              {/* <Spacer y={0.8} />
               <p className="body-3 subtitle textCenter">
                 Your new password must be different from previously used
                 passwords.
-              </p>
+              </p> */}
               <Spacer y={2.4} />
               <Formik
                 initialValues={{
-                  new_password: "",
-                  new_password_confirmation: "",
+                  password: "",
+                  password_confirmation: "",
                 }}
                 validationSchema={schema_password}
                 onSubmit={async (values) => {
@@ -225,14 +228,14 @@ const ForgotPassword = () => {
                       fieldStyle="shortText"
                       type="password"
                       label="New password"
-                      name="new_password"
+                      name="password"
                       className="password spanFull"
                     />
                     <FormGroup
                       fieldStyle="shortText"
                       type="password"
                       label="Confirm password"
-                      name="new_password_confirmation"
+                      name="password_confirmation"
                       className="password spanFull"
                     />
                     <Button
@@ -242,8 +245,8 @@ const ForgotPassword = () => {
                       className="spanFull"
                       disabled={
                         !isValid ||
-                        !values.new_password ||
-                        !values.new_password_confirmation ||
+                        !values.password ||
+                        !values.password_confirmation ||
                         isSubmitting
                       }
                       width="100%"

@@ -170,14 +170,14 @@ const Login = () => {
                   value="rememberMe"
                   isChecked={isChecked}
                 />
-                {/* <div>
+                <div>
                   <Link
                     to="/home/password-reset"
                     className="colorPrimaryMain label"
                   >
                     Forgot password?
                   </Link>
-                </div> */}
+                </div>
               </div>
 
               <Button
