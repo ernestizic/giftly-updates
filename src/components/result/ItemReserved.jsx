@@ -32,7 +32,6 @@ const ItemReserved = ({ link, username, slug }) => {
           </>
         )}
         <Spacer y={2.4} />
-        <p>{username}</p>
         <Button text="Done" width="100%" onClick={() => navigate(basePath)} />
       </AuthCard>
     </AuthWrapper>

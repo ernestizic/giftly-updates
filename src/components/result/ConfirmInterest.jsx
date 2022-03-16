@@ -22,7 +22,7 @@ const Card = styled(AuthCard)`
 
 const ConfirmInterest = ({ itemId, itemName, username, slug }) => {
   const navigate = useNavigate();
-  const basePath = `${username}/${slug}`;
+  const basePath = `/${username}/${slug}`;
 
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);

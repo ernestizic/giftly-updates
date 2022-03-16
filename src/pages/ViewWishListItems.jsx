@@ -88,6 +88,7 @@ const Banner = styled.div`
 
   @media screen and (max-width: 768px) {
     padding: 24px;
+    margin-bottom: 24px;
 
     .details {
       max-width: calc(100% - 48px);
