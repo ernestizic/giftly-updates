@@ -88,7 +88,7 @@ const SearchBox = styled(Search)`
   display: flex;
   align-items: center;
   margin-left: 48px;
-  padding: 0 24px;
+  padding: 0;
   width: 320px;
   position: relative;
 
@@ -96,6 +96,10 @@ const SearchBox = styled(Search)`
     width: 100%;
     grid-template-columns: 24px auto 24px;
     align-items: center;
+    background-color: #ffffff;
+    z-index: 5;
+    padding: 0 24px;
+    height: 100%;
   }
 
   .fieldWrapper {
@@ -110,9 +114,26 @@ const SearchBox = styled(Search)`
     }
   }
 
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000050;
+    z-index: 2;
+    display: none;
+  }
+
   @media screen and (max-width: 768px) {
     position: fixed;
     margin-left: 0;
+    width: calc(100vw - 48px);
+
+    &::before {
+      display: block;
+    }
   }
 `;
 
@@ -168,6 +189,7 @@ const Nav = ({ wt }) => {
           <img src={searchIcon} alt="search" className="icon" />
         </button>
         <SearchBox className="searchBox">
+          <div className="backdrop"></div>
           <div className="flexRow alignCenter searchInputWrapper">
             <img src={searchIcon} alt="search" className="icon" />
             <FormGroupCustom
