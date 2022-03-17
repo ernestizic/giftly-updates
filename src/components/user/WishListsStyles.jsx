@@ -148,6 +148,7 @@ export const Initials = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  flex-shrink: 0;
 
   .text {
     font-size: ${(props) => props.textSize ?? "24"}px;
@@ -155,6 +156,7 @@ export const Initials = styled.div`
     font-weight: 900;
     line-height: auto;
     letter-spacing: 0px;
+    text-transform: capitalize;
   }
 `;
 

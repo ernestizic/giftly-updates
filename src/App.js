@@ -15,6 +15,27 @@ import FAQs from "components/landing/FAQs";
 import ViewUserWishLists from "pages/ViewUserWishLists";
 import Terms from "components/landing/Terms";
 import Privacy from "components/landing/Privacy";
+import axios from "axios";
+import { setToken, setUser } from "features/auth/authSlice";
+
+axios.interceptors.response.use(
+  function (response) {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+    // Do something with response data
+    return response;
+  },
+  function (error) {
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // Do something with response error
+    if (error.response.status === 401) {
+      store.dispatch(setToken(""));
+      store.dispatch(setUser(null));
+      window.location.replace("/home/login");
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 function App() {
   return (

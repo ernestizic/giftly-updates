@@ -9,6 +9,7 @@ const ImgWrapper = styled.div`
   border-radius: 50%;
   overflow: hidden;
   background-color: ${(props) => props.bg ?? "#c4c4c470"};
+  flex-shrink: 0;
 
   img {
     height: ${(props) => props.imgHeight ?? "100%"};

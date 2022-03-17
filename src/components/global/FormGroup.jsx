@@ -135,11 +135,11 @@ const FormGroup = ({
   };
 
   useEffect(() => {
-    if (defaultValue?.length || defaultValue !== undefined || value) {
+    if (defaultValue?.length || defaultValue !== undefined) {
       setShowLabel(true);
     }
     // eslint-disable-next-line
-  }, [defaultValue, value]);
+  }, [defaultValue]);
 
   useEffect(() => {
     document.querySelectorAll(`input`).forEach((input) => {
@@ -158,7 +158,7 @@ const FormGroup = ({
             meta.touched && meta.error ? " error" : ""
           }`}
         >
-          {label && showLabel && (
+          {label && (showLabel || field.value) && (
             <FormGroupLabel htmlFor={name}>{label}</FormGroupLabel>
           )}
           {fieldStyle === "shortText" && (

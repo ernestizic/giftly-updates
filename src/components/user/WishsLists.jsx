@@ -36,6 +36,7 @@ import { NoLists } from "./WishListsStyles";
 import { clearTempList } from "features/wishList/wishListSlice";
 import Logo from "components/global/Logo";
 import ImgWrapper from "components/global/ImgWrapper";
+import Profile from "./Profile";
 
 const Wrapper = styled.div``;
 
@@ -255,7 +256,7 @@ const WishsLists = () => {
             <img src={searchIcon} alt="search" className="icon" />
           </button>
           <Spacer x={2.4} />
-          <Initials>
+          <Initials as={Link} to="profile">
             <span className="text textCenter textUppercase">
               {user?.first_name.charAt(0)}
               {user?.last_name.charAt(0)}
@@ -331,6 +332,7 @@ const WishsLists = () => {
           element={<DeletePrompt getWishLists={getWishLists} />}
         />
         <Route path="create-username" element={<CreateUsername />} />
+        <Route path="profile" element={<Profile />} />
       </Routes>
       <Spacer y={4.8} />
     </Wrapper>
