@@ -9,8 +9,15 @@ const Wrapper = styled.div`
 	.ctn {
 		padding: 9.6rem 0 10.1rem 12rem;
 		display: flex;
+		@media (max-width: 1000px) {
+			padding: 9.6rem 0 10.1rem 5rem;
+		}
 		& > :first-child {
 			width: 95.5rem;
+			@media (max-width: 900px) {
+				width: auto;
+				max-width: 89rem;
+			}
 
 			h1,
 			h3,
@@ -20,20 +27,44 @@ const Wrapper = styled.div`
 				font-family: var(--font_2);
 			}
 
+			h1 {
+				font-size: 4.8rem;
+				line-height: 5.6rem;
+				@media (max-width: 1000px) {
+					font-size: 3.6rem;
+					line-height: 4.8rem;
+				}
+			}
+
 			h3 {
 				margin-top: 3.2rem;
+				font-size: 3.6rem;
+				line-height: 4.8rem;
+				@media (max-width: 1000px) {
+					font-size: 2.4rem;
+					line-height: 3.6rem;
+				}
 			}
 
 			h4 {
 				margin-top: 3.2rem;
 				font-size: 2.4rem;
 				line-height: 3.6rem;
+				margin: 1.6rem 0;
+				@media (max-width: 1000px) {
+					font-size: 1.8rem;
+					line-height: 2.4rem;
+				}
 			}
 
 			p,
 			li {
 				font-size: 2rem;
 				line-height: 2.8rem;
+				@media (max-width: 1000px) {
+					font-size: 1.6rem;
+					line-height: 2.4rem;
+				}
 			}
 			li {
 				margin-left: 1.673rem;
@@ -133,7 +164,7 @@ const Term = () => {
 								{item}
 							</p>
 						) : (
-							<h3 key={item } className="title-3">
+							<h3 key={item} className="title-3">
 								{item}
 							</h3>
 						)
@@ -157,10 +188,13 @@ const Term = () => {
 					))}
 					<h3 className="title-3"> Contact Us</h3>
 					<ul>
-						{data.terms.contactUs.map((item, index) => (
-							(index === 0 ?<p key={item}>{item}</p> 
-								: <li key={item}>{item}</li>)
-						))}
+						{data.terms.contactUs.map((item, index) =>
+							index === 0 ? (
+								<p key={item}>{item}</p>
+							) : (
+								<li key={item}>{item}</li>
+							)
+						)}
 					</ul>
 				</div>
 				<Nav2 />

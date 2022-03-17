@@ -72,35 +72,11 @@ const Nav = ({ wt }) => {
     <Wrapper wt={wt}>
       <div className="flexRow alignCenter">
         <Logo onClick={() => navigate("/home")} />
-        {/* <Formik
-        initialValues={{
-          search: "",
-        }}
-        onSubmit={(values) => {
-          return values;
-        }}
-      >
-        {({ handleSubmit, isSubmitting, isValid, values }) => (
-          <FormWrapper onSubmit={handleSubmit}>
-            <img
-              onClick={() => setShowInput(!showInput)}
-              src={search}
-              alt="search"
-              className="search"
-            />
-            <FormGroup
-              fieldStyle="shortText"
-              label="Find friends"
-              name="search"
-              className={`input ${showInput ? "mb" : ""}`}
-            />
-          </FormWrapper>
-        )}
-      </Formik> */}
+       
       </div>
       <div className="flexRow alignCenter">
         <Button
-          bg="white"
+          bg="var(--accent_2-main)"
           color="var(--primary-main)"
           text="Login"
           onClick={() => navigate("/home/login")}

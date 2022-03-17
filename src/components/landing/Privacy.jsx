@@ -8,9 +8,19 @@ import Nav2 from "./components/Nav2";
 const Wrapper = styled.div`
 	.ctn {
 		padding: 9.6rem 0 10.1rem 12rem;
+
+		@media (max-width: 1000px){
+		padding: 9.6rem 0 10.1rem 5rem;
+
+		}
+
 		display: flex;
 		&>:first-child{
 			width: 95.5rem;
+			@media (max-width: 900px){
+				width:auto;
+				max-width: 89rem;
+			}
 
 		}
 		&>:last-child{
@@ -20,6 +30,10 @@ const Wrapper = styled.div`
 		@media (max-width: 760px){
 			width: auto;
 			padding: 4.8rem 2.4rem;
+		}
+		@media (max-width: 760px){
+			width: auto;
+			padding: 4.8rem 1rem;
 		}
 	}
 
@@ -33,17 +47,29 @@ const Wrapper = styled.div`
 		font-size: 4.8rem;
 		line-height: 5.6rem;
 		padding-bottom: 4.8rem;
+		@media (max-width: 1000px){
+			font-size: 3.6rem;
+			line-height: 4.8rem;
+		}
 	}
 	h3 {
 		font-size: 3.6rem;
 		line-height: 4.8rem;
 		margin-bottom: 1.6rem;
 		margin-top: 4.8rem;
+		@media (max-width: 1000px){
+			font-size: 2.4rem;
+			line-height: 3.6rem;
+		}
 	}
 	h5 {
 		font-size: 2.4rem;
 		line-height: 3.6rem;
 		margin: 1.6rem 0;
+		@media (max-width: 1000px){
+			font-size: 1.8rem;
+			line-height: 2.4rem;
+		}
 	}
 
 	.child{
@@ -55,14 +81,12 @@ const Wrapper = styled.div`
 	}
 
 	.list {
-		/* display: flex; */
 		margin-left: 3rem;
 		position: relative;
 		&::before {
 			content: "";
 			display: block;
 			position: absolute;
-			/* margin: 0 1.5rem 0; */
 			margin-left: -1.5rem;
 			margin-top: 1.5rem;
 			height: 5px !important;
@@ -89,6 +113,10 @@ const Wrapper = styled.div`
 	li {
 		font-size: 2rem;
 		line-height: 2.8rem;
+		@media (max-width: 1000px){
+			font-size: 1.6rem;
+			line-height: 2.4rem;
+		}
 	}
 `;
 const privacyPolicy = data.privacyPolicy;

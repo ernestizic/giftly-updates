@@ -24,6 +24,10 @@ const Wrapper = styled.div`
 	.acc,
 	h1 {
 		margin: 0 12rem;
+		@media (max-width: 1000px){
+			margin: 0 5rem;
+
+		}
 		@media (max-width: 760px) {
 			margin: 3.2rem 0;
 		}

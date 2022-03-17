@@ -12,6 +12,12 @@ const Wrapper = styled.div`
 	line-height: 2.4rem;
 	background-color: var(--title-active);
 
+	@media (max-width: 950px) {
+		/* padding: 7.3rem 2.4rem; */
+		/* flex-direction: column; */
+		font-size: 1.3rem;
+		line-height: 1.8rem;
+	}
 	@media (max-width: 760px) {
 		padding: 7.3rem 2.4rem;
 		flex-direction: column;
@@ -25,6 +31,11 @@ const Wrapper = styled.div`
 	}
 	.item_1 {
 		width: 35rem;
+
+		@media (max-width: 950px){
+			width: 27.8rem;
+		}
+	
 
 		color: white;
 		.media {
@@ -59,6 +70,11 @@ const Wrapper = styled.div`
 
 		& > :first-child {
 			width: 16rem;
+
+			@media (max-width: 950px){
+				width: 9rem;
+			}
+
 			p {
 				margin-bottom: 1.2rem;
 			}
@@ -66,6 +82,9 @@ const Wrapper = styled.div`
 		div + div {
 			margin-left: 3rem;
 
+			@media (max-width: 770px) {
+				margin-left: 1.5rem;
+			}
 			@media (max-width: 760px) {
 				margin-left: 0;
 			}
