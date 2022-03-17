@@ -100,8 +100,11 @@ const Wrapper = styled.div`
 		transform: translateY(65%);
 	}
 	.btm {
-		padding: 2.9rem 4.8rem;
+		padding: 3.9rem 4.8rem;
 		background-color: var(--title-active);
+		@media (max-width: 1300px) {
+			padding: 2.9rem 4.8rem;
+		}
 		@media (max-width: 900px) {
 			padding: 1.5rem 2.4rem;
 		}

@@ -7,6 +7,21 @@ const Wrapper = styled.div`
 	position: relative;
 	height: 72rem;
 	padding: 9.6rem 0;
+	
+	@media (max-width: 1200px){
+		height: 54rem;
+		padding: 8rem 0;
+
+	}
+	@media (max-width: 900px){
+		height: 52rem;
+		padding: 7.5rem 0;
+
+	}
+	@media (max-width: 800px){
+		height: 40rem;
+
+	}
 
 	.mb {
 		height: 100%;
@@ -29,9 +44,53 @@ const Wrapper = styled.div`
 		align-items: center;
 		height: 100%;
 
-		p{
+		p {
 			font-size: 9.1rem;
 			line-height: 9.1rem;
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			img {
+				width: 5.6rem;
+				height: 5.6rem;
+			}
+
+			@media (max-width: 1300px) {
+				font-size: 8.1rem;
+				line-height: 8.1rem;
+				img {
+					width: 4.5rem;
+					height: 4.5rem;
+				}
+			}
+			@media (max-width: 1200px) {
+				font-size: 7.6rem;
+				line-height: 7.6rem;
+			}
+			@media (max-width: 1100px) {
+				font-size: 6.8rem;
+				line-height: 6rem;
+				img {
+					width: 3.8rem;
+					height: 3.8rem;
+				}
+			}
+			@media (max-width: 1000px) {
+				font-size: 6.1rem;
+				line-height: 6.1rem;
+			}
+			@media (max-width: 900px) {
+				font-size: 5rem;
+				line-height: 5rem;
+				img {
+					width: 2.8rem;
+					height: 2.8rem;
+				}
+			}
+			@media (max-width: 800px) {
+				font-size: 4.5rem;
+				line-height: 4.5rem;
+			}
 		}
 
 		@media (max-width: 760px) {
@@ -59,11 +118,8 @@ const Wrapper = styled.div`
 		}
 		span {
 			width: fit-content;
-			display: inline-block;
 		}
-		.shift {
-			/* margin-left: -1.8rem; */
-		}
+		
 	}
 
 	.title-1 {
@@ -71,12 +127,20 @@ const Wrapper = styled.div`
 		white-space: nowrap;
 	}
 
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 760px) {
 		padding: 48px 0;
 		height: auto;
 
 		.mb {
 			gap: 32px;
+			justify-content: center;
+			p{
+				width: 100%;	
+				img{
+					height:3.2rem;
+					width: 3.2rem;
+				}
+			}
 		}
 	}
 `;
@@ -92,7 +156,7 @@ const Sec4 = () => {
 					<Star /> <span>Wed</span>
 				</p>
 				<p className="title-1">
-					<span className="shift">Shower</span> <Star />
+					<span>Shower</span> <Star />
 					<span>housewarming</span>
 					<Star /> <span>Chris</span>
 				</p>
@@ -108,19 +172,19 @@ const Sec4 = () => {
 			<div className="mb">
 				<p className="title-1">
 					Birthdays <Star />
-					SecretSanta
+					Secr
 				</p>
 				<p className="title-1">
-					Baby Shower <Star />
+					Shower <Star />
 					Weddings
 				</p>
 				<p className="title-1">
 					Birthdays
 					<Star />
-					Secret Santa
+					Secr
 				</p>
 				<p className="title-1">
-					Baby Shower <Star />
+				Shower <Star />
 					Weddings
 				</p>
 			</div>
