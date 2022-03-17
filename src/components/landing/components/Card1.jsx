@@ -8,7 +8,7 @@ import check from "assets/icons/check.svg";
 import add from "assets/icons/add.svg";
 
 const Wrapper = styled.div`
-	background-color: var(--white);
+	background-color: white;
 	padding: 1.6rem;
 	max-width: 26rem;
 	border-radius: 0.8rem;
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 	.images {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
 		height: 16.8rem;
 		grid-gap: 1.6rem;
 
@@ -61,19 +61,17 @@ const Wrapper = styled.div`
 					margin-top: 1.1rem;
 				}
 			}
-
-            
 		}
 
-        .send{
-            width: 1.777rem;
-        }
+		.send {
+			width: 1.777rem;
+		}
 
 		.with-check {
 			background-color: var(--primary-main);
-            img{
-                width: 2.3rem;
-            }
+			img {
+				width: 2.3rem;
+			}
 		}
 	}
 
@@ -85,11 +83,28 @@ const Wrapper = styled.div`
 		h4 {
 			font-size: 2.4rem;
 			line-height: 3.6rem;
+			@media (max-width: 930px) {
+				font-size: 2rem;
+				line-height: 2rem;
+			}
+			@media (max-width: 760px) {
+				font-size: 2.4rem;
+			line-height: 3.6rem;
+			}
 		}
 		p {
 			font-size: 1.6rem;
 			line-height: 2.4rem;
 			margin-top: 0.8rem;
+			color: var(--body);
+			@media (max-width: 930px) {
+				font-size: 1.4rem;
+				line-height: 2rem;
+			}
+			@media (max-width: 760px) {
+				font-size: 1.6rem;
+			line-height: 2.4rem;
+			}
 		}
 	}
 `;
@@ -146,10 +161,8 @@ const Card1 = ({ cardNum }) => {
 				)}
 			</div>
 			<div className="text">
-				<h4 className=" title-plus">{TEXT[cardNum -1].title}</h4>
-				<p>
-					{TEXT[cardNum - 1].para}
-				</p>
+				<h4 className=" title-1">{TEXT[cardNum - 1].title}</h4>
+				<p>{TEXT[cardNum - 1].para}</p>
 			</div>
 		</Wrapper>
 	);

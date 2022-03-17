@@ -8,7 +8,7 @@ import DeletePrompt from "components/wishlist/DeletePrompt";
 import SignupPrompt from "components/wishlist/SignupPrompt";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-import "./Landing.css";
+// import "../index.css"
 
 const Wrapper = styled.div`
   min-height: 100vh;

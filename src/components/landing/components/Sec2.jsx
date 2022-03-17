@@ -20,6 +20,12 @@ const Wrapper = styled.div`
 
   .cardWrapper {
     gap: 96px;
+
+    @media (max-width: 930px) {
+        gap: 2rem;
+
+			}
+
   }
 
   @media (max-width: 760px) {
@@ -33,6 +39,10 @@ const Wrapper = styled.div`
     .cardWrapper {
       flex-direction: column;
       gap: 48px;
+      @media (max-width: 930px) {
+        /* gap: 2.4rem; */
+
+			}
     }
   }
 `;
@@ -40,7 +50,7 @@ const Wrapper = styled.div`
 const Sec2 = () => {
   return (
     <Wrapper>
-      <h3 className="title-plus title">How it works?</h3>
+      <h3 className="title-1 title">How it works?</h3>
       <div className="cardWrapper flexRow justifySpaceBetween">
         <Card1 cardNum={1} />
         <Card1 cardNum={2} />
