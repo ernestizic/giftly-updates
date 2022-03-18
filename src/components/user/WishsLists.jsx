@@ -99,7 +99,7 @@ const WishsLists = () => {
       if (res.data.status === "success") {
         setLoading(false);
         setData(res.data.data.data);
-        return;
+        return res;
       }
       setLoading(false);
       dispatch(showAlert(res.data.message));

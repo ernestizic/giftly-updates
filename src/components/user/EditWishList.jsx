@@ -118,7 +118,36 @@ const EditWishList = ({ getWishLists }) => {
   const dispatch = useDispatch();
   const [saving, setSaving] = useState(false);
 
+  const addListItem = async (data) => {
+    try {
+      await axios.post(
+        `${base_url}/items/${tempListId}`,
+        { items: [data] },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const res = await getWishLists();
+
+      if (res.data.status === "success") {
+        dispatch(
+          setTempList(
+            res.data.data.data.find((item) => item.id === tempListId).items
+          )
+        );
+        return;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const updateListItem = async (data) => {
+    if (!data.id) return;
+
     try {
       await axios.patch(`${base_url}/items/${data.id}`, data, {
         headers: {
@@ -137,20 +166,6 @@ const EditWishList = ({ getWishLists }) => {
 
     try {
       await axios.delete(`${base_url}/items/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      getWishLists();
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const addListItem = async (data) => {
-    try {
-      await axios.post(`${base_url}/items/${tempListId}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -189,7 +204,7 @@ const EditWishList = ({ getWishLists }) => {
   const addMore = () => {
     let temp = tempList.map((item) => Object.assign({}, item));
 
-    const data = { name: "", link: "", status: "pending" };
+    const data = { name: "...", status: "pending" };
 
     temp.push(data);
 
