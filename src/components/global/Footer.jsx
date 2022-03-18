@@ -19,7 +19,7 @@ const Wrapper = styled.div`
     font-size: 1.3rem;
     line-height: 1.8rem;
   }
-  @media (max-width: 760px) {
+  @media (max-width: 768px) {
     padding: 7.3rem 2.4rem;
     flex-direction: column;
     font-size: 1.4rem;
@@ -62,7 +62,7 @@ const Wrapper = styled.div`
 
     color: white;
 
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
       flex-direction: column;
       font-size: 1.4rem;
       line-height: 1.8rem;
@@ -85,7 +85,7 @@ const Wrapper = styled.div`
       @media (max-width: 770px) {
         margin-left: 1.5rem;
       }
-      @media (max-width: 760px) {
+      @media (max-width: 768px) {
         margin-left: 0;
       }
     }

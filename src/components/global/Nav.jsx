@@ -23,7 +23,7 @@ const Wrapper = styled.nav`
   justify-content: space-between;
   align-items: center;
 
-  @media (max-width: 760px) {
+  @media (max-width: 768px) {
     padding: 0 2rem;
   }
 
@@ -34,7 +34,7 @@ const Wrapper = styled.nav`
     margin-left: 4.8rem;
     margin-right: auto;
     display: block;
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
       /* width: auto */
       .input {
         display: none;
@@ -47,7 +47,7 @@ const Wrapper = styled.nav`
 
     & > div > div {
       padding-left: 3.667rem;
-      @media (max-width: 760px) {
+      @media (max-width: 768px) {
         padding: 0;
       }
     }
@@ -57,7 +57,7 @@ const Wrapper = styled.nav`
     z-index: 6;
     left: 2.4rem;
     top: 1.6rem;
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
       position: sticky;
       top: 4.1rem;
       left: 23%;

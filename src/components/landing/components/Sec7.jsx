@@ -35,10 +35,6 @@ const Wrapper = styled.div`
     display: none;
   }
 
-  @media (max-width: 760px) {
-    padding: 4.8rem 2.4rem;
-  }
-
   h3 {
     color: black;
     margin-bottom: 5.6rem;
@@ -51,7 +47,7 @@ const Wrapper = styled.div`
       line-height: 4rem;
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
       .dsk {
         display: none;
       }
@@ -62,6 +58,14 @@ const Wrapper = styled.div`
       padding: 0 2.4rem;
       font-size: 2.4rem;
       line-height: 3.6rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 4.8rem 0;
+
+    .btn {
+      margin-left: 24px;
     }
   }
 `;
@@ -87,7 +91,7 @@ const Sec7 = () => {
       <Spacer y={4.8} />
       <Button
         width="18rem"
-        className="large"
+        className="large btn"
         text="Learn more"
         onClick={() => navigate("/faqs")}
       />

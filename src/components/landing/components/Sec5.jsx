@@ -4,7 +4,7 @@ import hm_hero_2 from "assets/images/hm_hero_2.png";
 
 const Wrapper = styled.div`
   padding: 9.6rem 12rem;
-  @media (max-width: 760px) {
+  @media (max-width: 768px) {
     padding: 4.8rem 2.4rem;
   }
   background-color: var(--accent_2-main);

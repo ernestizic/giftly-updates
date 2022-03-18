@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   padding: 8.8rem 12rem;
   background-image: ${`url(${bg})`};
   background-size: cover;
-  @media (max-width: 760px) {
+  @media (max-width: 768px) {
     background-image: ${`url(${bg_sm})`};
   }
 
@@ -67,7 +67,7 @@ const Wrapper = styled.div`
     }
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 768px) {
     padding: 6.1rem 0;
     flex-direction: column;
     text-align: center;

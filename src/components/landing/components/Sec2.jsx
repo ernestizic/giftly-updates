@@ -22,13 +22,11 @@ const Wrapper = styled.div`
     gap: 96px;
 
     @media (max-width: 930px) {
-        gap: 2rem;
-
-			}
-
+      gap: 2rem;
+    }
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 768px) {
     padding: 4.8rem 0;
 
     .title {
@@ -41,8 +39,7 @@ const Wrapper = styled.div`
       gap: 48px;
       @media (max-width: 930px) {
         /* gap: 2.4rem; */
-
-			}
+      }
     }
   }
 `;

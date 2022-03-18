@@ -25,11 +25,11 @@ const Wrapper = styled.div`
       margin-left: auto;
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
       width: auto;
       padding: 4.8rem 2.4rem;
     }
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
       width: auto;
       padding: 4.8rem 1rem;
     }

@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     padding-top: 9.6rem;
     padding-bottom: 9.6rem;
 
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
       display: block;
       padding-top: 24px;
       padding-bottom: 48px;
@@ -32,14 +32,14 @@ const Wrapper = styled.div`
     @media (max-width: 1000px) {
       margin: 0 5rem;
     }
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
       margin: 3.2rem 0;
     }
   }
 
   h1 {
     margin-bottom: 4.8rem;
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
       margin: 3.2rem 2.4rem;
     }
   }

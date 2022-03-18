@@ -54,8 +54,8 @@ const Wrapper = styled.div`
       color: var(--body);
     }
 
-    @media (max-width: 760px) {
-      width: auto;
+    @media (max-width: 768px) {
+      max-width: 100vw;
       text-align: center;
       & > * {
         margin: auto;
@@ -63,7 +63,7 @@ const Wrapper = styled.div`
     }
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     padding: 96px 0;
     padding-top: 160px;

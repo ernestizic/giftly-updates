@@ -25,7 +25,7 @@ h1{
 	line-height: 5rem;
 	width: 22rem;
 	}
-	@media (max-width: 760px){
+	@media (max-width: 768px){
 		font-size: 4.8rem;
 	line-height: 4.8rem;
 	width: auto;
@@ -52,14 +52,14 @@ h1{
 	.header {
 		display: flex;
 
-		@media (max-width: 760px){
+		@media (max-width: 768px){
 			flex-direction: column;
 		}
 	
 	}
 	.text {
 		flex: 1;
-		@media ( max-width: 760px){
+		@media ( max-width: 768px){
 			text-align:center;
 		}
 	}
@@ -72,7 +72,7 @@ h1{
 		.ft {
 			color: var(--primary-main);
 		}
-		@media (max-width: 760px) {
+		@media (max-width: 768px) {
 				font-size: 4.8rem;
                 line-height: 5.6rem;
 			}
@@ -87,7 +87,7 @@ h1{
 			width: auto;
 			   max-width: 30rem;
 		}
-		@media ( max-width: 760px){
+		@media ( max-width: 768px){
 			max-width: 32.7rem;
 				text-align: center;
 				font-size: 1.6rem;
@@ -112,7 +112,7 @@ h1{
 
 		}
 
-		@media ( max-width: 760px){
+		@media ( max-width: 768px){
 			margin: 4.8rem auto;
 			height: 4.8rem;
 		white-space: nowrap;
@@ -135,7 +135,7 @@ h1{
 		left:0;
 		width:19.438rem;
 		height:17.3rem;
-		@media ( max-width: 760px){
+		@media ( max-width: 768px){
 			display:none;
 		}
 	}
@@ -145,7 +145,7 @@ h1{
 		right:0;
 		width:23.351rem;
 		height:9.681rem;
-		@media ( max-width: 760px){
+		@media ( max-width: 768px){
 			display:none;
 
 	}

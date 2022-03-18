@@ -58,7 +58,7 @@ const Wrapper = styled.div`
     width: 34rem;
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 768px) {
     width: auto;
   }
   .p1 {

@@ -20,7 +20,7 @@ const Wrapper = styled.div`
     color: var(--title-active);
     cursor: pointer;
 
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
       font-size: 16px;
       line-height: 24px;
     }
@@ -33,7 +33,7 @@ const Wrapper = styled.div`
     opacity: 0;
     color: var(--title-active);
 
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
       font-size: 14px;
       line-height: 18px;
     }
@@ -56,7 +56,7 @@ const Wrapper = styled.div`
     }
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 768px) {
     padding: 0 2.4rem;
 
     .acc-title {
