@@ -297,6 +297,7 @@ const EditWishList = ({ getWishLists }) => {
           <button
             type="button"
             onClick={() => {
+              dispatch(clearTempList());
               navigate(-1);
             }}
           >

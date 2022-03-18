@@ -101,9 +101,9 @@ h1{
 
 		margin-top:6.4rem;
 		margin-bottom:16.42rem;
-		width: 23.2rem;
+		// width: 23.2rem;
 		height: 6.4rem;
-		white-space: normal;
+		// white-space: normal;
 		padding: 0 2.8rem;
 
 		@media ( max-width: 1060px){
@@ -152,75 +152,34 @@ h1{
 `;
 
 const Sec1 = () => {
-<<<<<<< HEAD
   const navigate = useNavigate();
 
   return (
     <Wrapper>
       <div className="header">
         <div className="text">
-          <h1 className="title-plus">
-            Shoot a <span className="wish">Wish</span> and Share With{" "}
-            <span className="friends">Friends!</span>
+          <h1 className="title-1">
+            Shoot a <span className="wish">Wish</span> and
+            <span className="ft"> Share.</span>
           </h1>
           <p className="subtitle-2">
-            Create a wish list in minutes and share to your friends on your
-            favourite platforms!
+            Get the best gifts from your best people, create a wish list in
+            minutes and share to your friends on your favourite platforms!
           </p>
           <Button
-            className="btn"
+            className="btn large"
             text="Create a Wish list for Free"
-            onClick={() => navigate("/home/new-wishlist")}
+            onClick={() => navigate("new-wishlist")}
           />
         </div>
         <div className="imgWrapper">
-          {/* Responsive image using art direction and resolution switching
-                    Could not use Density switching because we do not have images of different image density */}
-          {/* <picture>
-						<source srcSet={hm_hero_1sm} media="(max-width:76em)" /> */}
-          <img
-            // srcSet={`${hm_hero_1} 639w`}
-            // sizes="(max-width:144.0rem) 44vw, (max-width:76.0rem) 87vw, 63.9rem"
-            alt="hm_hero_1"
-            src={hm_hero_1}
-          />
-          {/* </picture> */}
+          <img alt="hm_hero_1" src={hm_hero_1} />
         </div>
       </div>
       <img className="wave1" src={wave1} alt="wave" />
       <img className="wave2" src={wave2} alt="wave" />
     </Wrapper>
   );
-=======
-	const navigate = useNavigate();
-
-	return (
-		<Wrapper>
-			<div className="header">
-				<div className="text">
-					<h1 className="title-1">
-						Shoot a <span className="wish">Wish</span> and
-						<span className="ft"> Share.</span>
-					</h1>
-					<p className="subtitle-2">
-						Get the best gifts from your best people, create a wish list in
-						minutes and share to your friends on your favourite platforms!
-					</p>
-					<Button
-						className="btn"
-						text="Create a Wish list for Free"
-						onClick={() => navigate("new-wishlist")}
-					/>
-				</div>
-				<div className="imgWrapper">
-					<img alt="hm_hero_1" src={hm_hero_1} />
-				</div>
-			</div>
-			<img className="wave1" src={wave1} alt="wave" />
-			<img className="wave2" src={wave2} alt="wave" />
-		</Wrapper>
-	);
->>>>>>> landing
 };
 
 export default Sec1;

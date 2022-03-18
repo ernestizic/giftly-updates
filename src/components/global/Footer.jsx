@@ -93,6 +93,12 @@ const Wrapper = styled.div`
     form {
       margin-top: 2.4rem;
     }
+
+    .link {
+      display: block;
+      margin-bottom: 12px;
+      width: max-content;
+    }
   }
 
   form {
@@ -147,10 +153,10 @@ const Footer = () => {
     <Wrapper>
       <div className="item_1">
         <Logo className="logo" />
-        <p style={{ marginBottom: "0.8rem" }}>
+        <p style={{ marginBottom: "0.8rem" }} className="subtitle-4">
           ❤️ Giftly is a platform that makes it easy
         </p>
-        <p>
+        <p className="subtitle-4">
           Giftly is a platform that makes it easy for your friends to get you
           the best gifts. Create your wish lists and share them with your
           friends.
@@ -171,19 +177,19 @@ const Footer = () => {
       </div>
       <div className="item_2">
         <div>
-          <Link to="/faqs" className="link colorWhite">
+          <Link to="/faqs" className="link colorWhite subtitle-3">
             FAQs
           </Link>
-          <Link to="/terms" className="link colorWhite">
+          <Link to="/terms" className="link colorWhite subtitle-3">
             {" "}
             Terms of use
           </Link>
-          <Link to="/privacy-policy" className="link colorWhite">
+          <Link to="/privacy-policy" className="link colorWhite subtitle-3">
             Privacy policy{" "}
           </Link>
         </div>
         <div>
-          <a href="/home" className="link colorWhite">
+          <a href="/home" className="link colorWhite subtitle-3">
             Find friends
           </a>
         </div>

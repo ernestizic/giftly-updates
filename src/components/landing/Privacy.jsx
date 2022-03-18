@@ -6,71 +6,69 @@ import data from "assets/data.json";
 import Nav2 from "./components/Nav2";
 
 const Wrapper = styled.div`
-	.ctn {
-		padding: 9.6rem 0 10.1rem 12rem;
+  .ctn {
+    padding: 9.6rem 0 10.1rem 12rem;
 
-		@media (max-width: 1000px){
-		padding: 9.6rem 0 10.1rem 5rem;
+    @media (max-width: 1000px) {
+      padding: 9.6rem 0 10.1rem 5rem;
+    }
 
-		}
+    display: flex;
+    & > :first-child {
+      width: 95.5rem;
+      @media (max-width: 900px) {
+        width: auto;
+        max-width: 89rem;
+      }
+    }
+    & > :last-child {
+      margin-left: auto;
+    }
 
-		display: flex;
-		&>:first-child{
-			width: 95.5rem;
-			@media (max-width: 900px){
-				width:auto;
-				max-width: 89rem;
-			}
+    @media (max-width: 760px) {
+      width: auto;
+      padding: 4.8rem 2.4rem;
+    }
+    @media (max-width: 760px) {
+      width: auto;
+      padding: 4.8rem 1rem;
+    }
+  }
 
-		}
-		&>:last-child{
-			margin-left: auto;
-		}
-		
-		@media (max-width: 760px){
-			width: auto;
-			padding: 4.8rem 2.4rem;
-		}
-		@media (max-width: 760px){
-			width: auto;
-			padding: 4.8rem 1rem;
-		}
-	}
-
-	h2,
-	h3,
-	h5 {
-		font-family: "BoldenVan";
-		color: var(--title-active);
-	}
-	h2 {
-		font-size: 4.8rem;
-		line-height: 5.6rem;
-		padding-bottom: 4.8rem;
-		@media (max-width: 1000px){
-			font-size: 3.6rem;
-			line-height: 4.8rem;
-		}
-	}
-	h3 {
-		font-size: 3.6rem;
-		line-height: 4.8rem;
-		margin-bottom: 1.6rem;
-		margin-top: 4.8rem;
-		@media (max-width: 1000px){
-			font-size: 2.4rem;
-			line-height: 3.6rem;
-		}
-	}
-	h5 {
-		font-size: 2.4rem;
-		line-height: 3.6rem;
-		margin: 1.6rem 0;
-		@media (max-width: 1000px){
-			font-size: 1.8rem;
-			line-height: 2.4rem;
-		}
-	}
+  h2,
+  h3,
+  h5 {
+    font-family: "BoldenVan";
+    color: var(--title-active);
+  }
+  h2 {
+    font-size: 4.8rem;
+    line-height: 5.6rem;
+    padding-bottom: 4.8rem;
+    @media (max-width: 1000px) {
+      font-size: 3.6rem;
+      line-height: 4.8rem;
+    }
+  }
+  h3 {
+    font-size: 3.6rem;
+    line-height: 4.8rem;
+    margin-bottom: 1.6rem;
+    margin-top: 4.8rem;
+    @media (max-width: 1000px) {
+      font-size: 2.4rem;
+      line-height: 3.6rem;
+    }
+  }
+  h5 {
+    font-size: 2.4rem;
+    line-height: 3.6rem;
+    margin: 1.6rem 0;
+    @media (max-width: 1000px) {
+      font-size: 1.8rem;
+      line-height: 2.4rem;
+    }
+  }
 
   h2,
   h3,
@@ -95,48 +93,13 @@ const Wrapper = styled.div`
     margin: 1.6rem 0;
   }
 
-<<<<<<< HEAD
-  .child {
-    margin-top: 10rem;
-  }
-=======
-	.list {
-		margin-left: 3rem;
-		position: relative;
-		&::before {
-			content: "";
-			display: block;
-			position: absolute;
-			margin-left: -1.5rem;
-			margin-top: 1.5rem;
-			height: 5px !important;
-			width: 5px !important;
-			border-radius: 2.5px;
-			background-color: var(--title-active);
-		}
-	}
-	.mg-top {
-		margin-top: 3.2rem;
-	}
-	.mg-btm {
-		margin-bottom: 3.2rem;
-	}
->>>>>>> landing
-
-  .priv1 + .priv1 {
-    margin-top: 3.2rem;
-  }
-
-<<<<<<< HEAD
   .list {
-    /* display: flex; */
     margin-left: 3rem;
     position: relative;
     &::before {
       content: "";
       display: block;
       position: absolute;
-      /* margin: 0 1.5rem 0; */
       margin-left: -1.5rem;
       margin-top: 1.5rem;
       height: 5px !important;
@@ -152,23 +115,19 @@ const Wrapper = styled.div`
     margin-bottom: 3.2rem;
   }
 
-  .normal + .list {
-    margin-top: 1.6rem;
+  .priv1 + .priv1 {
+    margin-top: 3.2rem;
   }
-  .list + .normal {
-    margin-top: 1.6rem;
+
+  p,
+  li {
+    font-size: 2rem;
+    line-height: 2.8rem;
+    @media (max-width: 1000px) {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+    }
   }
-=======
-	p,
-	li {
-		font-size: 2rem;
-		line-height: 2.8rem;
-		@media (max-width: 1000px){
-			font-size: 1.6rem;
-			line-height: 2.4rem;
-		}
-	}
->>>>>>> landing
 `;
 
 const privacyPolicy = data.privacyPolicy;

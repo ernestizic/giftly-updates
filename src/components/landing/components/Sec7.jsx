@@ -13,22 +13,25 @@ const FAQS = [
   },
   {
     question: "How do I add an item to my wish list?",
-    answer: "",
+    answer:
+      "You can add items to your wish list once you click on ‘Create wish list.’ After adding an item, include a link to purchase the item. To add an item to your wish list after creating the wish list, click on ‘Add item.’",
   },
   {
     question: "How many wish lists can I create?",
-    answer: "",
+    answer:
+      "You can create multiple wish lists for various occasions on Giftly. You can also add as many items as you want to your wish list.",
   },
 ];
 
 const Wrapper = styled.div`
   background-color: white;
   padding: 12rem 9.6rem;
+
   .accordion + .accordion {
     margin-top: 3.2rem;
   }
- 
-  .mb{
+
+  .mb {
     display: none;
   }
 
@@ -49,27 +52,16 @@ const Wrapper = styled.div`
     }
 
     @media (max-width: 760px) {
-      .dsk{
-    display:  none;
-  }
-  .mb{
-    display: block;
-  }
+      .dsk {
+        display: none;
+      }
+      .mb {
+        display: block;
+      }
       max-width: 32.7rem;
       padding: 0 2.4rem;
       font-size: 2.4rem;
       line-height: 3.6rem;
-    }
-  }
-
-
-  p {
-    margin: 2.4rem auto 4.8rem;
-  }
-  @media (max-width: 760px) {
-    button {
-      margin-left: 2.4rem;
-      height: 4.8rem;
     }
   }
 `;
@@ -79,7 +71,9 @@ const Sec7 = () => {
   return (
     <Wrapper>
       <h3 className="title-2">
-        <span className="dsk">We answered a few nagging questions you might have!</span>
+        <span className="dsk">
+          We answered a few nagging questions you might have!
+        </span>
         <span className="mb">We answered frequently asked questions</span>
       </h3>
       {FAQS.map((item) => (
@@ -90,12 +84,12 @@ const Sec7 = () => {
           answer={item.answer}
         />
       ))}
-      <Spacer y={2.4} />
+      <Spacer y={4.8} />
       <Button
         width="18rem"
-        height="7.4rem"
-        text="Create a wishlist"
-        onClick={() => navigate("/home/new-wishlist")}
+        className="large"
+        text="Learn more"
+        onClick={() => navigate("/faqs")}
       />
     </Wrapper>
   );

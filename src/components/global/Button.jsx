@@ -80,6 +80,8 @@ const Wrapper = styled.button`
   }
 
   @media screen and (max-width: 768px) {
+    height: 48px;
+
     &.large {
       height: 48px;
       width: ${(props) => props.width ?? "max-content"};
