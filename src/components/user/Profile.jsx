@@ -46,9 +46,82 @@ const Profile = () => {
   const [imgDetails, setImgDetails] = useState(null);
   const [userImage, setUserImage] = useState(user?.avatar);
 
+  const uploadAvatar = async (file) => {
+    const data = new FormData();
+
+    data.append("avatar", file);
+
+    try {
+      const res = await axios.patch(`${base_url}/user/avatar`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+
+      if (!res) {
+        dispatch(showAlert("An error occurred"));
+        return;
+      }
+
+      if (res.data.status === "success") {
+        dispatch(setUser({ ...user, avatar: res.data.data }));
+        dispatch(showAlert(res.data.message));
+        return;
+      }
+
+      dispatch(showAlert(res.data.message));
+    } catch (e) {
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+      dispatch(showAlert(e.response.data.message || "Something went wrong"));
+    }
+  };
+
+  const removeAvatar = async () => {
+    try {
+      const res = await axios.delete(`${base_url}/user/avatar`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+
+      if (!res) {
+        dispatch(showAlert("An error occurred"));
+        return;
+      }
+
+      if (res.data.status === "success") {
+        dispatch(setUser(res.data.data));
+        dispatch(showAlert(res.data.message));
+        return;
+      }
+
+      dispatch(showAlert(res.data.message));
+    } catch (e) {
+      const timeout = setTimeout(() => {
+        dispatch(clearAlert());
+      }, 5000);
+      dispatch(setAlertTimeout(timeout));
+      dispatch(showAlert(e.response.data.message || "Something went wrong"));
+    }
+  };
+
   const loadFile = (e) => {
     const file = e.target.files[0];
     if (file) {
+      uploadAvatar(file);
       setImgDetails(file);
     }
   };
@@ -154,6 +227,7 @@ const Profile = () => {
                 <button
                   className="flexRow alignCenter subtitle-4 colorPrimaryMain"
                   onClick={() => {
+                    removeAvatar();
                     setUserImage(null);
                     setImgDetails(null);
                   }}
