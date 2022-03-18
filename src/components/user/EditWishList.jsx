@@ -7,7 +7,7 @@ import shareIcon from "assets/icons/share_primary.svg";
 import saveIcon from "assets/icons/save_white.svg";
 import { Navigate, useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import ItemRowGroup from "../wishlist/ItemRowGroup";
 import FormGroup from "components/global/FormGroup";
 import { Formik } from "formik";
@@ -177,7 +177,8 @@ const EditWishList = ({ getWishLists }) => {
     }
   };
 
-  // REFACTOR DEBOUNCE
+  // eslint-disable-next-line
+  const updateListItems_memoed = useCallback(debounce(updateListItem, 500), []);
 
   const setFieldValue = (rowIndex, fieldName, fieldValue) => {
     let temp = tempList.map((item) => Object.assign({}, item));
@@ -187,9 +188,8 @@ const EditWishList = ({ getWishLists }) => {
     dispatch(setTempList(temp));
 
     // update list items
-    const update = debounce(() => updateListItem(temp[rowIndex]));
-
-    update();
+    // const update = debounce(() => updateListItem(temp[rowIndex]));
+    updateListItems_memoed(temp[rowIndex]);
   };
 
   const removeRow = (index) => {
