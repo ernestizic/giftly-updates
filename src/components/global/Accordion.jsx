@@ -5,22 +5,31 @@ import down_arrow from "assets/icons/down_arrow.svg";
 
 const Wrapper = styled.div`
 	position: relative;
-	padding: 
-	${props=> props.withPadding  ? "0 " : "0 2.4rem" };
-	@media (max-width: 760px){
+	padding: ${(props) => (props.withPadding ? "0 " : "0 2.4rem")};
+	@media (max-width: 760px) {
 		padding: 0 2.4rem;
-
-		}
+	}
 	transition: all 0.3s;
 	border-radius: 0.8rem;
 
-    img{
-        display: inline-block;
-        margin: auto;
-        align-self: center;
-        height: 1.2rem;
-        margin-left: 1.466rem;
-    }
+	img {
+		display: inline-block;
+		margin: auto;
+		align-self: center;
+		height: 1.2rem;
+		margin-left: 1.466rem;
+	}
+
+
+	h4 {
+			color: var(--title-active);
+			font-size: 2rem;
+			line-height: 3.2rem;
+			@media (max-width: 760px) {
+				font-size: 1.6rem;
+				line-height: 2.4rem;
+			}
+		}
 
 	p {
 		margin-top: 1.6rem;
@@ -30,6 +39,10 @@ const Wrapper = styled.div`
 		color: var(--title-active);
 		font-size: 1.8rem;
 		line-height: 2.8rem;
+		@media (max-width: 760px) {
+			font-size: 1.4rem;
+			line-height: 1.8rem;
+		}
 	}
 
 	&.open {
@@ -38,6 +51,11 @@ const Wrapper = styled.div`
 		padding: 2.4rem;
 		h4 {
 			color: var(--primary-main);
+		
+			/* @media (max-width: 760px) {
+				font-size: 1.6rem;
+				line-height: 2.4rem;
+			} */
 		}
 
 		p {
@@ -50,7 +68,7 @@ const Wrapper = styled.div`
 	}
 `;
 
-const Accordion = ({ question, answer, className,withPadding }) => {
+const Accordion = ({ question, answer, className, withPadding }) => {
 	const [isOpen, setIsOpen] = React.useState(false);
 
 	const handleClick = () => {
@@ -59,11 +77,11 @@ const Accordion = ({ question, answer, className,withPadding }) => {
 
 	return (
 		<Wrapper
-		withPadding={withPadding}
+			withPadding={withPadding}
 			className={`${className || ""} ${isOpen ? "open" : ""}`}
 			onClick={handleClick}
 		>
-			<h4 className="subtitle-2">
+			<h4>
 				{question}
 				<img src={isOpen ? up_arrow_pink : down_arrow} alt="up_arrow_pink" />
 			</h4>

@@ -4,10 +4,10 @@ import Nav from "components/global/Nav";
 import Footer from "components/global/Footer";
 import Accordion from "../global/Accordion";
 import Nav2 from "./components/Nav2";
-import data from "assets/data.json"
+import data from "assets/data.json";
 
 const Wrapper = styled.div`
-	background-color: var(--white);
+	background-color: white;
 	min-height: 100vh;
 	padding: 0;
 	margin: 0;
@@ -19,13 +19,15 @@ const Wrapper = styled.div`
 		@media (max-width: 760px) {
 			display: block;
 		}
-
-	
 	}
 	color: var(--title-active);
 	.acc,
 	h1 {
 		margin: 0 12rem;
+		@media (max-width: 1000px){
+			margin: 0 5rem;
+
+		}
 		@media (max-width: 760px) {
 			margin: 3.2rem 0;
 		}
@@ -41,10 +43,6 @@ const Wrapper = styled.div`
 		margin-bottom: 0;
 	}
 `;
-
-
-
-
 
 const FAQs = () => {
 	return (

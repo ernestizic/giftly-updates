@@ -22,36 +22,46 @@ const FAQS = [
 ];
 
 const Wrapper = styled.div`
-  background-color: var(--white);
+  background-color: white;
   padding: 12rem 9.6rem;
   .accordion + .accordion {
     margin-top: 3.2rem;
   }
+ 
+  .mb{
+    display: none;
+  }
 
   @media (max-width: 760px) {
-    padding: 12rem 0;
+    padding: 4.8rem 2.4rem;
   }
 
   h3 {
     color: black;
     margin-bottom: 5.6rem;
-    width: 74%;
-    @media (max-width: 760px) {
+    max-width: 89.5rem;
+
+    @media (max-width: 1050px) {
       width: auto;
+      max-width: 57rem;
+      font-size: 3.2rem;
+      line-height: 4rem;
+    }
+
+    @media (max-width: 760px) {
+      .dsk{
+    display:  none;
+  }
+  .mb{
+    display: block;
+  }
+      max-width: 32.7rem;
       padding: 0 2.4rem;
       font-size: 2.4rem;
       line-height: 3.6rem;
     }
   }
-  /* & > * {
-		@media (max-width: 760px) {
-			width: 67%;
-			text-align: center;
-		}
-		@media (max-width: 570px) {
-			width: 87.2%;
-		}
-	} */
+
 
   p {
     margin: 2.4rem auto 4.8rem;
@@ -69,7 +79,8 @@ const Sec7 = () => {
   return (
     <Wrapper>
       <h3 className="title-2">
-        We answered a few nagging questions you might have!
+        <span className="dsk">We answered a few nagging questions you might have!</span>
+        <span className="mb">We answered frequently asked questions</span>
       </h3>
       {FAQS.map((item) => (
         <Accordion

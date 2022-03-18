@@ -7,14 +7,20 @@ import twitter from "assets/icons/twitter_wt.svg";
 // import send from "assets/icons/send_wt.svg";
 import { Link } from "react-router-dom";
 const Wrapper = styled.div`
-  padding: 48px 120px;
+  padding: 12rem 4.8rem;
   display: flex;
   font-size: 1.6rem;
   line-height: 2.4rem;
   background-color: var(--title-active);
 
+  @media (max-width: 950px) {
+    /* padding: 7.3rem 2.4rem; */
+    /* flex-direction: column; */
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+  }
   @media (max-width: 760px) {
-    padding: 72px 24px;
+    padding: 7.3rem 2.4rem;
     flex-direction: column;
     font-size: 1.4rem;
     line-height: 1.8rem;
@@ -27,7 +33,11 @@ const Wrapper = styled.div`
   .item_1 {
     width: 35rem;
 
-    color: var(--white);
+    @media (max-width: 950px) {
+      width: 27.8rem;
+    }
+
+    color: white;
     .media {
       margin-top: 4rem;
     }
@@ -49,12 +59,8 @@ const Wrapper = styled.div`
   .item_2 {
     display: flex;
     margin-top: 5.1rem;
-    color: var(--white);
 
-    .link {
-      display: block;
-      margin-bottom: 12px;
-    }
+    color: white;
 
     @media (max-width: 760px) {
       flex-direction: column;
@@ -64,6 +70,11 @@ const Wrapper = styled.div`
 
     & > :first-child {
       width: 16rem;
+
+      @media (max-width: 950px) {
+        width: 9rem;
+      }
+
       p {
         margin-bottom: 1.2rem;
       }
@@ -71,6 +82,9 @@ const Wrapper = styled.div`
     div + div {
       margin-left: 3rem;
 
+      @media (max-width: 770px) {
+        margin-left: 1.5rem;
+      }
       @media (max-width: 760px) {
         margin-left: 0;
       }

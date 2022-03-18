@@ -269,7 +269,7 @@ const Nav = ({ wt }) => {
       </div>
       <div className="flexRow alignCenter">
         <Button
-          bg="white"
+          bg="var(--accent_2-main)"
           color="var(--primary-main)"
           text="Login"
           onClick={() => navigate("/home/login")}
