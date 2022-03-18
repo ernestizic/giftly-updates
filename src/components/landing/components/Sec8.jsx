@@ -104,7 +104,7 @@ const Sec8 = () => {
       <Button
         width="20rem"
         text="Sign me up"
-        onClick={() => navigate("sign-up")}
+        onClick={() => navigate("/home/sign-up")}
       />
     </Wrapper>
   );

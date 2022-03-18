@@ -169,7 +169,7 @@ const Sec1 = () => {
           <Button
             className="btn large"
             text="Create a Wish list for Free"
-            onClick={() => navigate("new-wishlist")}
+            onClick={() => navigate("/home/new-wishlist")}
           />
         </div>
         <div className="imgWrapper">

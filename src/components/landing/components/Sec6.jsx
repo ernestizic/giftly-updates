@@ -119,7 +119,7 @@ const Sec6 = () => {
             height="6.4rem"
             text="Create a wishlist"
             className="large"
-            onClick={() => navigate("new-wishlist")}
+            onClick={() => navigate("/home/new-wishlist")}
           />
         </div>
       </div>
