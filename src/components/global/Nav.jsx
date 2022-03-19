@@ -91,6 +91,9 @@ const SearchBox = styled(Search)`
   padding: 0;
   width: 320px;
   position: relative;
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
 
   .searchInputWrapper {
     width: 100%;
