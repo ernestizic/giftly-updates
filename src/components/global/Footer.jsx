@@ -7,7 +7,7 @@ import twitter from "assets/icons/twitter_wt.svg";
 // import send from "assets/icons/send_wt.svg";
 import { Link } from "react-router-dom";
 const Wrapper = styled.div`
-  padding: 12rem 4.8rem;
+  padding: 48px 120px;
   display: flex;
   font-size: 1.6rem;
   line-height: 2.4rem;
@@ -154,7 +154,8 @@ const Footer = () => {
       <div className="item_1">
         <Logo className="logo" />
         <p style={{ marginBottom: "0.8rem" }} className="subtitle-4">
-          ❤️ Giftly is a platform that makes it easy
+          <span style={{ fontSize: "8px" }}>🤍</span>&nbsp;&nbsp;Giftly Inc. ©
+          2021. Crafted with love
         </p>
         <p className="subtitle-4">
           Giftly is a platform that makes it easy for your friends to get you
