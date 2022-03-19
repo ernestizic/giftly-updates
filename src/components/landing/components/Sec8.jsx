@@ -74,8 +74,8 @@ const Wrapper = styled.div`
 
     p {
       margin: 0.8rem auto 3rem;
-      font-size: 1.4rem;
-      line-height: 1.8rem;
+      font-size: 16px;
+      line-height: 24px;
       width: 28.8rem;
     }
 
