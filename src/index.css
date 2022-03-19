@@ -1,14 +1,14 @@
 @font-face {
-  font-family: "Product Sans Bold";
-  src: url("./assets/fonts/product_sans/ProductSans-Bold.ttf");
+  font-family: "Gelion Bold";
+  src: url("./assets/fonts/gelion-cufonfonts/Gelion\ Bold.ttf");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Product Sans Regular";
-  src: url("./assets/fonts/product_sans/ProductSans-Regular.ttf");
+  font-family: "Gelion Regular";
+  src: url("./assets/fonts/gelion-cufonfonts/Gelion\ Regular.ttf");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -51,8 +51,8 @@
     saturate(2%) hue-rotate(284deg) brightness(113%) contrast(100%);
   --shadow_1: 0px 25px 35px 0px #00000008;
   --shadow_2: 0px 2px 5px 0px #0000000d;
-  --font_1-regular: "Product Sans Regular";
-  --font_1-bold: "Product Sans Bold";
+  --font_1-regular: "Gelion Regular";
+  --font_1-bold: "Gelion Bold";
   --font_2: "Boldenvan";
 }
 
