@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
 	padding: 0 12rem;
+	padding-bottom: 120px;
 	margin-top:6.553rem;
 	position: relative;
 	
@@ -51,6 +52,7 @@ h1{
 
 	.header {
 		display: flex;
+		align-items: center;
 
 		@media (max-width: 768px){
 			flex-direction: column;
@@ -66,10 +68,10 @@ h1{
 
 	.title-1 {
 		color: white;
-		.wish {
+		.bad {
 			color: var(--accent_1-light);
 		}
-		.ft {
+		.gifts {
 			color: var(--primary-main);
 		}
 		@media (max-width: 768px) {
@@ -100,7 +102,6 @@ h1{
 	.btn {
 
 		margin-top:6.4rem;
-		margin-bottom:16.42rem;
 		// width: 23.2rem;
 		height: 6.4rem;
 		// white-space: normal;
@@ -159,8 +160,9 @@ const Sec1 = () => {
       <div className="header">
         <div className="text">
           <h1 className="title-1">
-            Shoot a <span className="wish">Wish</span> and
-            <span className="ft"> Share.</span>
+            No more <br />
+            <span className="bad">bad</span>
+            <span className="gifts"> gifts</span>
           </h1>
           <p className="subtitle-2">
             Get the best gifts from your best people, create a wish list in

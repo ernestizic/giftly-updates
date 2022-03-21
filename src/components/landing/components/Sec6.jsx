@@ -103,8 +103,8 @@ const Sec6 = () => {
       </div>
       <div className="flexColumn justifyCenter textContent">
         <h1 className="title-1 title">
-          No more <span className="fr">bad</span>{" "}
-          <span className="sd">gifts</span>
+          Shoot a <span className="fr">wish</span> and{" "}
+          <span className="sd">Share</span>
         </h1>
         <Spacer y={2.4} />
         <p className="subtitle-2">
