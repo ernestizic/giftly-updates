@@ -147,7 +147,9 @@ const WishListCard = ({
         )}
       </Wrapper>
       {/* Options */}
-      {optionsOpen && <CardOptions setOpen={setOptionsOpen} />}
+      {optionsOpen && (
+        <CardOptions setOpen={setOptionsOpen} slug={details.slug} />
+      )}
     </Container>
   );
 };

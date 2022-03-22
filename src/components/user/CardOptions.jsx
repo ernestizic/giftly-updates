@@ -1,9 +1,11 @@
 import styled, { keyframes } from "styled-components";
 import { useClickOutside } from "webrix/hooks";
 import shareIcon from "assets/icons/share.svg";
+import eyeIcon from "assets/icons/eye.svg";
 import trashIcon from "assets/icons/trash_danger.svg";
 import Spacer from "components/global/Spacer";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const fadeIn = keyframes`
   from {
@@ -26,7 +28,7 @@ const Wrapper = styled.div`
   pointer-events: none;
   opacity: 0;
   box-shadow: var(--shadow_2);
-  width: 164px;
+  min-width: 164px;
   border-radius: 8px;
   background-color: #ffffff;
   animation: ${fadeIn} 0.2s ease forwards;
@@ -34,6 +36,7 @@ const Wrapper = styled.div`
 
   .item {
     padding: 16px;
+    width: 100%;
 
     &.delete {
       background-color: var(--off-white);
@@ -41,8 +44,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const CardOptions = ({ setOpen }) => {
+const CardOptions = ({ setOpen, slug }) => {
   const navigate = useNavigate();
+
+  const username = useSelector((state) => state.auth.user.username);
+
   const handleOnMouseDownCapture = useClickOutside(() => {
     setOpen(false);
   });
@@ -56,6 +62,14 @@ const CardOptions = ({ setOpen }) => {
         <img src={shareIcon} alt="share" className="icon" />
         <Spacer x={0.8} />
         <span className="body-3 text colorTitleActive">Share wish list</span>
+      </button>
+      <button
+        className="flexRow alignCenter item"
+        onClick={() => navigate(`/${username}/${slug}`)}
+      >
+        <img src={eyeIcon} alt="view" className="icon" />
+        <Spacer x={0.8} />
+        <span className="body-3 text colorTitleActive">Preview wish list</span>
       </button>
       <button
         className="flexRow alignCenter item delete"
