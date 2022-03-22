@@ -243,13 +243,13 @@ const Nav = ({ wt }) => {
                       className="flexRow alignCenter item colorTitleActive"
                     >
                       {item.avatar ? (
-                        <ImgWrapper size={40} imgHeight="100%">
+                        <ImgWrapper size={4} imgHeight="100%">
                           <img src={item.avatar} alt="." />
                         </ImgWrapper>
                       ) : (
                         <Initials size="40" textSize="18" bg="#032250">
-                          {item?.username.charAt(0)}
-                          {item?.username.charAt(1)}
+                          {item?.first_name.charAt(0)}
+                          {item?.last_name.charAt(0)}
                         </Initials>
                       )}
                       <Spacer x={1.6} />

@@ -149,15 +149,12 @@ export const Initials = styled.div`
   justify-content: center;
   border-radius: 50%;
   flex-shrink: 0;
-
-  .text {
-    font-size: ${(props) => props.textSize ?? "24"}px;
-    font-style: normal;
-    font-weight: 900;
-    line-height: auto;
-    letter-spacing: 0px;
-    text-transform: capitalize;
-  }
+  font-size: ${(props) => props.textSize ?? "24"}px;
+  font-style: normal;
+  font-weight: 900;
+  // line-height: 100%;
+  letter-spacing: 0px;
+  text-transform: uppercase;
 `;
 
 export const SubHeader = styled.div`
