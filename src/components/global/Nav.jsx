@@ -92,8 +92,8 @@ const SearchBox = styled(Search)`
   width: 320px;
   position: relative;
   border: none;
-  border-radius: 4px;
-  overflow: hidden;
+  overflow: visible;
+  height: auto;
 
   .searchInputWrapper {
     width: 100%;
@@ -102,7 +102,8 @@ const SearchBox = styled(Search)`
     background-color: #ffffff;
     z-index: 5;
     padding: 0 24px;
-    height: 100%;
+    height: 48px;
+    border-radius: 4px;
   }
 
   .fieldWrapper {
