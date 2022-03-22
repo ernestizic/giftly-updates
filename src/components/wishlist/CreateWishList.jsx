@@ -203,7 +203,7 @@ const CreateWishList = () => {
     <Wrapper className="flexColumn alignCenter">
       <Card>
         <div className="flexRow alignCenter">
-          <button type="button" onClick={() => navigate(-1)}>
+          <button type="button" onClick={() => navigate("/home")}>
             <img src={closeIcon} alt="icon" />
           </button>
         </div>
