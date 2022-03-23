@@ -76,7 +76,7 @@ const Wrapper = styled.div`
 		.mag-tp {
 			margin-top: 3.2rem;
 		}
-		@media (max-width: 760px) {
+		@media (max-width: 768px) {
 			width: auto;
 			padding: 4.8rem 2.4rem;
 		}

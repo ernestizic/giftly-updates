@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 		display: flex;
 		padding-top: 9.6rem;
 		padding-bottom: 9.6rem;
-		@media (max-width: 760px) {
+		@media (max-width: 768px) {
 			display: block;
 		}
 	}
@@ -24,17 +24,16 @@ const Wrapper = styled.div`
 	.acc,
 	h1 {
 		margin: 0 12rem;
-		@media (max-width: 1000px){
+		@media (max-width: 1000px) {
 			margin: 0 5rem;
-
 		}
-		@media (max-width: 760px) {
+		@media (max-width: 768px) {
 			margin: 3.2rem 0;
 		}
 	}
 	h1 {
 		margin-bottom: 4.8rem;
-		@media (max-width: 760px) {
+		@media (max-width: 768px) {
 			margin: 3.2rem 2.4rem;
 		}
 	}

@@ -13,6 +13,12 @@ const Wrapper = styled.div`
 	justify-content: space-between;
 	position: relative;
 
+	@media (min-width: 1440px) {
+		justify-content: center;
+		& > div + div {
+			margin-left: 194px;
+		}
+	}
 	@media (max-width: 1300px) {
 		padding: 9.6rem 11rem;
 	}
@@ -88,7 +94,7 @@ const Wrapper = styled.div`
 			}
 		}
 
-		@media (max-width: 760px) {
+		@media (max-width: 768px) {
 			width: auto;
 			text-align: center;
 			& > * {
@@ -97,11 +103,11 @@ const Wrapper = styled.div`
 		}
 	}
 
-	@media (max-width: 760px) {
+	@media (max-width: 768px) {
 		flex-direction: column;
 		padding: 96px 0;
 		padding-top: 160px;
-   align-items:center;
+		align-items: center;
 
 		&& h1 {
 			font-size: 4.8rem;

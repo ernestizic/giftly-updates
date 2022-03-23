@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 			color: var(--primary-main);
 		}
 
-		@media (max-width: 760px) {
+		@media (max-width: 768px) {
 			font-size: 4.8rem;
 			line-height: 4.8rem;
 		}
@@ -68,7 +68,7 @@ const Wrapper = styled.div`
 		}
 	}
 
-	@media (max-width: 760px) {
+	@media (max-width: 768px) {
 		grid-template-columns: 1fr;
 		grid-template-rows: 55rem 55rem;
 

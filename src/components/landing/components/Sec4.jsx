@@ -7,20 +7,29 @@ const Wrapper = styled.div`
 	position: relative;
 	height: 72rem;
 	padding: 9.6rem 0;
-	
-	@media (max-width: 1200px){
+	/* .bg {
+		display: none;
+	} */
+
+	/* @media (min-width: 1440) {
+		.bg {
+			display: block;
+		}
+		.ctn {
+			display: none;
+		}
+	} */
+
+	@media (max-width: 1200px) {
 		height: 54rem;
 		padding: 8rem 0;
-
 	}
-	@media (max-width: 900px){
+	@media (max-width: 900px) {
 		height: 52rem;
 		padding: 7.5rem 0;
-
 	}
-	@media (max-width: 800px){
+	@media (max-width: 800px) {
 		height: 40rem;
-
 	}
 
 	.mb {
@@ -31,7 +40,7 @@ const Wrapper = styled.div`
 		justify-content: space-between;
 		align-items: stretch;
 		color: white;
-		@media (max-width: 760px) {
+		@media (max-width: 768px) {
 			display: flex;
 		}
 	}
@@ -93,13 +102,13 @@ const Wrapper = styled.div`
 			}
 		}
 
-		@media (max-width: 760px) {
+		@media (max-width: 768px) {
 			display: none;
 		}
 	}
 
 	p {
-		@media (max-width: 760px) {
+		@media (max-width: 768px) {
 			font-size: 48px;
 			line-height: 48px;
 		}
@@ -109,7 +118,7 @@ const Wrapper = styled.div`
 			width: 5.6rem;
 			height: 5.6rem;
 			margin: 0 2rem;
-			@media (max-width: 760px) {
+			@media (max-width: 768px) {
 				margin: 0 auto;
 			}
 			padding: 0;
@@ -119,7 +128,6 @@ const Wrapper = styled.div`
 		span {
 			width: fit-content;
 		}
-		
 	}
 
 	.title-1 {
@@ -127,17 +135,17 @@ const Wrapper = styled.div`
 		white-space: nowrap;
 	}
 
-	@media screen and (max-width: 760px) {
+	@media screen and (max-width: 768px) {
 		padding: 48px 0;
 		height: auto;
 
 		.mb {
 			gap: 32px;
 			justify-content: center;
-			p{
-				width: 100%;	
-				img{
-					height:3.2rem;
+			p {
+				width: 100%;
+				img {
+					height: 3.2rem;
 					width: 3.2rem;
 				}
 			}
@@ -149,6 +157,9 @@ const Star = () => <img src={star} alt="start" />;
 const Sec4 = () => {
 	return (
 		<Wrapper>
+			{/* <div className="bg">
+				<h1>Hellllllllllllllllllllllll</h1>
+			</div> */}
 			<div className="ctn">
 				<p className="title-1">
 					<span>Birthdays</span> <Star />
@@ -184,7 +195,7 @@ const Sec4 = () => {
 					Secr
 				</p>
 				<p className="title-1">
-				Shower <Star />
+					Shower <Star />
 					Weddings
 				</p>
 			</div>

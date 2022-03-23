@@ -6,7 +6,7 @@ import down_arrow from "assets/icons/down_arrow.svg";
 const Wrapper = styled.div`
 	position: relative;
 	padding: ${(props) => (props.withPadding ? "0 " : "0 2.4rem")};
-	@media (max-width: 760px) {
+	@media (max-width: 768px) {
 		padding: 0 2.4rem;
 	}
 	transition: all 0.3s;
@@ -20,16 +20,15 @@ const Wrapper = styled.div`
 		margin-left: 1.466rem;
 	}
 
-
 	h4 {
-			color: var(--title-active);
-			font-size: 2rem;
-			line-height: 3.2rem;
-			@media (max-width: 760px) {
-				font-size: 1.6rem;
-				line-height: 2.4rem;
-			}
+		color: var(--title-active);
+		font-size: 2rem;
+		line-height: 3.2rem;
+		@media (max-width: 768px) {
+			font-size: 1.6rem;
+			line-height: 2.4rem;
 		}
+	}
 
 	p {
 		margin-top: 1.6rem;
@@ -39,7 +38,7 @@ const Wrapper = styled.div`
 		color: var(--title-active);
 		font-size: 1.8rem;
 		line-height: 2.8rem;
-		@media (max-width: 760px) {
+		@media (max-width: 768px) {
 			font-size: 1.4rem;
 			line-height: 1.8rem;
 		}
@@ -51,8 +50,8 @@ const Wrapper = styled.div`
 		padding: 2.4rem;
 		h4 {
 			color: var(--primary-main);
-		
-			/* @media (max-width: 760px) {
+
+			/* @media (max-width: 768px) {
 				font-size: 1.6rem;
 				line-height: 2.4rem;
 			} */

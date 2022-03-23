@@ -10,6 +10,9 @@ const Wrapper = styled.div`
 	padding: 0 12rem;
 	margin-top:6.553rem;
 	position: relative;
+   display: flex;
+   justify-content: center;
+
 	
 h1{
 	color: white;
@@ -25,7 +28,7 @@ h1{
 	line-height: 5rem;
 	width: 22rem;
 	}
-	@media (max-width: 760px){
+	@media (max-width: 768px){
 		font-size: 4.8rem;
 	line-height: 4.8rem;
 	width: auto;
@@ -52,13 +55,14 @@ h1{
 	.header {
 		display: flex;
 
-		@media (max-width: 760px){
+		@media (max-width: 768px){
 			flex-direction: column;
 		}
 	
 	}
 	.text {
 		flex: 1;
+		max-width: 600px;
 		@media ( max-width: 760px){
 			text-align:center;
 		}
@@ -72,7 +76,7 @@ h1{
 		.ft {
 			color: var(--primary-main);
 		}
-		@media (max-width: 760px) {
+		@media (max-width: 768px) {
 				font-size: 4.8rem;
                 line-height: 5.6rem;
 			}
@@ -122,6 +126,8 @@ h1{
 	.imgWrapper {
 		/* width: 64rem; */
 		flex: 1;
+		max-width: 600px;
+
 
 		img,
 		source {

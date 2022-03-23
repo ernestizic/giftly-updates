@@ -57,7 +57,7 @@ const Wrapper = styled.div`
 		width: 34rem;
 	}
 
-	@media (max-width: 760px) {
+	@media (max-width: 768px) {
 		width: auto;
 	}
 	.p1 {
@@ -157,8 +157,8 @@ const Wrapper = styled.div`
 				font-size: 1rem;
 			}
 		}
-		.fieldWrapper{
-			height:  4rem;
+		.fieldWrapper {
+			height: 4rem;
 		}
 	}
 
