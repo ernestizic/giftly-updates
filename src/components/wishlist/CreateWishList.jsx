@@ -27,7 +27,7 @@ import {
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
-import { base_url } from "utils/utils";
+import { base_url, validURL } from "utils/utils";
 import axios from "axios";
 
 const Wrapper = styled(Backdrop)`
@@ -142,6 +142,10 @@ const CreateWishList = () => {
   };
 
   const handleShare = async () => {
+    const invalidLinks = tempList.filter(
+      (item) => item.link && item.link.length && !validURL(item.link)
+    );
+
     let timeout = setTimeout(() => {
       dispatch(clearAlert());
     }, 5000);
@@ -154,6 +158,11 @@ const CreateWishList = () => {
 
     if (!tempList[0].name) {
       dispatch(showAlert("Please add at least one item"));
+      return;
+    }
+
+    if (invalidLinks.length) {
+      dispatch(showAlert("You have entered an invalid URL link"));
       return;
     }
 

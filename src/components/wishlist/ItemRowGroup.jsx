@@ -121,7 +121,7 @@ const ItemRowGroup = ({
                 <Spacer x={0.8} />
                 <input
                   name="link"
-                  placeholder="Purchase link"
+                  placeholder="Link e.g https://example.com"
                   value={rowValues?.link || ""}
                   onChange={(e) => setFieldValue(index, "link", e.target.value)}
                 />

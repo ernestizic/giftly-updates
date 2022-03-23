@@ -28,7 +28,7 @@ import {
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
-import { base_url, debounce } from "utils/utils";
+import { base_url, debounce, validURL } from "utils/utils";
 import axios from "axios";
 import Loader from "components/global/Loader";
 
@@ -217,6 +217,10 @@ const EditWishList = ({ getWishLists }) => {
   };
 
   const updateDetails = async () => {
+    const invalidLinks = tempList.filter(
+      (item) => item.link && item.link.length && !validURL(item.link)
+    );
+
     let timeout = setTimeout(() => {
       dispatch(clearAlert());
     }, 5000);
@@ -224,6 +228,11 @@ const EditWishList = ({ getWishLists }) => {
 
     if (!tempListName || !tempListName.length) {
       dispatch(showAlert("Please name your wish list"));
+      return;
+    }
+
+    if (invalidLinks.length) {
+      dispatch(showAlert("You have entered an invalid URL link"));
       return;
     }
 
