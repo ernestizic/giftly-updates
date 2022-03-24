@@ -82,6 +82,16 @@ const Login = () => {
       }, 5000);
       dispatch(setAlertTimeout(timeout));
       dispatch(showAlert(e.response.data.message));
+
+      if (e.response.data.email && e.response.data.emailVerified === false) {
+        const email = e.response.data.email;
+        user
+          ? dispatch(setUser({ ...user, email }))
+          : dispatch(setUser({ email }));
+        await axios.post(`${base_url}/auth/email/verify/resend/${email}`);
+
+        navigate("/home/verify-email");
+      }
     }
   };
 
