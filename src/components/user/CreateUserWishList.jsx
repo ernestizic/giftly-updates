@@ -221,7 +221,15 @@ const CreateUserWishList = ({ getWishLists }) => {
   }
 
   return (
-    <Wrapper className="flexColumn alignCenter">
+    <Wrapper
+      id="createModal"
+      className="flexColumn alignCenter"
+      onClick={(e) => {
+        if (e.target.id === e.currentTarget.id) {
+          navigate(-1);
+        }
+      }}
+    >
       <Card>
         <div className="flexRow alignCenter">
           <button type="button" onClick={() => navigate(-1)}>

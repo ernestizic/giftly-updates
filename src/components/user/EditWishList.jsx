@@ -302,7 +302,16 @@ const EditWishList = ({ getWishLists }) => {
   }
 
   return (
-    <Wrapper className="flexColumn alignCenter">
+    <Wrapper
+      id="editModal"
+      className="flexColumn alignCenter"
+      onClick={(e) => {
+        if (e.target.id === e.currentTarget.id) {
+          dispatch(clearTempList());
+          navigate(-1);
+        }
+      }}
+    >
       <Card>
         <div className="flexRow alignCenter">
           <button
