@@ -56,7 +56,7 @@ const WishsLists = () => {
   const dispatch = useDispatch();
 
   const updateTempWishList = async () => {
-    if (user.username) {
+    if (!tempListId) {
       return;
     }
 
@@ -76,8 +76,6 @@ const WishsLists = () => {
   };
 
   const getWishLists = async () => {
-    updateTempWishList();
-
     try {
       const res = await axios.get(`${base_url}/wishlist`, {
         headers: {
@@ -149,6 +147,7 @@ const WishsLists = () => {
   };
 
   useEffect(() => {
+    updateTempWishList();
     getWishLists();
     // eslint-disable-next-line
   }, []);
@@ -331,7 +330,10 @@ const WishsLists = () => {
           path="delete"
           element={<DeletePrompt getWishLists={getWishLists} />}
         />
-        <Route path="create-username" element={<CreateUsername />} />
+        <Route
+          path="create-username"
+          element={<CreateUsername getWishLists={getWishLists} />}
+        />
         <Route path="profile" element={<Profile />} />
       </Routes>
       <Spacer y={4.8} />
