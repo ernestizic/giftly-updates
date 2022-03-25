@@ -146,7 +146,10 @@ const EditWishList = ({ getWishLists }) => {
   };
 
   const updateListItem = async (data) => {
-    if (!data.id) return;
+    if (!data.id) {
+      addListItem(data);
+      return;
+    }
 
     try {
       await axios.patch(`${base_url}/items/${data.id}`, data, {
@@ -204,12 +207,11 @@ const EditWishList = ({ getWishLists }) => {
   const addMore = () => {
     let temp = tempList.map((item) => Object.assign({}, item));
 
-    const data = { name: "...", status: "pending" };
+    const data = { name: "", status: "pending" };
 
     temp.push(data);
 
     dispatch(setTempList(temp));
-    addListItem(data);
   };
 
   const togglePrivacyOptions = () => {
