@@ -62,7 +62,7 @@ const ViewUserWishLists = () => {
   const getUser = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${base_url}/user/${decodeURI(username)}`, {
+      const res = await axios.get(`${base_url}/user/${username}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

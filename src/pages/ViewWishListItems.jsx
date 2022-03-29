@@ -129,9 +129,7 @@ const ViewWishListItems = () => {
 
   const getWishList = async () => {
     try {
-      const res = await axios.get(
-        `${base_url}/user/${decodeURI(username)}/${slug}`
-      );
+      const res = await axios.get(`${base_url}/user/${username}/${slug}`);
 
       const timeout = setTimeout(() => {
         dispatch(clearAlert());
