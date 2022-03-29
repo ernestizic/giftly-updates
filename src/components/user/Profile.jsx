@@ -24,6 +24,7 @@ import { useState } from "react";
 import Loader from "components/global/Loader";
 import styled from "styled-components";
 import ImgWrapper from "components/global/ImgWrapper";
+import { useEffect } from "react";
 
 const Card = styled(AuthCard)`
   .actionBtns {
@@ -170,7 +171,26 @@ const Profile = () => {
     }
   };
 
-  // DISCUSS USERNAME CHANGE ***IMPORTANT***
+  const getUser = async () => {
+    try {
+      const res = await axios.get(`${base_url}/user/${user.username}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (res.data.status === "success") {
+        dispatch(setUser(res.data.data.user));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <AuthWrapper className="flexColumn alignCenter">
@@ -291,7 +311,6 @@ const Profile = () => {
                   fieldStyle="shortText"
                   label="Username"
                   name="username"
-                  readOnly
                 />
                 <Spacer y={0.8} />
                 <span className="subtitle-5">
