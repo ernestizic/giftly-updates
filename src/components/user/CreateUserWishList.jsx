@@ -136,7 +136,7 @@ const CreateUserWishList = ({ getWishLists }) => {
   const addMore = () => {
     let temp = tempList.map((item) => Object.assign({}, item));
 
-    temp.push({ name: "", link: "" });
+    temp.push({ name: "" });
 
     dispatch(setTempList(temp));
   };

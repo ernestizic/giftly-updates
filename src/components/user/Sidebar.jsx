@@ -3,7 +3,7 @@ import logo from "assets/images/logo.svg";
 import Spacer from "components/global/Spacer";
 import giftIcon from "assets/icons/gift.svg";
 import faqIcon from "assets/icons/message_question.svg";
-// import supportIcon from "assets/icons/support.svg";
+import supportIcon from "assets/icons/support.svg";
 import logoutIcon from "assets/icons/logout.svg";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -109,11 +109,6 @@ const menuList = [
     slug: "/faqs",
     icon: faqIcon,
   },
-  // {
-  //   title: "Support",
-  //   slug: "support",
-  //   icon: supportIcon,
-  // },
 ];
 
 const Sidebar = () => {
@@ -155,6 +150,15 @@ const Sidebar = () => {
             <span className="subtitle-4 text">{item.title}</span>
           </NavLink>
         ))}
+        <a
+          href="mailto:info@giftly.me"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="item flexRow alignCenter"
+        >
+          <img src={supportIcon} alt="icon" className="icon" />
+          <span className="subtitle-4 text">Support</span>
+        </a>
         <NavLink
           to="/home/login"
           className="item flexRow alignCenter"

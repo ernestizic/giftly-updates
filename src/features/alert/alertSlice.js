@@ -21,7 +21,7 @@ export const alertSlice = createSlice({
 
       clearTimeout(state.alertTimeout);
 
-      state.timeout = 0;
+      state.alertTimeout = 0;
     },
   },
 });

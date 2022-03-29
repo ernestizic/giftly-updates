@@ -123,7 +123,9 @@ const ItemRowGroup = ({
                   name="link"
                   placeholder="Link e.g https://example.com"
                   value={rowValues?.link || ""}
-                  onChange={(e) => setFieldValue(index, "link", e.target.value)}
+                  onChange={(e) =>
+                    setFieldValue(index, "link", e.target.value.trim())
+                  }
                 />
               </div>
             )}
