@@ -5,7 +5,7 @@ import openBox from "assets/images/open_box.svg";
 import Spacer from "components/global/Spacer";
 import Sec2 from "components/landing/components/Sec2";
 import { useNavigate } from "react-router";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useState } from "react";
 import {
   clearAlert,
@@ -52,6 +52,7 @@ const Header = styled.div`
 
 const ViewUserWishLists = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const { username } = useParams();
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
@@ -60,7 +61,8 @@ const ViewUserWishLists = () => {
 
   const getUser = async () => {
     try {
-      const res = await axios.get(`${base_url}/user/${username}`, {
+      setLoading(true);
+      const res = await axios.get(`${base_url}/user/${decodeURI(username)}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -104,7 +106,7 @@ const ViewUserWishLists = () => {
     document.querySelector("html").scrollTo(0, 0);
     getUser();
     // eslint-disable-next-line
-  }, []);
+  }, [pathname]);
 
   return (
     <Wrapper>

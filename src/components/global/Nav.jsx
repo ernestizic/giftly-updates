@@ -241,6 +241,7 @@ const Nav = ({ wt }) => {
                       key={index}
                       to={`/${item.username}`}
                       className="flexRow alignCenter item colorTitleActive"
+                      onClick={() => setSearch("")}
                     >
                       {item.avatar ? (
                         <ImgWrapper size={4} imgHeight="100%">
