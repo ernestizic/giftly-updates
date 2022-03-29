@@ -30,11 +30,15 @@ const CreateUsername = () => {
 
   const handleCreate = async (cred) => {
     try {
-      const res = await axios.post(`${base_url}/user/username`, cred, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.post(
+        `${base_url}/user/username`,
+        { username: cred.username.split(" ").join("_") },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const timeout = setTimeout(() => {
         dispatch(clearAlert());
@@ -48,7 +52,9 @@ const CreateUsername = () => {
 
       if (res.data.status === "success") {
         dispatch(showAlert(res.data.message));
-        dispatch(setUser({ ...user, username: cred.username }));
+        dispatch(
+          setUser({ ...user, username: cred.username.split(" ").join("_") })
+        );
         navigate("/user/wish-lists");
         return;
       }
@@ -96,6 +102,10 @@ const CreateUsername = () => {
                   name="username"
                   className="spanFull"
                 />
+                <Spacer y={0.8} />
+                <span className="subtitle-5">
+                  Your username can contain only letters, numbers and underscore
+                </span>
               </div>
 
               <Button
