@@ -6,6 +6,7 @@ import down_arrow from "assets/icons/down_arrow.svg";
 const Wrapper = styled.div`
   position: relative;
   padding: ${(props) => (props.withPadding ? "0 " : "0 2.4rem")};
+  padding-left: 0;
   transition: all 0.2s ease-out;
   border-radius: 0.8rem;
 
