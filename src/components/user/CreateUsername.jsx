@@ -104,7 +104,8 @@ const CreateUsername = () => {
                 />
                 <Spacer y={0.8} />
                 <span className="subtitle-5">
-                  Your username can contain only letters, numbers and underscore
+                  Usernames can contain only letters, numbers &amp; underscore,
+                  no spaces.
                 </span>
               </div>
 
