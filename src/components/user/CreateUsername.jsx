@@ -25,7 +25,7 @@ const CreateUsername = () => {
   const user = useSelector((state) => state.auth.user);
 
   const schema = Yup.object({
-    username: Yup.string().required("Field required"),
+    username: Yup.string().matches(/^[a-zA-Z0-9\-\_]+$/, "Username is not valid").required("Field required"),
   });
 
   const handleCreate = async (cred) => {
