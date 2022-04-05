@@ -70,53 +70,23 @@ const Wrapper = styled.div`
     }
   }
 
-  h2,
-  h3,
-  h5 {
-    font-family: "BoldenVan";
-    color: var(--title-active);
-  }
-  h2 {
-    font-size: 4.8rem;
-    line-height: 5.6rem;
-    padding-bottom: 4.8rem;
-  }
-  h3 {
-    font-size: 3.6rem;
-    line-height: 4.8rem;
-    margin-bottom: 1.6rem;
-    margin-top: 4.8rem;
-  }
-  h5 {
-    font-size: 2.4rem;
-    line-height: 3.6rem;
-    margin: 1.6rem 0;
-  }
-
-  .list {
-    margin-left: 3rem;
-    position: relative;
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      margin-left: -1.5rem;
-      margin-top: 1.5rem;
-      height: 5px !important;
-      width: 5px !important;
-      border-radius: 2.5px;
-      background-color: var(--title-active);
-    }
-  }
-  .mg-top {
-    margin-top: 3.2rem;
-  }
-  .mg-btm {
-    margin-bottom: 3.2rem;
+  .child {
+    margin-top: 10rem;
   }
 
   .priv1 + .priv1 {
     margin-top: 3.2rem;
+  }
+
+  .priv1 + .priv1 {
+    margin-top: 3.2rem;
+  }
+
+  .normal + .list {
+    margin-top: 1.6rem;
+  }
+  .list + .normal {
+    margin-top: 1.6rem;
   }
 
   p,

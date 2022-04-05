@@ -7,6 +7,18 @@ const Wrapper = styled.div`
   position: relative;
   height: 72rem;
   padding: 9.6rem 0;
+  /* .bg {
+		display: none;
+	} */
+
+  /* @media (min-width: 1440) {
+		.bg {
+			display: block;
+		}
+		.ctn {
+			display: none;
+		}
+	} */
 
   @media (max-width: 1200px) {
     height: 54rem;
@@ -40,55 +52,6 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     height: 100%;
-
-    p {
-      font-size: 9.1rem;
-      line-height: 9.1rem;
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      img {
-        width: 5.6rem;
-        height: 5.6rem;
-      }
-
-      @media (max-width: 1300px) {
-        font-size: 8.1rem;
-        line-height: 8.1rem;
-        img {
-          width: 4.5rem;
-          height: 4.5rem;
-        }
-      }
-      @media (max-width: 1200px) {
-        font-size: 7.6rem;
-        line-height: 7.6rem;
-      }
-      @media (max-width: 1100px) {
-        font-size: 6.8rem;
-        line-height: 6rem;
-        img {
-          width: 3.8rem;
-          height: 3.8rem;
-        }
-      }
-      @media (max-width: 1000px) {
-        font-size: 6.1rem;
-        line-height: 6.1rem;
-      }
-      @media (max-width: 900px) {
-        font-size: 5rem;
-        line-height: 5rem;
-        img {
-          width: 2.8rem;
-          height: 2.8rem;
-        }
-      }
-      @media (max-width: 800px) {
-        font-size: 4.5rem;
-        line-height: 4.5rem;
-      }
-    }
 
     @media (max-width: 768px) {
       display: none;

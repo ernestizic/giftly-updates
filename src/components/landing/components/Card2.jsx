@@ -139,13 +139,31 @@ const Wrapper = styled.div`
         height: 3rem;
       }
 
-      img {
+      <<<<<<< HEAD img {
         width: 100%;
       }
     }
   }
-
-  @media (max-width: 1110px) {
+  ======= @media (max-width: 1110px) {
+    .item {
+      p {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  @media (max-width: 900px) {
+    width: 28rem;
+    height: fit-content;
+    .item {
+      p {
+        font-size: 1rem;
+      }
+    }
+    .fieldWrapper {
+      height: 4rem;
+    }
+  }
+  >>>>>>>origin/responsiveness @media (max-width: 1110px) {
     .item {
       p {
         font-size: 1.2rem;
@@ -246,7 +264,7 @@ const Card2 = () => {
                 fieldStyle="shortText"
                 label="Find friends"
                 name="link"
-                value="https://www.giftly.me/Natasha/Doja"
+                value="https://giftly.me/Natasha/Doja"
                 className={`inputField`}
               />
             </FormWrapper>

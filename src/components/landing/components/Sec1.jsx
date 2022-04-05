@@ -11,6 +11,9 @@ const Wrapper = styled.div`
 	padding-bottom: 120px;
 	margin-top:6.553rem;
 	position: relative;
+   display: flex;
+   justify-content: center;
+
 	
 h1{
 	color: white;
@@ -62,6 +65,7 @@ h1{
 	.text {
 		flex: 1;
 		@media ( max-width: 768px){
+		max-width: 600px;
 			text-align:center;
 		}
 	}
@@ -123,6 +127,8 @@ h1{
 	.imgWrapper {
 		/* width: 64rem; */
 		flex: 1;
+		max-width: 600px;
+
 
 		img,
 		source {

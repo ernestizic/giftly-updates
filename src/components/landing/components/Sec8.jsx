@@ -11,13 +11,17 @@ const Wrapper = styled.div`
   padding: 8.8rem 12rem;
   background-image: ${`url(${bg})`};
   background-size: cover;
-  @media (max-width: 768px) {
+  @media (max-width: 760px) {
     background-image: ${`url(${bg_sm})`};
   }
 
   overflow: hidden;
   display: flex;
   height: fit-content;
+
+  @media (min-width: 1440px) {
+    justify-content: center;
+  }
 
   h1 {
     color: var(--accent_2-main);
@@ -28,6 +32,9 @@ const Wrapper = styled.div`
   }
 
   .text {
+    @media (min-width: 1440px) {
+      width: 687px;
+    }
     p {
       position: relative;
       color: white;
@@ -39,6 +46,9 @@ const Wrapper = styled.div`
     margin: auto 0 auto auto;
     position: relative;
     height: 6.4rem;
+    @media (min-width: 1440px) {
+      margin-left: 313px;
+    }
   }
 
   @media (max-width: 1200px) {

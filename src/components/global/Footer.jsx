@@ -7,11 +7,23 @@ import twitter from "assets/icons/twitter_wt.svg";
 // import send from "assets/icons/send_wt.svg";
 import { Link } from "react-router-dom";
 const Wrapper = styled.div`
-  padding: 48px 120px;
+  padding: 12rem 4.8rem;
   display: flex;
   font-size: 1.6rem;
   line-height: 2.4rem;
   background-color: var(--title-active);
+  @media (min-width: 1440px) {
+    justify-content: center;
+    .item_1 {
+      width: 755px !important;
+      p {
+        width: 350px;
+      }
+    }
+    .item_2 {
+      width: 445px;
+    }
+  }
 
   @media (max-width: 950px) {
     /* padding: 7.3rem 2.4rem; */

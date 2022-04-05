@@ -17,6 +17,8 @@ import { Initials } from "components/user/WishListsStyles";
 const Wrapper = styled.nav`
   height: 9.6rem;
   padding: 0 12rem;
+  max-width: 1440px;
+  margin: auto;
   background-color: ${(props) =>
     props.wt ? "white" : " var(--title-active);"};
   display: flex;
@@ -285,5 +287,29 @@ const Nav = ({ wt }) => {
     </Wrapper>
   );
 };
+
+//   & > div > div {
+//     padding-left: 3.667rem;
+//     @media (max-width: 768px) {
+//       padding: 0;
+//     }
+//   }
+// }
+// .search {
+//   position: absolute;
+//   z-index: 6;
+//   left: 2.4rem;
+//   top: 1.6rem;
+//   @media (max-width: 768px) {
+//     position: sticky;
+//     top: 4.1rem;
+//     left: 23%;
+//     filter: var(--filter-white);
+//   }
+// }
+// & > button:last-child {
+//   margin-left: 2.4rem;
+// }
+// `;
 
 export default Nav;

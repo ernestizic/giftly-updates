@@ -26,21 +26,35 @@ const FAQS = [
 const Wrapper = styled.div`
   background-color: white;
   padding: 12rem 9.6rem;
-
   .accordion + .accordion {
     margin-top: 3.2rem;
+  }
+
+  & > * {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .mb {
     display: none;
   }
 
+  @media (max-width: 768px) {
+    padding: 4.8rem 0;
+  }
+
   h3 {
     color: black;
     margin-bottom: 5.6rem;
-    max-width: 89.5rem;
+    .dsk {
+      display: block;
+      max-width: 89.5rem;
+    }
 
     @media (max-width: 1050px) {
+      margin-right: unset;
+      margin-left: unset;
       width: auto;
       max-width: 57rem;
       font-size: 3.2rem;
@@ -54,6 +68,7 @@ const Wrapper = styled.div`
       .mb {
         display: block;
       }
+
       max-width: 32.7rem;
       padding: 0 2.4rem;
       font-size: 2.4rem;
@@ -61,11 +76,13 @@ const Wrapper = styled.div`
     }
   }
 
+  // p {
+  //   margin: 2.4rem auto 4.8rem;
+  // }
   @media (max-width: 768px) {
-    padding: 4.8rem 0;
-
-    .btn {
-      margin-left: 24px;
+    button {
+      margin-left: 2.4rem;
+      height: 4.8rem;
     }
   }
 `;
@@ -88,13 +105,15 @@ const Sec7 = () => {
           answer={item.answer}
         />
       ))}
-      <Spacer y={4.8} />
-      <Button
-        width="18rem"
-        className="large btn"
-        text="Learn more"
-        onClick={() => navigate("/faqs")}
-      />
+      <Spacer y={2.4} />
+      <div className="btn-ctn">
+        <Button
+          width="18rem"
+          height="7.4rem"
+          text="Create a wishlist"
+          onClick={() => navigate("/home/new-wishlist")}
+        />
+      </div>
     </Wrapper>
   );
 };

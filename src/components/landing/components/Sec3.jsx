@@ -13,6 +13,21 @@ const Wrapper = styled.div`
   justify-content: space-between;
   position: relative;
 
+  @media (min-width: 1440px) {
+    justify-content: center;
+    & > div + div {
+      margin-left: 194px;
+    }
+  }
+
+  @media (max-width: 1300px) {
+    padding: 9.6rem 11rem;
+  }
+
+  @media (max-width: 1110px) {
+    padding: 9.6rem 6rem;
+  }
+
   .img__tp {
     position: absolute;
     top: 0;
