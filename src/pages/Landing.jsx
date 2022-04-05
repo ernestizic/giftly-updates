@@ -1,6 +1,7 @@
 import ForgotPassword from "components/auth/ForgotPassword";
 import Login from "components/auth/Login";
 import Register from "components/auth/Register";
+import ResendVerificationEmail from "components/auth/ResendVerificationEmail";
 import VerifyEmail from "components/auth/VerifyEmail";
 import Home from "components/landing/Home";
 import CreateWishList from "components/wishlist/CreateWishList";
@@ -36,6 +37,10 @@ const Landing = () => {
         <Route path="verify-email" element={<VerifyEmail />} />
         <Route path="login" element={<Login />} />
         <Route path="password-reset/*" element={<ForgotPassword />} />
+        <Route
+          path="resend-verification-email"
+          element={<ResendVerificationEmail />}
+        />
 
         {/* Wish list */}
         <Route path="new-wishlist" element={<CreateWishList />} />

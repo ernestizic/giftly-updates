@@ -1,6 +1,6 @@
 import closeIcon from "assets/icons/close_square.svg";
 // import googleIcon from "assets/icons/google_icon.svg";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -27,6 +27,9 @@ import { setToken, setUser } from "features/auth/authSlice";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { search } = useLocation();
+  const emailVerificationStatus = new URLSearchParams(search).get("status");
+  const emailVerificationMessage = new URLSearchParams(search).get("message");
 
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.auth.user);
@@ -84,18 +87,33 @@ const Login = () => {
       dispatch(showAlert(e.response.data.message));
 
       if (e.response.data.email && e.response.data.emailVerified === false) {
-        const email = e.response.data.email;
-        user
-          ? dispatch(setUser({ ...user, email }))
-          : dispatch(setUser({ email }));
-        await axios.post(`${base_url}/auth/email/verify/resend/${email}`);
-
-        navigate("/home/verify-email");
+        navigate("/home/resend-verification-email");
       }
     }
   };
 
+  const checkEmailVerification = () => {
+    if (!emailVerificationMessage || !emailVerificationStatus) {
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      dispatch(clearAlert());
+    }, 5000);
+    dispatch(setAlertTimeout(timeout));
+
+    if (emailVerificationStatus === "failure") {
+      navigate("/home/resend-verification-email");
+    }
+
+    if (emailVerificationMessage) {
+      dispatch(showAlert(emailVerificationMessage));
+    }
+  };
+
   useEffect(() => {
+    checkEmailVerification();
+
     if (localStorage.checkbox && localStorage.checkbox !== "") {
       setChecked(true);
     } else {
