@@ -1,3 +1,4 @@
+import Leaderboard from "components/user/Leaderboard";
 import Sidebar from "components/user/Sidebar";
 import WishsLists from "components/user/WishsLists";
 import { Route, Routes } from "react-router-dom";
@@ -23,7 +24,9 @@ const Dashboard = () => {
       <Sidebar />
       <div className="viewContent">
         <Routes>
+          {/* <Route path="" element={<WishsLists />} /> */}
           <Route path="wish-lists/*" element={<WishsLists />} />
+          <Route path="leaderboard" element={<Leaderboard />} />
         </Routes>
       </div>
     </Wrapper>

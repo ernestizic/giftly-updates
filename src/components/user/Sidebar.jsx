@@ -5,6 +5,7 @@ import giftIcon from "assets/icons/gift.svg";
 import faqIcon from "assets/icons/message_question.svg";
 import supportIcon from "assets/icons/support.svg";
 import logoutIcon from "assets/icons/logout.svg";
+import cupIcon from "assets/icons/cup.svg";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setToken, setUser } from "features/auth/authSlice";
@@ -103,6 +104,11 @@ const menuList = [
     title: "My wish lists",
     slug: "wish-lists",
     icon: giftIcon,
+  },
+  {
+    title: "Leaderboard",
+    slug: "leaderboard",
+    icon: cupIcon,
   },
   {
     title: "FAQ",
