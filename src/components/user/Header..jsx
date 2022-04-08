@@ -131,7 +131,7 @@ const Header = () => {
           <img src={searchIcon} alt="search" className="icon" />
         </button>
         <Spacer x={2.4} />
-        <Initials as={Link} to="profile">
+        <Initials as={Link} to="/user/wish-lists/profile">
           <span className="text textCenter textUppercase">
             {user?.first_name.charAt(0)}
             {user?.last_name.charAt(0)}
