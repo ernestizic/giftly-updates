@@ -127,9 +127,25 @@ const ViewWishListItems = () => {
     navigate("confirm-interest");
   };
 
+  const getDeviceId = () => {
+    const navigator_info = window.navigator;
+    const screen_info = window.screen;
+    let uid = navigator_info.mimeTypes?.length || "";
+    uid += navigator_info.userAgent.replace(/\D+/g, "");
+    uid += navigator_info.plugins?.length || "";
+    uid += screen_info.height || "";
+    uid += screen_info.width || "";
+    uid += screen_info.pixelDepth || "";
+
+    return uid;
+  };
+
   const getWishList = async () => {
+    const device_id = getDeviceId();
     try {
-      const res = await axios.get(`${base_url}/user/${username}/${slug}`);
+      const res = await axios.get(
+        `${base_url}/user/${username}/${slug}?device_id=${device_id}`
+      );
 
       const timeout = setTimeout(() => {
         dispatch(clearAlert());
