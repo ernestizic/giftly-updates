@@ -235,7 +235,7 @@ const Leaderboard = () => {
               </p>
             </UserRow>
           )}
-          {leaderboardItems?.map((item, index) => (
+          {leaderboardItems?.slice(3).map((item, index) => (
             <OtherRow className="flexRow alignCenter" key={index}>
               <p className="subtitle-3 colorTitleActive">{item.rank}</p>
               {/* <Initials size="40" textSize="20" bg="var(--accent_3-main)">
