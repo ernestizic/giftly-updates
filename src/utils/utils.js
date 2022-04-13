@@ -257,3 +257,10 @@ export function validURL(str) {
   ); // fragment locator
   return !!pattern.test(str);
 }
+
+export function formatNum(num) {
+  const formatter = new Intl.NumberFormat();
+  const toNum = Number(num);
+
+  return formatter.format(toNum);
+}
