@@ -12,7 +12,7 @@ import medal_two from "assets/icons/medal_two.svg";
 import medal_three from "assets/icons/medal_three.svg";
 import crown from "assets/icons/crown.svg";
 import openBox from "assets/images/open_box.svg";
-import { Initials } from "./WishListsStyles";
+// import { Initials } from "./WishListsStyles";
 import ImgWrapper from "components/global/ImgWrapper";
 import Logo from "components/global/Logo";
 import { useEffect, useState } from "react";
@@ -200,7 +200,7 @@ const Leaderboard = () => {
             )}
           </div>
           <Spacer y={4.8} />
-          {currentUser && (
+          {currentUser && Number(currentUser.rank) > 10 && (
             <UserRow className="flexRow alignCenter">
               <p className="body-2 colorTitleActive">
                 Rank: {currentUser.rank}
