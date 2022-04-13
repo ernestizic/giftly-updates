@@ -151,6 +151,9 @@ const Sidebar = () => {
             key={index}
             to={item.slug}
             className="item flexRow alignCenter"
+            onClick={() =>
+              document.querySelector(".sidebar").classList.remove("open")
+            }
           >
             <img src={item.icon} alt="icon" className="icon" />
             <span className="subtitle-4 text">{item.title}</span>
