@@ -131,12 +131,20 @@ const Header = () => {
           <img src={searchIcon} alt="search" className="icon" />
         </button>
         <Spacer x={2.4} />
-        <Initials as={Link} to="/user/wish-lists/profile">
-          <span className="text textCenter textUppercase">
-            {user?.first_name.charAt(0)}
-            {user?.last_name.charAt(0)}
-          </span>
-        </Initials>
+        <Link as={Link} to="/user/wish-lists/profile">
+          {user.avatar ? (
+            <ImgWrapper size={4} imgHeight="100%">
+              <img src={user.avatar} alt="." />
+            </ImgWrapper>
+          ) : (
+            <Initials>
+              <span className="text textCenter textUppercase">
+                {user?.first_name.charAt(0)}
+                {user?.last_name.charAt(0)}
+              </span>
+            </Initials>
+          )}
+        </Link>
       </div>
     </Wrapper>
   );

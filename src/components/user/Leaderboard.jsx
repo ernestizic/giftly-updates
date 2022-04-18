@@ -55,6 +55,9 @@ const Leaderboard = () => {
 
       if (res.data.status === "success") {
         setLoading(false);
+        // const tempItems = res.data.data.leaderboard?.sort(
+        //   (a, b) => a.points > b.points
+        // );
         setLeaderboardItems(res.data.data.leaderboard);
         setCurrentUser(res.data.data.currentUser);
         return;
