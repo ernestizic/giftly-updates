@@ -11,8 +11,7 @@ import medal_one from "assets/icons/medal_one.svg";
 import medal_two from "assets/icons/medal_two.svg";
 import medal_three from "assets/icons/medal_three.svg";
 import crown from "assets/icons/crown.svg";
-import openBox from "assets/images/open_box.svg";
-// import { Initials } from "./WishListsStyles";
+import { Initials } from "./WishListsStyles";
 import ImgWrapper from "components/global/ImgWrapper";
 import Logo from "components/global/Logo";
 import { useEffect, useState } from "react";
@@ -100,25 +99,29 @@ const Leaderboard = () => {
             {leaderboardItems[1] && (
               <TopRankedWrapper className="flexColumn alignCenter">
                 <TopRanked imgHeight="100%" className="flexColumn alignCenter">
-                  {/* <Initials
-                size="72"
-                textSize="36"
-                bg="var(--accent_3-main)"
-                className="inner second"
-              >
-                ND
-              </Initials> */}
-                  <ImgWrapper
-                    size={7.2}
-                    imgHeight="100%"
-                    className="inner second"
-                  >
-                    <img
-                      src={leaderboardItems[1].avatar || openBox}
-                      alt="..."
-                      className="userImage"
-                    />
-                  </ImgWrapper>
+                  {!leaderboardItems[1].avatar ? (
+                    <Initials
+                      size="72"
+                      textSize="36"
+                      bg="var(--accent_3-main)"
+                      className="inner second"
+                    >
+                      {leaderboardItems[1]?.first_name.charAt(0)}
+                      {leaderboardItems[1]?.last_name.charAt(0)}
+                    </Initials>
+                  ) : (
+                    <ImgWrapper
+                      size={7.2}
+                      imgHeight="100%"
+                      className="inner second"
+                    >
+                      <img
+                        src={leaderboardItems[1].avatar}
+                        alt="..."
+                        className="userImage"
+                      />
+                    </ImgWrapper>
+                  )}
                   <img src={medal_two} alt="2" className="medal" />
                 </TopRanked>
                 <Spacer y={2.4} />
@@ -134,25 +137,29 @@ const Leaderboard = () => {
               <TopRankedWrapper className="flexColumn alignCenter">
                 <TopRanked imgHeight="100%" className="flexColumn alignCenter">
                   <img src={crown} alt="." className="crown" />
-                  {/* <Initials
-                size="96"
-                textSize="48"
-                bg="var(--accent_3-main)"
-                className="inner first"
-              >
-                SN
-              </Initials> */}
-                  <ImgWrapper
-                    size={7.2}
-                    imgHeight="100%"
-                    className="inner first"
-                  >
-                    <img
-                      src={leaderboardItems[0].avatar || openBox}
-                      alt="..."
-                      className="userImage"
-                    />
-                  </ImgWrapper>
+                  {!leaderboardItems[0].avatar ? (
+                    <Initials
+                      size="96"
+                      textSize="48"
+                      bg="var(--accent_3-main)"
+                      className="inner first"
+                    >
+                      {leaderboardItems[0]?.first_name.charAt(0)}
+                      {leaderboardItems[0]?.last_name.charAt(0)}
+                    </Initials>
+                  ) : (
+                    <ImgWrapper
+                      size={9.6}
+                      imgHeight="100%"
+                      className="inner first"
+                    >
+                      <img
+                        src={leaderboardItems[0].avatar}
+                        alt="..."
+                        className="userImage"
+                      />
+                    </ImgWrapper>
+                  )}
                   <img src={medal_one} alt="1" className="medal" />
                 </TopRanked>
                 <Spacer y={2.4} />
@@ -171,25 +178,29 @@ const Leaderboard = () => {
                   imgHeight="100%"
                   className="flexColumn alignCenter"
                 >
-                  {/* <Initials
-                size="72"
-                textSize="36"
-                bg="var(--accent_3-main)"
-                className="inner third"
-              >
-                OE
-              </Initials> */}
-                  <ImgWrapper
-                    size={7.2}
-                    imgHeight="100%"
-                    className="inner third"
-                  >
-                    <img
-                      src={leaderboardItems[2].avatar || openBox}
-                      alt="..."
-                      className="userImage"
-                    />
-                  </ImgWrapper>
+                  {!leaderboardItems[2].avatar ? (
+                    <Initials
+                      size="72"
+                      textSize="36"
+                      bg="var(--accent_3-main)"
+                      className="inner third"
+                    >
+                      {leaderboardItems[2]?.first_name.charAt(0)}
+                      {leaderboardItems[2]?.last_name.charAt(0)}
+                    </Initials>
+                  ) : (
+                    <ImgWrapper
+                      size={7.2}
+                      imgHeight="100%"
+                      className="inner third"
+                    >
+                      <img
+                        src={leaderboardItems[2].avatar}
+                        alt="..."
+                        className="userImage"
+                      />
+                    </ImgWrapper>
+                  )}
                   <img src={medal_three} alt="3" className="medal" />
                 </TopRanked>
                 <Spacer y={2.4} />
@@ -209,16 +220,20 @@ const Leaderboard = () => {
                 Rank: {currentUser.rank}
               </p>
               <div className="flexRow alignCenter">
-                {/* <Initials size="32" textSize="16" bg="var(--accent_3-main)">
-              JJ
-            </Initials> */}
-                <ImgWrapper size={3.2} imgHeight="100%">
-                  <img
-                    src={currentUser.avatar || openBox}
-                    alt="..."
-                    className="userImage"
-                  />
-                </ImgWrapper>
+                {!currentUser.avatar ? (
+                  <Initials size="32" textSize="16" bg="var(--accent_3-main)">
+                    {currentUser?.first_name.charAt(0)}
+                    {currentUser?.last_name.charAt(0)}
+                  </Initials>
+                ) : (
+                  <ImgWrapper size={3.2} imgHeight="100%">
+                    <img
+                      src={currentUser.avatar}
+                      alt="..."
+                      className="userImage"
+                    />
+                  </ImgWrapper>
+                )}
                 <Spacer x={0.4} />
                 <div>
                   <p className="body-2 colorTitleActive">
@@ -246,16 +261,24 @@ const Leaderboard = () => {
                     Rank: {currentUser.rank}
                   </p>
                   <div className="flexRow alignCenter">
-                    {/* <Initials size="32" textSize="16" bg="var(--accent_3-main)">
-              JJ
-            </Initials> */}
-                    <ImgWrapper size={3.2} imgHeight="100%">
-                      <img
-                        src={currentUser.avatar || openBox}
-                        alt="..."
-                        className="userImage"
-                      />
-                    </ImgWrapper>
+                    {!currentUser.avatar ? (
+                      <Initials
+                        size="32"
+                        textSize="16"
+                        bg="var(--accent_3-main)"
+                      >
+                        {currentUser?.first_name.charAt(0)}
+                        {currentUser?.last_name.charAt(0)}
+                      </Initials>
+                    ) : (
+                      <ImgWrapper size={3.2} imgHeight="100%">
+                        <img
+                          src={currentUser.avatar}
+                          alt="..."
+                          className="userImage"
+                        />
+                      </ImgWrapper>
+                    )}
                     <Spacer x={0.4} />
                     <div>
                       <p className="body-2 colorTitleActive">
@@ -279,16 +302,16 @@ const Leaderboard = () => {
             return (
               <OtherRow className="flexRow alignCenter" key={index}>
                 <p className="subtitle-3 colorTitleActive">{item.rank}</p>
-                {/* <Initials size="40" textSize="20" bg="var(--accent_3-main)">
-            ML
-          </Initials> */}
-                <ImgWrapper size={4} imgHeight="100%">
-                  <img
-                    src={item.avatar || openBox}
-                    alt="..."
-                    className="userImage"
-                  />
-                </ImgWrapper>
+                {!item.avatar ? (
+                  <Initials size="40" textSize="16" bg="var(--accent_3-main)">
+                    {item?.first_name.charAt(0)}
+                    {item?.last_name.charAt(0)}
+                  </Initials>
+                ) : (
+                  <ImgWrapper size={4} imgHeight="100%">
+                    <img src={item.avatar} alt="..." className="userImage" />
+                  </ImgWrapper>
+                )}
                 <p className="body-2 colorTitleActive">{item.username}</p>
                 <p className="body-2 textRight">{formatNum(item.points)} pts</p>
               </OtherRow>
@@ -296,7 +319,7 @@ const Leaderboard = () => {
           })}
         </LeaderboardWrapper>
       )}
-      <Spacer y={4.8} yMobile={6} />
+      <Spacer y={4.8} yMobile={7.2} />
     </>
   );
 };
