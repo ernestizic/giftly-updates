@@ -59,7 +59,7 @@ const Leaderboard = () => {
         //   (a, b) => a.points > b.points
         // );
         setLeaderboardItems(res.data.data.leaderboard);
-        setCurrentUser(res.data.data.currentUser);
+        setCurrentUser(res.data.data.current_user);
         return;
       }
       setLoading(false);
@@ -238,23 +238,62 @@ const Leaderboard = () => {
               </p>
             </UserRow>
           )}
-          {leaderboardItems?.slice(3).map((item, index) => (
-            <OtherRow className="flexRow alignCenter" key={index}>
-              <p className="subtitle-3 colorTitleActive">{item.rank}</p>
-              {/* <Initials size="40" textSize="20" bg="var(--accent_3-main)">
+          {leaderboardItems?.slice(3).map((item, index) => {
+            if (currentUser?.username === item.username) {
+              return (
+                <UserRow className="flexRow alignCenter">
+                  <p className="body-2 colorTitleActive">
+                    Rank: {currentUser.rank}
+                  </p>
+                  <div className="flexRow alignCenter">
+                    {/* <Initials size="32" textSize="16" bg="var(--accent_3-main)">
+              JJ
+            </Initials> */}
+                    <ImgWrapper size={3.2} imgHeight="100%">
+                      <img
+                        src={currentUser.avatar || openBox}
+                        alt="..."
+                        className="userImage"
+                      />
+                    </ImgWrapper>
+                    <Spacer x={0.4} />
+                    <div>
+                      <p className="body-2 colorTitleActive">
+                        {currentUser.username}
+                      </p>
+                      <div className="giftlyScore flexRow alignCenter">
+                        <Logo />
+                        <Spacer x={0.4} />
+                        <span className="subtitle-3 colorPrimaryMain bold">
+                          {formatNum(currentUser.cummulative_points)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="body-2 colorTitleActive textRight">
+                    {formatNum(currentUser.points)} pts
+                  </p>
+                </UserRow>
+              );
+            }
+            return (
+              <OtherRow className="flexRow alignCenter" key={index}>
+                <p className="subtitle-3 colorTitleActive">{item.rank}</p>
+                {/* <Initials size="40" textSize="20" bg="var(--accent_3-main)">
             ML
           </Initials> */}
-              <ImgWrapper size={4} imgHeight="100%">
-                <img
-                  src={item.avatar || openBox}
-                  alt="..."
-                  className="userImage"
-                />
-              </ImgWrapper>
-              <p className="body-2 colorTitleActive">{item.username}</p>
-              <p className="body-2 textRight">{formatNum(item.points)} pts</p>
-            </OtherRow>
-          ))}
+                <ImgWrapper size={4} imgHeight="100%">
+                  <img
+                    src={item.avatar || openBox}
+                    alt="..."
+                    className="userImage"
+                  />
+                </ImgWrapper>
+                <p className="body-2 colorTitleActive">{item.username}</p>
+                <p className="body-2 textRight">{formatNum(item.points)} pts</p>
+              </OtherRow>
+            );
+          })}
         </LeaderboardWrapper>
       )}
       <Spacer y={4.8} yMobile={6} />
