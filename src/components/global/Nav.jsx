@@ -13,6 +13,7 @@ import FormGroupCustom from "./FormGroupCustom";
 import Loader from "./Loader";
 import ImgWrapper from "./ImgWrapper";
 import { Initials } from "components/user/WishListsStyles";
+import { useSelector } from "react-redux";
 
 const Wrapper = styled.nav`
   height: 9.6rem;
@@ -149,6 +150,7 @@ const Nav = ({ wt }) => {
   const [search, setSearch] = useState("");
   const [friends, setFriends] = useState([]);
   const [finding, setFinding] = useState(false);
+  const token = useSelector((state) => state.auth.token);
 
   const handleFind = async (e) => {
     const q = e.target.value;
@@ -275,16 +277,24 @@ const Nav = ({ wt }) => {
           )}
         </SearchBox>
       </div>
-      <div className="flexRow alignCenter">
-        <Button
-          bg="var(--accent_2-main)"
-          color="var(--primary-main)"
-          text="Login"
-          onClick={() => navigate("/home/login")}
-        />
-        <Spacer x={2.4} xMobile={1.6} />
-        <Button text="Sign up" onClick={() => navigate("/home/sign-up")} />
-      </div>
+      {token ? (
+        <div className="flexRow alignCenter">
+          <Link to="/user/wish-lists" className="body-3 colorWhite">
+            Back to account
+          </Link>
+        </div>
+      ) : (
+        <div className="flexRow alignCenter">
+          <Button
+            bg="var(--accent_2-main)"
+            color="var(--primary-main)"
+            text="Login"
+            onClick={() => navigate("/home/login")}
+          />
+          <Spacer x={2.4} xMobile={1.6} />
+          <Button text="Sign up" onClick={() => navigate("/home/sign-up")} />
+        </div>
+      )}
     </Wrapper>
   );
 };
