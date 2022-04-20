@@ -173,8 +173,12 @@ const ViewUserWishLists = () => {
           <Spacer y={7.2} />
         </>
       ) : null}
-      <Sec2 />
-      <Sec8 />
+      {!token && (
+        <>
+          <Sec2 />
+          <Sec8 />
+        </>
+      )}
       <Footer />
     </Wrapper>
   );

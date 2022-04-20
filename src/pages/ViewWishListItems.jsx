@@ -16,7 +16,7 @@ import {
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { base_url } from "utils/utils";
 import axios from "axios";
 import { useEffect } from "react";
@@ -119,6 +119,7 @@ const ViewWishListItems = () => {
   const [wishList, setWishList] = useState();
   const [item, setItem] = useState();
   const [loading, setLoading] = useState(true);
+  const token = useSelector((state) => state.auth.token);
 
   const dispatch = useDispatch();
 
@@ -264,8 +265,12 @@ const ViewWishListItems = () => {
           </ListItems>
         </>
       ) : null}
-      <Sec2 />
-      <Sec8 />
+      {!token && (
+        <>
+          <Sec2 />
+          <Sec8 />
+        </>
+      )}
       <Footer />
 
       {/* Confirm interest */}
