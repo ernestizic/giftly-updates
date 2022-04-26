@@ -47,6 +47,22 @@ const Profile = () => {
   const [imgDetails, setImgDetails] = useState(null);
   const [userImage, setUserImage] = useState(user?.avatar);
 
+  const getUser = async () => {
+    try {
+      const res = await axios.get(`${base_url}/user/${user.username}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (res.data.status === "success") {
+        dispatch(setUser(res.data.data.user));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const uploadAvatar = async (file) => {
     const data = new FormData();
 
@@ -70,7 +86,8 @@ const Profile = () => {
       }
 
       if (res.data.status === "success") {
-        dispatch(setUser({ ...user, avatar: res.data.data }));
+        // dispatch(setUser({ ...user, avatar: res.data.data }));
+        getUser();
         dispatch(showAlert(res.data.message));
         return;
       }
@@ -168,22 +185,6 @@ const Profile = () => {
       }, 5000);
       dispatch(setAlertTimeout(timeout));
       dispatch(showAlert(e.response.data.message || "Something went wrong"));
-    }
-  };
-
-  const getUser = async () => {
-    try {
-      const res = await axios.get(`${base_url}/user/${user.username}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (res.data.status === "success") {
-        dispatch(setUser(res.data.data.user));
-      }
-    } catch (e) {
-      console.log(e);
     }
   };
 
