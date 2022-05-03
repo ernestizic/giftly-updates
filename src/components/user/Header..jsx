@@ -132,7 +132,7 @@ const Header = () => {
         </button>
         <Spacer x={2.4} />
         <Link as={Link} to="/user/wish-lists/profile">
-          {user.avatar ? (
+          {user?.avatar ? (
             <ImgWrapper size={4} imgHeight="100%">
               <img src={user.avatar} alt="." />
             </ImgWrapper>
