@@ -1,7 +1,8 @@
 import Leaderboard from "components/user/Leaderboard";
 import Sidebar from "components/user/Sidebar";
 import WishsLists from "components/user/WishsLists";
-import { Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Navigate, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -19,6 +20,12 @@ const Wrapper = styled.div`
 `;
 
 const Dashboard = () => {
+  const token = useSelector((state) => state.auth.token);
+
+  if (!token) {
+    <Navigate to="/home/login" />;
+  }
+
   return (
     <Wrapper>
       <Sidebar />
