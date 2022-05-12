@@ -185,6 +185,10 @@ const WishsLists = () => {
       ) : !!data.length ? (
         <ListWrapper>
           {data
+            ?.map((item, index) => (
+              <WishListCard key={index} details={item} />
+            ))}
+          {/* {data
             ?.filter((item) =>
               category === searchCategories[1] && search
                 ? item.title.toLowerCase().match(search.toLowerCase())
@@ -192,7 +196,7 @@ const WishsLists = () => {
             )
             .map((item, index) => (
               <WishListCard key={index} details={item} />
-            ))}
+            ))} */}
         </ListWrapper>
       ) : null}
       {!loading && !data.length && (
