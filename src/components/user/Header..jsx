@@ -16,7 +16,7 @@ import { useState } from "react";
 
 const Wrapper = styled(HeaderWrapper)``;
 
-const searchCategories = ["Friends", "Wish list"];
+const searchCategories = ["Friends"];
 
 const Header = () => {
   const [category, setCategory] = useState("Friends");

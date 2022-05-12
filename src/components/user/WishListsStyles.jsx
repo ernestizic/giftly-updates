@@ -190,7 +190,7 @@ export const SubHeader = styled.div`
         display: none;
       }
 
-      .icon {
+      .icon, .icon.left {
         margin: 0;
       }
     }
