@@ -360,7 +360,7 @@ const CreateUserWishList = ({ getWishLists }) => {
           </div>
         )}
       </Card>
-      <Spacer y={2.4} />
+      <Spacer y={4.8} />
     </Wrapper>
   );
 };
