@@ -446,6 +446,7 @@ const EditWishList = ({ getWishLists }) => {
           </div>
         )}
       </Card>
+      <Spacer y={2.4} />
     </Wrapper>
   );
 };
