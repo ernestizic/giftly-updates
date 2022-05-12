@@ -368,6 +368,10 @@ textarea {
   top: 0;
 }
 
+.modalOpen {
+  overflow: hidden;
+}
+
 .borderLight {
   border: 1px solid var(--line);
 }

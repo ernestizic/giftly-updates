@@ -31,13 +31,14 @@ import {
 import { base_url, validURL } from "utils/utils";
 import axios from "axios";
 import Loader from "components/global/Loader";
+import { useEffect } from "react";
 
 const Wrapper = styled(Backdrop)`
   padding: 72px 0;
   z-index: 20;
 
   @media screen and (max-width: 768px) {
-    padding: 32px 8px;
+    padding: 72px 8px;
   }
 `;
 
@@ -215,6 +216,11 @@ const CreateUserWishList = ({ getWishLists }) => {
       dispatch(showAlert(e.response.data.message));
     }
   };
+
+  useEffect(() => {
+    document.querySelector("body").classList.add("modalOpen")
+    // eslint-disable-next-line
+  }, [])
 
   if (!user.username) {
     return <Navigate to="/user/wish-lists/create-username" />;

@@ -7,7 +7,7 @@ import shareIcon from "assets/icons/share_white.svg";
 import deleteIcon from "assets/icons/trash.svg";
 import { useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ItemRowGroup from "./ItemRowGroup";
 import FormGroup from "components/global/FormGroup";
 import { Formik } from "formik";
@@ -35,7 +35,7 @@ const Wrapper = styled(Backdrop)`
   z-index: 20;
 
   @media screen and (max-width: 768px) {
-    padding: 32px 8px;
+    padding: 72px 8px;
   }
 `;
 
@@ -207,6 +207,11 @@ const CreateWishList = () => {
       dispatch(showAlert(e.response.data.message));
     }
   };
+
+  useEffect(() => {
+    document.querySelector("body").classList.add("modalOpen")
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <Wrapper className="flexColumn alignCenter">

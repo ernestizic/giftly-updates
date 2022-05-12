@@ -7,7 +7,7 @@ import shareIcon from "assets/icons/share_primary.svg";
 import saveIcon from "assets/icons/save_white.svg";
 import { Navigate, useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ItemRowGroup from "../wishlist/ItemRowGroup";
 import FormGroup from "components/global/FormGroup";
 import { Formik } from "formik";
@@ -37,7 +37,7 @@ const Wrapper = styled(Backdrop)`
   z-index: 20;
 
   @media screen and (max-width: 768px) {
-    padding: 32px 8px;
+    padding: 72px 8px;
   }
 `;
 
@@ -296,6 +296,11 @@ const EditWishList = ({ getWishLists }) => {
       dispatch(showAlert(e.response.data.message || "Something went wrong"));
     }
   };
+
+  useEffect(() => {
+    document.querySelector("body").classList.add("modalOpen")
+    // eslint-disable-next-line
+  }, [])
 
   if (!tempListId) {
     return <Navigate to="/user/wish-lists" />;

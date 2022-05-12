@@ -6,7 +6,7 @@ export const AuthWrapper = styled(Backdrop)`
   z-index: 20;
 
   @media screen and (max-width: 768px) {
-    padding: 32px 8px;
+    padding: 72px 8px;
   }
 `;
 
