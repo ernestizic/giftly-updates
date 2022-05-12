@@ -1,26 +1,26 @@
 import styled from "styled-components";
-import searchIcon from "assets/icons/search.svg";
-import closeIcon from "assets/icons/close_square.svg";
+// import searchIcon from "assets/icons/search.svg";
+// import closeIcon from "assets/icons/close_square.svg";
 import plusIcon from "assets/icons/plus_white.svg";
 import heartIcon from "assets/icons/heart_primary_circle.svg";
 import handPoint from "assets/images/hand_phone.svg";
-import Dropdown from "components/user/Dropdown";
-import { useCallback, useState } from "react";
-import FormGroupCustom from "components/global/FormGroupCustom";
+// import Dropdown from "components/user/Dropdown";
+import { useState } from "react";
+// import FormGroupCustom from "components/global/FormGroupCustom";
 import Spacer from "components/global/Spacer";
 import Button from "components/global/Button";
 import { useNavigate } from "react-router";
 import WishListCard from "./WishListCard";
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import ShareList from "./ShareList";
 import DeletePrompt from "components/wishlist/DeletePrompt";
 import EditWishList from "components/user/EditWishList";
 import CreateUsername from "./CreateUsername";
 import CreateUserWishList from "./CreateUserWishList";
-import { Search } from "./WishListsStyles";
+// import { Search } from "./WishListsStyles";
 import { SubHeader } from "./WishListsStyles";
 import { ListWrapper } from "./WishListsStyles";
-import { Initials } from "./WishListsStyles";
+// import { Initials } from "./WishListsStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
@@ -28,30 +28,30 @@ import {
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
-import { base_url, debounce } from "utils/utils";
+import { base_url } from "utils/utils";
 import axios from "axios";
 import Loader from "components/global/Loader";
 import { NoLists } from "./WishListsStyles";
 import { clearTempList } from "features/wishList/wishListSlice";
-import Logo from "components/global/Logo";
-import ImgWrapper from "components/global/ImgWrapper";
+// import Logo from "components/global/Logo";
+// import ImgWrapper from "components/global/ImgWrapper";
 import Profile from "./Profile";
 import Header from "./Header.";
 
 const Wrapper = styled.div``;
 
-const searchCategories = ["Friends", "Wish list"];
+// const searchCategories = ["Friends", "Wish list"];
 
 const WishsLists = () => {
   const navigate = useNavigate();
-  const [category, setCategory] = useState("Friends");
+  // const [category, setCategory] = useState("Friends");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
-  const [friends, setFriends] = useState([]);
-  const [finding, setFinding] = useState(false);
+  // const [search, setSearch] = useState("");
+  // const [friends, setFriends] = useState([]);
+  // const [finding, setFinding] = useState(false);
   const token = useSelector((state) => state.auth.token);
-  const user = useSelector((state) => state.auth.user);
+  // const user = useSelector((state) => state.auth.user);
   const tempListId = useSelector((state) => state.wishList.tempListId);
   const dispatch = useDispatch();
 
@@ -111,40 +111,40 @@ const WishsLists = () => {
     }
   };
 
-  const handleFind = async (e) => {
-    const q = e.target.value;
+  // const handleFind = async (e) => {
+  //   const q = e.target.value;
 
-    setSearch(q);
+  //   setSearch(q);
 
-    if (!q) return;
+  //   if (!q) return;
 
-    try {
-      setFinding(true);
-      const res = await axios.get(`${base_url}/user/search?q=${q}`);
+  //   try {
+  //     setFinding(true);
+  //     const res = await axios.get(`${base_url}/user/search?q=${q}`);
 
-      if (res.data.status === "success") {
-        setFriends(res.data.data);
-      }
+  //     if (res.data.status === "success") {
+  //       setFriends(res.data.data);
+  //     }
 
-      setFinding(false);
-    } catch (e) {
-      setFinding(false);
-      console.log(e);
-    }
-  };
+  //     setFinding(false);
+  //   } catch (e) {
+  //     setFinding(false);
+  //     console.log(e);
+  //   }
+  // };
 
-  // eslint-disable-next-line
-  const findFriends = useCallback(debounce(handleFind, 500), []);
+  // // eslint-disable-next-line
+  // const findFriends = useCallback(debounce(handleFind, 500), []);
 
-  const showMobileSearch = () => {
-    document.querySelector(".searchBox").classList.add("open");
-  };
+  // const showMobileSearch = () => {
+  //   document.querySelector(".searchBox").classList.add("open");
+  // };
 
-  const hideMobileSearch = () => {
-    document.querySelector(`input[name=search]`).value = "";
-    document.querySelector(".searchBox").classList.remove("open");
-    setSearch("");
-  };
+  // const hideMobileSearch = () => {
+  //   document.querySelector(`input[name=search]`).value = "";
+  //   document.querySelector(".searchBox").classList.remove("open");
+  //   setSearch("");
+  // };
 
   useEffect(() => {
     
