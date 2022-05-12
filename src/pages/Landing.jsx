@@ -7,6 +7,7 @@ import Home from "components/landing/Home";
 import CreateWishList from "components/wishlist/CreateWishList";
 import DeletePrompt from "components/wishlist/DeletePrompt";
 import SignupPrompt from "components/wishlist/SignupPrompt";
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 // import "../index.css"
@@ -17,17 +18,13 @@ const Wrapper = styled.div`
 `;
 
 const Landing = () => {
+  useEffect(() => {
+    document.querySelector("body").classList.remove("modalOpen")
+    // eslint-disable-next-line
+  }, [])
+
   return (
     <Wrapper>
-      {/*
-
-      Components for landing page will go here:
-
-      - create a folder inside components called "landing" and build each section as a component.
-      - Any component you feel should be global should go into the global folder
-      - Create a branch called "landing" to push your updates to
-      
-      */}
 
       <Home />
 

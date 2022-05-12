@@ -147,6 +147,7 @@ const WishsLists = () => {
   };
 
   useEffect(() => {
+    document.querySelector("body").classList.remove("modalOpen")
     updateTempWishList();
     getWishLists();
     // eslint-disable-next-line
