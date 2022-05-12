@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
 const Landing = () => {
   useEffect(() => {
-    document.querySelector("body").classList.remove("modalOpen")
+    
     // eslint-disable-next-line
   }, [])
 

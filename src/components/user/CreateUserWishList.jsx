@@ -218,7 +218,7 @@ const CreateUserWishList = ({ getWishLists }) => {
   };
 
   useEffect(() => {
-    document.querySelector("body").classList.add("modalOpen")
+    
     // eslint-disable-next-line
   }, [])
 

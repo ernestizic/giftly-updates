@@ -178,7 +178,7 @@ const ViewWishListItems = () => {
 
   useEffect(() => {
     document.querySelector("html").scrollTo(0, 0);
-    document.querySelector("body").classList.remove("modalOpen")
+    
     getWishList();
     // eslint-disable-next-line
   }, []);

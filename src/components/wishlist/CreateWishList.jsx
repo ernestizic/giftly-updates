@@ -209,7 +209,7 @@ const CreateWishList = () => {
   };
 
   useEffect(() => {
-    document.querySelector("body").classList.add("modalOpen")
+    
     // eslint-disable-next-line
   }, [])
 
