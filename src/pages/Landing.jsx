@@ -7,10 +7,8 @@ import Home from "components/landing/Home";
 import CreateWishList from "components/wishlist/CreateWishList";
 import DeletePrompt from "components/wishlist/DeletePrompt";
 import SignupPrompt from "components/wishlist/SignupPrompt";
-import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-// import "../index.css"
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -18,11 +16,6 @@ const Wrapper = styled.div`
 `;
 
 const Landing = () => {
-  useEffect(() => {
-    
-    // eslint-disable-next-line
-  }, [])
-
   return (
     <Wrapper>
 

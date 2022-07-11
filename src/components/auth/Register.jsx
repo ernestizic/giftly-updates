@@ -1,6 +1,6 @@
 import closeIcon from "assets/icons/close_square.svg";
 // import googleIcon from "assets/icons/google_icon.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -26,6 +26,7 @@ import Logo from "components/global/Logo";
 
 const Register = () => {
   const navigate = useNavigate();
+  const { search } = useLocation();
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const dispatch = useDispatch();
 
@@ -59,7 +60,7 @@ const Register = () => {
 
       if (res.data.status === "success") {
         dispatch(setUser(res.data.data));
-        navigate("/home/verify-email");
+        navigate("/home/verify-email" + (search ?? ""));
         return;
       }
 

@@ -5,6 +5,10 @@ export const AuthWrapper = styled(Backdrop)`
   padding: 72px 0;
   z-index: 20;
 
+  #fromTrigger {
+    display: none;
+  }
+
   @media screen and (max-width: 768px) {
     padding: 72px 8px;
   }
