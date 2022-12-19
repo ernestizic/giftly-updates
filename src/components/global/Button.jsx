@@ -9,7 +9,7 @@ const Wrapper = styled.button`
   justify-content: center;
   border-radius: 8px;
   height: ${(props) => props.height || "48px"};
-  width: ${(props) => props.width ?? props.fullWidth ? "100%" : "max-content"};
+  width: ${(props) => props.width ? props.width : props.fullWidth ? "100%" : "max-content"};
   background-color: ${(props) => props.bg || " var(--primary-main)"};
   color: ${(props) => props.color || "#ffffff"};
   font-family: var(--font_1-regular);
@@ -63,7 +63,7 @@ const Wrapper = styled.button`
   &.noBorder {
     border: none;
     color: var(--primary-main);
-    background-color: #ffffff;
+    background-color: transparent;
 
     &.white {
       color: #ffffff;
@@ -84,7 +84,6 @@ const Wrapper = styled.button`
 
     &.large {
       height: 48px;
-      width: ${(props) => props.width ?? "max-content"};
       background-color: ${(props) => props.bg || " var(--primary-main)"};
       color: ${(props) => props.color || "#ffffff"};
       font-family: var(--font_1-regular);

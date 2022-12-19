@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import Nav from "components/global/Nav";
-import Footer from "components/global/Footer";
 import Accordion from "../global/Accordion";
+import Footer from "components/global/Footer";
+import Nav from "components/global/Nav";
 import Nav2 from "./components/Nav2";
+import React from "react";
 import data from "assets/data.json";
+import styled from "styled-components";
 import { useEffect } from "react";
 
 const Wrapper = styled.div`
@@ -15,10 +15,11 @@ const Wrapper = styled.div`
 
   .faqs-ctn {
     display: flex;
-    padding-top: 9.6rem;
-    padding-bottom: 9.6rem;
+    padding-block: 9.6rem;
     @media (max-width: 768px) {
       display: block;
+      padding-top: 2.4rem;
+      padding-bottom: 4.8rem;
     }
   }
   color: var(--title-active);

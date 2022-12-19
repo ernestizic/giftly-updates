@@ -1,106 +1,38 @@
-import Backdrop from "components/global/Backdrop";
-import styled from "styled-components";
-import closeIcon from "assets/icons/close_square.svg";
-import addIcon from "assets/icons/plus.svg";
-import settingsIcon from "assets/icons/settings.svg";
-import shareIcon from "assets/icons/share_white.svg";
-import deleteIcon from "assets/icons/trash.svg";
-import { useNavigate } from "react-router-dom";
-import Spacer from "components/global/Spacer";
-import { useEffect, useState } from "react";
-import ItemRowGroup from "./ItemRowGroup";
-import FormGroup from "components/global/FormGroup";
-import { Formik } from "formik";
-import RadioInput from "components/global/RadioInput";
-import Button from "components/global/Button";
-import Logo from "components/global/Logo";
-import { AuthCard } from "components/auth/AuthStyles";
-import { useDispatch, useSelector } from "react-redux";
+import { Card, PrivacyOptions } from "components/user/WishListsStyles";
+import { base_url, validURL } from "utils/utils";
+import {
+  clearAlert,
+  setAlertTimeout,
+  showAlert,
+} from "features/alert/alertSlice";
 import {
   setTempList,
   setTempListId,
   setTempListName,
   setTempListVisibility,
 } from "features/wishList/wishListSlice";
-import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
-} from "features/alert/alertSlice";
-import { base_url, validURL } from "utils/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+
+import Backdrop from "components/global/Backdrop";
+import Button from "components/global/Button";
+import CloseModal from "components/global/CloseModal";
+import FormGroup from "components/global/FormGroup";
+import { Formik } from "formik";
+import ItemRowGroup from "./ItemRowGroup";
+import Logo from "components/global/Logo";
+import RadioInput from "components/global/RadioInput";
+import Spacer from "components/global/Spacer";
+import addIcon from "assets/icons/plus.svg";
 import axios from "axios";
+import deleteIcon from "assets/icons/trash.svg";
+import settingsIcon from "assets/icons/settings.svg";
+import shareIcon from "assets/icons/share_white.svg";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled(Backdrop)`
-  padding: 72px 0;
   z-index: 20;
-
-  @media screen and (max-width: 768px) {
-    padding: 72px 8px;
-  }
-`;
-
-const Card = styled(AuthCard)`
-  margin: auto;
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 48px;
-
-  .addMore {
-    width: 100%;
-    height: 48px;
-    border: 1px dashed var(--line);
-    border-radius: 4px;
-    transition: all 0.2s ease-out;
-
-    &:hover {
-      border-color: var(--body);
-    }
-  }
-
-  .actionBtns {
-    width: 100%;
-    margin: auto;
-  }
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    padding: 24px 16px;
-
-    .title {
-      font-size: 24px;
-      line-height: 36px;
-    }
-
-    .prompt1 {
-      font-size: 14px;
-      line-height: auto;
-    }
-
-    .prompt2 {
-      font-size: 12px;
-      line-height: auto;
-    }
-  }
-`;
-
-const PrivacyOptions = styled.div`
-  .toggler {
-    color: var(--body);
-  }
-
-  .options {
-    opacity: 0;
-    height: 0;
-    overflow: hidden;
-    pointer-events: none;
-    transition: all 0.2s ease-out;
-
-    &.show {
-      opacity: 1;
-      height: 60px;
-      pointer-events: all;
-    }
-  }
 `;
 
 const CreateWishList = () => {
@@ -209,18 +141,13 @@ const CreateWishList = () => {
   };
 
   useEffect(() => {
-    
     // eslint-disable-next-line
-  }, [])
+  }, []);
 
   return (
     <Wrapper className="flexColumn alignCenter">
       <Card>
-        <div className="flexRow alignCenter">
-          <button type="button" onClick={() => navigate("/home")}>
-            <img src={closeIcon} alt="icon" />
-          </button>
-        </div>
+        <CloseModal callback={() => navigate("/home")} />
         <Spacer y={2.4} />
         <div className="flexRow justifyCenter">
           <Logo />
@@ -271,64 +198,65 @@ const CreateWishList = () => {
           <span>Add another</span>
         </button>
         <Spacer y={1.6} />
-        <PrivacyOptions>
-          <button
-            className="flexRow alignCenter toggler"
-            onClick={togglePrivacyOptions}
-          >
-            <img src={settingsIcon} alt="icon" className="icon" />
-            <Spacer x={0.8} />
-            <span className="body-3">Privacy and Sharing</span>
-          </button>
-          <Spacer y={1.6} />
-          <form className="options" onSubmit={(e) => e.preventDefault()}>
-            <div className="flexRow alignCenter">
-              <RadioInput
-                id="public"
-                name="privacy"
-                value="public"
-                checked={tempListVisibility === "public"}
-                onClick={() => dispatch(setTempListVisibility("public"))}
-              />
+        <div className="stickyBottom">
+          <PrivacyOptions>
+            <button
+              className="flexRow alignCenter toggler"
+              onClick={togglePrivacyOptions}
+            >
+              <img src={settingsIcon} alt="icon" className="icon" />
               <Spacer x={0.8} />
-              <label className="body-3 colorTitleActive" htmlFor="public">
-                Public (anyone online can view)
-              </label>
-            </div>
-            <Spacer y={0.8} />
-            <div className="flexRow alignCenter">
-              <RadioInput
-                id="private"
-                name="privacy"
-                value="private"
-                checked={tempListVisibility === "private"}
-                onClick={() => dispatch(setTempListVisibility("private"))}
-              />
-              <Spacer x={0.8} />
-              <label className="body-3 colorTitleActive" htmlFor="private">
-                Private (only those with link can view)
-              </label>
-            </div>
-          </form>
-        </PrivacyOptions>
-        <Spacer y={2.4} />
-        <div className="flexRow justifyCenter actionBtns">
-          <Button
-            text="Share"
-            iconLeft={shareIcon}
-            disabled={saving}
-            loading={saving}
-            width="calc(50% - 12px)"
-            onClick={handleShare}
-          />
-          <Spacer x={2.4} />
-          <Button
-            text="Delete"
-            iconLeft={deleteIcon}
-            className="secondary"
-            width="calc(50% - 24px)"
-            onClick={() => navigate("/home/delete-prompt")}
-          />
+              <span className="body-3">Privacy and Sharing</span>
+            </button>
+            <form className="options" onSubmit={(e) => e.preventDefault()}>
+              <Spacer y={1.6} />
+              <div className="flexRow alignCenter">
+                <RadioInput
+                  id="public"
+                  name="privacy"
+                  value="public"
+                  checked={tempListVisibility === "public"}
+                  onClick={() => dispatch(setTempListVisibility("public"))}
+                />
+                <Spacer x={0.8} />
+                <label className="body-3 colorTitleActive" htmlFor="public">
+                  Public (anyone online can view)
+                </label>
+              </div>
+              <Spacer y={0.8} />
+              <div className="flexRow alignCenter">
+                <RadioInput
+                  id="private"
+                  name="privacy"
+                  value="private"
+                  checked={tempListVisibility === "private"}
+                  onClick={() => dispatch(setTempListVisibility("private"))}
+                />
+                <Spacer x={0.8} />
+                <label className="body-3 colorTitleActive" htmlFor="private">
+                  Private (only those with link can view)
+                </label>
+              </div>
+            </form>
+            <Spacer y={1.6} />
+          </PrivacyOptions>
+          <div className="flexRow justifyCenter actionBtns">
+            <Button
+              text="Share"
+              iconLeft={shareIcon}
+              disabled={saving}
+              loading={saving}
+              onClick={handleShare}
+              fullWidth
+            />
+            <Button
+              text="Delete"
+              iconLeft={deleteIcon}
+              className="secondary"
+              onClick={() => navigate("/home/delete-prompt")}
+              fullWidth
+            />
+          </div>
         </div>
       </Card>
       <Spacer y={4.8} />

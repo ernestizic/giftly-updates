@@ -1,35 +1,40 @@
-import { AuthCard, AuthWrapper } from "components/auth/AuthStyles";
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import warningIcon from "assets/icons/warning.svg";
-import closeIcon from "assets/icons/close_square.svg";
-import cameraIcon from "assets/icons/camera.svg";
-import Spacer from "components/global/Spacer";
-import { Initials } from "./WishListsStyles";
-import { useDispatch, useSelector } from "react-redux";
-import { Formik } from "formik";
 import * as Yup from "yup";
-import FormWrapper from "components/global/FormWrapper";
-import FormGroup from "components/global/FormGroup";
-import Button from "components/global/Button";
+
+import { AuthCard, AuthWrapper } from "components/auth/AuthStyles";
 import {
   clearAlert,
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
-import { setUser } from "features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+import Button from "components/global/Button";
+import CloseModal from "components/global/CloseModal";
+import FormGroup from "components/global/FormGroup";
+import FormWrapper from "components/global/FormWrapper";
+import { Formik } from "formik";
+import ImgWrapper from "components/global/ImgWrapper";
+import { Initials } from "./WishListsStyles";
+import Loader from "components/global/Loader";
+import React from "react";
+import Spacer from "components/global/Spacer";
 import axios from "axios";
 import { base_url } from "utils/utils";
-import { useState } from "react";
-import Loader from "components/global/Loader";
+import cameraIcon from "assets/icons/camera.svg";
+import closeIcon from "assets/icons/close_square.svg";
+import { setUser } from "features/auth/authSlice";
 import styled from "styled-components";
-import ImgWrapper from "components/global/ImgWrapper";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import warningIcon from "assets/icons/warning.svg";
 
 const Card = styled(AuthCard)`
   .actionBtns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 24px;
     width: 100%;
-    margin: auto;
   }
 
   #photoInput {
@@ -196,11 +201,7 @@ const Profile = () => {
   return (
     <AuthWrapper className="flexColumn alignCenter">
       <Card>
-        <div className="flexRow alignCenter">
-          <button type="button" onClick={() => navigate(-1)}>
-            <img src={closeIcon} alt="icon" />
-          </button>
-        </div>
+        <CloseModal callback={() => navigate(-1)} />
         <Spacer y={2.4} />
         <p className="title-4 title colorTitleActive">Account</p>
         <Spacer y={0.4} />
@@ -331,20 +332,19 @@ const Profile = () => {
                   <Loader />
                 </div>
               ) : (
-                <div className="flexRow justifyCenter actionBtns spanFull">
+                <div className="actionBtns spanFull">
                   <Button
                     type="button"
                     text="Cancel"
                     className="secondary"
-                    width="calc(50% - 12px)"
                     onClick={() => navigate(-1)}
+                    fullWidth
                   />
-                  <Spacer x={2.4} />
                   <Button
                     type="submit"
                     text="Update profile"
-                    width="calc(50% - 12px)"
                     disabled={!isValid}
+                    fullWidth
                   />
                 </div>
               )}

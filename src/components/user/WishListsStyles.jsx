@@ -1,3 +1,4 @@
+import { AuthCard } from "components/auth/AuthStyles";
 import styled from "styled-components";
 
 export const HeaderWrapper = styled.div`
@@ -190,7 +191,8 @@ export const SubHeader = styled.div`
         display: none;
       }
 
-      .icon, .icon.left {
+      .icon,
+      .icon.left {
         margin: 0;
       }
     }
@@ -212,4 +214,96 @@ export const ListWrapper = styled.div`
 export const NoLists = styled.div`
   width: 300px;
   margin: auto;
+`;
+
+export const Card = styled(AuthCard)`
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 48px;
+  padding-bottom: 24px;
+  position: relative;
+  height: calc(100% - 96px);
+  max-height: 836px;
+  overflow: auto;
+
+  .addMore {
+    width: 100%;
+    height: 48px;
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+
+    &:hover {
+      border-color: var(--body);
+    }
+  }
+
+  .actionBtns {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 24px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .stickyBottom {
+    position: sticky;
+    bottom: -24px;
+    background-color: #ffffff;
+    padding: 24px 0;
+
+    .actionBtns {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 24px 16px;
+    overflow: auto;
+    border-radius: 0;
+
+    .title {
+      font-size: 24px;
+      line-height: 36px;
+    }
+
+    .prompt1 {
+      font-size: 14px;
+      line-height: auto;
+    }
+
+    .prompt2 {
+      font-size: 12px;
+      line-height: auto;
+    }
+
+    .stickyBottom {
+      bottom: -24px;
+      padding: 24px 0;
+    }
+  }
+`;
+
+export const PrivacyOptions = styled.div`
+  .toggler {
+    color: var(--body);
+  }
+
+  .options {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: all 0.2s ease-out;
+
+    &.show {
+      opacity: 1;
+      height: 72px;
+      pointer-events: all;
+    }
+  }
 `;
