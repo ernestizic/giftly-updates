@@ -21,7 +21,6 @@ import Spacer from "components/global/Spacer";
 import axios from "axios";
 import { base_url } from "utils/utils";
 import cameraIcon from "assets/icons/camera.svg";
-import closeIcon from "assets/icons/close_square.svg";
 import { setUser } from "features/auth/authSlice";
 import styled from "styled-components";
 import { useEffect } from "react";
