@@ -1,13 +1,3 @@
-import styled from "styled-components";
-import openBox from "assets/images/open_box.svg";
-import unlockedIcon from "assets/icons/unlocked.svg";
-import lockedIcon from "assets/icons/locked.svg";
-import moreIcon from "assets/icons/more.svg";
-import CardOptions from "./CardOptions";
-import { useState } from "react";
-import Spacer from "components/global/Spacer";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import {
   setTempList,
   setTempListId,
@@ -16,14 +6,27 @@ import {
   setTempListVisibility,
 } from "features/wishList/wishListSlice";
 
+import CardOptions from "./CardOptions";
+import { GiftBoxIcon } from "components/global/SVG";
+import Spacer from "components/global/Spacer";
+import lockedIcon from "assets/icons/locked.svg";
+import moreIcon from "assets/icons/more.svg";
+import openBox from "assets/images/open_box.svg";
+import styled from "styled-components";
+import unlockedIcon from "assets/icons/unlocked.svg";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 const Container = styled.div`
   position: relative;
 `;
 
 const Wrapper = styled.div`
-  padding: 8px;
+  padding: 16px;
   border-radius: 8px;
   background-color: #ffffff;
+  border: 1px solid var(--line);
   box-shadow: var(--shadow_1);
   transition: all 0.2s ease-out;
 
@@ -32,13 +35,7 @@ const Wrapper = styled.div`
   }
 
   .screen {
-    height: 120px;
-    background-color: var(--background);
     cursor: pointer;
-
-    img {
-      height: 100%;
-    }
   }
 
   .body {
@@ -46,8 +43,6 @@ const Wrapper = styled.div`
   }
 
   .title {
-    width: 100%;
-
     &:hover {
       color: var(--primary-main);
     }
@@ -56,7 +51,6 @@ const Wrapper = styled.div`
   @media screen and (max-width: 768px) {
     position: unset;
     margin: auto;
-    width: 240px;
   }
 `;
 
@@ -94,31 +88,31 @@ const WishListCard = ({
         }}
       >
         <div
-          className="screen flexRow justifyCenter"
+          className="screen"
           onClick={
             fromSearch ? () => handleSearchNavigate(details.slug) : handleOpen
           }
         >
-          <img src={openBox} alt="Open box" />
+          <GiftBoxIcon />
         </div>
-        <Spacer y={1.6} />
+        <Spacer y={2.4} yMobile={1.6} />
         <div
           className="body"
           onClick={
             fromSearch ? () => handleSearchNavigate(details.slug) : handleOpen
           }
         >
-          <button className="body-3 colorTitleActive title textCenter flexRow justifyCenter">
+          <button className="body-3 colorTitleActive title textLeft bold">
             {details.title}
           </button>
           <Spacer y={0.4} />
-          <p className="label subtitle colorLabelText textCenter">
+          <p className="label subtitle colorLabelText">
             {details?.items.length} wish{details?.items.length > 1 ? "es" : ""}
           </p>
         </div>
         {!fromSearch && (
           <>
-            <Spacer y={1.6} />
+            <Spacer y={4.8} yMobile={2.4} />
             <div className="bottom flexRow alignCenter justifySpaceBetween">
               <div
                 className="flexRow alignCenter togglePrivacy"

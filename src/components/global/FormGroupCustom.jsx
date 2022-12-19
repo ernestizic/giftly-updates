@@ -1,9 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import { useEffect, useState } from "react";
+
 import PropTypes from "prop-types";
-import eyeIcon from "assets/icons/eye.svg";
+import React from "react";
 import eyeClosed from "assets/icons/eye_slash.svg";
-import { useState, useEffect } from "react";
+import eyeIcon from "assets/icons/eye.svg";
+import styled from "styled-components";
 
 export const FormGroupWrapper = styled.div`
   .fieldWrapper {
@@ -143,7 +144,11 @@ const FormGroupCustom = ({
     ) {
       setShowLabel(true);
     }
-  }, [defaultValue]);
+
+    if (value === "") {
+      setShowLabel(false);
+    }
+  }, [defaultValue, value]);
 
   useEffect(() => {
     document.querySelectorAll(`input`).forEach((input) => {

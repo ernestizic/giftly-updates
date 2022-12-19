@@ -16,7 +16,7 @@ export const HeaderWrapper = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    padding: 16px 24px;
+    padding: 16px;
 
     .logo {
       display: block;
@@ -199,12 +199,12 @@ export const SubHeader = styled.div`
 
 export const ListWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   grid-gap: 48px;
   padding: 0 48px;
 
   @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
+    grid-gap: 16px;
     padding: 0 24px;
   }
 `;

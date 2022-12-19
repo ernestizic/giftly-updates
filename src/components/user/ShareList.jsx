@@ -1,21 +1,22 @@
-import { AuthWrapper, AuthCard } from "components/auth/AuthStyles";
-import Spacer from "components/global/Spacer";
-import styled from "styled-components";
-import closeIcon from "assets/icons/close_square.svg";
-import twitterIcon from "assets/icons/twitter.svg";
-import facebookIcon from "assets/icons/facebook.svg";
-import whatsappIcon from "assets/icons/whatsapp.svg";
-import telegramIcon from "assets/icons/telegram.svg";
-import copyIcon from "assets/icons/document_copy.svg";
-import copyIconCircle from "assets/icons/document_copy_circle.svg";
-import { Link } from "react-router-dom";
-import FormGroupCustom from "components/global/FormGroupCustom";
-import { useDispatch, useSelector } from "react-redux";
+import { AuthCard, AuthWrapper } from "components/auth/AuthStyles";
+import { Link, useNavigate } from "react-router-dom";
 import {
   clearAlert,
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+import CloseModal from "components/global/CloseModal";
+import FormGroupCustom from "components/global/FormGroupCustom";
+import Spacer from "components/global/Spacer";
+import copyIcon from "assets/icons/document_copy.svg";
+import copyIconCircle from "assets/icons/document_copy_circle.svg";
+import facebookIcon from "assets/icons/facebook.svg";
+import styled from "styled-components";
+import telegramIcon from "assets/icons/telegram.svg";
+import twitterIcon from "assets/icons/twitter.svg";
+import whatsappIcon from "assets/icons/whatsapp.svg";
 
 const Wrapper = styled(AuthWrapper)``;
 
@@ -36,6 +37,7 @@ const Card = styled(AuthCard)`
   .copyWrapper {
     padding: 24px 48px;
     background-color: var(--title-active);
+    border-radius: 0 0 16px 16px;
   }
 
   .copyArea {
@@ -133,6 +135,7 @@ const socials = {
 };
 
 const ShareList = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const tempListSlug = useSelector((state) => state.wishList.tempListSlug);
   const user = useSelector((state) => state.auth.user);
@@ -162,11 +165,7 @@ const ShareList = () => {
     <Wrapper className="flexColumn alignCenter">
       <Card>
         <div className="shareOptions">
-          <div className="flexRow alignCenter closeWrapper">
-            <Link to="/user/wish-lists">
-              <img src={closeIcon} alt="icon" />
-            </Link>
-          </div>
+          <CloseModal callback={() => navigate("/user/wish-lists")} />
           <Spacer y={2.4} />
           <h4 className="title-4 title colorTitleActive">Share to</h4>
           <Spacer y={2.4} />

@@ -1,58 +1,44 @@
-import styled from "styled-components";
-// import searchIcon from "assets/icons/search.svg";
-// import closeIcon from "assets/icons/close_square.svg";
-import plusIcon from "assets/icons/plus_white.svg";
-import heartIcon from "assets/icons/heart_primary_circle.svg";
-import handPoint from "assets/images/hand_phone.svg";
-// import Dropdown from "components/user/Dropdown";
-import { useState } from "react";
-// import FormGroupCustom from "components/global/FormGroupCustom";
-import Spacer from "components/global/Spacer";
-import Button from "components/global/Button";
-import { useNavigate } from "react-router";
-import WishListCard from "./WishListCard";
+import { Navigate, useNavigate } from "react-router";
 import { Route, Routes } from "react-router-dom";
-import ShareList from "./ShareList";
-import DeletePrompt from "components/wishlist/DeletePrompt";
-import EditWishList from "components/user/EditWishList";
-import CreateUsername from "./CreateUsername";
-import CreateUserWishList from "./CreateUserWishList";
-// import { Search } from "./WishListsStyles";
-import { SubHeader } from "./WishListsStyles";
-import { ListWrapper } from "./WishListsStyles";
-// import { Initials } from "./WishListsStyles";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import {
   clearAlert,
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
-import { base_url } from "utils/utils";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+
+import Button from "components/global/Button";
+import CreateUserWishList from "./CreateUserWishList";
+import CreateUsername from "./CreateUsername";
+import DeletePrompt from "components/wishlist/DeletePrompt";
+import EditWishList from "components/user/EditWishList";
+import Interests from "./Interests";
+import { ListWrapper } from "./WishListsStyles";
 import Loader from "components/global/Loader";
 import { NoLists } from "./WishListsStyles";
-import { clearTempList } from "features/wishList/wishListSlice";
-// import Logo from "components/global/Logo";
-// import ImgWrapper from "components/global/ImgWrapper";
 import Profile from "./Profile";
-import Header from "./Header.";
+import ShareList from "./ShareList";
+import Spacer from "components/global/Spacer";
+import { SubHeader } from "./WishListsStyles";
+import WishListCard from "./WishListCard";
+import axios from "axios";
+import { base_url } from "utils/utils";
+import { clearTempList } from "features/wishList/wishListSlice";
+import handPoint from "assets/images/hand_phone.svg";
+import plusIcon from "assets/icons/plus_white.svg";
+import styled from "styled-components";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Wrapper = styled.div``;
 
-// const searchCategories = ["Friends", "Wish list"];
-
 const WishsLists = () => {
   const navigate = useNavigate();
-  // const [category, setCategory] = useState("Friends");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [search, setSearch] = useState("");
-  // const [friends, setFriends] = useState([]);
-  // const [finding, setFinding] = useState(false);
   const token = useSelector((state) => state.auth.token);
-  // const user = useSelector((state) => state.auth.user);
   const tempListId = useSelector((state) => state.wishList.tempListId);
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
   const updateTempWishList = async () => {
@@ -111,43 +97,7 @@ const WishsLists = () => {
     }
   };
 
-  // const handleFind = async (e) => {
-  //   const q = e.target.value;
-
-  //   setSearch(q);
-
-  //   if (!q) return;
-
-  //   try {
-  //     setFinding(true);
-  //     const res = await axios.get(`${base_url}/user/search?q=${q}`);
-
-  //     if (res.data.status === "success") {
-  //       setFriends(res.data.data);
-  //     }
-
-  //     setFinding(false);
-  //   } catch (e) {
-  //     setFinding(false);
-  //     console.log(e);
-  //   }
-  // };
-
-  // // eslint-disable-next-line
-  // const findFriends = useCallback(debounce(handleFind, 500), []);
-
-  // const showMobileSearch = () => {
-  //   document.querySelector(".searchBox").classList.add("open");
-  // };
-
-  // const hideMobileSearch = () => {
-  //   document.querySelector(`input[name=search]`).value = "";
-  //   document.querySelector(".searchBox").classList.remove("open");
-  //   setSearch("");
-  // };
-
   useEffect(() => {
-    
     updateTempWishList();
     getWishLists();
     // eslint-disable-next-line
@@ -155,17 +105,10 @@ const WishsLists = () => {
 
   return (
     <Wrapper>
-      <Header />
       <Spacer y={2.4} />
       <SubHeader className="flexRow alignCenter justifySpaceBetween">
-        <div className="captionWrapper flexRow alignCenter">
-          <img src={heartIcon} alt="heart" className="heartIcon" />
-          <Spacer x={1.6} />
-          <div>
-            <h4 className="title-4 colorTitleActive title">My wish lists</h4>
-            <Spacer y={0.4} />
-            <p className="subtitle-3 subtitle">The things I want for myself</p>
-          </div>
+        <div className="captionWrapper">
+            <h4 className="title-4 colorTitleActive title">My Wishlists</h4>
         </div>
         <Button
           text="Create wish list"
@@ -184,10 +127,9 @@ const WishsLists = () => {
         </div>
       ) : !!data.length ? (
         <ListWrapper>
-          {data
-            ?.map((item, index) => (
-              <WishListCard key={index} details={item} />
-            ))}
+          {data?.map((item, index) => (
+            <WishListCard key={index} details={item} />
+          ))}
           {/* {data
             ?.filter((item) =>
               category === searchCategories[1] && search
@@ -216,7 +158,7 @@ const WishsLists = () => {
       <Routes>
         <Route
           path="new"
-          element={<CreateUserWishList getWishLists={getWishLists} />}
+          element={!user.username ? <Navigate to="/user/wish-lists/create-username" /> : <CreateUserWishList getWishLists={getWishLists} />}
         />
         <Route
           path="edit"
@@ -230,6 +172,10 @@ const WishsLists = () => {
         <Route
           path="create-username"
           element={<CreateUsername getWishLists={getWishLists} />}
+        />
+        <Route
+          path="select-interests"
+          element={<Interests />}
         />
         <Route path="profile" element={<Profile />} />
       </Routes>

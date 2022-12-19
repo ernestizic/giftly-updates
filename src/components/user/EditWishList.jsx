@@ -1,21 +1,10 @@
-import Backdrop from "components/global/Backdrop";
-import styled from "styled-components";
-import closeIcon from "assets/icons/close_square.svg";
-import addIcon from "assets/icons/plus.svg";
-import settingsIcon from "assets/icons/settings.svg";
-import shareIcon from "assets/icons/share_primary.svg";
-import saveIcon from "assets/icons/save_white.svg";
 import { Navigate, useNavigate } from "react-router-dom";
-import Spacer from "components/global/Spacer";
-import { useCallback, useEffect, useState } from "react";
-import ItemRowGroup from "../wishlist/ItemRowGroup";
-import FormGroup from "components/global/FormGroup";
-import { Formik } from "formik";
-import RadioInput from "components/global/RadioInput";
-import Button from "components/global/Button";
-import Logo from "components/global/Logo";
-import { AuthCard } from "components/auth/AuthStyles";
-import { useDispatch, useSelector } from "react-redux";
+import { base_url, debounce, validURL } from "utils/utils";
+import {
+  clearAlert,
+  setAlertTimeout,
+  showAlert,
+} from "features/alert/alertSlice";
 import {
   clearTempList,
   setTempList,
@@ -23,22 +12,28 @@ import {
   setTempListName,
   setTempListVisibility,
 } from "features/wishList/wishListSlice";
-import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
-} from "features/alert/alertSlice";
-import { base_url, debounce, validURL } from "utils/utils";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { AuthCard } from "components/auth/AuthStyles";
+import Backdrop from "components/global/Backdrop";
+import Button from "components/global/Button";
+import CloseModal from "components/global/CloseModal";
+import FormGroup from "components/global/FormGroup";
+import { Formik } from "formik";
+import ItemRowGroup from "../wishlist/ItemRowGroup";
+import Logo from "components/global/Logo";
+import RadioInput from "components/global/RadioInput";
+import Spacer from "components/global/Spacer";
+import addIcon from "assets/icons/plus.svg";
 import axios from "axios";
-import Loader from "components/global/Loader";
+import saveIcon from "assets/icons/save_white.svg";
+import settingsIcon from "assets/icons/settings.svg";
+import shareIcon from "assets/icons/share_primary.svg";
+import styled from "styled-components";
 
 const Wrapper = styled(Backdrop)`
-  padding: 72px 0;
   z-index: 20;
-
-  @media screen and (max-width: 768px) {
-    padding: 72px 8px;
-  }
 `;
 
 const Card = styled(AuthCard)`
@@ -46,6 +41,10 @@ const Card = styled(AuthCard)`
   background-color: #ffffff;
   border-radius: 16px;
   padding: 48px;
+  position: relative;
+  height: calc(100% - 96px);
+  max-height: 836px;
+  overflow: auto;
 
   .addMore {
     width: 100%;
@@ -60,13 +59,31 @@ const Card = styled(AuthCard)`
   }
 
   .actionBtns {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 24px;
     width: 100%;
     margin: auto;
   }
 
+  .stickyBottom {
+    position: sticky;
+    bottom: -48px;
+    background-color: #ffffff;
+    padding: 24px 0;
+
+    .actionBtns {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     width: 100%;
+    height: 100%;
+    margin: 0;
     padding: 24px 16px;
+    overflow: auto;
+    border-radius: 0;
 
     .title {
       font-size: 24px;
@@ -81,6 +98,11 @@ const Card = styled(AuthCard)`
     .prompt2 {
       font-size: 12px;
       line-height: auto;
+    }
+
+    .stickyBottom {
+      bottom: -24px;
+      padding: 24px 0;
     }
   }
 `;
@@ -298,9 +320,8 @@ const EditWishList = ({ getWishLists }) => {
   };
 
   useEffect(() => {
-    
     // eslint-disable-next-line
-  }, [])
+  }, []);
 
   if (!tempListId) {
     return <Navigate to="/user/wish-lists" />;
@@ -318,17 +339,12 @@ const EditWishList = ({ getWishLists }) => {
       }}
     >
       <Card>
-        <div className="flexRow alignCenter">
-          <button
-            type="button"
-            onClick={() => {
-              dispatch(clearTempList());
-              navigate(-1);
-            }}
-          >
-            <img src={closeIcon} alt="icon" />
-          </button>
-        </div>
+        <CloseModal
+          callback={() => {
+            dispatch(clearTempList());
+            navigate(-1);
+          }}
+        />
         <Spacer y={2.4} />
         <div className="flexRow justifyCenter">
           <Logo />
@@ -378,75 +394,69 @@ const EditWishList = ({ getWishLists }) => {
           <span>Add another</span>
         </button>
         <Spacer y={1.6} />
-        <PrivacyOptions>
-          <button
-            className="flexRow alignCenter toggler"
-            onClick={togglePrivacyOptions}
-          >
-            <img src={settingsIcon} alt="icon" className="icon" />
-            <Spacer x={0.8} />
-            <span className="body-3">Privacy and Sharing</span>
-          </button>
-          <Spacer y={1.6} />
-          <form className="options" onSubmit={(e) => e.preventDefault()}>
-            <div className="flexRow alignCenter">
-              <RadioInput
-                id="public"
-                name="privacy"
-                value="public"
-                checked={tempListVisibility === "public"}
-                onClick={() => dispatch(setTempListVisibility("public"))}
-              />
+        <div className="stickyBottom">
+          <PrivacyOptions>
+            <button
+              className="flexRow alignCenter toggler"
+              onClick={togglePrivacyOptions}
+            >
+              <img src={settingsIcon} alt="icon" className="icon" />
               <Spacer x={0.8} />
-              <label className="body-3 colorTitleActive" htmlFor="public">
-                Public (anyone online can view)
-              </label>
-            </div>
-            <Spacer y={0.8} />
-            <div className="flexRow alignCenter">
-              <RadioInput
-                id="private"
-                name="privacy"
-                value="private"
-                checked={tempListVisibility === "private"}
-                onClick={() => dispatch(setTempListVisibility("private"))}
-              />
-              <Spacer x={0.8} />
-              <label className="body-3 colorTitleActive" htmlFor="private">
-                Private (only those with link can view)
-              </label>
-            </div>
-          </form>
-        </PrivacyOptions>
-        <Spacer y={2.4} />
-        {saving ? (
-          <div className="flexRow justifyCenter">
-            <Loader />
-          </div>
-        ) : (
-          <div className="flexRow justifyCenter actionBtns">
+              <span className="body-3">Privacy and Sharing</span>
+            </button>
+            <form className="options" onSubmit={(e) => e.preventDefault()}>
+              <Spacer y={1.6} />
+              <div className="flexRow alignCenter">
+                <RadioInput
+                  id="public"
+                  name="privacy"
+                  value="public"
+                  checked={tempListVisibility === "public"}
+                  onClick={() => dispatch(setTempListVisibility("public"))}
+                />
+                <Spacer x={0.8} />
+                <label className="body-3 colorTitleActive" htmlFor="public">
+                  Public (anyone online can view)
+                </label>
+              </div>
+              <Spacer y={0.8} />
+              <div className="flexRow alignCenter">
+                <RadioInput
+                  id="private"
+                  name="privacy"
+                  value="private"
+                  checked={tempListVisibility === "private"}
+                  onClick={() => dispatch(setTempListVisibility("private"))}
+                />
+                <Spacer x={0.8} />
+                <label className="body-3 colorTitleActive" htmlFor="private">
+                  Private (only those with link can view)
+                </label>
+              </div>
+            </form>
+            <Spacer y={1.6} />
+          </PrivacyOptions>
+
+          <div className="actionBtns">
             <Button
               text="Share"
               className="secondary"
               iconLeft={shareIcon}
               disabled={saving}
-              loading={saving}
-              width="calc(50% - 12px)"
               onClick={() => handleSave("share")}
+              fullWidth
             />
-            <Spacer x={2.4} />
             <Button
               text="Save"
               iconLeft={saveIcon}
               disabled={saving}
               loading={saving}
-              width="calc(50% - 24px)"
               onClick={handleSave}
+              fullWidth
             />
           </div>
-        )}
+        </div>
       </Card>
-      <Spacer y={4.8} />
     </Wrapper>
   );
 };

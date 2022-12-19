@@ -40,15 +40,15 @@
   --error-default: #be0e0f;
   --error-light: #fff3f8;
   --title-active: #14142b;
+  --gray-scale: #3d3d3d;
   --body: #6f7273;
   --label: #6e7191;
   --placeholder: #a0a3bd;
   --line: #d5d8df;
-  --input-bg: #fbfbfb;
+  --input-bg: #F7F7F7;
   --background: #f7f7fc;
   --off-white: #fcfcfc;
-  --filter-white: brightness(0%) saturate(100%) invert(100%) sepia(9%)
-    saturate(2%) hue-rotate(284deg) brightness(113%) contrast(100%);
+  --filter-white: brightness(0%) saturate(100%) invert(100%) sepia(9%) saturate(2%) hue-rotate(284deg) brightness(113%) contrast(100%);
   --shadow_1: 0px 25px 35px 0px #00000008;
   --shadow_2: 0px 2px 5px 0px #0000000d;
   --font_1-regular: "Gelion Regular";
@@ -303,6 +303,7 @@ textarea {
 .alignSpaceBetween {
   align-items: space-between;
 }
+
 .justifyCenter {
   justify-content: center;
 }
@@ -355,6 +356,14 @@ textarea {
   text-transform: uppercase;
 }
 
+.medium {
+  font-weight: 500;
+}
+
+.semi-bold {
+  font-weight: 600;
+}
+
 .bold {
   font-weight: 700;
 }
@@ -376,6 +385,17 @@ textarea {
   border: 1px solid var(--line);
 }
 
+.ellipsify {
+  width: 95%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
 /* Colors */
 
 .colorPrimaryMain {
@@ -392,6 +412,10 @@ textarea {
 
 .colorTextDescription {
   color: #8d9091;
+}
+
+.colorGrayScale {
+  color: var(--gray-scale);
 }
 
 .colorWhite {

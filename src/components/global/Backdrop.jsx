@@ -5,10 +5,10 @@ const Backdrop = styled.div`
   top: 0;
   left: 0;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-color: ${(props) =>
     props.transparent ? "transparent" : "#00000050"};
-  z-index: 5;
+  z-index: 15;
   overflow: auto;
 `;
 

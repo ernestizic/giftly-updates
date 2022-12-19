@@ -1,14 +1,16 @@
-import styled from "styled-components";
-import logo from "assets/images/logo.svg";
-import Spacer from "components/global/Spacer";
-import giftIcon from "assets/icons/gift.svg";
-import faqIcon from "assets/icons/message_question.svg";
-import supportIcon from "assets/icons/support.svg";
-import logoutIcon from "assets/icons/logout.svg";
-import cupIcon from "assets/icons/cup.svg";
-import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { setToken, setUser } from "features/auth/authSlice";
+
+import { NavLink } from "react-router-dom";
+import Spacer from "components/global/Spacer";
+import cupIcon from "assets/icons/cup.svg";
+import discoverIcon from "assets/icons/discover.svg";
+import faqIcon from "assets/icons/message_question.svg";
+import giftIcon from "assets/icons/gift.svg";
+import logo from "assets/images/logo.svg";
+import logoutIcon from "assets/icons/logout.svg";
+import styled from "styled-components";
+import supportIcon from "assets/icons/support.svg";
+import { useDispatch } from "react-redux";
 
 const Wrapper = styled.div`
   padding: 2.4rem;
@@ -104,6 +106,11 @@ const menuList = [
     title: "My wish lists",
     slug: "wish-lists",
     icon: giftIcon,
+  },
+  {
+    title: "Gift Ideas",
+    slug: "gift-ideas",
+    icon: discoverIcon,
   },
   {
     title: "Leaderboard",

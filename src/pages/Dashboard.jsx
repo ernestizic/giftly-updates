@@ -1,9 +1,12 @@
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import GiftIdeas from "./GiftIdeas";
+import Header from "components/user/Header.";
 import Leaderboard from "components/user/Leaderboard";
 import Sidebar from "components/user/Sidebar";
 import WishsLists from "components/user/WishsLists";
-import { useSelector } from "react-redux";
-import { Navigate, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const Wrapper = styled.div`
   display: grid;
@@ -30,9 +33,11 @@ const Dashboard = () => {
     <Wrapper>
       <Sidebar />
       <div className="viewContent">
+        <Header />
         <Routes>
           {/* <Route path="" element={<WishsLists />} /> */}
           <Route path="wish-lists/*" element={<WishsLists />} />
+          <Route path="gift-ideas/*" element={<GiftIdeas />} />
           <Route path="leaderboard" element={<Leaderboard />} />
         </Routes>
       </div>

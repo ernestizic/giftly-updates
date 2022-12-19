@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import chevronDown from "assets/icons/chevron_down.svg";
+import styled from "styled-components";
 
 export const DropdownWrapper = styled.div`
   width: 100%;
@@ -13,8 +13,8 @@ export const DropdownWrapper = styled.div`
     padding: 0 24px;
     background-color: transparent;
     border: none;
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 16px;
+    line-height: 24px;
     font-style: normal;
     font-weight: 400;
     letter-spacing: 0px;
@@ -30,7 +30,7 @@ export const DropdownWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     border-radius: 8px;
-    height: ${(props) => (props.fieldStyle === "longText" ? "auto" : "48px")};
+    height: ${(props) => (props.fieldStyle === "longText" ? "auto" : "56px")};
     position: relative;
     background-color: ${(props) => props.bg ?? "var(--input-bg)"};
     cursor: pointer;
@@ -86,7 +86,7 @@ export const DropdownWrapper = styled.div`
     }
 
     .list {
-      top: 48px;
+      top: 56px;
       opacity: 1;
       pointer-events: all;
     }

@@ -1,5 +1,3 @@
-import Spacer from "components/global/Spacer";
-import Header from "./Header.";
 import {
   LeaderboardWrapper,
   OtherRow,
@@ -7,23 +5,25 @@ import {
   TopRankedWrapper,
   UserRow,
 } from "./LeaderboardStyles";
-import medal_one from "assets/icons/medal_one.svg";
-import medal_two from "assets/icons/medal_two.svg";
-import medal_three from "assets/icons/medal_three.svg";
-import crown from "assets/icons/crown.svg";
-import { Initials } from "./WishListsStyles";
-import ImgWrapper from "components/global/ImgWrapper";
-import Logo from "components/global/Logo";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { base_url, formatNum } from "utils/utils";
 import {
   clearAlert,
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+
+import ImgWrapper from "components/global/ImgWrapper";
+import { Initials } from "./WishListsStyles";
 import Loader from "components/global/Loader";
+import Logo from "components/global/Logo";
+import Spacer from "components/global/Spacer";
+import axios from "axios";
+import crown from "assets/icons/crown.svg";
+import medal_one from "assets/icons/medal_one.svg";
+import medal_three from "assets/icons/medal_three.svg";
+import medal_two from "assets/icons/medal_two.svg";
 
 const Leaderboard = () => {
   const [leaderboardItems, setLeaderboardItems] = useState([]);
@@ -54,9 +54,6 @@ const Leaderboard = () => {
 
       if (res.data.status === "success") {
         setLoading(false);
-        // const tempItems = res.data.data.leaderboard?.sort(
-        //   (a, b) => a.points > b.points
-        // );
         setLeaderboardItems(res.data.data.leaderboard);
         setCurrentUser(res.data.data.current_user);
         return;
@@ -79,7 +76,6 @@ const Leaderboard = () => {
   }, []);
   return (
     <>
-      <Header />
       <Spacer y={2.4} />
       {loading ? (
         <>

@@ -1,22 +1,23 @@
-import Dashboard from "pages/Dashboard";
 import {
+  Navigate,
+  Route,
   BrowserRouter as Router,
   Routes,
-  Route,
-  Navigate,
 } from "react-router-dom";
-import Landing from "./pages/Landing";
-import { store, persistor } from "redux/store";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import AlertBox from "components/global/AlertBox";
-import ViewWishListItems from "pages/ViewWishListItems";
-import FAQs from "components/landing/FAQs";
-import ViewUserWishLists from "pages/ViewUserWishLists";
-import Terms from "components/landing/Terms";
-import Privacy from "components/landing/Privacy";
-import axios from "axios";
+import { persistor, store } from "redux/store";
 import { setToken, setUser } from "features/auth/authSlice";
+
+import AlertBox from "components/global/AlertBox";
+import Dashboard from "pages/Dashboard";
+import FAQs from "components/landing/FAQs";
+import Landing from "./pages/Landing";
+import { PersistGate } from "redux-persist/integration/react";
+import Privacy from "components/landing/Privacy";
+import { Provider } from "react-redux";
+import Terms from "components/landing/Terms";
+import ViewUserWishLists from "pages/ViewUserWishLists";
+import ViewWishListItems from "pages/ViewWishListItems";
+import axios from "axios";
 
 axios.interceptors.response.use(
   function (response) {

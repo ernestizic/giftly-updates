@@ -1,9 +1,10 @@
 import styled, { keyframes } from "styled-components";
-import { useClickOutside } from "webrix/hooks";
-import shareIcon from "assets/icons/share.svg";
-import eyeIcon from "assets/icons/eye.svg";
-import trashIcon from "assets/icons/trash_danger.svg";
+
 import Spacer from "components/global/Spacer";
+import eyeIcon from "assets/icons/eye.svg";
+import shareIcon from "assets/icons/share.svg";
+import trashIcon from "assets/icons/trash_danger.svg";
+import { useClickOutside } from "webrix/hooks";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -41,6 +42,12 @@ const Wrapper = styled.div`
     &.delete {
       background-color: var(--off-white);
     }
+  }
+
+  @media screen and (max-width: 768px) {
+    right: unset;
+    left: 0;
+    min-width: 200px
   }
 `;
 

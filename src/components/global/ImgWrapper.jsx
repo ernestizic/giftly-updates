@@ -12,7 +12,9 @@ const ImgWrapper = styled.div`
   flex-shrink: 0;
 
   img {
-    height: ${(props) => props.imgHeight ?? "100%"};
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 `;
 

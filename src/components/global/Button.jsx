@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
 import Loader from "./Loader";
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
 const Wrapper = styled.button`
   display: flex;
@@ -9,7 +9,7 @@ const Wrapper = styled.button`
   justify-content: center;
   border-radius: 8px;
   height: ${(props) => props.height || "48px"};
-  width: ${(props) => props.width ?? "max-content"};
+  width: ${(props) => props.width ?? props.fullWidth ? "100%" : "max-content"};
   background-color: ${(props) => props.bg || " var(--primary-main)"};
   color: ${(props) => props.color || "#ffffff"};
   font-family: var(--font_1-regular);
@@ -63,7 +63,7 @@ const Wrapper = styled.button`
   &.noBorder {
     border: none;
     color: var(--primary-main);
-    background-color: transparent;
+    background-color: #ffffff;
 
     &.white {
       color: #ffffff;
@@ -138,9 +138,9 @@ const Button = ({
 
   return (
     <Wrapper {...styleProps}>
-      {iconLeft && <img src={iconLeft} alt="icon" className="icon left" />}
-      <span>{text}</span>
-      {iconRight && <img src={iconRight} alt="icon" className="icon right" />}
+      {iconLeft && <img src={iconLeft} alt="icon" className={`icon${iconLeft && text ? " left" : ""}`} />}
+      {text && <span>{text}</span>}
+      {iconRight && <img src={iconRight} alt="icon" className={`icon${iconLeft && text ? " right" : ""}`} />}
     </Wrapper>
   );
 };

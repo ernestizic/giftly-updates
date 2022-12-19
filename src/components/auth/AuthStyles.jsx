@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import Backdrop from "../global/Backdrop";
+import styled from "styled-components";
 
 export const AuthWrapper = styled(Backdrop)`
   padding: 72px 0;
@@ -25,7 +25,7 @@ export const AuthCard = styled.div`
   flex-shrink: 0;
 
   @media screen and (max-width: 768px) {
-    width: 100%;
+    width: calc(100% - 32px);
     padding: 24px 16px;
 
     .title {
