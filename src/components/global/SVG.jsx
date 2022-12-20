@@ -71,7 +71,7 @@ export const TextIcon = () => (
   </svg>
 );
 
-export const StarIcon = ({fill}) => (
+export const StarIcon = ({ fill }) => (
   <svg
     width="20"
     height="20"
@@ -326,6 +326,57 @@ export const GiftBoxIcon = () => (
     />
     <path
       d="M23.9199 25.332V32.1854C23.9199 33.252 25.0933 33.8787 25.9866 33.3054L27.2399 32.4787C27.6933 32.1854 28.2666 32.1854 28.7066 32.4787L29.8933 33.2787C30.7733 33.8654 31.9599 33.2387 31.9599 32.172V25.332H23.9199Z"
+      stroke="#9F1C52"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const GiftBoxIconPrimary = () => (
+  <svg
+    width="21"
+    height="20"
+    viewBox="0 0 21 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M3.80835 14.9997C3.80835 17.4997 4.64168 18.333 7.14168 18.333H13.8083C16.3083 18.333 17.1417 17.4997 17.1417 14.9997V8.33301H3.80835V11.533"
+      stroke="#9F1C52"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M18.4166 5.83366V6.66699C18.4166 7.58366 17.975 8.33366 16.75 8.33366H4.24998C2.97498 8.33366 2.58331 7.58366 2.58331 6.66699V5.83366C2.58331 4.91699 2.97498 4.16699 4.24998 4.16699H16.75C17.975 4.16699 18.4166 4.91699 18.4166 5.83366Z"
+      stroke="#9F1C52"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10.2 4.16686H5.59998C5.31665 3.85853 5.32498 3.38353 5.62498 3.08353L6.80832 1.9002C7.11665 1.59186 7.62498 1.59186 7.93332 1.9002L10.2 4.16686Z"
+      stroke="#9F1C52"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M15.3917 4.16686H10.7917L13.0584 1.9002C13.3667 1.59186 13.875 1.59186 14.1834 1.9002L15.3667 3.08353C15.6667 3.38353 15.675 3.85853 15.3917 4.16686Z"
+      stroke="#9F1C52"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M7.95001 8.33301V12.6163C7.95001 13.283 8.68335 13.6747 9.24168 13.3163L10.025 12.7997C10.3083 12.6163 10.6667 12.6163 10.9417 12.7997L11.6833 13.2997C12.2333 13.6663 12.975 13.2747 12.975 12.608V8.33301H7.95001Z"
       stroke="#9F1C52"
       strokeWidth="1.5"
       strokeMiterlimit="10"

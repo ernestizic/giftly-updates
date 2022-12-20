@@ -227,15 +227,15 @@ export const Card = styled(AuthCard)`
   max-height: 836px;
   overflow: auto;
 
-  .addMore {
+  .giftSuggestionsBtn {
     width: 100%;
     height: 48px;
-    border: 1px dashed var(--line);
-    border-radius: 4px;
+    border: 1px solid var(--title-active);
+    border-radius: 8px;
     transition: all 0.2s ease-out;
 
     &:hover {
-      border-color: var(--body);
+      border-color: var(--primary-dark);
     }
   }
 

@@ -402,6 +402,10 @@ textarea {
   color: var(--primary-main);
 }
 
+.colorPrimaryDark {
+  color: var(--primary-dark);
+}
+
 .colorBody {
   color: var(--body);
 }

@@ -36,6 +36,7 @@ const RowWrapper = styled.form`
   .header {
     display: grid;
     grid-template-columns: auto 24px;
+    grid-gap: 12px;
   }
 
   .mainInput {

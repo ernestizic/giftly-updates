@@ -25,6 +25,12 @@ const Wrapper = styled(Backdrop)`
 .card {
   width: 600px;
 }
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+}
 `;
 
 const Product = styled.div`
@@ -42,6 +48,12 @@ const Product = styled.div`
 
   .textWrapper {
     max-width: 320px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .textWrapper {
+      max-width: 200px;
+    }
   }
 `;
 

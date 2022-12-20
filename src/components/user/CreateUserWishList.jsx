@@ -19,6 +19,7 @@ import Button from "components/global/Button";
 import CloseModal from "components/global/CloseModal";
 import FormGroup from "components/global/FormGroup";
 import { Formik } from "formik";
+import { GiftBoxIconPrimary } from "components/global/SVG";
 import ItemRowGroup from "../wishlist/ItemRowGroup";
 import Logo from "components/global/Logo";
 import RadioInput from "components/global/RadioInput";
@@ -208,15 +209,25 @@ const CreateUserWishList = ({ getWishLists }) => {
             />
           ))}
         </div>
-        <Spacer y={2.4} />
+        {/* <Spacer y={2.4} /> */}
         <button
           type="button"
-          className="addMore flexRow alignCenter justifyCenter colorGrey1"
+          className="flexRow alignCenter colorGrey1"
           onClick={addMore}
         >
           <img src={addIcon} alt="plus" className="icon" />
           <Spacer x={1.2} />
           <span>Add another</span>
+        </button>
+        <Spacer y={2.4} />
+        <button
+          type="button"
+          className="giftSuggestionsBtn flexRow alignCenter justifyCenter colorPrimaryDark"
+          onClick={() => navigate("/user/wish-lists/gift-suggestions")}
+        >
+          <GiftBoxIconPrimary />
+          <Spacer x={1.2} />
+          <span>Gift suggestions</span>
         </button>
         <Spacer y={1.6} />
         <div className="stickyBottom">
