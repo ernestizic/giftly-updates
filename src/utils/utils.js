@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const base_url = "https://api.giftly.me/api/v1";
+export const base_url = "https://customer-api.giftly.me/api/v1";
 export const base_url_vendors = "https://vendors.giftly.me/api";
 
 export const authService = () => {

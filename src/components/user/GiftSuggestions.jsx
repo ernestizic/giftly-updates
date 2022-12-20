@@ -22,15 +22,15 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled(Backdrop)`
-.card {
-  width: 600px;
-}
-
-@media screen and (max-width: 768px) {
   .card {
-    width: 100%;
+    width: 600px;
   }
-}
+
+  @media screen and (max-width: 768px) {
+    .card {
+      width: 100%;
+    }
+  }
 `;
 
 const Product = styled.div`
@@ -62,7 +62,7 @@ const GiftSuggestions = () => {
   const token = useSelector((state) => state.auth.token);
   const tempList = useSelector((state) => state.wishList.tempList);
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [selectedProductIds, setSelectedProductIds] = useState([]);
   const dispatch = useDispatch();
 
@@ -71,15 +71,15 @@ const GiftSuggestions = () => {
   };
 
   const handleAdd = async () => {
-    const selectedProducts = data.filter(d => selectedProductIds.includes(d.product_id))
+    const selectedProducts = data.filter((d) =>
+      selectedProductIds.includes(d.product_id)
+    );
 
-    const temp = selectedProducts.map(product => (
-      {
-        name: product?.name,
-        link: product?.purchase_link || "",
-        price: product?.amount,
-      }
-    ))
+    const temp = selectedProducts.map((product) => ({
+      name: product?.name,
+      link: product?.purchase_link || "",
+      price: product?.amount,
+    }));
 
     dispatch(setTempList(tempList.concat(temp)));
 
@@ -148,16 +148,21 @@ const GiftSuggestions = () => {
           <Logo />
         </div>
         <Spacer y={0.8} />
-        <p className="title-4 title textCenter colorTitleActive textCenter">Gift suggestions</p>
+        <p className="title-4 title textCenter colorTitleActive textCenter">
+          Gift suggestions
+        </p>
         <Spacer y={0.4} />
         <h3 className="subtitle-4 subtitle textCenter">
           Here’s a list of gift suggestions that you can add to your wish list.
         </h3>
         <Spacer y={4.8} />
         {loading ? (
-          <div className="flexRow justifyCenter">
-            <Loader />
-          </div>
+          <>
+            <div className="flexRow justifyCenter">
+              <Loader />
+            </div>
+            <Spacer y={4.8} />
+          </>
         ) : (
           data?.map((product) => (
             <Product key={product.product_id}>
