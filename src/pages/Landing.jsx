@@ -1,13 +1,15 @@
+import { Route, Routes } from "react-router-dom";
+
+import CreateWishList from "components/wishlist/CreateWishList";
+import DeletePrompt from "components/wishlist/DeletePrompt";
 import ForgotPassword from "components/auth/ForgotPassword";
+import GiftSuggestions from "components/user/GiftSuggestions";
+import Home from "components/landing/Home";
 import Login from "components/auth/Login";
 import Register from "components/auth/Register";
 import ResendVerificationEmail from "components/auth/ResendVerificationEmail";
-import VerifyEmail from "components/auth/VerifyEmail";
-import Home from "components/landing/Home";
-import CreateWishList from "components/wishlist/CreateWishList";
-import DeletePrompt from "components/wishlist/DeletePrompt";
 import SignupPrompt from "components/wishlist/SignupPrompt";
-import { Route, Routes } from "react-router-dom";
+import VerifyEmail from "components/auth/VerifyEmail";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -34,6 +36,7 @@ const Landing = () => {
 
         {/* Wish list */}
         <Route path="new-wishlist" element={<CreateWishList />} />
+        <Route path="gift-suggestions" element={<GiftSuggestions />} />
         <Route path="register-prompt" element={<SignupPrompt />} />
         <Route path="delete-prompt" element={<DeletePrompt />} />
 

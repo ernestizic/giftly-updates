@@ -209,7 +209,6 @@ const CreateUserWishList = ({ getWishLists }) => {
             />
           ))}
         </div>
-        {/* <Spacer y={2.4} /> */}
         <button
           type="button"
           className="flexRow alignCenter colorGrey1"

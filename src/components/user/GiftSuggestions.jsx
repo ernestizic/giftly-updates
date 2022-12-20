@@ -81,7 +81,7 @@ const GiftSuggestions = () => {
       price: product?.amount,
     }));
 
-    dispatch(setTempList(tempList.concat(temp)));
+    dispatch(setTempList(tempList[0].name ? tempList.concat(temp) : temp));
 
     handleClose();
   };
