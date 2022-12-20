@@ -1,13 +1,13 @@
-import React from "react";
 import { AuthCard } from "./AuthStyles";
 import { AuthWrapper } from "./AuthStyles";
-import handPoint from "assets/images/hand_point.svg";
-import closeIcon from "assets/icons/close_square.svg";
-import Spacer from "components/global/Spacer";
 import { CardImage } from "./AuthStyles";
-import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import CloseModal from "components/global/CloseModal";
+import React from "react";
+import Spacer from "components/global/Spacer";
+import handPoint from "assets/images/hand_point.svg";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const VerifyEmail = () => {
   const { search } = useLocation();
@@ -28,11 +28,7 @@ const VerifyEmail = () => {
   return (
     <AuthWrapper className="flexColumn alignCenter">
       <AuthCard>
-        <div className="flexRow alignCenter">
-          <Link to="/home/login">
-            <img src={closeIcon} alt="icon" />
-          </Link>
-        </div>
+      <CloseModal callback={() => navigate("/home/login")} />
         <Spacer y={2.4} />
         <CardImage src={handPoint} alt="Pointing hand" />
         <Spacer y={2.4} />

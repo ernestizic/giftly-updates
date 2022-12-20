@@ -1,28 +1,27 @@
-import closeIcon from "assets/icons/close_square.svg";
-// import googleIcon from "assets/icons/google_icon.svg";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import Spacer from "components/global/Spacer";
-import { Formik } from "formik";
 import * as Yup from "yup";
-import FormGroup from "components/global/FormGroup";
-import FormWrapper from "components/global/FormWrapper";
-import Button from "components/global/Button";
-import { useState } from "react";
-import CheckBox from "components/global/CheckBox";
-import { AuthWrapper } from "./AuthStyles";
-import { AuthCard } from "./AuthStyles";
-// import { GoogleAuthButton } from "./AuthStyles";
-// import { AuthDivider } from "./AuthStyles";
+
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   clearAlert,
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
-import { useDispatch } from "react-redux";
+
+import { AuthCard } from "./AuthStyles";
+import { AuthWrapper } from "./AuthStyles";
+import Button from "components/global/Button";
+import CheckBox from "components/global/CheckBox";
+import CloseModal from "components/global/CloseModal";
+import FormGroup from "components/global/FormGroup";
+import FormWrapper from "components/global/FormWrapper";
+import { Formik } from "formik";
+import Logo from "components/global/Logo";
+import Spacer from "components/global/Spacer";
 import axios from "axios";
 import { base_url } from "utils/utils";
 import { setUser } from "features/auth/authSlice";
-import Logo from "components/global/Logo";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -77,11 +76,7 @@ const Register = () => {
   return (
     <AuthWrapper className="flexColumn alignCenter">
       <AuthCard>
-        <div className="flexRow alignCenter">
-          <Link to="/home">
-            <img src={closeIcon} alt="icon" />
-          </Link>
-        </div>
+        <CloseModal callback={() => navigate("/home")} />
         <Spacer y={2.4} />
         <div className="flexRow justifyCenter">
           <Logo />
@@ -91,19 +86,6 @@ const Register = () => {
           Sign up to Giftly
         </h1>
         <Spacer y={3.2} />
-        {/* <GoogleAuthButton
-          className="flexRow alignCenter justifyCenter borderLight"
-          type="button"
-        >
-          <img src={googleIcon} alt="icon" />
-          <Spacer x={0.8} />
-          <span className="colorTitleActive">Continue with google</span>
-        </GoogleAuthButton>
-        <Spacer y={2.4} />
-        <AuthDivider>
-          <p className="text subtitle-5">OR WITH</p>
-        </AuthDivider>
-        <Spacer y={3.2} /> */}
         <Formik
           initialValues={{
             first_name: "",

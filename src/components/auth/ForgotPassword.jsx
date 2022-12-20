@@ -1,25 +1,27 @@
-import React from "react";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import Spacer from "components/global/Spacer";
-import { Formik } from "formik";
 import * as Yup from "yup";
-import FormGroup from "components/global/FormGroup";
-import FormWrapper from "components/global/FormWrapper";
-import Button from "components/global/Button";
-import { AuthWrapper } from "./AuthStyles";
-import { AuthCard } from "./AuthStyles";
-import closeIcon from "assets/icons/close_square.svg";
-import handPoint from "assets/images/hand_point.svg";
-import { useState } from "react";
-import { CardImage } from "./AuthStyles";
-import { useDispatch } from "react-redux";
-import { base_url } from "utils/utils";
+
+import { Route, Routes, useNavigate } from "react-router-dom";
 import {
   clearAlert,
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
+
+import { AuthCard } from "./AuthStyles";
+import { AuthWrapper } from "./AuthStyles";
+import Button from "components/global/Button";
+import { CardImage } from "./AuthStyles";
+import CloseModal from "components/global/CloseModal";
+import FormGroup from "components/global/FormGroup";
+import FormWrapper from "components/global/FormWrapper";
+import { Formik } from "formik";
+import React from "react";
+import Spacer from "components/global/Spacer";
 import axios from "axios";
+import { base_url } from "utils/utils";
+import handPoint from "assets/images/hand_point.svg";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -113,11 +115,7 @@ const ForgotPassword = () => {
         element={
           <AuthWrapper className="flexColumn alignCenter">
             <AuthCard>
-              <div className="flexRow alignCenter">
-                <Link to="/home/login">
-                  <img src={closeIcon} alt="icon" />
-                </Link>
-              </div>
+              <CloseModal callback={() => navigate("/home/login")} />
               <Spacer y={2.4} />
               <h1 className="title-3 textCenter colorTitleActive title">
                 Forgot Password
@@ -197,11 +195,7 @@ const ForgotPassword = () => {
         element={
           <AuthWrapper className="flexColumn alignCenter">
             <AuthCard>
-              <div className="flexRow alignCenter">
-                <Link to="/home/login">
-                  <img src={closeIcon} alt="icon" />
-                </Link>
-              </div>
+              <CloseModal callback={() => navigate("/home/login")} />
               <Spacer y={2.4} />
               <h1 className="title-3 textCenter colorTitleActive title">
                 Create New Password

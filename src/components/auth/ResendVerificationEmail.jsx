@@ -1,22 +1,24 @@
-import { Link, useNavigate } from "react-router-dom";
-import Spacer from "components/global/Spacer";
-import { Formik } from "formik";
 import * as Yup from "yup";
-import FormGroup from "components/global/FormGroup";
-import FormWrapper from "components/global/FormWrapper";
-import Button from "components/global/Button";
-import { AuthWrapper } from "./AuthStyles";
-import { AuthCard } from "./AuthStyles";
-import closeIcon from "assets/icons/close_square.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { base_url } from "utils/utils";
+
 import {
   clearAlert,
   setAlertTimeout,
   showAlert,
 } from "features/alert/alertSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+import { AuthCard } from "./AuthStyles";
+import { AuthWrapper } from "./AuthStyles";
+import Button from "components/global/Button";
+import CloseModal from "components/global/CloseModal";
+import FormGroup from "components/global/FormGroup";
+import FormWrapper from "components/global/FormWrapper";
+import { Formik } from "formik";
+import Spacer from "components/global/Spacer";
 import axios from "axios";
+import { base_url } from "utils/utils";
 import { setUser } from "features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const ResendVerificationEmail = () => {
   const navigate = useNavigate();
@@ -66,11 +68,7 @@ const ResendVerificationEmail = () => {
   return (
     <AuthWrapper className="flexColumn alignCenter">
       <AuthCard>
-        <div className="flexRow alignCenter">
-          <Link to="/home/login">
-            <img src={closeIcon} alt="icon" />
-          </Link>
-        </div>
+      <CloseModal callback={() => navigate("/home/login")} />
         <Spacer y={2.4} />
         <h1 className="title-3 textCenter colorTitleActive title">
           Resend Verification Email
