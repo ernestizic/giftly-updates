@@ -6,10 +6,11 @@ import React from "react";
 import Spacer from "components/global/Spacer";
 import handPoint from "assets/images/hand_point.svg";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const VerifyEmail = () => {
+  const navigate = useNavigate();
   const { search } = useLocation();
   const user = useSelector((state) => state.auth.user);
   const fromSite = new URLSearchParams(search).get("from");
