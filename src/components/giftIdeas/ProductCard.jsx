@@ -49,7 +49,7 @@ const ProductCard = ({ showPreview = () => null, details }) => {
   return (
     <Wrapper>
       <ImageWrapper className="imageWrapper fullWidth">
-        <img src={`${base_url_vendors}/../${details?.avatar}`} className="image" alt="." />
+        <img src={`${base_url_vendors}/../${details?.avatar}`} className="image" alt="." loading="lazy" />
       </ImageWrapper>
       <div className="description">
         <div className="textWrapper fullWidth">

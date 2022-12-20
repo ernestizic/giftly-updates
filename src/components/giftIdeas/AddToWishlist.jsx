@@ -104,7 +104,7 @@ const AddToWishlist = ({ wishlists, product }) => {
           dispatch(clearAlert());
         }, 5000);
         dispatch(setAlertTimeout(timeout));
-        dispatch(showAlert("Link copied!"));
+        dispatch(showAlert(res.data.message || "Succesfully added to wishlist"));
       }
     } catch (e) {
       console.log(e);

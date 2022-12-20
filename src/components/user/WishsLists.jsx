@@ -12,6 +12,7 @@ import CreateUserWishList from "./CreateUserWishList";
 import CreateUsername from "./CreateUsername";
 import DeletePrompt from "components/wishlist/DeletePrompt";
 import EditWishList from "components/user/EditWishList";
+import GiftSuggestions from "./GiftSuggestions";
 import Interests from "./Interests";
 import { ListWrapper } from "./WishListsStyles";
 import Loader from "components/global/Loader";
@@ -163,6 +164,10 @@ const WishsLists = () => {
         <Route
           path="edit"
           element={<EditWishList getWishLists={getWishLists} />}
+        />
+        <Route
+          path="gift-suggestions"
+          element={<GiftSuggestions />}
         />
         <Route path="share" element={<ShareList />} />
         <Route
