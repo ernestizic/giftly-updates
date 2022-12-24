@@ -1,5 +1,5 @@
+import logo from "assets/images/logo_xmas.png";
 import styled from "styled-components";
-import logo from "assets/images/logo.svg";
 
 const Wrapper = styled.div`
   width: max-content;

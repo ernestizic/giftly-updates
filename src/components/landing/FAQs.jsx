@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import Nav from "components/global/Nav";
-import Footer from "components/global/Footer";
 import Accordion from "../global/Accordion";
+import Footer from "components/global/Footer";
+import Nav from "components/global/Nav";
 import Nav2 from "./components/Nav2";
+import React from "react";
 import data from "assets/data.json";
+import styled from "styled-components";
 import { useEffect } from "react";
 
 const Wrapper = styled.div`
@@ -19,6 +19,7 @@ const Wrapper = styled.div`
     padding-bottom: 9.6rem;
     @media (max-width: 768px) {
       display: block;
+      padding-top: 0;
     }
   }
   color: var(--title-active);
