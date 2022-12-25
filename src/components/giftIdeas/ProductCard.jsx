@@ -1,6 +1,7 @@
 import Button from "components/global/Button";
 import ImageWrapper from "./ImageWrapper";
 import { base_url_vendors } from "utils/utils";
+import { forwardRef } from "react";
 import plusIcon from "assets/icons/plus_white.svg";
 import styled from "styled-components";
 
@@ -45,9 +46,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const ProductCard = ({ showPreview = () => null, details }) => {
+const ProductCard = forwardRef(({ showPreview = () => null, details }, ref) => {
   return (
-    <Wrapper>
+    <Wrapper ref={ref}>
       <ImageWrapper className="imageWrapper fullWidth">
         <img
           src={`${base_url_vendors}/../${details?.avatar}`}
@@ -72,6 +73,6 @@ const ProductCard = ({ showPreview = () => null, details }) => {
       </div>
     </Wrapper>
   );
-};
+});
 
 export default ProductCard;
