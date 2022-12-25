@@ -18,8 +18,7 @@ const Wrapper = styled.div`
     padding-block: 9.6rem;
     @media (max-width: 768px) {
       display: block;
-      padding-top: 2.4rem;
-      padding-bottom: 4.8rem;
+      padding-top: 0;
     }
   }
   color: var(--title-active);
