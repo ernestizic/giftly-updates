@@ -159,7 +159,7 @@ const WishsLists = () => {
       <Routes>
         <Route
           path="new"
-          element={!user.username ? <Navigate to="/user/wish-lists/create-username" /> : <CreateUserWishList getWishLists={getWishLists} />}
+          element={!user?.username ? <Navigate to="/user/wish-lists/create-username" /> : <CreateUserWishList getWishLists={getWishLists} />}
         />
         <Route
           path="edit"

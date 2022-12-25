@@ -78,7 +78,8 @@ const GiftSuggestions = () => {
     const temp = selectedProducts.map((product) => ({
       name: product?.name,
       link: product?.purchase_link || "",
-      price: product?.amount,
+      price: (product?.currency === "Dollar" ? "$" : "₦") + product?.amount,
+      quantity: 1,
     }));
 
     dispatch(setTempList(tempList[0].name ? tempList.concat(temp) : temp));
@@ -187,7 +188,7 @@ const GiftSuggestions = () => {
                 </p>
                 <Spacer y={0.2} />
                 <p className="body-3 colorGrayScale productPrice">
-                  <del>N</del>
+                  {product.currency === "Dollar" ? "$" : <del>N</del>}
                   {parseInt(product.amount).toLocaleString()}
                 </p>
               </div>

@@ -67,17 +67,23 @@ const ProductPreview = ({ details }) => {
       <Card>
         <CloseModal selector=".productPreview" />
         <ImageWrapper className="imageWrapper fullWidth">
-          <img src={`${base_url_vendors}/../${details?.avatar}`} className="image" alt="." />
+          <img
+            src={`${base_url_vendors}/../${details?.avatar}`}
+            className="image"
+            alt="."
+          />
         </ImageWrapper>
         <div className="description fullWidth">
           <CloseModal selector=".productPreview" />
           <Spacer y={2.4} yMobile={0} />
           <p className="body-1 bold colorTitleActive ellipsify productName">
-          {details?.name}
+            {details?.name}
           </p>
           <Spacer y={0.4} />
-          <p className="body-2 colorGrayScale productPrice"><del>N</del>
-            {parseInt(details.amount).toLocaleString()}</p>
+          <p className="body-2 colorGrayScale productPrice">
+            {details.currency === "Dollar" ? "$" : <del>N</del>}
+            {parseInt(details.amount).toLocaleString()}
+          </p>
           <Spacer y={0.4} />
           <a
             href={details?.purchase_link || "/user/gift-ideas"}

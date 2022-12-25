@@ -131,7 +131,9 @@ const Interests = () => {
     setSelected(tempSelected);
   };
 
-  const handleSave = () => {}
+  const handleSave = () => {
+    setSaving(false);
+  }
 
   return (
     <Wrapper className="flexColumn justifyCenter alignCenter">

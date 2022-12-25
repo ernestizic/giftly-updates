@@ -11,7 +11,6 @@ import { GiftBoxIcon } from "components/global/SVG";
 import Spacer from "components/global/Spacer";
 import lockedIcon from "assets/icons/locked.svg";
 import moreIcon from "assets/icons/more.svg";
-import openBox from "assets/images/open_box.svg";
 import styled from "styled-components";
 import unlockedIcon from "assets/icons/unlocked.svg";
 import { useDispatch } from "react-redux";

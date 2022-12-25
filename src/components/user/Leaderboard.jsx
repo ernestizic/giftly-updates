@@ -91,7 +91,7 @@ const Leaderboard = () => {
             Weekly Leaderboard
           </h3>
           <Spacer y={9.6} yMobile={7.2} />
-          <div className="flexRow justifySpaceBetween alignEnd">
+          <div className="flexRow justifySpaceAround alignEnd">
             {leaderboardItems[1] && (
               <TopRankedWrapper className="flexColumn alignCenter">
                 <TopRanked imgHeight="100%" className="flexColumn alignCenter">

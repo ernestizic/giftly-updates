@@ -49,13 +49,18 @@ const ProductCard = ({ showPreview = () => null, details }) => {
   return (
     <Wrapper>
       <ImageWrapper className="imageWrapper fullWidth">
-        <img src={`${base_url_vendors}/../${details?.avatar}`} className="image" alt="." loading="lazy" />
+        <img
+          src={`${base_url_vendors}/../${details?.avatar}`}
+          className="image"
+          alt="."
+          loading="lazy"
+        />
       </ImageWrapper>
       <div className="description">
         <div className="textWrapper fullWidth">
           <p className="body-3 semi-bold ellipsify text">{details?.name}</p>
           <p className="body-3 ellipsify text">
-            <del>N</del>
+            {details.currency === "Dollar" ? "$" : <del>N</del>}
             {parseInt(details.amount).toLocaleString()}
           </p>
         </div>

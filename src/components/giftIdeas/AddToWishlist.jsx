@@ -1,5 +1,9 @@
 import { base_url, base_url_vendors } from "utils/utils";
-import { clearAlert, setAlertTimeout, showAlert } from "features/alert/alertSlice";
+import {
+  clearAlert,
+  setAlertTimeout,
+  showAlert,
+} from "features/alert/alertSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AuthCard } from "components/auth/AuthStyles";
@@ -82,10 +86,12 @@ const AddToWishlist = ({ wishlists, product }) => {
     setSelectedWishlist("");
     setQuantity("1");
     setDescription("");
-  }
+  };
 
   const addListItem = async (items) => {
-    const tempListId = wishlists.find((list) => list.title === selectedWishlist)?.id
+    const tempListId = wishlists.find(
+      (list) => list.title === selectedWishlist
+    )?.id;
 
     setLoading(true);
     try {
@@ -104,7 +110,9 @@ const AddToWishlist = ({ wishlists, product }) => {
           dispatch(clearAlert());
         }, 5000);
         dispatch(setAlertTimeout(timeout));
-        dispatch(showAlert(res.data.message || "Succesfully added to wishlist"));
+        dispatch(
+          showAlert(res.data.message || "Succesfully added to wishlist")
+        );
       }
     } catch (e) {
       console.log(e);
@@ -112,26 +120,26 @@ const AddToWishlist = ({ wishlists, product }) => {
   };
 
   const handleAdd = async (target) => {
-      let temp = [];
+    let temp = [];
 
-      temp.push({
-        name: product?.name,
-        link: product?.purchase_link || "",
-        quantity,
-        description,
-        price: product?.amount,
-      });
-  
-      if (target === "new") {
-        dispatch(setTempList(temp));
-        navigate("new-wishlist");
-      }
+    temp.push({
+      name: product?.name,
+      link: product?.purchase_link || "",
+      quantity,
+      description,
+      price: (product?.currency === "Dollar" ? "$" : "₦") + product?.amount,
+    });
 
-      if (target === "existing") {
-        await addListItem(temp)
-      }
+    if (target === "new") {
+      dispatch(setTempList(temp));
+      navigate("new-wishlist");
+    }
 
-      handleClose();
+    if (target === "existing") {
+      await addListItem(temp);
+    }
+
+    handleClose();
   };
 
   return (
@@ -145,15 +153,21 @@ const AddToWishlist = ({ wishlists, product }) => {
         <Spacer y={2.4} />
         <Product>
           <ImageWrapper className="imageWrapper fullWidth">
-          <img src={`${base_url_vendors}/../${product?.avatar}`} className="image" alt="." />
+            <img
+              src={`${base_url_vendors}/../${product?.avatar}`}
+              className="image"
+              alt="."
+            />
           </ImageWrapper>
           <div>
             <p className="body-3 bold colorTitleActive productName">
               {product?.name}
             </p>
             <Spacer y={0.2} />
-            <p className="body-3 colorGrayScale productPrice"><del>N</del>
-            {parseInt(product.amount).toLocaleString()}</p>
+            <p className="body-3 colorGrayScale productPrice">
+              {product.currency === "Dollar" ? "$" : <del>N</del>}
+              {parseInt(product.amount).toLocaleString()}
+            </p>
           </div>
         </Product>
         <Spacer y={1.6} />
@@ -184,7 +198,13 @@ const AddToWishlist = ({ wishlists, product }) => {
             onChange={(e) => setDescription(e.target.value)}
           />
           <Spacer y={1.6} />
-          <Button text="Add to Wishlist" loading={loading} disabled={loading || !selectedWishlist} onClick={() => handleAdd("existing")} fullWidth />
+          <Button
+            text="Add to Wishlist"
+            loading={loading}
+            disabled={loading || !selectedWishlist}
+            onClick={() => handleAdd("existing")}
+            fullWidth
+          />
         </div>
         <Spacer y={1.6} />
         <Divider className="fullWidth">

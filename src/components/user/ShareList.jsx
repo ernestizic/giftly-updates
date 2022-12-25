@@ -1,5 +1,4 @@
 import { AuthCard, AuthWrapper } from "components/auth/AuthStyles";
-import { Link, useNavigate } from "react-router-dom";
 import {
   clearAlert,
   setAlertTimeout,
@@ -16,6 +15,7 @@ import facebookIcon from "assets/icons/facebook.svg";
 import styled from "styled-components";
 import telegramIcon from "assets/icons/telegram.svg";
 import twitterIcon from "assets/icons/twitter.svg";
+import { useNavigate } from "react-router-dom";
 import whatsappIcon from "assets/icons/whatsapp.svg";
 
 const Wrapper = styled(AuthWrapper)``;
