@@ -40,6 +40,7 @@ const GiftIdeas = () => {
   const [wishlists, setWishlists] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState({});
   const token = useSelector((state) => state.auth.token);
+  const { loading, list, lastListElementRef } = useInfiniteScroll(getGiftIdeas);
 
   const showPreview = (product) => {
     if (!product) return;
@@ -62,8 +63,6 @@ const GiftIdeas = () => {
       console.log(e);
     }
   };
-
-  const { loading, list, lastListElementRef } = useInfiniteScroll(getGiftIdeas);
 
   useEffect(() => {
     getWishLists();

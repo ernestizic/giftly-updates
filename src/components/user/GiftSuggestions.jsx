@@ -1,10 +1,4 @@
-import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
-} from "features/alert/alertSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 
 import Backdrop from "components/global/Backdrop";
 import Button from "components/global/Button";
@@ -15,11 +9,13 @@ import ImageWrapper from "components/giftIdeas/ImageWrapper";
 import Loader from "components/global/Loader";
 import Logo from "components/global/Logo";
 import Spacer from "components/global/Spacer";
-import axios from "axios";
 import { base_url_vendors } from "utils/utils";
+import { getGiftIdeas } from "api/giftIdeas";
 import { setTempList } from "features/wishList/wishListSlice";
 import styled from "styled-components";
+import useInfiniteScroll from "hooks/useInfiniteScroll";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Wrapper = styled(Backdrop)`
   .card {
@@ -59,11 +55,9 @@ const Product = styled.div`
 
 const GiftSuggestions = () => {
   const navigate = useNavigate();
-  const token = useSelector((state) => state.auth.token);
   const tempList = useSelector((state) => state.wishList.tempList);
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [selectedProductIds, setSelectedProductIds] = useState([]);
+  const { loading, list, lastListElementRef } = useInfiniteScroll(getGiftIdeas);
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -71,7 +65,7 @@ const GiftSuggestions = () => {
   };
 
   const handleAdd = async () => {
-    const selectedProducts = data.filter((d) =>
+    const selectedProducts = list.filter((d) =>
       selectedProductIds.includes(d.product_id)
     );
 
@@ -99,46 +93,7 @@ const GiftSuggestions = () => {
     }
   };
 
-  const getGiftIdeas = async () => {
-    try {
-      const res = await axios.get(`${base_url_vendors}/market`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
-      if (!res) {
-        setLoading(false);
-        dispatch(showAlert("An error occurred"));
-        return;
-      }
-
-      if (res.data.status === true) {
-        setLoading(false);
-        setData(res.data.data.products);
-        return;
-      }
-      setLoading(false);
-      dispatch(showAlert(res.data.message));
-    } catch (e) {
-      setLoading(false);
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response?.data.message || "Something went wrong"));
-    }
-  };
-
-  useEffect(() => {
-    getGiftIdeas();
-    // eslint-disable-next-line
-  }, []);
+  
 
   return (
     <Wrapper className="flexColumn alignCenter">
@@ -157,43 +112,46 @@ const GiftSuggestions = () => {
           Here’s a list of gift suggestions that you can add to your wish list.
         </h3>
         <Spacer y={4.8} />
-        {loading ? (
+        {list?.map((product, index) => (
+          <Product
+            key={product.product_id}
+            ref={list.length === index + 1 ? lastListElementRef : null}
+          >
+            <CheckBox
+              id={`product_${product.product_id}`}
+              name={`product_${product.product_id}`}
+              isChecked={selectedProductIds.includes(product.product_id)}
+              onChange={() => {
+                handleSelect(product.product_id);
+              }}
+            />
+            <ImageWrapper className="imageWrapper fullWidth">
+              <img
+                src={`${base_url_vendors}/../${product.avatar}`}
+                className="image"
+                alt="."
+              />
+            </ImageWrapper>
+            <div className="textWrapper">
+              <p className="body-3 bold colorTitleActive ellipsify productName">
+                {product.name}
+              </p>
+              <Spacer y={0.2} />
+              <p className="body-3 colorGrayScale productPrice">
+                {product.currency === "Dollar" ? "$" : <del>N</del>}
+                {parseInt(product.amount).toLocaleString()}
+              </p>
+            </div>
+          </Product>
+        ))}
+        {loading && (
           <>
+            <Spacer y={4.8} />
             <div className="flexRow justifyCenter">
               <Loader />
             </div>
             <Spacer y={4.8} />
           </>
-        ) : (
-          data?.map((product) => (
-            <Product key={product.product_id}>
-              <CheckBox
-                id={`product_${product.product_id}`}
-                name={`product_${product.product_id}`}
-                isChecked={selectedProductIds.includes(product.product_id)}
-                onChange={() => {
-                  handleSelect(product.product_id);
-                }}
-              />
-              <ImageWrapper className="imageWrapper fullWidth">
-                <img
-                  src={`${base_url_vendors}/../${product.avatar}`}
-                  className="image"
-                  alt="."
-                />
-              </ImageWrapper>
-              <div className="textWrapper">
-                <p className="body-3 bold colorTitleActive ellipsify productName">
-                  {product.name}
-                </p>
-                <Spacer y={0.2} />
-                <p className="body-3 colorGrayScale productPrice">
-                  {product.currency === "Dollar" ? "$" : <del>N</del>}
-                  {parseInt(product.amount).toLocaleString()}
-                </p>
-              </div>
-            </Product>
-          ))
         )}
 
         <div className="stickyBottom">
