@@ -175,6 +175,16 @@ const EditWishList = ({ getWishLists }) => {
       visibility: tempListVisibility,
     };
 
+    await axios.post(
+      `${base_url}/items/${tempListId}`,
+      { items: tempList },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
     const res = await axios.patch(
       `${base_url}/wishlist/${tempListId}`,
       wishList,

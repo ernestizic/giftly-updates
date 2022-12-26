@@ -93,8 +93,6 @@ const GiftSuggestions = () => {
     }
   };
 
-  
-
   return (
     <Wrapper className="flexColumn alignCenter">
       <Card className="card">
