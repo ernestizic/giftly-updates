@@ -283,7 +283,7 @@ export const Card = styled(AuthCard)`
 
     .stickyBottom {
       bottom: -24px;
-      padding: 24px 0 60px 0;
+      padding: 24px 0 72px 0;
     }
   }
 `;
