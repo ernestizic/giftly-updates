@@ -260,7 +260,7 @@ export const Card = styled(AuthCard)`
 
   @media screen and (max-width: 768px) {
     width: 100%;
-    height: 100%;
+    height: -webkit-fill-available;
     margin: 0;
     padding: 24px 16px;
     overflow: auto;
@@ -283,7 +283,7 @@ export const Card = styled(AuthCard)`
 
     .stickyBottom {
       bottom: -24px;
-      padding: 24px 0 96px 0;
+      padding: 24px 0 48px 0;
     }
   }
 `;
