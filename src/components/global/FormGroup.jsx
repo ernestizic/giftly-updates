@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
 import PropTypes from "prop-types";
-import eyeIcon from "assets/icons/eye.svg";
+import React from "react";
 import eyeClosed from "assets/icons/eye_slash.svg";
+import eyeIcon from "assets/icons/eye.svg";
+import styled from "styled-components";
+import { useEffect } from "react";
 import { useField } from "formik";
 import { useState } from "react";
-import { useEffect } from "react";
 
 export const FormGroupWrapper = styled.div`
   .fieldWrapper {
@@ -126,6 +126,8 @@ const FormGroup = ({
   const [showPassword, setShowPassword] = useState(false);
   const [showLabel, setShowLabel] = useState(false);
 
+  console.log(field)
+
   const toggleLabel = (e) => {
     if (e.target.value) {
       setShowLabel(true);
@@ -178,10 +180,10 @@ const FormGroup = ({
                   toggleLabel(e);
                   field.onBlur(e);
                 }}
-                value={value || field.value}
-                {...props}
+                value={field.value}
                 autoComplete="off"
                 placeholder={label}
+                {...props}
               />
               {type === "password" && (
                 <img

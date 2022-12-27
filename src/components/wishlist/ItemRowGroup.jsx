@@ -63,6 +63,14 @@ const RowWrapper = styled.form`
     padding: 4px 0;
     margin-bottom: 16px;
 
+    .fieldWrapper {
+      height: auto;
+
+      input {
+        padding: 0;
+      }
+    }
+
     input {
       display: block;
       color: var(--title-active);
@@ -105,8 +113,11 @@ const ItemRowGroup = ({
   return (
     <Formik
       initialValues={{
-        name: "",
-        link: "",
+        name: rowValues?.name || "",
+        link: rowValues?.link || "",
+        price: rowValues?.price || "",
+        quantity: rowValues?.quantity || "",
+        description: rowValues?.description || "",
       }}
     >
       {({ handleSubmit }) => (
@@ -139,9 +150,8 @@ const ItemRowGroup = ({
                 fieldStyle="shortText"
                 name="name"
                 label="Wish title"
-                value={rowValues?.name}
                 onChange={(e) => {
-                  setFieldValue(index, "name", e.target.value);
+                  setFieldValue(index, "name", e.target.value.trim());
                 }}
               />
             </div>
@@ -164,42 +174,51 @@ const ItemRowGroup = ({
               <div className={`additionalOption flexRow alignCenter`}>
                 <LinkIcon />
                 <Spacer x={0.8} />
-                <input
-                  name="link"
-                  placeholder="Link e.g https://example.com"
-                  value={rowValues?.link || ""}
-                  onChange={(e) =>
-                    setFieldValue(index, "link", e.target.value.trim())
-                  }
-                />
+                <FormGroup
+                className="fullWidth"
+                fieldStyle="shortText"
+                name="link"
+                placeholder="Link e.g https://example.com"
+                onChange={(e) =>
+                  setFieldValue(index, "link", e.target.value.trim())
+                }
+              />
               </div>
               <div className={`additionalOption flexRow alignCenter`}>
                 <CashIcon />
                 <Spacer x={0.8} />
-                <input name="price" placeholder="Price e.g $30" 
-                value={rowValues?.price || ""}
+                <FormGroup
+                className="fullWidth"
+                fieldStyle="shortText"
+                name="price" placeholder="Price e.g $30" 
                 onChange={(e) =>
                   setFieldValue(index, "price", e.target.value.trim())
                 }
-                />
+              />
               </div>
               <div className={`additionalOption flexRow alignCenter`}>
                 <QuantityIcon />
                 <Spacer x={0.8} />
-                <input name="quantity" placeholder="Quantity e.g 2" 
-                value={rowValues?.quantity || ""}
+                <FormGroup
+                className="fullWidth"
+                fieldStyle="shortText"
+                name="quantity" placeholder="Quantity e.g 2" 
                 onChange={(e) =>
                   setFieldValue(index, "quantity", e.target.value.trim())
-                }/>
+                }
+              />
               </div>
               <div className={`additionalOption flexRow alignCenter`}>
                 <TextIcon />
                 <Spacer x={0.8} />
-                <input name="description" placeholder="Description" 
-                value={rowValues?.description || ""}
+                <FormGroup
+                className="fullWidth"
+                fieldStyle="shortText"
+                name="description" placeholder="Description" 
                 onChange={(e) =>
-                  setFieldValue(index, "description", e.target.value)
-                }/>
+                  setFieldValue(index, "description", e.target.value.trim())
+                }
+              />
               </div>
               <div className="actionBtns">
                 <button
@@ -210,7 +229,7 @@ const ItemRowGroup = ({
                     setDesired(prev => !prev);
                   }}
                 >
-                  <StarIcon fill={rowValues?.priority ? "var(--primary-main)" : "none"} />
+                  <StarIcon fill={rowValues?.priority || desired ? "var(--primary-main)" : "none"} />
                   <Spacer x={0.4} />
                   <span className="body-4">Desired Item</span>
                 </button>

@@ -177,7 +177,7 @@ const EditWishList = ({ getWishLists }) => {
 
     await axios.post(
       `${base_url}/items/${tempListId}`,
-      { items: tempList },
+      { items: tempList.filter(item => !item.id) },
       {
         headers: {
           Authorization: `Bearer ${token}`,
