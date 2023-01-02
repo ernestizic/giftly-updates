@@ -1,4 +1,4 @@
-import logo from "assets/images/logo_xmas.png";
+import logo from "assets/images/logo.svg";
 import styled from "styled-components";
 
 const Wrapper = styled.div`

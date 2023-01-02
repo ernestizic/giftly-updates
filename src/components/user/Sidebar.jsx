@@ -6,7 +6,7 @@ import cupIcon from "assets/icons/cup.svg";
 import discoverIcon from "assets/icons/discover.svg";
 import faqIcon from "assets/icons/message_question.svg";
 import giftIcon from "assets/icons/gift.svg";
-import logo from "assets/images/logo_xmas.png";
+import logo from "assets/images/logo.svg";
 import logoutIcon from "assets/icons/logout.svg";
 import styled from "styled-components";
 import supportIcon from "assets/icons/support.svg";
