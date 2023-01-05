@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 
 import AddToWishlist from "components/giftIdeas/AddToWishlist";
 import CreateUserWishList from "components/user/CreateUserWishList";
+import EmptyState from "components/global/EmptyState";
 import Loader from "components/global/Loader";
 import ProductCard from "components/giftIdeas/ProductCard";
+import ProductCategories from "components/giftIdeas/Categories";
 import ProductPreview from "components/giftIdeas/ProductPreview";
 import Spacer from "components/global/Spacer";
 import axios from "axios";
@@ -22,10 +24,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const Categories = styled.div`
-  width: 100%;
-`;
-
 const ProductList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -40,7 +38,10 @@ const GiftIdeas = () => {
   const [wishlists, setWishlists] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState({});
   const token = useSelector((state) => state.auth.token);
-  const { loading, list, lastListElementRef } = useInfiniteScroll(getGiftIdeas);
+  const { loading, list, lastListElementRef, updateFilters } = useInfiniteScroll(
+    getGiftIdeas,
+    "products",
+  );
 
   const showPreview = (product) => {
     if (!product) return;
@@ -75,11 +76,12 @@ const GiftIdeas = () => {
       <AddToWishlist wishlists={wishlists} product={selectedProduct} />
       <h4 className="title-4 colorTitleActive title">Gift Ideas</h4>
       <Spacer y={4.8} />
-      <Categories></Categories>
+      <ProductCategories setFilters={updateFilters} />
+      <Spacer y={4.8} />
       <ProductList>
         {list?.map((product, index) => (
           <ProductCard
-            key={product.product_id}
+            key={index}
             showPreview={showPreview}
             details={product}
             ref={list.length === index + 1 ? lastListElementRef : null}
@@ -92,6 +94,7 @@ const GiftIdeas = () => {
           <Loader />
         </div>
       )}
+      {!loading && !list.length && <EmptyState />}
       <Routes>
         <Route path="new-wishlist" element={<CreateUserWishList />} />
       </Routes>
