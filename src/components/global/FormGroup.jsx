@@ -126,8 +126,6 @@ const FormGroup = ({
   const [showPassword, setShowPassword] = useState(false);
   const [showLabel, setShowLabel] = useState(false);
 
-  console.log(field)
-
   const toggleLabel = (e) => {
     if (e.target.value) {
       setShowLabel(true);

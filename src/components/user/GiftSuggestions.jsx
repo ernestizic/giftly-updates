@@ -5,9 +5,11 @@ import Button from "components/global/Button";
 import { Card } from "./WishListsStyles";
 import CheckBox from "components/global/CheckBox";
 import CloseModal from "components/global/CloseModal";
+import EmptyState from "components/global/EmptyState";
 import ImageWrapper from "components/giftIdeas/ImageWrapper";
 import Loader from "components/global/Loader";
 import Logo from "components/global/Logo";
+import ProductCategories from "components/giftIdeas/Categories";
 import Spacer from "components/global/Spacer";
 import { base_url_vendors } from "utils/utils";
 import { getGiftIdeas } from "api/giftIdeas";
@@ -57,7 +59,7 @@ const GiftSuggestions = () => {
   const navigate = useNavigate();
   const tempList = useSelector((state) => state.wishList.tempList);
   const [selectedProductIds, setSelectedProductIds] = useState([]);
-  const { loading, list, lastListElementRef } = useInfiniteScroll(getGiftIdeas);
+  const { loading, list, lastListElementRef, updateFilters } = useInfiniteScroll(getGiftIdeas, "products");
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -110,6 +112,8 @@ const GiftSuggestions = () => {
           Here’s a list of gift suggestions that you can add to your wish list.
         </h3>
         <Spacer y={4.8} />
+        <ProductCategories setFilters={updateFilters} />
+        <Spacer y={2.4} />
         {list?.map((product, index) => (
           <Product
             key={product.product_id}
@@ -151,6 +155,7 @@ const GiftSuggestions = () => {
             <Spacer y={4.8} />
           </>
         )}
+        {!loading && !list.length && <EmptyState />}
 
         <div className="stickyBottom">
           <div className="flexRow justifyCenter actionBtns">
