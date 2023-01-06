@@ -34,7 +34,7 @@ const Wrapper = styled.div`
 const ProductCategories = ({ setFilters }) => {
   const { list, lastListElementRef } = useInfiniteScroll(
     getProductCategories,
-    "product_categories"
+    "data"
   );
   const [selectedId, setSelectedId] = useState(1);
 
