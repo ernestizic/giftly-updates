@@ -190,7 +190,8 @@ const ItemRowGroup = ({
                 <FormGroup
                 className="fullWidth"
                 fieldStyle="shortText"
-                name="price" placeholder="Price e.g $30" 
+                name="price" 
+                placeholder="Price e.g $30" 
                 onChange={(e) =>
                   setFieldValue(index, "price", e.target.value.trim())
                 }
@@ -202,7 +203,9 @@ const ItemRowGroup = ({
                 <FormGroup
                 className="fullWidth"
                 fieldStyle="shortText"
-                name="quantity" placeholder="Quantity e.g 2" 
+                name="quantity" 
+                type="number"
+                placeholder="Quantity e.g 2" 
                 onChange={(e) =>
                   setFieldValue(index, "quantity", e.target.value.trim())
                 }

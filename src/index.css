@@ -22,6 +22,34 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "General Sans";
+  src: url(./assets/fonts/OTF/GeneralSans-Regular.otf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+	font-family: "General Sans";
+	src: url(./assets/fonts/OTF/GeneralSans-Medium.otf);
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url(./assets/fonts/OTF/GeneralSans-Bold.otf);
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+	font-family: "General Sans";
+	src: url(./assets/fonts/OTF/GeneralSans-Italic.otf);
+	font-weight: normal;
+	font-style: italic;
+}
+
+
 :root {
   --primary-main: #ee2a7b;
   --primary-dark: #c62367;
@@ -54,6 +82,7 @@
   --font_1-regular: "Gelion Regular";
   --font_1-bold: "Gelion Bold";
   --font_2: "Boldenvan";
+  --font_3-regular: "General Sans"; 
 }
 
 * {
@@ -72,14 +101,19 @@ html {
   font-size: 10px;
 }
 
+::-webkit-scrollbar {
+	display: none;
+}
+
 body {
   color: var(--body);
   margin: 0;
-  font-family: var(--font_1-regular), -apple-system, BlinkMacSystemFont,
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
 }
 
 code {
@@ -143,7 +177,7 @@ textarea {
 /* Title */
 
 .title-1 {
-  font-family: "BoldenVan";
+  font-family: "Boldenvan";
   font-size: 56px;
   font-style: normal;
   font-weight: 400;
@@ -152,7 +186,7 @@ textarea {
 }
 
 .title-2 {
-  font-family: "BoldenVan";
+  font-family: "General Sans";
   font-size: 48px;
   font-style: normal;
   font-weight: 400;
@@ -161,7 +195,7 @@ textarea {
 }
 
 .title-3 {
-  font-family: "BoldenVan";
+  font-family: "General Sans";
   font-size: 36px;
   font-style: normal;
   font-weight: 400;
@@ -170,7 +204,7 @@ textarea {
 }
 
 .title-4 {
-  font-family: "BoldenVan";
+  font-family: "General Sans";
   font-size: 24px;
   font-style: normal;
   font-weight: 400;

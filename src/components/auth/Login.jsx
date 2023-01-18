@@ -142,9 +142,11 @@ const Login = () => {
           <Logo />
         </div>
         <Spacer y={0.8} />
-        <h1 className="title-3 textCenter colorTitleActive title">
-          Login to Giftly
+        <h1 className="textCenter colorTitleActive title">
+          Sign in
         </h1>
+        <Spacer y={1.2} />
+        <p className="sign-in-sub-text">Welcome back! Enter your email and password below to sign in.</p>
         <Spacer y={3.2} />
         <Formik
           initialValues={{
@@ -200,7 +202,7 @@ const Login = () => {
                   isSubmitting || !isValid || !values.email || !values.password
                 }
               />
-              <p className="subtitle-4 prompt1 spanFull">
+              <p className="subtitle-4 prompt1 spanFull textCenter">
                 Don't have an account?{" "}
                 <Link to="/home/sign-up" className="colorPrimaryMain">
                   Sign up

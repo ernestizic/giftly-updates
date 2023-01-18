@@ -23,6 +23,13 @@ export const AuthCard = styled.div`
   border-radius: 16px;
   padding: 48px;
   flex-shrink: 0;
+  .sign-in-sub-text{
+    text-align: center;
+    max-width: 75%;
+    font-size: 16px;
+    margin: auto;
+    color: var(--gray-scale)
+  }
 
   @media screen and (max-width: 768px) {
     width: calc(100% - 32px);
@@ -68,6 +75,49 @@ export const AuthDivider = styled.div`
     text-align: center;
     width: max-content;
     margin: auto;
+  }
+`;
+
+export const VerifyEmailContainer = styled.div`
+  min-height: 100vh;
+  background: var(--title-active);
+  & > div {
+        clear: both;
+        max-width: 40%;
+        margin: 0 auto;
+        p{
+            color: var(--accent_2-light);
+            margin-bottom: 40px;
+        }
+        button{
+            color: var(--primary-dark)
+        }
+    }
+  .back-btn{
+      float: right;
+      margin: 30px 30px 100px;
+      padding: 15px 40px;
+      border-radius: 10px;
+      font-size: 16px;
+      color: var(--title-active);
+      background: var(--accent_2-light);
+      &:hover {
+          cursor: pointer;
+      }
+  }
+	#fromTrigger {
+		display: none;
+	}
+
+  @media only screen and (max-width: 768px) {
+      & > div {
+          clear: both;
+          max-width: 90%;
+      }
+  
+      .back-btn{
+          padding: 10px 30px;
+      }
   }
 `;
 

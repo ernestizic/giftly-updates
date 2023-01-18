@@ -9,7 +9,7 @@ import Login from "components/auth/Login";
 import Register from "components/auth/Register";
 import ResendVerificationEmail from "components/auth/ResendVerificationEmail";
 import SignupPrompt from "components/wishlist/SignupPrompt";
-import VerifyEmail from "components/auth/VerifyEmail";
+// import VerifyEmail from "components/auth/VerifyEmail";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -26,7 +26,7 @@ const Landing = () => {
       <Routes>
         {/* Auth */}
         <Route path="sign-up" element={<Register />} />
-        <Route path="verify-email" element={<VerifyEmail />} />
+        {/* <Route path="verify-email" element={<VerifyEmail />} /> */}
         <Route path="login" element={<Login />} />
         <Route path="password-reset/*" element={<ForgotPassword />} />
         <Route

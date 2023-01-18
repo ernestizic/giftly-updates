@@ -10,7 +10,6 @@ import {
 import { AuthCard } from "./AuthStyles";
 import { AuthWrapper } from "./AuthStyles";
 import Button from "components/global/Button";
-import CheckBox from "components/global/CheckBox";
 import CloseModal from "components/global/CloseModal";
 import FormGroup from "components/global/FormGroup";
 import FormWrapper from "components/global/FormWrapper";
@@ -21,17 +20,15 @@ import axios from "axios";
 import { base_url } from "utils/utils";
 import { setUser } from "features/auth/authSlice";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
 
 const Register = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
   const dispatch = useDispatch();
 
   const schema = Yup.object({
-    first_name: Yup.string().required("Fiield required"),
-    last_name: Yup.string().required("Fiield required"),
+    first_name: Yup.string().required("Field required"),
+    last_name: Yup.string().required("Field required"),
     email: Yup.string()
       .email("Invalid email address")
       .required("Field required"),
@@ -82,8 +79,8 @@ const Register = () => {
           <Logo />
         </div>
         <Spacer y={0.8} />
-        <h1 className="title-3 textCenter colorTitleActive title">
-          Sign up to Giftly
+        <h1 className="textCenter colorTitleActive">
+          Sign up
         </h1>
         <Spacer y={3.2} />
         <Formik
@@ -132,28 +129,6 @@ const Register = () => {
                 name="password_confirmation"
                 className="password spanFull"
               />
-              <div className="spanFull flexRow alignCenter">
-                <CheckBox
-                  id="agreement"
-                  name="agreement"
-                  isChecked={false}
-                  onChange={(e) => setAgreedToTerms(e.target.checked)}
-                />
-                <Spacer x={0.8} />
-                <label className="subtitle-5 prompt2" htmlFor="agreement">
-                  I agree to the{" "}
-                  <Link to="/terms" className="colorPrimaryMain subtitle-5">
-                    Terms of Use
-                  </Link>{" "}
-                  and{" "}
-                  <Link
-                    to="/privacy-policy"
-                    className="colorPrimaryMain subtitle-5"
-                  >
-                    Privacy Policy
-                  </Link>
-                </label>
-              </div>
 
               <Button
                 type="submit"
@@ -165,14 +140,17 @@ const Register = () => {
                   isSubmitting ||
                   !isValid ||
                   !values.email ||
-                  !values.password ||
-                  !agreedToTerms
+                  !values.password
                 }
               />
-              <p className="subtitle-4 prompt1 spanFull">
+            <p className="spanFull textCenter colorTitleActive">
+              By signing up on Giftly, you agree to our Privacy Policy and Terms of Service
+            </p>
+
+              <p className="subtitle-4 prompt1 spanFull textCenter">
                 Already have an account?{" "}
                 <Link to="/home/login" className="colorPrimaryMain">
-                  Login
+                  Sign in
                 </Link>
               </p>
             </FormWrapper>

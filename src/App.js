@@ -18,6 +18,7 @@ import Terms from "components/landing/Terms";
 import ViewUserWishLists from "pages/ViewUserWishLists";
 import ViewWishListItems from "pages/ViewWishListItems";
 import axios from "axios";
+import VerifyEmail from "components/auth/VerifyEmail";
 
 axios.interceptors.response.use(
   function (response) {
@@ -54,6 +55,7 @@ function App() {
             <Route path="/:username" element={<ViewUserWishLists />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy-policy" element={<Privacy />} />
+            <Route path="/verify-email" element={<VerifyEmail />} />
 
             {/* No match */}
             <Route path="*" element={<Navigate to="/home" />} />
