@@ -1,33 +1,65 @@
 import { AuthCard } from "components/auth/AuthStyles";
 import styled from "styled-components";
 
+
+
 export const HeaderWrapper = styled.div`
   position: sticky;
   top: 0;
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 24px 48px;
-  z-index: 6;
-
-  .logo {
-    display: none;
+  border-bottom: 1px solid var(--accent_3-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h3 {
+    color: var(--title-active);
+    font-weight: bold;
   }
 
-  .searchTrigger {
-    display: none;
-  }
-
-  @media screen and (max-width: 768px) {
-    padding: 16px;
-
-    .logo {
-      display: block;
+  .header-action-container {
+        position: relative;
+        display: flex;
+        gap: 30px;
+        .add-btn{
+            display: flex;
+            align-items: center;
+            background-color: var(--primary-main);
+            border-radius: 5px;
+            padding: 10px 12px;
+            color: #fff;
+            border: 1px solid var(--primary-main);
+        }
+        
     }
+`
+// export const HeaderWrapper = styled.div`
+//   position: sticky;
+//   top: 0;
+//   background-color: #ffffff;
+//   padding: 24px 48px;
+//   z-index: 6;
 
-    .searchTrigger {
-      display: block;
-    }
-  }
-`;
+//   .logo {
+//     display: none;
+//   }
+
+//   .searchTrigger {
+//     display: none;
+//   }
+
+//   @media screen and (max-width: 768px) {
+//     padding: 16px;
+
+//     .logo {
+//       display: block;
+//     }
+
+//     .searchTrigger {
+//       display: block;
+//     }
+//   }
+// `;
 
 export const Search = styled.div`
   width: 400px;

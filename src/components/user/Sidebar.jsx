@@ -4,12 +4,13 @@ import { NavLink } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import cupIcon from "assets/icons/cup.svg";
 import discoverIcon from "assets/icons/discover.svg";
-import faqIcon from "assets/icons/message_question.svg";
+import ArchiveIcon from "assets/icons/archive-icon.svg";
 import giftIcon from "assets/icons/gift.svg";
 import logo from "assets/images/logo.svg";
 import logoutIcon from "assets/icons/logout.svg";
 import styled from "styled-components";
-import supportIcon from "assets/icons/support.svg";
+import supportIcon from "assets/icons/message-icon.svg";
+import UserIcon from "assets/icons/user-icon.svg";
 import { useDispatch } from "react-redux";
 
 const Wrapper = styled.div`
@@ -71,23 +72,35 @@ const Wrapper = styled.div`
 `;
 
 const Menu = styled.ul`
-  max-height: 60vh;
+  max-height: 75vh;
   overflow: auto;
 
   .item {
+    white-space: nowrap;
     border-radius: 8px;
     color: var(--line);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     padding: 12px;
     transition: all 0.2s ease-out;
 
     .text {
       margin-left: 8px;
     }
+    .tag{
+      font-size: 12px !important;
+      margin-left: 40px;
+      color: var(--title-active);
+      background-color: var(--primary-light);
+      border-radius: 5px;
+      padding: 0 6px;
+    }
+
+    &:hover {
+      background-color: #fff4f933;
+    }
 
     &.active {
       color: #ffffff;
-      background-color: #fff4f933;
 
       .icon {
         filter: var(--filter-white);
@@ -108,19 +121,25 @@ const menuList = [
     icon: giftIcon,
   },
   {
-    title: "Gift Ideas",
-    slug: "gift-ideas",
-    icon: discoverIcon,
-  },
-  {
     title: "Leaderboard",
     slug: "leaderboard",
     icon: cupIcon,
   },
   {
-    title: "FAQ",
-    slug: "/faqs",
-    icon: faqIcon,
+    title: "Gift Ideas",
+    slug: "gift-ideas",
+    icon: discoverIcon,
+    tag: 'New'
+  },
+  {
+    title: "Archive",
+    slug: "archive",
+    icon: ArchiveIcon,
+  },
+  {
+    title: "Profile",
+    slug: "wish-lists/profile",
+    icon: UserIcon,
   },
 ];
 
@@ -150,7 +169,7 @@ const Sidebar = () => {
       <div className="brand">
         <img src={logo} alt="logo" className="logo" />
       </div>
-      <Spacer y={9.6} yMobile={2.4} />
+      <Spacer y={5.6} yMobile={2.4} />
       <Menu>
         {menuList?.map((item, index) => (
           <NavLink
@@ -163,7 +182,8 @@ const Sidebar = () => {
             }
           >
             <img src={item.icon} alt="icon" className="icon" />
-            <span className="subtitle-4 text">{item.title}</span>
+            <span className="subtitle-5 text">{item.title}</span>
+            {item.tag && <span className="tag">{item.tag}</span>}
           </NavLink>
         ))}
         <a
@@ -173,7 +193,7 @@ const Sidebar = () => {
           className="item flexRow alignCenter"
         >
           <img src={supportIcon} alt="icon" className="icon" />
-          <span className="subtitle-4 text">Support</span>
+          <span className="subtitle-5 text">Support</span>
         </a>
         <NavLink
           to="/home/login"
@@ -181,7 +201,7 @@ const Sidebar = () => {
           onClick={handleLogout}
         >
           <img src={logoutIcon} alt="icon" className="icon" />
-          <span className="subtitle-4 text">Logout</span>
+          <span className="subtitle-5 text">Logout</span>
         </NavLink>
       </Menu>
     </Wrapper>
