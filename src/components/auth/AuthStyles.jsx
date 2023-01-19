@@ -121,6 +121,51 @@ export const VerifyEmailContainer = styled.div`
   }
 `;
 
+export const PasswordReset = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100vh;
+  z-index: 10;
+  background: var(--title-active);
+  & > div {
+        clear: both;
+        max-width: 40%;
+        margin: 0 auto;
+        p{
+            color: var(--accent_2-light);
+            margin-bottom: 40px;
+        }
+        button{
+            color: var(--primary-dark)
+        }
+    }
+  .back-btn{
+      float: right;
+      margin: 30px 30px 100px;
+      padding: 15px 40px;
+      border-radius: 10px;
+      font-size: 16px;
+      color: var(--title-active);
+      background: var(--accent_2-light);
+      &:hover {
+          cursor: pointer;
+      }
+  }
+
+  @media only screen and (max-width: 768px) {
+      & > div {
+          clear: both;
+          max-width: 90%;
+      }
+  
+      .back-btn{
+          padding: 10px 30px;
+      }
+  }
+`
+
 export const CardImage = styled.img`
   display: block;
   width: 330px;

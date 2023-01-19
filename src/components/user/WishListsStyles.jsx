@@ -18,20 +18,26 @@ export const HeaderWrapper = styled.div`
   }
 
   .header-action-container {
-        position: relative;
+    position: relative;
+    display: flex;
+    gap: 30px;
+    .add-btn{
         display: flex;
-        gap: 30px;
-        .add-btn{
-            display: flex;
-            align-items: center;
-            background-color: var(--primary-main);
-            border-radius: 5px;
-            padding: 10px 12px;
-            color: #fff;
-            border: 1px solid var(--primary-main);
-        }
-        
+        align-items: center;
+        background-color: var(--primary-main);
+        border-radius: 5px;
+        padding: 10px 12px;
+        color: #fff;
+        border: 1px solid var(--primary-main);
     }
+      
+  }
+  @media screen and (max-width: 768px) {
+    padding: 16px;
+    .searchTrigger {
+      display: block;
+    }
+  }
 `
 // export const HeaderWrapper = styled.div`
 //   position: sticky;
@@ -189,47 +195,6 @@ export const Initials = styled.div`
   letter-spacing: 0px;
   text-transform: uppercase;
 `;
-
-// export const SubHeader = styled.div`
-//   padding: 0 48px;
-
-//   @media screen and (max-width: 768px) {
-//     padding: 0 24px;
-//     flex-direction: column;
-
-//     .captionWrapper {
-//       flex-direction: column;
-
-//       .title,
-//       subtitle {
-//         text-align: center;
-//       }
-
-//       .heartIcon {
-//         margin-bottom: 16px;
-//       }
-//     }
-
-//     .createButton {
-//       position: fixed;
-//       bottom: 60px;
-//       right: 24px;
-//       z-index: 2;
-//       border-radius: 50%;
-//       height: 56px;
-//       width: 56px;
-
-//       span {
-//         display: none;
-//       }
-
-//       .icon,
-//       .icon.left {
-//         margin: 0;
-//       }
-//     }
-//   }
-// `;
 
 export const ListWrapper = styled.div`
   display: grid;

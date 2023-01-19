@@ -55,7 +55,7 @@ const CreateUsername = () => {
         dispatch(
           setUser({ ...user, username: cred.username.split(" ").join("_") })
         );
-        navigate("/user/wish-lists");
+        navigate("/user/wish-lists/select-interests");
         return;
       }
 
@@ -77,11 +77,11 @@ const CreateUsername = () => {
           <Logo />
         </div>
         <Spacer y={0.8} />
-        <h1 className="title-3 textCenter colorTitleActive title">
+        <h1 className="textCenter colorTitleActive">
           Create a username
         </h1>
-        <p className="body-3 textCenter">
-          Create a unique username for yourself, you can also change it later.
+        <p className="body-3 textCenter colorTitleActive">
+          Create a unique username personalized for yourself on Giftly.
         </p>
         <Spacer y={3.2} />
         <Formik
@@ -102,16 +102,15 @@ const CreateUsername = () => {
                   name="username"
                   className="spanFull"
                 />
-                <Spacer y={0.8} />
-                <span className="subtitle-5">
+                {/* <span className="subtitle-5">
                   Usernames can contain only letters, numbers &amp; underscore,
                   no spaces.
-                </span>
+                </span> */}
               </div>
 
               <Button
                 type="submit"
-                text="Continue"
+                text="Next step"
                 className="spanFull"
                 width="100%"
                 loading={isSubmitting}

@@ -20,7 +20,6 @@ import { NoLists } from "./WishListsStyles";
 import Profile from "./Profile";
 import ShareList from "./ShareList";
 import Spacer from "components/global/Spacer";
-import { SubHeader } from "./WishListsStyles";
 import WishListCard from "./WishListCard";
 import axios from "axios";
 import { base_url } from "utils/utils";
@@ -169,11 +168,11 @@ const WishsLists = () => {
         />
         <Route
           path="create-username"
-          element={<CreateUsername getWishLists={getWishLists} />}
+          element={ !user?.username ? <CreateUsername getWishLists={getWishLists} /> : <Navigate to='/user/wish-lists' />}
         />
         <Route
           path="select-interests"
-          element={<Interests />}
+          element={!user?.interests ? <Interests /> : <Navigate to='/user/wish-lists' />}
         />
         <Route path="profile" element={<Profile />} />
       </Routes>

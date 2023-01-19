@@ -7,10 +7,10 @@ import {
   showAlert,
 } from "features/alert/alertSlice";
 
-import { AuthCard } from "./AuthStyles";
+import { AuthCard, PasswordReset } from "./AuthStyles";
 import { AuthWrapper } from "./AuthStyles";
 import Button from "components/global/Button";
-import { CardImage } from "./AuthStyles";
+import Logo from 'assets/images/logo.svg'
 import CloseModal from "components/global/CloseModal";
 import FormGroup from "components/global/FormGroup";
 import FormWrapper from "components/global/FormWrapper";
@@ -25,7 +25,7 @@ import { useState } from "react";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
-  const [emailAddress, setEmailAddress] = useState("");
+  const [emailAddress, setEmailAddress] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -44,7 +44,6 @@ const ForgotPassword = () => {
 
   const submitEmail = async (values) => {
     setEmailAddress(values.email);
-
     try {
       let res = await axios.post(`${base_url}/auth/forgot-password`, values);
 
@@ -117,7 +116,7 @@ const ForgotPassword = () => {
             <AuthCard>
               <CloseModal callback={() => navigate("/home/login")} />
               <Spacer y={2.4} />
-              <h1 className="title-3 textCenter colorTitleActive title">
+              <h1 className="textCenter colorTitleActive">
                 Forgot Password
               </h1>
               <Spacer y={0.8} />
@@ -152,13 +151,6 @@ const ForgotPassword = () => {
                       disabled={!isValid || !values.email || isSubmitting}
                       width="100%"
                     />
-                    <Button
-                      type="button"
-                      text="Back to login"
-                      className="spanFull noBorder"
-                      width="100%"
-                      onClick={() => navigate("/home/login")}
-                    />
                   </FormWrapper>
                 )}
               </Formik>
@@ -171,21 +163,22 @@ const ForgotPassword = () => {
       <Route
         path="mail-sent"
         element={
-          <AuthWrapper className="flexColumn alignCenter">
-            <AuthCard>
-              <CardImage src={handPoint} alt="Pointing hand" />
-              <Spacer y={2.4} />
-              <h3 className="title-3 colorTitleActive title textCenter">
-                Check your email
-              </h3>
-              <Spacer y={2.4} />
-              <p className="subtitle-3 colorTextDescription textCenter">
-                We’ve emailed {emailAddress ?? "your"} with instructions to
-                reset your password. Check your spam box if you didn’t see the
-                email.
+          <PasswordReset>
+            <button className='back-btn' onClick={() => navigate('/home/login')}>
+              Go back to site
+            </button>
+            <Spacer y={5.2} />
+            <div>
+              <img src={Logo} alt='logo' height='50px' width='auto' />
+              <Spacer y={1.2} />
+              <p className="body-3">
+                  To reset your password, follow the instructions in the email we sent to {emailAddress ?? "you"}. 
+                  If you can't find it, check your spam box.
               </p>
-            </AuthCard>
-          </AuthWrapper>
+      
+              <button type='button'>Resend email</button>
+            </div>
+          </PasswordReset>
         }
       />
 
@@ -197,14 +190,12 @@ const ForgotPassword = () => {
             <AuthCard>
               <CloseModal callback={() => navigate("/home/login")} />
               <Spacer y={2.4} />
-              <h1 className="title-3 textCenter colorTitleActive title">
-                Create New Password
-              </h1>
-              {/* <Spacer y={0.8} />
-              <p className="body-3 subtitle textCenter">
-                Your new password must be different from previously used
-                passwords.
-              </p> */}
+              <div className="textCenter">
+                <img src={Logo} alt='logo' height='50px' width='auto' />
+                <h1 className="colorTitleActive">
+                  Create New Password
+                </h1>
+              </div>
               <Spacer y={2.4} />
               <Formik
                 initialValues={{

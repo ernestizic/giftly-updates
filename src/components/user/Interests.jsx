@@ -16,7 +16,7 @@ const Card = styled(AuthCard)`
   border-radius: 16px;
   padding: 48px;
   position: relative;
-  height: calc(100% - 96px);
+  height: calc(100% - 50px);
   max-height: 836px;
   width: calc(100% - 32px);
   max-width: 812px;
@@ -88,11 +88,16 @@ const InterestCard = styled(ImageWrapper)`
     right: 16px;
     display: none;
   }
+  &:hover {
+    .text {
+      border-color: var(--title-active);
+    }
+  }
 
   &.selected {
     .text {
-      background-color: #00000080;
       border-color: var(--title-active);
+      background-color: #00000080;
     }
 
     svg {
@@ -102,6 +107,7 @@ const InterestCard = styled(ImageWrapper)`
 `;
 
 const tempList = [
+  "Women's fashion",
   "reading",
   "music",
   "art",
@@ -132,7 +138,11 @@ const Interests = () => {
   };
 
   const handleSave = () => {
+    const interests = selected.map(item => {
+      return item.innerText
+    })
     setSaving(false);
+    console.log(interests)
   }
 
   return (
@@ -142,10 +152,11 @@ const Interests = () => {
           <Logo />
         </div>
         <Spacer y={0.8} />
-        <h3 className="title-4 title textCenter colorTitleActive">
+        <h1 className="textCenter colorTitleActive">
           What are you into these days?
-        </h3>
-        <p className="subtitle-4 subtitle textCenter">
+        </h1>
+        <Spacer y={0.8} />
+        <p className="subtitle-4 subtitle textCenter colorTitleActive">
           Select at least 5 interests to help us personalise your Giftly
           experience.
         </p>
