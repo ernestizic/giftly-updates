@@ -116,7 +116,7 @@ const Menu = styled.ul`
 
 const menuList = [
   {
-    title: "My wish lists",
+    title: "My Wishlists",
     slug: "wish-lists",
     icon: giftIcon,
   },

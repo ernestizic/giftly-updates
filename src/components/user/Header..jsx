@@ -152,7 +152,7 @@ const Header = () => {
     //   </div>
     // </Wrapper>
     <Wrapper className="flexRow alignCenter justifySpaceBetween">
-      <h3 className='subtitle-2'>My Wishlists</h3>
+      <h3 className='subtitle-2'>My Wish lists</h3>
 
       <div className='header-action-container'>
         <Search className="searchBox">

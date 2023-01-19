@@ -25,7 +25,7 @@ import WishListCard from "./WishListCard";
 import axios from "axios";
 import { base_url } from "utils/utils";
 import { clearTempList } from "features/wishList/wishListSlice";
-import handPoint from "assets/images/hand_phone.svg";
+import ThinkingGirlImg from "assets/images/thinking-girl.svg";
 import plusIcon from "assets/icons/plus_white.svg";
 import styled from "styled-components";
 import { useEffect } from "react";
@@ -106,22 +106,7 @@ const WishsLists = () => {
 
   return (
     <Wrapper>
-      <Spacer y={2.4} />
-      <SubHeader className="flexRow alignCenter justifySpaceBetween">
-        <div className="captionWrapper">
-            <h4 className="title-4 colorTitleActive title">My Wishlists</h4>
-        </div>
-        <Button
-          text="Create wish list"
-          className="createButton"
-          iconLeft={plusIcon}
-          onClick={() => {
-            dispatch(clearTempList());
-            navigate("new");
-          }}
-        />
-      </SubHeader>
-      <Spacer y={4.8} />
+      <Spacer y={6.8} />
       {loading ? (
         <div className="flexRow justifyCenter">
           <Loader />
@@ -143,16 +128,24 @@ const WishsLists = () => {
         </ListWrapper>
       ) : null}
       {!loading && !data.length && (
-        <NoLists className="flexColumn justifyCenter">
-          <img src={handPoint} alt="..." className="image" />
-          <Spacer y={2.4} />
-          <h3 className="title-3 colorTitleActive textCenter">
-            No Wish list yet
-          </h3>
-          <Spacer y={0.4} />
-          <p className="body-2 textCenter">
-            Click on the create button to create a wish list
+        <NoLists>
+          <img src={ThinkingGirlImg} alt='Girl thinking' width='90%' height='auto' />
+          <h2>We've never met a list we didn't like</h2>
+          <Spacer y={0.5} />
+          <p>
+            Your first list doesn't need to be perfect. Just put it out there and
+            see if it helps receive the best gifts from your friends.
           </p>
+          <Spacer y={2.5} />
+          <Button
+            text="Create wish list"
+            className="createButton"
+            iconLeft={plusIcon}
+            onClick={() => {
+              dispatch(clearTempList());
+              navigate("new");
+            }}
+            />
         </NoLists>
       )}
 

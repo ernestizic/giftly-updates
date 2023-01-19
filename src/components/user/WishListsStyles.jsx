@@ -190,46 +190,46 @@ export const Initials = styled.div`
   text-transform: uppercase;
 `;
 
-export const SubHeader = styled.div`
-  padding: 0 48px;
+// export const SubHeader = styled.div`
+//   padding: 0 48px;
 
-  @media screen and (max-width: 768px) {
-    padding: 0 24px;
-    flex-direction: column;
+//   @media screen and (max-width: 768px) {
+//     padding: 0 24px;
+//     flex-direction: column;
 
-    .captionWrapper {
-      flex-direction: column;
+//     .captionWrapper {
+//       flex-direction: column;
 
-      .title,
-      subtitle {
-        text-align: center;
-      }
+//       .title,
+//       subtitle {
+//         text-align: center;
+//       }
 
-      .heartIcon {
-        margin-bottom: 16px;
-      }
-    }
+//       .heartIcon {
+//         margin-bottom: 16px;
+//       }
+//     }
 
-    .createButton {
-      position: fixed;
-      bottom: 60px;
-      right: 24px;
-      z-index: 2;
-      border-radius: 50%;
-      height: 56px;
-      width: 56px;
+//     .createButton {
+//       position: fixed;
+//       bottom: 60px;
+//       right: 24px;
+//       z-index: 2;
+//       border-radius: 50%;
+//       height: 56px;
+//       width: 56px;
 
-      span {
-        display: none;
-      }
+//       span {
+//         display: none;
+//       }
 
-      .icon,
-      .icon.left {
-        margin: 0;
-      }
-    }
-  }
-`;
+//       .icon,
+//       .icon.left {
+//         margin: 0;
+//       }
+//     }
+//   }
+// `;
 
 export const ListWrapper = styled.div`
   display: grid;
@@ -244,8 +244,21 @@ export const ListWrapper = styled.div`
 `;
 
 export const NoLists = styled.div`
-  width: 300px;
+  max-width: 35%;
   margin: auto;
+  text-align: center;
+  h2 {
+    color: var(--title-active)
+  }
+  p{
+    color: #3D3D3D;
+  }
+  .createButton {
+    margin: auto;
+  }
+  @media screen and (max-width: 768px) {
+    min-width: 90%;
+  }
 `;
 
 export const Card = styled(AuthCard)`
