@@ -56,7 +56,8 @@ const Register = () => {
 
       if (res.data.status === "success") {
         dispatch(setUser(res.data.data));
-        navigate("/home/verify-email" + (search ?? ""));
+        localStorage.setItem('userRegistrationEmail', cred.email);
+        navigate("/verify-email" + (search ?? ""));
         return;
       }
 

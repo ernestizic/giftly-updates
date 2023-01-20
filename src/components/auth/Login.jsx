@@ -73,6 +73,7 @@ const Login = () => {
       if (res.data.status === "success") {
         dispatch(setUser(res.data.data.user));
         dispatch(setToken(res.data.data.token.token));
+        localStorage.removeItem("userRegistrationEmail")
         navigate("/user/wish-lists");
         return;
       }
@@ -86,7 +87,7 @@ const Login = () => {
       dispatch(showAlert(e.response.data.message));
 
       if (e.response.data.email && e.response.data.emailVerified === false) {
-        navigate("/home/resend-verification-email");
+        navigate("/verify-email");
       }
     }
   };
@@ -102,7 +103,7 @@ const Login = () => {
     dispatch(setAlertTimeout(timeout));
 
     if (emailVerificationStatus === "failure") {
-      navigate("/home/resend-verification-email");
+      navigate("/verify-email");
     }
 
     if (emailVerificationMessage) {
