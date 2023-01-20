@@ -5,8 +5,8 @@ import styled from "styled-components";
 
 export const HeaderWrapper = styled.div`
   position: sticky;
+  z-index: 10;
   top: 0;
-  background-color: #fff;
   padding: 24px 48px;
   border-bottom: 1px solid var(--accent_3-light);
   display: flex;
@@ -15,6 +15,9 @@ export const HeaderWrapper = styled.div`
   h3 {
     color: var(--title-active);
     font-weight: bold;
+  }
+  .searchTrigger, .menu-icon {
+    display: none;
   }
 
   .header-action-container {
@@ -33,9 +36,21 @@ export const HeaderWrapper = styled.div`
       
   }
   @media screen and (max-width: 768px) {
+    background-color: var(--title-active);
     padding: 16px;
-    .searchTrigger {
+    h3 {
+      color: #fff;
+    }
+    .searchTrigger, .menu-icon {
       display: block;
+      img {
+        filter: var(--filter-white);
+      }
+    }
+    .header-action-container {
+      .add-btn {
+        display: none;
+      }
     }
   }
 `

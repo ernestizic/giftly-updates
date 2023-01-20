@@ -72,9 +72,8 @@ const Wrapper = styled.div`
 `;
 
 const Menu = styled.ul`
-  max-height: 75vh;
   overflow: auto;
-
+  max-height: 75vh;
   .item {
     white-space: nowrap;
     border-radius: 8px;
@@ -109,8 +108,11 @@ const Menu = styled.ul`
   }
 
   @media screen and (max-width: 768px) {
+    max-height: 85vh;
+    height: calc(100vh - 75px);
     position: relative;
-    a-index: 6;
+    z-index: 6;
+    padding-top: 50px;
   }
 `;
 

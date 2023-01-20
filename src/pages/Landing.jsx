@@ -7,7 +7,7 @@ import GiftSuggestions from "components/user/GiftSuggestions";
 import Home from "components/landing/Home";
 import Login from "components/auth/Login";
 import Register from "components/auth/Register";
-import ResendVerificationEmail from "components/auth/ResendVerificationEmail";
+// import ResendVerificationEmail from "components/auth/ResendVerificationEmail";
 import SignupPrompt from "components/wishlist/SignupPrompt";
 // import VerifyEmail from "components/auth/VerifyEmail";
 import styled from "styled-components";
@@ -29,10 +29,10 @@ const Landing = () => {
         {/* <Route path="verify-email" element={<VerifyEmail />} /> */}
         <Route path="login" element={<Login />} />
         <Route path="password-reset/*" element={<ForgotPassword />} />
-        <Route
+        {/* <Route
           path="resend-verification-email"
           element={<ResendVerificationEmail />}
-        />
+        /> */}
 
         {/* Wish list */}
         <Route path="new-wishlist" element={<CreateWishList />} />

@@ -19,7 +19,6 @@ import React from "react";
 import Spacer from "components/global/Spacer";
 import axios from "axios";
 import { base_url } from "utils/utils";
-import handPoint from "assets/images/hand_point.svg";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
@@ -116,11 +115,14 @@ const ForgotPassword = () => {
             <AuthCard>
               <CloseModal callback={() => navigate("/home/login")} />
               <Spacer y={2.4} />
-              <h1 className="textCenter colorTitleActive">
-                Forgot Password
-              </h1>
+              <div className="textCenter">
+                <img src={Logo} alt='logo' height='50px' width='auto' />
+                <h1 className="colorTitleActive">
+                  Forgot Password
+                </h1>
+              </div>
               <Spacer y={0.8} />
-              <p className="body-3 subtitle textCenter">
+              <p className="body-3 subtitle textCenter colorTitleActive">
                 Enter your email address and we will send instructions to reset
                 your password.
               </p>
