@@ -168,11 +168,11 @@ const WishsLists = () => {
         />
         <Route
           path="create-username"
-          element={ !user?.username ? <CreateUsername getWishLists={getWishLists} /> : <Navigate to='/user/wish-lists' />}
+          element={ !user?.username ? <CreateUsername getWishLists={getWishLists} /> : <Navigate to='/user/wish-lists/select-interests' />}
         />
         <Route
           path="select-interests"
-          element={<Interests />}
+          element={!user?.interests ? <Interests /> : <Navigate to='/user/wish-lists' />}
         />
         <Route path="profile" element={<Profile />} />
       </Routes>
