@@ -2,7 +2,6 @@ import { AuthCard } from "components/auth/AuthStyles";
 import styled from "styled-components";
 
 
-
 export const HeaderWrapper = styled.div`
   position: sticky;
   z-index: 10;
@@ -19,6 +18,7 @@ export const HeaderWrapper = styled.div`
   .searchTrigger, .menu-icon {
     display: none;
   }
+  .logo{ display: none }
 
   .header-action-container {
     position: relative;
@@ -38,6 +38,7 @@ export const HeaderWrapper = styled.div`
   @media screen and (max-width: 768px) {
     background-color: var(--title-active);
     padding: 16px;
+    .logo{ display: block }
     h3 {
       color: #fff;
     }
@@ -54,33 +55,6 @@ export const HeaderWrapper = styled.div`
     }
   }
 `
-// export const HeaderWrapper = styled.div`
-//   position: sticky;
-//   top: 0;
-//   background-color: #ffffff;
-//   padding: 24px 48px;
-//   z-index: 6;
-
-//   .logo {
-//     display: none;
-//   }
-
-//   .searchTrigger {
-//     display: none;
-//   }
-
-//   @media screen and (max-width: 768px) {
-//     padding: 16px;
-
-//     .logo {
-//       display: block;
-//     }
-
-//     .searchTrigger {
-//       display: block;
-//     }
-//   }
-// `;
 
 export const Search = styled.div`
   width: 400px;

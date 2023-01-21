@@ -45,7 +45,7 @@ const Header = () => {
 
   return (
     <Wrapper className="flexRow alignCenter justifySpaceBetween">
-      <Logo />
+      <Logo className='logo' />
       <h3 className='subtitle-2'>My Wish lists</h3>
 
       <div className='header-action-container'>

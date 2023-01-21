@@ -172,7 +172,7 @@ const WishsLists = () => {
         />
         <Route
           path="select-interests"
-          element={!user?.interests ? <Interests /> : <Navigate to='/user/wish-lists' />}
+          element={<Interests />}
         />
         <Route path="profile" element={<Profile />} />
       </Routes>

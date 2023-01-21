@@ -49,6 +49,7 @@ const VerifyEmail = () => {
 			setTimeout(()=> {
 				dispatch(clearAlert())
 			}, 5000)
+			setIsLoading(false)
 		}
 	}
 

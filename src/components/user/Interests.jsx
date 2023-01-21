@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { AuthCard } from "components/auth/AuthStyles";
 import Backdrop from "components/global/Backdrop";
 import Button from "components/global/Button";
@@ -6,7 +7,15 @@ import ImageWrapper from "components/giftIdeas/ImageWrapper";
 import Logo from "components/global/Logo";
 import Spacer from "components/global/Spacer";
 import styled from "styled-components";
-import { useState } from "react";
+import axios from "axios";
+import { base_url } from "utils/utils";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  clearAlert,
+  showAlert,
+} from "features/alert/alertSlice";
+import { setUser } from "features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled(Backdrop)``;
 
@@ -127,8 +136,11 @@ const tempList = [
 ];
 
 const Interests = () => {
+  const navigate = useNavigate()
   const [saving, setSaving] = useState(false);
   const [selected, setSelected] = useState([]);
+  const dispatch = useDispatch()
+  const { user, token } = useSelector((state)=> state.auth)
 
   const handleSelect = (e) => {
     e.target.closest(".interestCard")?.classList.toggle("selected");
@@ -137,12 +149,35 @@ const Interests = () => {
     setSelected(tempSelected);
   };
 
-  const handleSave = () => {
-    const interests = selected.map(item => {
-      return item.innerText
-    })
-    setSaving(false);
-    console.log(interests)
+  const interests = selected.map(item => {
+    return item.innerText
+  })
+  const formData = {
+    interests
+  }
+  const handleSave = async() => {
+    setSaving(true);
+    try {
+      const res = await axios.patch(`${base_url}/user/interests`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+			const data = res.data
+			dispatch(showAlert(data.message));
+      dispatch(setUser({ ...user, interests: formData.interests }))
+			setTimeout(()=> {
+				dispatch(clearAlert())
+			}, 5000)
+			setSaving(false)
+      navigate("/user/wish-lists");
+    } catch (err) {
+      dispatch(showAlert(err.response.data.message || "Something went wrong"));
+			setTimeout(()=> {
+				dispatch(clearAlert())
+			}, 5000)
+      setSaving(false)
+    }
   }
 
   return (
