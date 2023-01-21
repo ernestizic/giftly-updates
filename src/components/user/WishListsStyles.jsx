@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 
 export const HeaderWrapper = styled.div`
+  background: #fff;
   position: sticky;
   z-index: 10;
   top: 0;
