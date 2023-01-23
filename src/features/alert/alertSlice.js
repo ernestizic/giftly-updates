@@ -1,8 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+// ALERT TYPES ARE: success, error, warning, info
+// Alert action
+export const setAlert =(alert)=> async (dispatch) => {
+  dispatch(showAlert(alert))
+  setTimeout(()=> {
+    dispatch(clearAlert())
+  }, 5000)
+}
 
 const initialState = {
   msg: "",
-  alertTimeout: 0,
 };
 
 export const alertSlice = createSlice({
@@ -13,19 +20,12 @@ export const alertSlice = createSlice({
     showAlert: (state, action) => {
       state.msg = action.payload;
     },
-    setAlertTimeout: (state, action) => {
-      state.alertTimeout = action.payload;
-    },
     clearAlert: (state) => {
       state.msg = "";
-
-      clearTimeout(state.alertTimeout);
-
-      state.alertTimeout = 0;
     },
   },
 });
 
-export const { showAlert, clearAlert, setAlertTimeout } = alertSlice.actions;
+export const { showAlert, clearAlert } = alertSlice.actions;
 
 export default alertSlice.reducer;

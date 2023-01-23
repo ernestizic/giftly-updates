@@ -63,12 +63,16 @@
   --accent_3-main: #020162;
   --accent_3-dark: #010141;
   --accent_3-light: #e1e8f2;
-  --success-default: #219653;
+  --success-default: #005123;
   --success-light: #f2fffb;
-  --error-default: #be0e0f;
+  --error-default: #ab0001;
   --error-light: #fff3f8;
   --title-active: #14142b;
   --gray-scale: #3d3d3d;
+  --warning-default: #755118;
+  --warning-light: #FEF7D1;
+  --info-default: #0C2A75;
+  --info-light: #D7F1FD;
   --body: #6f7273;
   --label: #6e7191;
   --placeholder: #a0a3bd;

@@ -1,9 +1,5 @@
 import { base_url, base_url_vendors } from "utils/utils";
-import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
-} from "features/alert/alertSlice";
+import {setAlert} from "features/alert/alertSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AuthCard } from "components/auth/AuthStyles";
@@ -106,13 +102,10 @@ const AddToWishlist = ({ wishlists, product }) => {
       );
 
       if (res.data.status === "success") {
-        const timeout = setTimeout(() => {
-          dispatch(clearAlert());
-        }, 5000);
-        dispatch(setAlertTimeout(timeout));
-        dispatch(
-          showAlert(res.data.message || "Succesfully added to wishlist")
-        );
+        dispatch(setAlert({
+          type: 'success',
+          message: res.data.message || "Succesfully added to wishlist",
+        }))
       }
     } catch (e) {
       console.log(e);

@@ -1,5 +1,5 @@
+import React from 'react';
 import { setToken, setUser } from "features/auth/authSlice";
-
 import { NavLink } from "react-router-dom";
 import Spacer from "components/global/Spacer";
 import cupIcon from "assets/icons/cup.svg";
@@ -145,7 +145,7 @@ const menuList = [
   },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({setHeaderText}) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -179,9 +179,10 @@ const Sidebar = () => {
             key={index}
             to={item.slug}
             className="item flexRow alignCenter"
-            onClick={() =>
+            onClick={() => {
+              setHeaderText(item.title)
               document.querySelector(".sidebar").classList.remove("open")
-            }
+            }}
           >
             <img src={item.icon} alt="icon" className="icon" />
             <span className="subtitle-5 text">{item.title}</span>

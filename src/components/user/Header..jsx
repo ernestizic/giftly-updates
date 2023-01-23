@@ -23,7 +23,7 @@ const Wrapper = styled(HeaderWrapper)``;
 
 const searchCategories = ["Friends"];
 
-const Header = () => {
+const Header = ({headerText}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [category, setCategory] = useState("Friends");
@@ -46,7 +46,7 @@ const Header = () => {
   return (
     <Wrapper className="flexRow alignCenter justifySpaceBetween">
       <Logo className='logo' />
-      <h3 className='subtitle-2'>My Wish lists</h3>
+      <h3 className='subtitle-2'>{headerText}</h3>
 
       <div className='header-action-container'>
         <Search className="searchBox">

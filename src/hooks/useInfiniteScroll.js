@@ -1,4 +1,4 @@
-import { clearAlert, setAlertTimeout, showAlert } from "features/alert/alertSlice";
+import { setAlert } from "features/alert/alertSlice";
 import { useCallback, useEffect, useState } from "react";
 
 import { useDispatch } from "react-redux";
@@ -24,14 +24,12 @@ const useInfiniteScroll = (request, listKey) => {
       setLoading(true);
       setError(false);
       const res = await request(page, filters);
-      
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
   
       if (!res) {
-        dispatch(showAlert("An error occurred"));
+        dispatch(setAlert({
+          type: 'error',
+          message: "An error occurred"
+        }))
         return;
       }
 
@@ -44,11 +42,10 @@ const useInfiniteScroll = (request, listKey) => {
     } catch (e) {
       console.log(e);
       setError(e);
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response?.data.message || "Something went wrong"));
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response?.data.message || "Something went wrong"
+      }))
     }
     // eslint-disable-next-line
   }, [page, filters]);

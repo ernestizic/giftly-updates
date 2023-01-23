@@ -7,9 +7,7 @@ import {
 } from "./LeaderboardStyles";
 import { base_url, formatNum } from "utils/utils";
 import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
+  setAlert
 } from "features/alert/alertSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -41,14 +39,12 @@ const Leaderboard = () => {
         },
       });
 
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
       if (!res) {
         setLoading(false);
-        dispatch(showAlert("An error occurred"));
+        dispatch(setAlert({
+          type: 'error',
+          message: "An error occurred"
+        }))
         return;
       }
 
@@ -59,14 +55,16 @@ const Leaderboard = () => {
         return;
       }
       setLoading(false);
-      dispatch(showAlert(res.data.message));
+      dispatch(setAlert({
+        type: 'success',
+        message: res.data.message
+      }))
     } catch (e) {
       setLoading(false);
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response.data.message || "Something went wrong"));
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response.data.message || "Something went wrong"
+      }))
     }
   };
 

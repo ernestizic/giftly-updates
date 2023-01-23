@@ -2,9 +2,7 @@ import { Card, PrivacyOptions } from "./WishListsStyles";
 import { Navigate, useNavigate } from "react-router-dom";
 import { base_url, debounce, validURL } from "utils/utils";
 import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
+  setAlert
 } from "features/alert/alertSlice";
 import {
   clearTempList,
@@ -155,18 +153,19 @@ const EditWishList = ({ getWishLists }) => {
       (item) => item.link && item.link.length && !validURL(item.link)
     );
 
-    let timeout = setTimeout(() => {
-      dispatch(clearAlert());
-    }, 5000);
-    dispatch(setAlertTimeout(timeout));
-
     if (!tempListName || !tempListName.length) {
-      dispatch(showAlert("Please name your wish list"));
+      dispatch(setAlert({
+        type: 'warning',
+        message: "Please name your wish list"
+      }))
       return;
     }
 
     if (invalidLinks.length) {
-      dispatch(showAlert("You have entered an invalid URL link"));
+      dispatch(setAlert({
+        type: 'warning',
+        message: "You have entered an invalid URL link"
+      }))
       return;
     }
 
@@ -207,11 +206,6 @@ const EditWishList = ({ getWishLists }) => {
     try {
       const res = await updateDetails();
 
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
       if (!res) {
         setSaving(false);
         return;
@@ -219,7 +213,10 @@ const EditWishList = ({ getWishLists }) => {
 
       if (res.data.status === "success") {
         dispatch(setTempListId(res.data.data.id));
-        dispatch(showAlert("Wish list saved"));
+        dispatch(setAlert({
+          type: 'success',
+          message: "Wish list saved"
+        }))
         setSaving(false);
         action === "share"
           ? navigate("/user/wish-lists/share")
@@ -228,14 +225,16 @@ const EditWishList = ({ getWishLists }) => {
       }
 
       setSaving(false);
-      dispatch(showAlert(res.data.message));
+      dispatch(setAlert({
+        type: 'error',
+        message: res.data.message
+      }))
     } catch (e) {
       setSaving(false);
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response.data.message || "Something went wrong"));
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response.data.message || "Something went wrong"
+      }))
     }
   };
 

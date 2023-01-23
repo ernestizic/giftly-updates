@@ -4,16 +4,15 @@ import {
   BrowserRouter as Router,
   Routes,
 } from "react-router-dom";
-import { persistor, store } from "redux/store";
+import { store } from "redux/store";
 import { setToken, setUser } from "features/auth/authSlice";
 
 import AlertBox from "components/global/AlertBox";
 import Dashboard from "pages/Dashboard";
 import FAQs from "components/landing/FAQs";
 import Landing from "./pages/Landing";
-import { PersistGate } from "redux-persist/integration/react";
 import Privacy from "components/landing/Privacy";
-import { Provider } from "react-redux";
+import { useSelector } from "react-redux";
 import Terms from "components/landing/Terms";
 import ViewUserWishLists from "pages/ViewUserWishLists";
 import ViewWishListItems from "pages/ViewWishListItems";
@@ -40,29 +39,26 @@ axios.interceptors.response.use(
 );
 
 function App() {
+  const {msg} = useSelector((state)=> state.alert)
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Router>
-          <AlertBox />
-          <Routes>
-            <Route path="/" element={<Navigate to="/home" />} />
-            <Route path="/home/*" element={<Landing />} />
-            <Route path="/user" element={<Navigate to="/user/wish-lists" />} />
-            <Route path="/user/*" element={<Dashboard />} />
-            <Route path="/faqs" element={<FAQs />} />
-            <Route path="/:username/:slug/*" element={<ViewWishListItems />} />
-            <Route path="/:username" element={<ViewUserWishLists />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/privacy-policy" element={<Privacy />} />
-            <Route path="/verify-email" element={<VerifyEmail />} />
+    <Router>
+      <AlertBox message={msg.message} type={msg.type} />
+      <Routes>
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home/*" element={<Landing />} />
+        <Route path="/user" element={<Navigate to="/user/wish-lists" />} />
+        <Route path="/user/*" element={<Dashboard />} />
+        <Route path="/faqs" element={<FAQs />} />
+        <Route path="/:username/:slug/*" element={<ViewWishListItems />} />
+        <Route path="/:username" element={<ViewUserWishLists />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy-policy" element={<Privacy />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
 
-            {/* No match */}
-            <Route path="*" element={<Navigate to="/home" />} />
-          </Routes>
-        </Router>
-      </PersistGate>
-    </Provider>
+        {/* No match */}
+        <Route path="*" element={<Navigate to="/home" />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -10,9 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { base_url } from "utils/utils";
 import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
+  setAlert
 } from "features/alert/alertSlice";
 import { useState } from "react";
 
@@ -42,14 +40,12 @@ const ConfirmInterest = ({ itemId, itemName, username, slug }) => {
         }
       );
 
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
       if (!res) {
         setConfirming(false);
-        dispatch(showAlert("An error occurred"));
+        dispatch(setAlert({
+          type: 'error',
+          message: 'An error occurred'
+        }))
         return;
       }
 
@@ -57,15 +53,16 @@ const ConfirmInterest = ({ itemId, itemName, username, slug }) => {
         navigate(`${basePath}/item-reserved`);
         return;
       }
-
-      dispatch(showAlert(res.data.message));
+      dispatch(setAlert({
+        type: 'success',
+        message: res.data.message
+      }))
     } catch (e) {
       setConfirming(false);
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response?.data.message || "Something went wrong"));
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response?.data.message || "Something went wrong"
+      }))
     }
   };
 

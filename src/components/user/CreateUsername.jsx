@@ -9,11 +9,7 @@ import { AuthWrapper, AuthCard } from "components/auth/AuthStyles";
 import Logo from "components/global/Logo";
 import axios from "axios";
 import { base_url } from "utils/utils";
-import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
-} from "features/alert/alertSlice";
+import {setAlert} from "features/alert/alertSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "features/auth/authSlice";
 
@@ -40,18 +36,19 @@ const CreateUsername = () => {
         }
       );
 
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
       if (!res) {
-        dispatch(showAlert("An error occurred"));
+        dispatch(setAlert({
+          type: 'error',
+          message: "An error occurred",
+        }))
         return;
       }
 
       if (res.data.status === "success") {
-        dispatch(showAlert(res.data.message));
+        dispatch(setAlert({
+          type: 'success',
+          message: res.data.message,
+        }))
         dispatch(
           setUser({ ...user, username: cred.username.split(" ").join("_") })
         );
@@ -59,13 +56,15 @@ const CreateUsername = () => {
         return;
       }
 
-      dispatch(showAlert(res.data.message));
+      dispatch(setAlert({
+        type: 'success',
+        message: res.data.message,
+      }))
     } catch (e) {
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response.data.message || "Something went wrong"));
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response.data.message || "Something went wrong",
+      }))
     }
   };
 

@@ -1,11 +1,7 @@
 import * as Yup from "yup";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
-} from "features/alert/alertSlice";
+import {setAlert} from "features/alert/alertSlice";
 
 import { AuthCard } from "./AuthStyles";
 import { AuthWrapper } from "./AuthStyles";
@@ -43,14 +39,11 @@ const Register = () => {
   const handleRegister = async (cred) => {
     try {
       const res = await axios.post(`${base_url}/auth/register`, cred);
-
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
       if (!res) {
-        dispatch(showAlert("An error occurred"));
+        dispatch(setAlert({
+          type: 'error',
+          message: "An error occurred"
+      }))
         return;
       }
 
@@ -60,14 +53,15 @@ const Register = () => {
         navigate("/verify-email" + (search ?? ""));
         return;
       }
-
-      dispatch(showAlert(res.data.message));
+      dispatch(setAlert({
+        type: 'success',
+        message: res.data.message
+    }))
     } catch (e) {
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response.data.message));
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response.data.message
+      }))
     }
   };
 

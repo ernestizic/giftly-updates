@@ -11,8 +11,7 @@ import axios from "axios";
 import { base_url } from "utils/utils";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  clearAlert,
-  showAlert,
+  setAlert
 } from "features/alert/alertSlice";
 import { setUser } from "features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -164,18 +163,18 @@ const Interests = () => {
         },
       })
 			const data = res.data
-			dispatch(showAlert(data.message));
       dispatch(setUser({ ...user, interests: formData.interests }))
-			setTimeout(()=> {
-				dispatch(clearAlert())
-			}, 5000)
+      dispatch(setAlert({
+        type: 'success',
+        message: data.message
+      }))
 			setSaving(false)
       navigate("/user/wish-lists");
     } catch (err) {
-      dispatch(showAlert(err.response.data.message || "Something went wrong"));
-			setTimeout(()=> {
-				dispatch(clearAlert())
-			}, 5000)
+      dispatch(setAlert({
+        type: 'error',
+        message: err.response.data.message || "Something went wrong"
+      }))
       setSaving(false)
     }
   }

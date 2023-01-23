@@ -1,11 +1,7 @@
 import * as Yup from "yup";
 
 import { Route, Routes, useNavigate } from "react-router-dom";
-import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
-} from "features/alert/alertSlice";
+import { setAlert } from "features/alert/alertSlice";
 
 import { AuthCard, PasswordReset } from "./AuthStyles";
 import { AuthWrapper } from "./AuthStyles";
@@ -46,27 +42,30 @@ const ForgotPassword = () => {
     try {
       let res = await axios.post(`${base_url}/auth/forgot-password`, values);
 
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
       if (res.data.status === "success") {
-        dispatch(showAlert(res.data.message));
+        dispatch(setAlert({
+          type: 'success',
+          message: res.data.message
+        }))
         navigate("/home/password-reset/mail-sent");
       } else if (res.data.status === "failure") {
-        dispatch(showAlert(res.data.message));
+        dispatch(setAlert({
+          type: 'error',
+          message: res.data.message
+        }))
       } else {
-        dispatch(showAlert("An error occurred"));
+        dispatch(setAlert({
+          type: 'error',
+          message: "An error occurred"
+        }))
       }
     } catch (e) {
       console.log(e);
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
       dispatch(
-        showAlert(e.response.data.message || "Invalid request. Try again.")
+        dispatch(setAlert({
+          type: 'error',
+          message: e.response.data.message || "Invalid request. Try again."
+        }))
       );
     }
   };
@@ -80,28 +79,29 @@ const ForgotPassword = () => {
         values
       );
 
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
       if (res.data.status === "success") {
-        dispatch(showAlert(res.data.message));
+        dispatch(setAlert({
+          type: 'success',
+          message: res.data.message
+        }))
         navigate("/home/login");
       } else if (res.data.status === "failure") {
-        dispatch(showAlert(res.data.message));
+        dispatch(setAlert({
+          type: 'error',
+          message: res.data.message
+        }))
       } else {
-        dispatch(showAlert("An error occurred"));
+        dispatch(setAlert({
+          type: 'error',
+          message: "An error occurred"
+        }))
       }
     } catch (e) {
       console.log(e);
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(
-        showAlert(e.response.data.message || "Invalid request. Try again.")
-      );
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response.data.message || "Invalid request. Try again."
+      }))
     }
   };
 

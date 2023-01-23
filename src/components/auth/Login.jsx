@@ -1,11 +1,7 @@
 import * as Yup from "yup";
 
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
-import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
-} from "features/alert/alertSlice";
+import {setAlert} from "features/alert/alertSlice";
 import { setToken, setUser } from "features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -60,13 +56,11 @@ const Login = () => {
     try {
       const res = await axios.post(`${base_url}/auth`, cred);
 
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
       if (!res) {
-        dispatch(showAlert("An error occurred"));
+        dispatch(setAlert({
+          type: 'error',
+          message: "An error occurred"
+      }))
         return;
       }
 
@@ -77,14 +71,15 @@ const Login = () => {
         navigate("/user/wish-lists");
         return;
       }
-
-      dispatch(showAlert(res.data.message));
+      dispatch(setAlert({
+        type: 'success',
+        message: res.data.message
+      }))
     } catch (e) {
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response.data.message));
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response.data.message
+      }))
 
       if (e.response.data.email && e.response.data.emailVerified === false) {
         navigate("/verify-email");
@@ -97,17 +92,15 @@ const Login = () => {
       return;
     }
 
-    const timeout = setTimeout(() => {
-      dispatch(clearAlert());
-    }, 5000);
-    dispatch(setAlertTimeout(timeout));
-
     if (emailVerificationStatus === "failure") {
       navigate("/verify-email");
     }
 
     if (emailVerificationMessage) {
-      dispatch(showAlert(emailVerificationMessage));
+      dispatch(setAlert({
+        type: 'success',
+        message: emailVerificationMessage
+      }))
     }
   };
 

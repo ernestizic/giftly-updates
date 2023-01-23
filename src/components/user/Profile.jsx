@@ -2,9 +2,7 @@ import * as Yup from "yup";
 
 import { AuthCard, AuthWrapper } from "components/auth/AuthStyles";
 import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
+  setAlert
 } from "features/alert/alertSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -79,30 +77,32 @@ const Profile = () => {
         },
       });
 
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
       if (!res) {
-        dispatch(showAlert("An error occurred"));
+        dispatch(setAlert({
+          type: 'error',
+          message: "An error occurred"
+        }))
         return;
       }
 
       if (res.data.status === "success") {
         // dispatch(setUser({ ...user, avatar: res.data.data }));
         getUser();
-        dispatch(showAlert(res.data.message));
+        dispatch(setAlert({
+          type: 'success',
+          message: res.data.message
+        }))
         return;
       }
-
-      dispatch(showAlert(res.data.message));
+      dispatch(setAlert({
+        type: 'success',
+        message: res.data.message
+      }))
     } catch (e) {
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response.data.message || "Something went wrong"));
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response.data.message || "Something went wrong"
+      }))
     }
   };
 
@@ -114,29 +114,31 @@ const Profile = () => {
         },
       });
 
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
       if (!res) {
-        dispatch(showAlert("An error occurred"));
+        dispatch(setAlert({
+          type: 'error',
+          message: "An error occurred"
+        }))
         return;
       }
 
       if (res.data.status === "success") {
         dispatch(setUser(res.data.data));
-        dispatch(showAlert(res.data.message));
+        dispatch(setAlert({
+          type: 'success',
+          message: res.data.message
+        }))
         return;
       }
-
-      dispatch(showAlert(res.data.message));
+      dispatch(setAlert({
+        type: 'success',
+        message: res.data.message
+      }))
     } catch (e) {
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response.data.message || "Something went wrong"));
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response.data.message || "Something went wrong"
+      }))
     }
   };
 
@@ -166,29 +168,33 @@ const Profile = () => {
         },
       });
 
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
       if (!res) {
-        dispatch(showAlert("An error occurred"));
+        dispatch(setAlert({
+          type: 'error',
+          message: "An error occurred"
+        }))
         return;
       }
 
       if (res.data.status === "success") {
         dispatch(setUser(res.data.data));
-        dispatch(showAlert(res.data.message));
+        dispatch(setAlert({
+          type: 'success',
+          message: res.data.message
+        }))
         return;
       }
 
-      dispatch(showAlert(res.data.message));
+      dispatch(setAlert({
+        type: 'success',
+        message: res.data.message
+      }));
+      
     } catch (e) {
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response.data.message || "Something went wrong"));
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response.data.message || "Something went wrong"
+      }));
     }
   };
 

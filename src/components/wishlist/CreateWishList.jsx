@@ -1,9 +1,7 @@
 import { Card, PrivacyOptions } from "components/user/WishListsStyles";
 import { base_url, validURL } from "utils/utils";
 import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
+  setAlert
 } from "features/alert/alertSlice";
 import {
   setTempList,
@@ -79,27 +77,26 @@ const CreateWishList = () => {
       (item) => item.link && item.link.length && !validURL(item.link)
     );
 
-    let timeout = setTimeout(() => {
-      dispatch(clearAlert());
-    }, 5000);
-    dispatch(setAlertTimeout(timeout));
-
     if (!tempListName || !tempListName.length) {
-      dispatch(showAlert("Please name your wish list"));
+      dispatch(setAlert({
+        type: 'warning',
+        message: "Please name your wish list"
+      }))
       return;
     }
 
     if (!tempList[0].name) {
-      dispatch(showAlert("Please add at least one item"));
+      dispatch(setAlert({
+        type: 'warning',
+        message: "Please add at least one item"
+      }))
       return;
     }
 
     if (invalidLinks.length) {
-      dispatch(showAlert("You have entered an invalid URL link"));
+      dispatch(setAlert({ type: 'warning', message: "You have entered an invalid URL link" }))
       return;
     }
-
-    dispatch(clearAlert());
 
     const wishList = {
       title: tempListName,
@@ -111,33 +108,36 @@ const CreateWishList = () => {
     try {
       const res = await axios.post(`${base_url}/wishlist/save`, wishList);
 
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
       if (!res) {
-        dispatch(showAlert("An error occurred"));
+        dispatch(setAlert({
+          type: 'error',
+          message: "An error occurred"
+        }))
         return;
       }
 
       if (res.data.status === "success") {
         dispatch(setTempListId(res.data.data.id));
-        dispatch(showAlert("Wish list saved"));
+        dispatch(setAlert({
+          type: 'success',
+          message: "Wish list saved"
+        }))
         setSaving(false);
         navigate("/home/register-prompt");
         return;
       }
 
       setSaving(false);
-      dispatch(showAlert(res.data.message));
+      dispatch(setAlert({
+        type: 'success',
+        message: res.data.message
+      }))
     } catch (e) {
       setSaving(false);
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response.data.message));
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response.data.message
+      }))
     }
   };
 

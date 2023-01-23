@@ -10,10 +10,7 @@ import axios from 'axios';
 import { useDispatch } from "react-redux";
 import Button from 'components/global/Button';
 
-import {
-	clearAlert,
-	showAlert,
-} from "features/alert/alertSlice";
+import {setAlert} from "features/alert/alertSlice";
 
 const VerifyEmail = () => {
 	const [isLoading, setIsLoading] = useState(false)
@@ -39,16 +36,16 @@ const VerifyEmail = () => {
 		try {
 			const res = await axios.post(`${base_url}/auth/email/verify/resend/${userEmail}`)
 			const data = res.data
-			dispatch(showAlert(data.message));
-			setTimeout(()=> {
-				dispatch(clearAlert())
-			}, 5000)
+			dispatch(setAlert({
+				type: 'success',
+				message: data.message
+			}))
 			setIsLoading(false)
 		} catch (err) {
-			dispatch(showAlert(err.response.data.message || "Something went wrong"));
-			setTimeout(()=> {
-				dispatch(clearAlert())
-			}, 5000)
+			dispatch(setAlert({
+				type: 'error',
+				message: err.response.data.message || "Something went wrong"
+			}))
 			setIsLoading(false)
 		}
 	}

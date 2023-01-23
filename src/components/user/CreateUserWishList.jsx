@@ -1,9 +1,7 @@
 import { Card, PrivacyOptions } from "./WishListsStyles";
 import { base_url, validURL } from "utils/utils";
 import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
+  setAlert
 } from "features/alert/alertSlice";
 import {
   clearTempList,
@@ -81,22 +79,21 @@ const CreateUserWishList = ({ getWishLists }) => {
       (item) => item.link && item.link.length && !validURL(item.link)
     );
 
-    let timeout = setTimeout(() => {
-      dispatch(clearAlert());
-    }, 5000);
-    dispatch(setAlertTimeout(timeout));
-
     if (!tempListName || !tempListName.length) {
-      dispatch(showAlert("Please name your wish list"));
+      dispatch(setAlert({
+        type: 'warning',
+        message: "Please name your wish list"
+      }))
       return;
     }
 
     if (invalidLinks.length) {
-      dispatch(showAlert("You have entered an invalid URL link"));
+      dispatch(setAlert({
+        type: 'warning',
+        message: "You have entered an invalid URL link"
+      }))
       return;
     }
-
-    dispatch(clearAlert());
 
     const wishList = {
       title: tempListName,
@@ -112,14 +109,12 @@ const CreateUserWishList = ({ getWishLists }) => {
         },
       });
 
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-
       if (!res) {
         setSaving(false);
-        dispatch(showAlert("An error occurred"));
+        dispatch(setAlert({
+          type: 'error',
+          message: "An error occurred"
+        }))
         return;
       }
 
@@ -127,7 +122,10 @@ const CreateUserWishList = ({ getWishLists }) => {
         getWishLists?.();
         setSaving(false);
         dispatch(setTempListSlug(res.data.data.slug));
-        dispatch(showAlert("Wish list saved"));
+        dispatch(setAlert({
+          type: 'success',
+          message: "Wish list saved"
+        }))
         dispatch(clearTempList());
         action === "share"
           ? navigate("/user/wish-lists/share")
@@ -136,14 +134,16 @@ const CreateUserWishList = ({ getWishLists }) => {
       }
 
       setSaving(false);
-      dispatch(showAlert(res.data.message));
+      dispatch(setAlert({
+        type: 'error',
+        message: res.data.message
+      }))
     } catch (e) {
       setSaving(false);
-      const timeout = setTimeout(() => {
-        dispatch(clearAlert());
-      }, 5000);
-      dispatch(setAlertTimeout(timeout));
-      dispatch(showAlert(e.response.data.message));
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response.data.message
+      }))
     }
   };
 

@@ -1,8 +1,6 @@
 import { AuthCard, AuthWrapper } from "components/auth/AuthStyles";
 import {
-  clearAlert,
-  setAlertTimeout,
-  showAlert,
+  setAlert
 } from "features/alert/alertSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -154,11 +152,10 @@ const ShareList = () => {
     navigator.clipboard.writeText(copyText.value);
 
     /* Alert the copied text */
-    const timeout = setTimeout(() => {
-      dispatch(clearAlert());
-    }, 5000);
-    dispatch(setAlertTimeout(timeout));
-    dispatch(showAlert("Link copied!"));
+    dispatch(setAlert({
+      type: 'success',
+      message: "Link copied!"
+    }))
   };
 
   return (
