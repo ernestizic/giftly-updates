@@ -16,9 +16,8 @@ import { useDispatch } from "react-redux";
 const Wrapper = styled.div`
   padding: 2.4rem;
   min-height: 100vh;
-  width: 100%;
   background-color: var(--title-active);
-
+  
   .brand {
     height: 48px;
 
@@ -31,9 +30,10 @@ const Wrapper = styled.div`
   .backDrop {
     display: none;
   }
-
+  
   @media screen and (max-width: 768px) {
     position: fixed;
+    width: 100%;
     left: 0;
     bottom: -100vh;
     min-height: 50vh;
@@ -72,6 +72,9 @@ const Wrapper = styled.div`
 `;
 
 const Menu = styled.ul`
+  ::-webkit-scrollbar {
+    display: none;
+  }
   overflow: auto;
   max-height: 75vh;
   .item {

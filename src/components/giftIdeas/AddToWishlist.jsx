@@ -34,6 +34,7 @@ const Card = styled(AuthCard)`
 `;
 
 const Product = styled.div`
+  border: 1px solid red;
   display: grid;
   grid-template-columns: 48px auto;
   grid-gap: 8px;
@@ -116,6 +117,7 @@ const AddToWishlist = ({ wishlists, product }) => {
     let temp = [];
 
     temp.push({
+      avatar: product?.avatar,
       name: product?.name,
       link: product?.purchase_link || "",
       quantity,
@@ -140,9 +142,9 @@ const AddToWishlist = ({ wishlists, product }) => {
       <Card>
         <CloseModal selector=".addToWishlist" callback={handleClose} />
         <Spacer y={2.4} />
-        <h3 className="title-4 title textCenter colorTitleActive">
-          Add to Wishlist
-        </h3>
+        <h2 className="textCenter colorTitleActive title">
+          Add to wish list
+        </h2>
         <Spacer y={2.4} />
         <Product>
           <ImageWrapper className="imageWrapper fullWidth">

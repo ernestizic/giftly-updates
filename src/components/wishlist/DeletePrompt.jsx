@@ -40,6 +40,7 @@ const DeletePrompt = ({ getWishLists, redirect }) => {
 
     setDeleting(true);
     try {
+      // console.log(tempListId)
       const res = await axios.delete(`${base_url}/wishlist/${tempListId}`, {
         headers: {
           Authorization: `Bearer ${token}`,

@@ -40,6 +40,7 @@ const EditWishList = ({ getWishLists }) => {
   const tempListId = useSelector((state) => state.wishList.tempListId);
   const tempList = useSelector((state) => state.wishList.tempList);
   const tempListName = useSelector((state) => state.wishList.tempListName);
+  const {tempListDescription} = useSelector(state => state.wishList)
   const tempListVisibility = useSelector(
     (state) => state.wishList.tempListVisibility
   );
@@ -171,6 +172,7 @@ const EditWishList = ({ getWishLists }) => {
 
     const wishList = {
       title: tempListName,
+      // description: tempListDescription,
       visibility: tempListVisibility,
     };
 
@@ -269,13 +271,15 @@ const EditWishList = ({ getWishLists }) => {
           <Logo />
         </div>
         <Spacer y={0.8} />
-        <p className="subtitle-4 subtitle textCenter">Edit this wish list</p>
-        <Spacer y={0.4} />
-        <h3 className="title-3 title textCenter colorTitleActive">
+        <p className="sub-text textCenter colorTitleActive">Edit this wish list</p>
+        <h2 className="textCenter colorTitleActive title">
           List Details
-        </h3>
+        </h2>
         <Spacer y={2.4} />
-        <Formik initialValues={{ wish_list_name: tempListName || "" }}>
+        <Formik initialValues={{ 
+          wish_list_name: tempListName || "",
+          // description: tempListDescription || "" 
+          }}>
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <FormGroup
@@ -285,6 +289,15 @@ const EditWishList = ({ getWishLists }) => {
                 value={tempListName}
                 onChange={(e) => dispatch(setTempListName(e.target.value))}
               />
+              {/* <Spacer y={1.4} /> */}
+              {/* <FormGroup
+                fieldStyle="shortText"
+                name="description"
+                label="Description (optional)"
+                value={tempListDescription}
+                onChange={(e) => dispatch(setTempListDescription(e.target.value))}
+              /> */}
+              
             </form>
           )}
         </Formik>

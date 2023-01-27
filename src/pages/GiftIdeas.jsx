@@ -30,7 +30,8 @@ const ProductList = styled.div`
   grid-gap: 48px;
 
   @media screen and (max-width: 576px) {
-    grid-gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
   }
 `;
 
@@ -74,8 +75,6 @@ const GiftIdeas = () => {
     <Wrapper>
       <ProductPreview details={selectedProduct} />
       <AddToWishlist wishlists={wishlists} product={selectedProduct} />
-      <h4 className="title-4 colorTitleActive title">Gift Ideas</h4>
-      <Spacer y={4.8} />
       <ProductCategories setFilters={updateFilters} />
       <Spacer y={4.8} />
       <ProductList>

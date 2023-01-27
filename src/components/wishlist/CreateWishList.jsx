@@ -5,6 +5,7 @@ import {
 } from "features/alert/alertSlice";
 import {
   setTempList,
+  setTempListDescription,
   setTempListId,
   setTempListName,
   setTempListVisibility,
@@ -38,6 +39,7 @@ const CreateWishList = () => {
   const navigate = useNavigate();
   const tempList = useSelector((state) => state.wishList.tempList);
   const tempListName = useSelector((state) => state.wishList.tempListName);
+  const {tempListDescription} = useSelector(state => state.wishList)
   const tempListVisibility = useSelector(
     (state) => state.wishList.tempListVisibility
   );
@@ -100,13 +102,16 @@ const CreateWishList = () => {
 
     const wishList = {
       title: tempListName,
+      // description: tempListDescription,
       visibility: tempListVisibility,
       items: tempList,
     };
 
     setSaving(true);
     try {
+      console.log(wishList)
       const res = await axios.post(`${base_url}/wishlist/save`, wishList);
+      console.log(res.data)
 
       if (!res) {
         dispatch(setAlert({
@@ -154,15 +159,24 @@ const CreateWishList = () => {
           <Logo />
         </div>
         <Spacer y={0.8} />
-        <p className="subtitle-4 subtitle textCenter">Create a wish list</p>
-        <Spacer y={0.4} />
-        <h3 className="title-3 title textCenter colorTitleActive">
-          List Details
-        </h3>
+        <p className="sub-text textCenter colorTitleActive">New wish list</p>
+        <h2 className="textCenter colorTitleActive title">
+          Create a wish list
+        </h2>
         <Spacer y={2.4} />
-        <Formik initialValues={{ wish_list_name: tempListName || "" }}>
-          {({ handleSubmit }) => (
+        <Formik initialValues={{ 
+            wish_list_name: tempListName || "",
+            // description: tempListDescription || ""
+          }}>
+          {({values, handleSubmit }) => (
             <form onSubmit={handleSubmit}>
+              <header>
+                <p className="body-3 colorTitleActive">
+                  List details
+                </p>
+                <p>Add wishlist name and description.</p>
+              </header>
+              <Spacer y={0.4} />
               <FormGroup
                 fieldStyle="shortText"
                 name="wish_list_name"
@@ -170,12 +184,25 @@ const CreateWishList = () => {
                 value={tempListName}
                 onChange={(e) => dispatch(setTempListName(e.target.value))}
               />
+              {/* <Spacer y={1.4} />
+              <FormGroup
+                fieldStyle="shortText"
+                name="description"
+                label="Description (optional)"
+                value={tempListDescription}
+                onChange={(e) => dispatch(setTempListDescription(e.target.value))}
+              /> */}
             </form>
           )}
         </Formik>
         <Spacer y={2.4} />
-        <p className="subtitle-4 colorTitleActive">Add wishes</p>
-        <Spacer y={1.6} />
+        <header>
+          <p className="body-3 colorTitleActive">
+            Add wishes
+          </p>
+          <p>Add wishlist and other details.</p>
+        </header>
+        <Spacer y={0.4} />
         <div className="formRows">
           {tempList?.map((row, index) => (
             <ItemRowGroup
@@ -195,7 +222,7 @@ const CreateWishList = () => {
         >
           <img src={addIcon} alt="plus" className="icon" />
           <Spacer x={1.2} />
-          <span>Add another</span>
+          <span style={{fontWeight: '500'}}>Add another</span>
         </button>
         <Spacer y={2.4} />
         <button

@@ -28,7 +28,18 @@ import styled from "styled-components";
 import { useEffect } from "react";
 import { useState } from "react";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  .createButtonCircle {
+    display: none;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 50%;
+    @media screen and (max-width: 768px) {
+      display: flex;
+    }
+  }
+`;
 
 const WishsLists = () => {
   const navigate = useNavigate();
@@ -109,20 +120,32 @@ const WishsLists = () => {
           <Loader />
         </div>
       ) : !!data.length ? (
-        <ListWrapper>
-          {data?.map((item, index) => (
-            <WishListCard key={index} details={item} />
-          ))}
-          {/* {data
-            ?.filter((item) =>
-              category === searchCategories[1] && search
-                ? item.title.toLowerCase().match(search.toLowerCase())
-                : true
-            )
-            .map((item, index) => (
+        <>
+          <ListWrapper>
+            {data?.map((item, index) => (
               <WishListCard key={index} details={item} />
-            ))} */}
-        </ListWrapper>
+            ))}
+            {/* {data
+              ?.filter((item) =>
+                category === searchCategories[1] && search
+                  ? item.title.toLowerCase().match(search.toLowerCase())
+                  : true
+              )
+              .map((item, index) => (
+                <WishListCard key={index} details={item} />
+              ))} */}
+          </ListWrapper>
+          <Button
+            width="50px"
+            height="50px"
+            className="createButtonCircle"
+            iconLeft={plusIcon}
+            onClick={() => {
+              dispatch(clearTempList());
+              navigate("new");
+            }}
+          />
+        </>
       ) : null}
       {!loading && !data.length && (
         <NoLists>

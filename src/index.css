@@ -105,10 +105,6 @@ html {
   font-size: 10px;
 }
 
-::-webkit-scrollbar {
-	display: none;
-}
-
 body {
   color: var(--body);
   margin: 0;

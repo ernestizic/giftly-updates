@@ -10,6 +10,9 @@ const Backdrop = styled.div`
     props.transparent ? "transparent" : "#00000050"};
   z-index: 15;
   overflow: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default Backdrop;

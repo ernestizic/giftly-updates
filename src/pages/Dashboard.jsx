@@ -9,16 +9,17 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Archive from "./Archive";
+import SearchPage from "./SearchPage";
 
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 240px auto;
-
   .viewContent {
     height: 100vh;
     overflow: auto;
   }
 
+  
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -43,6 +44,7 @@ const Dashboard = () => {
           <Route path="gift-ideas/*" element={<GiftIdeas />} />
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="/archive" element={<Archive />}/>
+          <Route path="/gift-ideas/search" element={<SearchPage />} />
         </Routes>
       </div>
     </Wrapper>

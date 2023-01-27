@@ -6,20 +6,22 @@ import plusIcon from "assets/icons/plus_white.svg";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  box-shadow: var(--shadow_2);
+  box-shadow: 0px 1px 10px 2px #E5E5E5;
+  border-radius: 15px;
 
   .imageWrapper {
     border-radius: 16px 16px 0 0;
   }
 
   .description {
-    height: 85px;
-    display: grid;
-    grid-template-columns: auto 36px;
-    grid-gap: 8px;
-    align-items: center;
+    background: #fff;
     padding: 16px;
     border-radius: 0 0 8px 8px;
+  }
+  .desc-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .textWrapper {
@@ -33,10 +35,10 @@ const Wrapper = styled.div`
   }
 
   @media screen and (max-width: 768px) {
+    overflow: hidden;
     .description {
       padding: 8px;
     }
-
     .textWrapper {
       .text {
         font-size: 14px;
@@ -49,7 +51,7 @@ const Wrapper = styled.div`
 const ProductCard = forwardRef(({ showPreview = () => null, details }, ref) => {
   return (
     <Wrapper ref={ref}>
-      <ImageWrapper className="imageWrapper fullWidth">
+      <ImageWrapper className="imageWrapper">
         <img
           src={`${base_url_vendors}/../${details?.avatar}`}
           className="image"
@@ -60,16 +62,18 @@ const ProductCard = forwardRef(({ showPreview = () => null, details }, ref) => {
       <div className="description">
         <div className="textWrapper fullWidth">
           <p className="body-3 semi-bold ellipsify text">{details?.name}</p>
+        </div>
+        <div className="desc-2">
           <p className="body-3 ellipsify text">
             {details.currency === "Dollar" ? "$" : <del>N</del>}
             {parseInt(details.amount).toLocaleString()}
           </p>
+          <Button
+            className="previewBtn"
+            iconLeft={plusIcon}
+            onClick={() => showPreview(details)}
+          />
         </div>
-        <Button
-          className="previewBtn"
-          iconLeft={plusIcon}
-          onClick={() => showPreview(details)}
-        />
       </div>
     </Wrapper>
   );

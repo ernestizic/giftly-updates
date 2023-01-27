@@ -4,6 +4,10 @@ import useInfiniteScroll from "hooks/useInfiniteScroll";
 import { useState } from "react";
 
 const Wrapper = styled.div`
+  position: -webkit-sticky;
+  position: sticky;
+  background: white;
+  padding: 10px 0;
   overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;

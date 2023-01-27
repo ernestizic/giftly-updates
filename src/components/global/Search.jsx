@@ -13,7 +13,7 @@ import Spacer from "./Spacer";
 import searchIcon from "assets/icons/search.svg";
 import closeIcon from "assets/icons/close_square.svg";
 
-const __searchCategories = ["Friends", "Wish list"];
+const __searchCategories = ["Friends"];
 
 const SearchBox = ({ searchCategories = __searchCategories }) => {
   const [category, setCategory] = useState("Friends");

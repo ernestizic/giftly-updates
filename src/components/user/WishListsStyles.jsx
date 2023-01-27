@@ -64,7 +64,7 @@ export const Search = styled.div`
   border-radius: 4px;
   padding: 8px 0;
   display: grid;
-  grid-template-columns: 140px auto;
+  grid-template-columns: 170px auto;
   background-color: #ffffff;
 
   .dropdownWrapper {
@@ -188,13 +188,14 @@ export const Initials = styled.div`
 
 export const ListWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 2fr));
   grid-gap: 48px;
   padding: 0 48px;
-
+  
   @media screen and (max-width: 768px) {
-    grid-gap: 16px;
-    padding: 0 24px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    padding: 0 10px;
   }
 `;
 
@@ -217,13 +218,16 @@ export const NoLists = styled.div`
 `;
 
 export const Card = styled(AuthCard)`
-  margin: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  margin: 10px auto;
   background-color: #ffffff;
   border-radius: 16px;
   padding: 48px;
   padding-bottom: 24px;
   position: relative;
-  height: calc(100% - 96px);
+  height: calc(100% - 16px);
   max-height: 836px;
   overflow: auto;
 
@@ -252,6 +256,7 @@ export const Card = styled(AuthCard)`
     bottom: -24px;
     background-color: #ffffff;
     padding: 24px 0;
+    z-index: 2;
 
     .actionBtns {
       grid-template-columns: 1fr 1fr;
@@ -259,6 +264,7 @@ export const Card = styled(AuthCard)`
   }
 
   @media screen and (max-width: 768px) {
+    position: fixed;
     width: 100%;
     height: -webkit-fill-available;
     margin: 0;

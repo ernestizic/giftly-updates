@@ -6,6 +6,7 @@ import {
 import {
   clearTempList,
   setTempList,
+  setTempListDescription,
   setTempListName,
   setTempListSlug,
   setTempListVisibility,
@@ -39,6 +40,7 @@ const CreateUserWishList = ({ getWishLists }) => {
   const navigate = useNavigate();
   const tempList = useSelector((state) => state.wishList.tempList);
   const tempListName = useSelector((state) => state.wishList.tempListName);
+  const {tempListDescription} = useSelector(state => state.wishList)
   const tempListVisibility = useSelector(
     (state) => state.wishList.tempListVisibility
   );
@@ -97,18 +99,32 @@ const CreateUserWishList = ({ getWishLists }) => {
 
     const wishList = {
       title: tempListName,
+      // description: tempListDescription,
       visibility: tempListVisibility,
       items: tempList,
     };
-
+    console.log(wishList)
+    // const formData = new FormData();
+    // formData.append("title", tempListName);
+    // formData.append("visibility", tempListVisibility);
+    // tempList.forEach(function (el) {
+    //   formData.append('link', el.link);
+    //   formData.append('name', el.name);
+    //   formData.append('price', el.price);
+    //   formData.append('quantity', el.quantity);
+    //   // formData.append('description', el.description);
+    //   formData.append('userFile', el.avatar);
+    // })
     setSaving(true);
+    const config = {
+			headers: {
+				// "content-type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+			},
+		};
     try {
-      const res = await axios.post(`${base_url}/wishlist`, wishList, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
+      const res = await axios.post(`${base_url}/wishlist`, wishList, config);
+      console.log(res.data)
       if (!res) {
         setSaving(false);
         dispatch(setAlert({
@@ -134,11 +150,13 @@ const CreateUserWishList = ({ getWishLists }) => {
       }
 
       setSaving(false);
+      console.log(res.data)
       dispatch(setAlert({
         type: 'error',
         message: res.data.message
       }))
     } catch (e) {
+      console.log(e.response.data)
       setSaving(false);
       dispatch(setAlert({
         type: 'error',
@@ -170,14 +188,23 @@ const CreateUserWishList = ({ getWishLists }) => {
           <Logo />
         </div>
         <Spacer y={0.8} />
-        <p className="subtitle-4 subtitle textCenter">New Wishlist</p>
-        <h3 className="title-4 title textCenter colorTitleActive">
-          Create a Wishlist
-        </h3>
+        <p className="sub-text textCenter colorTitleActive">New wish list</p>
+        <h2 className="textCenter colorTitleActive title">
+          Create a wish list
+        </h2>
         <Spacer y={2.4} />
-        <Formik initialValues={{ wish_list_name: tempListName || "" }}>
+        <Formik initialValues={{ 
+          wish_list_name: tempListName || "",
+          // description: tempListDescription || ""
+        }}>
           {({ handleSubmit }) => (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
+              <header>
+                <p className="body-3 colorTitleActive">
+                  List details
+                </p>
+                <p>Add wishlist name and description.</p>
+              </header>
               <FormGroup
                 fieldStyle="shortText"
                 name="wish_list_name"
@@ -185,11 +212,13 @@ const CreateUserWishList = ({ getWishLists }) => {
                 value={tempListName}
                 onChange={(e) => dispatch(setTempListName(e.target.value))}
               />
-              {/* <Spacer y={1.6} />
-              <FormGroup
+              {/* <Spacer y={1.4} /> */}
+              {/* <FormGroup
                 fieldStyle="shortText"
-                name="wish_list_description"
-                label="Description (Optional)"
+                name="description"
+                label="Description (optional)"
+                value={tempListDescription}
+                onChange={(e) => dispatch(setTempListDescription(e.target.value))}
               /> */}
             </form>
           )}

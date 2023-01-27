@@ -1,18 +1,22 @@
 import {
   CashIcon,
-  CloseSquare,
+  ImageIcon,
   LinkIcon,
   QuantityIcon,
   StarIcon,
   TextIcon,
 } from "components/global/SVG";
-
-import CheckBox from "components/global/CheckBox";
+import MaximizeIcon from 'assets/icons/maximize-icon.svg';
+import MinimizeIcon from 'assets/icons/minimize-icon.svg';
+import TrashIcon from 'assets/icons/trash_danger.svg';
+import CloseIcon from 'assets/icons/close_circle.svg';
+// import CheckBox from "components/global/CheckBox";
 import FormGroup from "components/global/FormGroup";
 import { Formik } from "formik";
 import Spacer from "components/global/Spacer";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { base_url_vendors } from "utils/utils";
 
 const RowWrapper = styled.form`
   width: 100%;
@@ -33,10 +37,38 @@ const RowWrapper = styled.form`
     display: none;
   }
 
-  .header {
-    display: grid;
-    grid-template-columns: auto 24px;
-    grid-gap: 12px;
+  .form-top-section {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .gift-image-container {
+      position: relative;
+      padding: 5px 10px 0;
+      img {
+        border-radius: 5px;
+      }
+      button {
+        position: absolute;
+        top: 10px;
+        left: 45px;
+      }
+    }
+    .toggle-section {
+      display: flex;
+      z-index: 1;
+      gap: 15px;
+      position: absolute;
+      top: -3px;
+      right: 0;
+      .field-toggler{
+        padding-top: 7px;
+      }
+      img {
+        width: 16px;
+        height: auto;
+      }
+    }
   }
 
   .mainInput {
@@ -56,6 +88,8 @@ const RowWrapper = styled.form`
   }
 
   .additionalOptionsWrapper {
+    overflow: hidden;
+    transition: max-height 0.6s ease;
     // padding-left: 24px;
   }
 
@@ -89,14 +123,21 @@ const RowWrapper = styled.form`
   }
 
   .actionBtns {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 24px;
+    display: flex;
+    gap: 24px;
+    .upload-file-container {
+      .file-upload:hover {
+        cursor: pointer;
+      }
+      input[type='file']{
+          display: none;
+      }
+    }
 
     .btn {
-      background-color: #ffffff;
+      background-color: #fff;
       border-radius: 8px;
-      padding: 10px 0;
+      padding: 10px;
     }
   }
 `;
@@ -110,6 +151,35 @@ const ItemRowGroup = ({
   noCheck,
 }) => {
   const [desired, setDesired] = useState(false);
+  const [showAllFields, setShowAllFields] = useState(false)
+  const [contentHeight, setContentHeight] = useState('0px');
+  const contentRef = useRef(null);
+
+	useEffect(() => {
+		setContentHeight(
+			showAllFields ? contentRef.current.scrollHeight + 'px' : '0px'
+		);
+	}, [showAllFields]);
+
+
+  // file conversion to base64
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+
+    return reader
+  });
+
+	const onImageChange =async(e)=> {
+		const base64file = await toBase64(e.target.files[0])
+		if (e.target.files && e.target.files[0]) {
+			setFieldValue(index, "avatar", base64file) 
+		}
+    // const imgFile = e.target.files[0]
+    // setFieldValue(index, "avatar", imgFile)
+	}
   return (
     <Formik
       initialValues={{
@@ -118,13 +188,52 @@ const ItemRowGroup = ({
         price: rowValues?.price || "",
         quantity: rowValues?.quantity || "",
         description: rowValues?.description || "",
+        avatar: rowValues?.avatar || ""
       }}
     >
       {({ handleSubmit }) => (
         <RowWrapper onSubmit={handleSubmit}>
+          <div className="form-top-section">
+            {rowValues?.avatar && (
+              <div className='gift-image-container'>
+                <img 
+                  src={`${rowValues.avatar?.startsWith("data") ? rowValues.avatar : base_url_vendors+'/../'+rowValues.avatar}`} 
+                  alt='wish item' 
+                  width='45px' 
+                  height='45px' 
+                />
+                <button
+                  type='button'
+                  onClick={() => setFieldValue(index, "avatar", "") }
+                >
+                  <img src={CloseIcon} alt="close icon"/>
+                </button>
+              </div>
+            )}
+
+            <div className="toggle-section">
+              <button
+                type='button'
+                onClick={() => setShowAllFields((prev) => !prev)}
+                className='field-toggler'
+              >
+                <img src={showAllFields ? MinimizeIcon : MaximizeIcon} alt='maximize field' />
+              </button>
+
+              {!initial && index !== 0 && (
+                <button
+                  type="button"
+                  className="remove"
+                  onClick={() => removeRow(index)}
+                >
+                  <img src={TrashIcon} alt='trash'/>
+                </button>
+              )}
+            </div>
+          </div>
           <div className="header">
             <div className="flexRow alignCenter">
-              {rowValues?.name && !noCheck && (
+              {/* {rowValues?.name && !noCheck && (
                 <>
                   <CheckBox
                     id={`status_${rowValues.id}`}
@@ -144,32 +253,17 @@ const ItemRowGroup = ({
                   />
                   <Spacer x={0.8} />
                 </>
-              )}
+              )} */}
               <FormGroup
                 className="mainInput"
                 fieldStyle="shortText"
                 name="name"
-                label="Wish title"
+                label="Wish name"
                 onChange={(e) => {
                   setFieldValue(index, "name", e.target.value.trim());
                 }}
               />
             </div>
-            {!initial && index !== 0 && (
-              <button
-                type="button"
-                className="remove"
-                onClick={() => removeRow(index)}
-              >
-                <CloseSquare />
-              </button>
-            )}
-          </div>
-
-          {rowValues?.name && (
-            <div
-              className={`additionalOptionsWrapper${noCheck ? " noCheck" : ""}`}
-            >
               <Spacer y={1.6} />
               <div className={`additionalOption flexRow alignCenter`}>
                 <LinkIcon />
@@ -184,69 +278,88 @@ const ItemRowGroup = ({
                 }
               />
               </div>
-              <div className={`additionalOption flexRow alignCenter`}>
-                <CashIcon />
-                <Spacer x={0.8} />
-                <FormGroup
-                className="fullWidth"
-                fieldStyle="shortText"
-                name="price" 
-                placeholder="Price e.g $30" 
-                onChange={(e) =>
-                  setFieldValue(index, "price", e.target.value.trim())
-                }
-              />
-              </div>
-              <div className={`additionalOption flexRow alignCenter`}>
-                <QuantityIcon />
-                <Spacer x={0.8} />
-                <FormGroup
-                className="fullWidth"
-                fieldStyle="shortText"
-                name="quantity" 
-                type="number"
-                placeholder="Quantity e.g 2" 
-                onChange={(e) =>
-                  setFieldValue(index, "quantity", e.target.value.trim())
-                }
-              />
-              </div>
-              <div className={`additionalOption flexRow alignCenter`}>
-                <TextIcon />
-                <Spacer x={0.8} />
-                <FormGroup
-                className="fullWidth"
-                fieldStyle="shortText"
-                name="description" placeholder="Description" 
-                onChange={(e) =>
-                  setFieldValue(index, "description", e.target.value.trim())
-                }
-              />
-              </div>
-              <div className="actionBtns">
-                <button
-                  type="button"
-                  className="flexRow alignCenter justifyCenter fullWidth btn"
-                  onClick={() => {
-                    setFieldValue(index, "priority", !desired);
-                    setDesired(prev => !prev);
-                  }}
-                >
-                  <StarIcon fill={rowValues?.priority || desired ? "var(--primary-main)" : "none"} />
-                  <Spacer x={0.4} />
-                  <span className="body-4">Desired Item</span>
-                </button>
-                {/* <button
-                  type="button"
-                  className="flexRow alignCenter justifyCenter fullWidth btn"
-                >
-                  <ImageIcon />
-                  <Spacer x={0.4} />
-                  <span className="body-4">Add an image</span>
-                </button> */}
-              </div>
+          </div>
+
+          <div
+            className={`additionalOptionsWrapper${noCheck ? " noCheck" : ""}`}
+            ref={contentRef}
+            style={{ maxHeight: `${contentHeight}` }}
+          >
+            <div className={`additionalOption flexRow alignCenter`}>
+              <CashIcon />
+              <Spacer x={0.8} />
+              <FormGroup
+              className="fullWidth"
+              fieldStyle="shortText"
+              name="price" 
+              placeholder="Price e.g $30" 
+              onChange={(e) =>
+                setFieldValue(index, "price", e.target.value.trim())
+              }
+            />
             </div>
-          )}
+            <div className={`additionalOption flexRow alignCenter`}>
+              <QuantityIcon />
+              <Spacer x={0.8} />
+              <FormGroup
+              className="fullWidth"
+              fieldStyle="shortText"
+              name="quantity" 
+              type="number"
+              placeholder="Quantity e.g 2" 
+              onChange={(e) =>
+                setFieldValue(index, "quantity", e.target.value.trim())
+              }
+            />
+            </div>
+            <div className={`additionalOption flexRow alignCenter`}>
+              <TextIcon />
+              <Spacer x={0.8} />
+              <FormGroup
+              className="fullWidth"
+              fieldStyle="shortText"
+              name="description" placeholder="Description" 
+              onChange={(e) =>
+                setFieldValue(index, "description", e.target.value.trim())
+              }
+            />
+            </div>
+            <div className="actionBtns">
+              <button
+                type="button"
+                className="flexRow alignCenter justifyCenter btn"
+                onClick={() => {
+                  setFieldValue(index, "priority", !desired);
+                  setDesired(prev => !prev);
+                }}
+              >
+                <StarIcon fill={rowValues?.priority || desired ? "var(--primary-main)" : "none"} />
+                <Spacer x={0.4} />
+                <span className={`body-4 ${rowValues?.priority || desired ? 'colorPrimaryMain' : ''}`}>Desired Item</span>
+              </button>
+
+              <div className='upload-file-container'>
+                <label htmlFor='file' className='file-upload'>
+                  <span
+                    type="button"
+                    className="flexRow alignCenter justifyCenter btn"
+                  >
+                    <ImageIcon />
+                    <Spacer x={0.4} />
+                    <span className="body-4">Add an image</span>
+                  </span>
+                </label>
+                <input
+                  type='file'
+                  accept='image/*'
+                  id='file'
+                  name='image'
+                  onChange={onImageChange}
+                />
+              </div>
+
+            </div>
+          </div>
           <button className="submitBtn" type="submit"></button>
         </RowWrapper>
       )}

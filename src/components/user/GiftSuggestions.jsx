@@ -72,6 +72,7 @@ const GiftSuggestions = () => {
     );
 
     const temp = selectedProducts.map((product) => ({
+      avatar: product?.avatar,
       name: product?.name,
       link: product?.purchase_link || "",
       price: (product?.currency === "Dollar" ? "$" : "₦") + product?.amount,

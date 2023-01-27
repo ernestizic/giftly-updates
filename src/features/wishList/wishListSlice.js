@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   tempListId: null,
   tempListName: "",
+  tempListDescription: "",
   tempList: [{}],
   tempListVisibility: "public",
   tempListSlug: "",
@@ -19,6 +20,9 @@ export const wishListSlice = createSlice({
     setTempListName: (state, action) => {
       state.tempListName = action.payload;
     },
+    setTempListDescription: (state, action) => {
+      state.tempListDescription = action.payload;
+    },
     setTempList: (state, action) => {
       state.tempList = action.payload;
     },
@@ -32,6 +36,7 @@ export const wishListSlice = createSlice({
       state.tempListId = null;
       state.tempList = [{}];
       state.tempListName = "";
+      state.tempListDescription = "";
       state.tempListVisibility = "public";
     },
   },
@@ -40,6 +45,7 @@ export const wishListSlice = createSlice({
 export const {
   setTempListId,
   setTempListName,
+  setTempListDescription,
   setTempList,
   setTempListVisibility,
   setTempListSlug,
