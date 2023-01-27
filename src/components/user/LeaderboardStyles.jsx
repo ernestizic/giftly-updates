@@ -19,6 +19,7 @@ export const LeaderboardWrapper = styled.div`
   }
 `;
 
+
 export const TopRankedWrapper = styled.div``;
 
 export const TopRanked = styled.div`
@@ -77,14 +78,29 @@ export const TopRanked = styled.div`
     }
   }
 `;
-
+export const UserContainer = styled.div`
+  position: sticky;
+  bottom: 0;
+  border-top: 1px solid var(--accent_3-light);
+  width: 100%;
+  left: 0;
+`
 export const UserRow = styled.div`
-  padding: 12px 18px;
-  background-color: var(--accent_2-main);
-  border-radius: 8px;
-  display: grid;
-  grid-template-columns: 2fr 3fr 2fr;
-  grid-gap: 24px;
+  margin: 1px auto;
+  max-width: 50%;
+  padding: 12px 30px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .name-section{
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    & > div {
+      gap: 5px
+    }
+  }
 
   .giftlyScore {
     img {
@@ -93,10 +109,8 @@ export const UserRow = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
+    max-width: 100%;
+    padding: 12px;
   }
 `;
 

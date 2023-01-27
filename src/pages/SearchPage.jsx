@@ -70,9 +70,6 @@ const SearchPage = () => {
 		  const list = res.data.data.products;
 		  const links = res.data.data.pagination?.links || {};
 		  setSearchedItems((prev) => [...prev, ...list]);
-		//   console.log(searchedItems)
-		//   const check = searchedItems.filter((item) => item.name.includes(nameFromQuery) )
-		//   setSearchedItems([...check])
 
 		  setHasMore(links?.next_page_url);
 		  setIsLoading(false);

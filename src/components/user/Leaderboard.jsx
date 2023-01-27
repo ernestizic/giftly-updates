@@ -4,6 +4,7 @@ import {
   TopRanked,
   TopRankedWrapper,
   UserRow,
+  UserContainer
 } from "./LeaderboardStyles";
 import { base_url, formatNum } from "utils/utils";
 import {
@@ -85,10 +86,7 @@ const Leaderboard = () => {
         </>
       ) : (
         <LeaderboardWrapper>
-          <h3 className="title-3 colorTitleActive textCenter title">
-            Weekly Leaderboard
-          </h3>
-          <Spacer y={9.6} yMobile={7.2} />
+          <Spacer y={7.6} yMobile={7.2} />
           <div className="flexRow justifySpaceAround alignEnd">
             {leaderboardItems[1] && (
               <TopRankedWrapper className="flexColumn alignCenter">
@@ -208,7 +206,7 @@ const Leaderboard = () => {
             )}
           </div>
           <Spacer y={4.8} />
-          {currentUser && Number(currentUser.rank) > 10 && (
+          {/* {currentUser && Number(currentUser.rank) > 10 && (
             <UserRow className="flexRow alignCenter">
               <p className="body-2 colorTitleActive">
                 Rank: {currentUser.rank}
@@ -246,7 +244,8 @@ const Leaderboard = () => {
                 {formatNum(currentUser.points)} pts
               </p>
             </UserRow>
-          )}
+          )} */}
+
           {leaderboardItems?.slice(3).map((item, index) => {
             if (currentUser?.username === item.username) {
               return (
@@ -311,9 +310,54 @@ const Leaderboard = () => {
               </OtherRow>
             );
           })}
+
         </LeaderboardWrapper>
       )}
       <Spacer y={4.8} yMobile={7.2} />
+      {currentUser && (
+        <UserContainer>
+          <UserRow>
+            <div className="name-section">
+              <p className="body-2 colorTitleActive">
+                You
+              </p>
+              <div className="flexRow alignCenter">
+                {!currentUser.avatar ? (
+                  <Initials size="32" textSize="16" bg="var(--accent_3-main)">
+                    {currentUser?.first_name.charAt(0)}
+                    {currentUser?.last_name.charAt(0)}
+                  </Initials>
+                ) : (
+                  <ImgWrapper size={3.2} imgHeight="100%">
+                    <img
+                      src={currentUser.avatar}
+                      alt="..."
+                      className="userImage"
+                    />
+                  </ImgWrapper>
+                )}
+                <Spacer x={0.4} />
+                <div>
+                  <p className="body-2 colorTitleActive">
+                    {currentUser.username}
+                  </p>
+                  <div className="giftlyScore flexRow alignCenter">
+                    <Logo />
+                    <Spacer x={0.4} />
+                    <span className="subtitle-3 colorPrimaryMain bold">
+                      {formatNum(currentUser.cummulative_points)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p className="body-2 colorTitleActive textRight">
+              {formatNum(currentUser.points)} pts
+            </p>
+          </UserRow>
+        </UserContainer>
+      )}
     </>
   );
 };
