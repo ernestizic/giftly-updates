@@ -2,8 +2,10 @@ import ImgWrapper from "components/global/ImgWrapper";
 import Nav from "components/global/Nav";
 import styled from "styled-components";
 import openBox from "assets/images/open_box.svg";
-import arrowDowm from "assets/icons/arrow_down.svg";
-import heartIcon from "assets/icons/heart_outline.svg";
+import NoImage from 'assets/images/no-image.svg'
+// import Star from "assets/icons/star-colored.svg";
+import heartIcon from "assets/icons/heart.svg";
+import BackArrowIcon from "assets/icons/back-arrow-red.svg";
 import Spacer from "components/global/Spacer";
 import Sec2 from "components/landing/components/Sec2";
 import { Route, Routes, useNavigate } from "react-router";
@@ -21,37 +23,58 @@ import { useEffect } from "react";
 import Loader from "components/global/Loader";
 import Footer from "components/global/Footer";
 import Sec8 from "components/landing/components/Sec8";
+import { StarIcon } from "components/global/SVG";
+import ShowInterestModal from "components/result/showInterest/ShowInterestModal";
 
 const Wrapper = styled.div`
+  color: #121212;
+  .back-btn {
+    margin: 20px 120px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
   @media screen and (max-width: 768px) {
-    .prompt1 {
+    /* .prompt1 {
       font-size: 14px;
       line-height: 18px;
+    } */
+    .back-btn {
+      margin: 10px;
+      padding: 5px;
     }
   }
 `;
 
 const Header = styled.div`
-  padding: 48px 120px;
-  background-color: var(--title-active);
+  padding: 10px 120px;
+  background-color: #fff;
+  display: flex;
+  gap: 25px;
+  align-items: center;
 
+  .username{
+    color: var(--primary-dark)
+  }
   @media screen and (max-width: 768px) {
-    padding: 48px 72px;
-
+    padding: 10px;
+    h1{
+      font-size: 18px;
+    }
     .listTitle {
-      font-size: 24px;
-      line-height: 36px;
+      font-size: 20px;
     }
 
     .subtitle {
       font-size: 16px;
-      line-height: 24px;
     }
+
   }
 `;
 
 const ListItems = styled.div`
-  padding: 120px;
+  padding: 20px 120px;
 
   @media screen and (max-width: 768px) {
     padding: 48px 24px;
@@ -59,39 +82,92 @@ const ListItems = styled.div`
 `;
 
 const Banner = styled.div`
-  padding: 24px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  margin-bottom: 48px;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   &:last-child {
     margin-bottom: 0;
   }
 
-  .showInterest {
-    padding: 8px;
-    background-color: var(--accent_2-main);
-    border-radius: 8px;
-
-    .text {
-      margin-left: 8px;
-    }
-  }
 
   .details {
-    .itemLink {
-      word-wrap: break-word;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .contents {
+      width: 100%;
+      .itemName {
+        font-weight: 500;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        p{
+          display: inline-block;
+          width: 100%;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+      .price{
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+      .itemLink {
+        color: var(--primary-main);
+        display: inline-block;
+        line-height: 25px;
+        width: 100%;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+      }
+      .item-desc{
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+
+    img {
+      background: #f0f0f0;
+      border-radius: 4px;
+      width: 85px;
+      height: 80px;
+    }
+  }
+  .btn-container {
+    /* border: 1px solid blue; */
+    width: 50%;
+    .showInterest {
+      float: right;
+      border: 1px solid var(--accent_3-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 5px;
+
     }
   }
 
   @media screen and (max-width: 768px) {
-    padding: 24px;
+    font-size: 14px;
+    padding: 0px;
     margin-bottom: 24px;
 
     .details {
-      max-width: calc(100% - 48px);
-
-      .itemName {
+      width: 80%;
+      .contents {
+        width: 80%;
+        .itemName {
         font-size: 16px;
         line-height: 24px;
       }
@@ -100,11 +176,20 @@ const Banner = styled.div`
         font-size: 14px;
         line-height: 18px;
       }
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
     }
 
-    .showInterest {
-      .text {
-        display: none;
+    .btn-container {
+      width: 20%;
+      .showInterest {
+        .text {
+          display: none;
+        }
       }
     }
   }
@@ -116,6 +201,7 @@ const ViewWishListItems = () => {
   const { slug } = useParams();
   const [wishList, setWishList] = useState();
   const [item, setItem] = useState();
+  const [openShowInterestModal, setOpenShowInterestModal] = useState(false)
   const [loading, setLoading] = useState(true);
   const token = useSelector((state) => state.auth.token);
 
@@ -123,8 +209,12 @@ const ViewWishListItems = () => {
 
   const showInterest = (details) => {
     setItem(details);
-    navigate("confirm-interest");
+    setOpenShowInterestModal(true)
   };
+  // const showInterest = (details) => {
+  //   setItem(details);
+  //   navigate("confirm-interest");
+  // };
 
   const getDeviceId = () => {
     const navigator_info = window.navigator;
@@ -157,6 +247,7 @@ const ViewWishListItems = () => {
 
       if (res.data.status === "success") {
         setLoading(false);
+        console.log(res.data)
         setWishList(res.data.data[0]);
         return;
       }
@@ -174,6 +265,10 @@ const ViewWishListItems = () => {
     }
   };
 
+  // const getUser =async()=> {
+
+  // }
+
   useEffect(() => {
     document.querySelector("html").scrollTo(0, 0);
     
@@ -181,13 +276,24 @@ const ViewWishListItems = () => {
     // eslint-disable-next-line
   }, []);
 
+  function goBack() {
+    token ? navigate('/user') : navigate('/')
+  }
+
   return (
     <Wrapper>
-      <Nav />
+      <div style={{borderBottom: '1px solid #f0f0f0'}}>
+        <Nav />
+      </div>
+      <button className="back-btn" type="button" onClick={goBack}>
+        <img src={BackArrowIcon} alt="back arrow"/>
+        Back to Dashboard
+      </button>
+
       {!loading && !wishList?.items?.length && (
         <Header className="flexColumn alignCenter">
           <ImgWrapper size={16} imgHeight="100%">
-            <img src={openBox} alt="..." className="userImage" />
+            <img src={openBox} alt="user avatar" className="userImage" />
           </ImgWrapper>
           <Spacer y={0.8} />
           <h3 className="title-3 colorWhite textCenter listTitle">
@@ -205,21 +311,24 @@ const ViewWishListItems = () => {
         </>
       ) : !!wishList?.items?.length ? (
         <>
-          <Header className="flexColumn alignCenter">
+          <Header>
             <ImgWrapper size={16} imgHeight="100%">
               <img src={openBox} alt="..." className="userImage" />
             </ImgWrapper>
-            <Spacer y={0.8} />
-            <h3 className="title-3 colorWhite textCenter listTitle">
-              {wishList?.title}
-            </h3>
-            <Spacer y={0.4} />
-            <p className="subtitle-2 subtitle colorWhite">
-              By <span className="username colorAccent1Main">{username}</span>
-            </p>
+            <div>
+              <h1>{wishList?.title}</h1>
+              <Spacer y={0.4} />
+              <p className="body-2 listTitle">
+                {wishList.description}
+              </p>
+              <Spacer y={0.4} />
+              <p className="body-3 subtitle">
+                By <span className="username">{username}</span>
+              </p>
+            </div>
           </Header>
           <ListItems>
-            <div className="flexRow justifyEnd">
+            {/* <div className="flexRow justifyEnd">
               <div className="flexRow alignCenter">
                 <p className="body-3 colorTitleActive prompt1">
                   Reserve items here
@@ -227,41 +336,57 @@ const ViewWishListItems = () => {
                 <Spacer x={0.8} />
                 <img src={arrowDowm} alt="arrow" />
               </div>
-            </div>
+            </div> */}
             <Spacer y={2.4} />
             {wishList?.items?.map((item, index) => (
               <Banner
                 key={index}
-                className="flexRow alignCenter justifySpaceBetween"
               >
                 <div className="details">
-                  <p className="body-1 colorTitleActive itemName">
-                    {item.name}
-                  </p>
-                  {item.link && (
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="subtitle-4 colorBody itemLink"
-                    >
-                      {item.link}
-                    </a>
-                  )}
+                  <img src={item.avatar ? item.avatar : NoImage} alt="wish"/>
+                  <div className="contents">
+                    <div className="itemName">
+                      {item.priority ? <StarIcon fill="var(--primary-main)" /> : '' } 
+                      <p>{item.name}</p>
+                    </div>
+                    <Spacer y={0.6} />
+                    <div className="price">
+                      {item?.price}
+                      {item.quantity ? <p>x {item.quantity}</p> : ''}
+                    </div>
+                    <Spacer y={0.5} />
+                    {item.link && (
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="subtitle-5 colorBody itemLink"
+                      >
+                        {item.link}
+                      </a>
+                    )}
+                    <p className="item-desc">{item.description}</p>
+                  </div>
                 </div>
-                <button
-                  type="button"
-                  className="flexRow alignCenter showInterest"
-                  onClick={() => showInterest(item)}
-                >
-                  <img src={heartIcon} alt="heart" />
-                  <span className="body-3 colorPrimaryMain text">
-                    Show interest
-                  </span>
-                </button>
+
+                <div className="btn-container">
+                  <button
+                    type="button"
+                    className="showInterest"
+                    onClick={() => showInterest(item)}
+                  >
+                    <img src={heartIcon} alt="heart" />
+                    <span className="text">
+                      Show interest
+                    </span>
+                  </button>
+                </div>
               </Banner>
             ))}
           </ListItems>
+          
+          {openShowInterestModal && <ShowInterestModal item={item} setOpenShowInterestModal={setOpenShowInterestModal} />}
+
         </>
       ) : null}
       {!token && (
@@ -271,7 +396,6 @@ const ViewWishListItems = () => {
         </>
       )}
       <Footer />
-
       {/* Confirm interest */}
       <Routes>
         <Route
@@ -288,7 +412,12 @@ const ViewWishListItems = () => {
         <Route
           path="item-reserved"
           element={
-            <ItemReserved link={item?.link} username={username} slug={slug} />
+            <ItemReserved 
+              link={item?.link} 
+              username={username} 
+              slug={slug} 
+              setOpenShowInterestModal={setOpenShowInterestModal} 
+            />
           }
         />
       </Routes>

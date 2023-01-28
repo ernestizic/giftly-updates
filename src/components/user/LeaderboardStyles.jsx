@@ -95,10 +95,13 @@ export const UserRow = styled.div`
   justify-content: space-between;
   .name-section{
     display: flex;
-    gap: 40px;
+    gap: 37px;
     align-items: center;
     & > div {
       gap: 5px
+    }
+    @media screen and (max-width: 768px) {
+      gap: 22px
     }
   }
 
@@ -110,7 +113,7 @@ export const UserRow = styled.div`
 
   @media screen and (max-width: 768px) {
     max-width: 100%;
-    padding: 12px;
+    padding: 12px 20px;
   }
 `;
 
