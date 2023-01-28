@@ -39,7 +39,11 @@ const Wrapper = styled.button`
   // &:hover {
   //   background-color: var(--primary-dark);
   // }
-
+  &.border_dark {
+    border: 1px solid #121212;
+    color: #121212;
+    background: inherit;
+  }
   &.secondary {
     background-color: var(--accent_2-main);
     color: var(--primary-main);

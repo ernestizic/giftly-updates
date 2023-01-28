@@ -1,11 +1,10 @@
-import heartIcon from "assets/icons/heart_outline_circle.svg";
+import heartIcon from "assets/icons/heart_success_circle.svg";
 import Spacer from "components/global/Spacer";
 import styled from "styled-components";
 import Button from "components/global/Button";
 import { AuthWrapper } from "components/auth/AuthStyles";
 import { AuthCard } from "components/auth/AuthStyles";
 import { useNavigate } from "react-router-dom";
-import { CardImage } from "components/auth/AuthStyles";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { base_url } from "utils/utils";
@@ -15,7 +14,13 @@ import {
 import { useState } from "react";
 
 const Card = styled(AuthCard)`
-  background-color: var(--primary-main);
+  background-color: var(--off-white);
+  color: var(--title-active);
+
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+  }
 `;
 
 const ConfirmInterest = ({ itemId, itemName, username, slug }) => {
@@ -69,34 +74,36 @@ const ConfirmInterest = ({ itemId, itemName, username, slug }) => {
   return (
     <AuthWrapper className="flexColumn alignCenter">
       <Card className="flexColumn justifyCenter">
-        <CardImage src={heartIcon} alt="icon" className="icon" />
+        <img src={heartIcon} alt='confirm interest' width="48px"/>
         <Spacer y={2.4} />
-        <h3 className="title-4 colorWhite title flexRow alignCenter justifyCenter">
+        <h2>
           Confirm interest
-        </h3>
+        </h2>
         <Spacer y={0.8} />
-        <p className="subtitle-2 colorWhite textCenter">{itemName}</p>
+        <p className="subtitle-4" style={{fontWeight: '500'}}>{itemName}</p>
         <Spacer y={0.8} />
-        <p className="subtitle-3 colorWhite textCenter">
+        <p className="subtitle-4">
           {username} will be notified that you have indicated interest to
           purchase this item anonymously and may check it off their wish list.
         </p>
         <Spacer y={2.4} />
-        <Button
-          text="Confirm"
-          width="100%"
-          className="inverted"
-          loading={confirming}
-          disabled={confirming}
-          onClick={confirmInterest}
-        />
-        <Spacer y={1.6} />
-        <Button
-          text="Cancel"
-          className="noBorder white"
-          width="100%"
-          onClick={() => navigate(-1)}
-        />
+        <div className="action-buttons">
+          <Button
+            type="button"
+            text="Cancel"
+            className="border_dark"
+            width="50%"
+            onClick={() => navigate(-1)}
+          />
+          <Button
+            type='button'
+            text="Confirm"
+            width="50%"
+            loading={confirming}
+            disabled={confirming}
+            onClick={confirmInterest}
+          />
+        </div>
       </Card>
     </AuthWrapper>
   );

@@ -36,7 +36,7 @@ const ItemReserved = ({ link, username, slug, setOpenShowInterestModal }) => {
 					text='Done'
 					width='100%'
 					onClick={() => {
-            setOpenShowInterestModal(false)
+            		setOpenShowInterestModal(false)
 						navigate(basePath);
 					}}
 				/>
