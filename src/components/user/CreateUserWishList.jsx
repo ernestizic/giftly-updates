@@ -99,26 +99,15 @@ const CreateUserWishList = ({ getWishLists }) => {
 
     const wishList = {
       title: tempListName,
-      // description: tempListDescription,
+      description: tempListDescription,
       visibility: tempListVisibility,
       items: tempList,
     };
     console.log(wishList)
-    // const formData = new FormData();
-    // formData.append("title", tempListName);
-    // formData.append("visibility", tempListVisibility);
-    // tempList.forEach(function (el) {
-    //   formData.append('link', el.link);
-    //   formData.append('name', el.name);
-    //   formData.append('price', el.price);
-    //   formData.append('quantity', el.quantity);
-    //   // formData.append('description', el.description);
-    //   formData.append('userFile', el.avatar);
-    // })
+
     setSaving(true);
     const config = {
 			headers: {
-				// "content-type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
 			},
 		};
@@ -195,7 +184,7 @@ const CreateUserWishList = ({ getWishLists }) => {
         <Spacer y={2.4} />
         <Formik initialValues={{ 
           wish_list_name: tempListName || "",
-          // description: tempListDescription || ""
+          description: tempListDescription || ""
         }}>
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -212,14 +201,14 @@ const CreateUserWishList = ({ getWishLists }) => {
                 value={tempListName}
                 onChange={(e) => dispatch(setTempListName(e.target.value))}
               />
-              {/* <Spacer y={1.4} /> */}
-              {/* <FormGroup
+              <Spacer y={1.4} />
+              <FormGroup
                 fieldStyle="shortText"
                 name="description"
                 label="Description (optional)"
                 value={tempListDescription}
                 onChange={(e) => dispatch(setTempListDescription(e.target.value))}
-              /> */}
+              />
             </form>
           )}
         </Formik>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ProductCard from 'components/giftIdeas/ProductCard';
 import Spacer from 'components/global/Spacer';
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useContext } from 'react';
 import { useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -10,6 +10,7 @@ import { base_url_vendors, base_url } from 'utils/utils';
 import Loader from 'components/global/Loader';
 import ProductPreview from 'components/giftIdeas/ProductPreview';
 import AddToWishlist from 'components/giftIdeas/AddToWishlist';
+import { ProductContext } from 'context/ProductContext';
 
 const SearchPageContainer = styled.div`
 	color: var(--title-active);
@@ -35,10 +36,9 @@ const ProductList = styled.div`
 `;
 
 const SearchPage = () => {
+	const {searchedItems, fillSearch} = useContext(ProductContext)
 	const[page, setPage] = useState(1);
 	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState(false);
-	const [searchedItems, setSearchedItems] = useState([]);
 	const [hasMore, setHasMore] = useState(true);
 
 	const { search } = useLocation();
@@ -48,7 +48,6 @@ const SearchPage = () => {
 	const [wishlists, setWishlists] = useState([]);
 	const [selectedProduct, setSelectedProduct] = useState({});
 	const token = useSelector((state) => state.auth.token);
-
 	const showPreview = (product) => {
 		if (!product) return;
 		setSelectedProduct(product);
@@ -64,20 +63,19 @@ const SearchPage = () => {
 	const sendQuery = useCallback(async () => {
 		try {
 		  setIsLoading(true);
-		  setError(false);
 		  const res = await axios.get(`${base_url_vendors}/market?page=${page}&search=${nameFromQuery}`);
 
 		  const list = res.data.data.products;
 		  const links = res.data.data.pagination?.links || {};
-		  setSearchedItems((prev) => [...prev, ...list]);
+		  fillSearch(list)
 
 		  setHasMore(links?.next_page_url);
 		  setIsLoading(false);
 		} catch (err) {
-		  setError(err);
+			console.log(err)
 		}
 		// eslint-disable-next-line
-	  }, [nameFromQuery, page]);
+	}, [nameFromQuery, page]);
 	
 	  useEffect(()=> {
 			sendQuery();

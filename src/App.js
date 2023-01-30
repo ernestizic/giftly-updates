@@ -18,6 +18,7 @@ import ViewUserWishLists from "pages/ViewUserWishLists";
 import ViewWishListItems from "pages/ViewWishListItems";
 import axios from "axios";
 import VerifyEmail from "components/auth/VerifyEmail";
+import ProductContextProvider from "context/ProductContext";
 
 axios.interceptors.response.use(
   function (response) {
@@ -41,24 +42,26 @@ axios.interceptors.response.use(
 function App() {
   const {msg} = useSelector((state)=> state.alert)
   return (
-    <Router>
-      <AlertBox message={msg.message} type={msg.type} />
-      <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/home/*" element={<Landing />} />
-        <Route path="/user" element={<Navigate to="/user/wish-lists" />} />
-        <Route path="/user/*" element={<Dashboard />} />
-        <Route path="/faqs" element={<FAQs />} />
-        <Route path="/:username/:slug/*" element={<ViewWishListItems />} />
-        <Route path="/:username" element={<ViewUserWishLists />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/privacy-policy" element={<Privacy />} />
-        <Route path="/verify-email" element={<VerifyEmail />} />
+    <ProductContextProvider>
+      <Router>
+        <AlertBox message={msg.message} type={msg.type} />
+        <Routes>
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home/*" element={<Landing />} />
+          <Route path="/user" element={<Navigate to="/user/wish-lists" />} />
+          <Route path="/user/*" element={<Dashboard />} />
+          <Route path="/faqs" element={<FAQs />} />
+          <Route path="/:username/:slug/*" element={<ViewWishListItems />} />
+          <Route path="/:username" element={<ViewUserWishLists />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy-policy" element={<Privacy />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
 
-        {/* No match */}
-        <Route path="*" element={<Navigate to="/home" />} />
-      </Routes>
-    </Router>
+          {/* No match */}
+          <Route path="*" element={<Navigate to="/home" />} />
+        </Routes>
+      </Router>
+    </ProductContextProvider>
   );
 }
 

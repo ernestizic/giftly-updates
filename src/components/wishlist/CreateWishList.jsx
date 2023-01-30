@@ -102,48 +102,48 @@ const CreateWishList = () => {
 
     const wishList = {
       title: tempListName,
-      // description: tempListDescription,
+      description: tempListDescription,
       visibility: tempListVisibility,
       items: tempList,
     };
+    console.log(wishList)
 
-    setSaving(true);
-    try {
-      console.log(wishList)
-      const res = await axios.post(`${base_url}/wishlist/save`, wishList);
-      console.log(res.data)
+    // setSaving(true);
+    // try {
+    //   const res = await axios.post(`${base_url}/wishlist/save`, wishList);
+    //   console.log(res.data)
 
-      if (!res) {
-        dispatch(setAlert({
-          type: 'error',
-          message: "An error occurred"
-        }))
-        return;
-      }
+    //   if (!res) {
+    //     dispatch(setAlert({
+    //       type: 'error',
+    //       message: "An error occurred"
+    //     }))
+    //     return;
+    //   }
 
-      if (res.data.status === "success") {
-        dispatch(setTempListId(res.data.data.id));
-        dispatch(setAlert({
-          type: 'success',
-          message: "Wish list saved"
-        }))
-        setSaving(false);
-        navigate("/home/register-prompt");
-        return;
-      }
+    //   if (res.data.status === "success") {
+    //     dispatch(setTempListId(res.data.data.id));
+    //     dispatch(setAlert({
+    //       type: 'success',
+    //       message: "Wish list saved"
+    //     }))
+    //     setSaving(false);
+    //     navigate("/home/register-prompt");
+    //     return;
+    //   }
 
-      setSaving(false);
-      dispatch(setAlert({
-        type: 'success',
-        message: res.data.message
-      }))
-    } catch (e) {
-      setSaving(false);
-      dispatch(setAlert({
-        type: 'error',
-        message: e.response.data.message
-      }))
-    }
+    //   setSaving(false);
+    //   dispatch(setAlert({
+    //     type: 'success',
+    //     message: res.data.message
+    //   }))
+    // } catch (e) {
+    //   setSaving(false);
+    //   dispatch(setAlert({
+    //     type: 'error',
+    //     message: e.response.data.message
+    //   }))
+    // }
   };
 
   useEffect(() => {
@@ -166,7 +166,7 @@ const CreateWishList = () => {
         <Spacer y={2.4} />
         <Formik initialValues={{ 
             wish_list_name: tempListName || "",
-            // description: tempListDescription || ""
+            description: tempListDescription || ""
           }}>
           {({values, handleSubmit }) => (
             <form onSubmit={handleSubmit}>
@@ -184,14 +184,14 @@ const CreateWishList = () => {
                 value={tempListName}
                 onChange={(e) => dispatch(setTempListName(e.target.value))}
               />
-              {/* <Spacer y={1.4} />
+              <Spacer y={1.4} />
               <FormGroup
                 fieldStyle="shortText"
                 name="description"
                 label="Description (optional)"
                 value={tempListDescription}
                 onChange={(e) => dispatch(setTempListDescription(e.target.value))}
-              /> */}
+              />
             </form>
           )}
         </Formik>

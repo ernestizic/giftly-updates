@@ -54,6 +54,7 @@ const Wrapper = styled.div`
 `;
 
 const WishListCard = ({
+  getWishLists,
   details,
   fromSearch,
   handleSearchNavigate = () => null,
@@ -133,7 +134,7 @@ const WishListCard = ({
                 className="flexRow alignCenter toggleOptions"
                 onClick={() => setOptionsOpen((prev) => !prev)}
               >
-                <img src={moreIcon} alt="lock" className="icon" />
+                <img src={moreIcon} alt="more" className="icon" />
               </button>
             </div>
           </>
@@ -141,7 +142,7 @@ const WishListCard = ({
       </Wrapper>
       {/* Options */}
       {optionsOpen && (
-        <CardOptions setOpen={setOptionsOpen} slug={details.slug} />
+        <CardOptions setOpen={setOptionsOpen} slug={details.slug} wishItem={details} getWishLists={getWishLists}/>
       )}
     </Container>
   );

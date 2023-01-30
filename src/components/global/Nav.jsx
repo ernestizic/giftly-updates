@@ -276,7 +276,7 @@ const Nav = ({ wt }) => {
           )}
         </SearchBox>
       </div>
-      {/* {token ? (
+      {token ? (
         <div className="flexRow alignCenter">
           <Link to="/user/wish-lists" className="body-3 colorWhite">
             Back to account
@@ -293,8 +293,8 @@ const Nav = ({ wt }) => {
           <Spacer x={2.4} xMobile={1.6} />
           <Button text="Sign up" onClick={() => navigate("/home/sign-up")} />
         </div>
-      )} */}
-      {!token && (
+      )}
+      {/* {!token && (
         <div className="flexRow alignCenter">
         <Button
           bg="var(--accent_2-main)"
@@ -305,7 +305,7 @@ const Nav = ({ wt }) => {
         <Spacer x={2.4} xMobile={1.6} />
         <Button text="Sign up" onClick={() => navigate("/home/sign-up")} />
       </div>
-      )}
+      )} */}
     </Wrapper>
   );
 };

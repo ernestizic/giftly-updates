@@ -16,7 +16,9 @@ import { Formik } from "formik";
 import Spacer from "components/global/Spacer";
 import styled from "styled-components";
 import { useState, useEffect, useRef } from "react";
-import { base_url_vendors } from "utils/utils";
+import { base_url, base_url_vendors } from "utils/utils";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const RowWrapper = styled.form`
   width: 100%;
@@ -150,6 +152,7 @@ const ItemRowGroup = ({
   setFieldValue,
   noCheck,
 }) => {
+  const token = useSelector((state) => state.auth.token);
   const [desired, setDesired] = useState(false);
   const [showAllFields, setShowAllFields] = useState(false)
   const [contentHeight, setContentHeight] = useState('0px');
@@ -163,22 +166,34 @@ const ItemRowGroup = ({
 
 
   // file conversion to base64
-  const toBase64 = file => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
+  // const toBase64 = file => new Promise((resolve, reject) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = () => resolve(reader.result);
+  //   reader.onerror = error => reject(error);
 
-    return reader
-  });
+  //   return reader
+  // });
 
 	const onImageChange =async(e)=> {
-		const base64file = await toBase64(e.target.files[0])
-		if (e.target.files && e.target.files[0]) {
-			setFieldValue(index, "avatar", base64file) 
-		}
-    // const imgFile = e.target.files[0]
-    // setFieldValue(index, "avatar", imgFile)
+		// const base64file = await toBase64(e.target.files[0])
+		// if (e.target.files && e.target.files[0]) {
+		// 	setFieldValue(index, "avatar", base64file) 
+		// }
+    const imgFile = e.target.files[0]
+    const formData = new FormData();
+		formData.append('avatar', imgFile);
+    try {
+      const res = await axios.post(`${base_url_vendors}/items/avatar/upload`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      console.log(res.data)
+      // setFieldValue(index, "avatar", base64file)
+    } catch (error) {
+      console.log(error.response.data)
+    }
 	}
   return (
     <Formik

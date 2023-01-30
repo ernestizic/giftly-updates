@@ -160,7 +160,7 @@ const Banner = styled.div`
 
   @media screen and (max-width: 768px) {
     font-size: 14px;
-    padding: 0px;
+    padding: 10px 0;
     margin-bottom: 24px;
 
     .details {
@@ -211,10 +211,6 @@ const ViewWishListItems = () => {
     setItem(details);
     setOpenShowInterestModal(true)
   };
-  // const showInterest = (details) => {
-  //   setItem(details);
-  //   navigate("confirm-interest");
-  // };
 
   const getDeviceId = () => {
     const navigator_info = window.navigator;
@@ -247,7 +243,6 @@ const ViewWishListItems = () => {
 
       if (res.data.status === "success") {
         setLoading(false);
-        console.log(res.data)
         setWishList(res.data.data[0]);
         return;
       }

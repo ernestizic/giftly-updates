@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { Route, Routes } from "react-router-dom";
 import {
@@ -25,8 +26,6 @@ import { clearTempList } from "features/wishList/wishListSlice";
 import ThinkingGirlImg from "assets/images/thinking-girl.svg";
 import plusIcon from "assets/icons/plus_white.svg";
 import styled from "styled-components";
-import { useEffect } from "react";
-import { useState } from "react";
 
 const Wrapper = styled.div`
   .createButtonCircle {
@@ -89,7 +88,8 @@ const WishsLists = () => {
 
       if (res.data.status === "success") {
         setLoading(false);
-        setData(res.data.data.data);
+        const list = res.data.data.data;
+        setData(list.filter(item=> item.visibility === 'public'))
         return res;
       }
       setLoading(false);
@@ -123,7 +123,7 @@ const WishsLists = () => {
         <>
           <ListWrapper>
             {data?.map((item, index) => (
-              <WishListCard key={index} details={item} />
+              <WishListCard key={index} details={item} getWishLists={getWishLists}/>
             ))}
             {/* {data
               ?.filter((item) =>

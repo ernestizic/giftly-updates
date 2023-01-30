@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useContext } from 'react';
 import searchIcon from 'assets/icons/search.svg';
 import closeIcon from 'assets/icons/close_square.svg';
 import { SearchGiftForm, SearchContainer } from './SearchGifts.styled';
@@ -7,8 +7,10 @@ import axios from 'axios';
 import Loader from 'components/global/Loader';
 import Spacer from 'components/global/Spacer';
 import { useNavigate } from 'react-router-dom';
+import { ProductContext } from 'context/ProductContext';
 
 const SearchGifts = () => {
+	const {emptySearch} = useContext(ProductContext)
 	const [keyword, setKeyword] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const [relatedItems, setRelatedItems] = useState([]);
@@ -34,9 +36,11 @@ const SearchGifts = () => {
 
     function handleSubmit(e){
         e.preventDefault()
+		emptySearch()
         navigate(`/user/gift-ideas/search?name=${keyword}`)
     }
 	function handleClick(item){
+		emptySearch()
 		navigate(`/user/gift-ideas/search?name=${item.name}`)
 	}
 	const hideMobileSearch = () => {

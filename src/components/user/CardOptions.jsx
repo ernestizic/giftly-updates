@@ -3,10 +3,16 @@ import styled, { keyframes } from "styled-components";
 import Spacer from "components/global/Spacer";
 import eyeIcon from "assets/icons/eye.svg";
 import shareIcon from "assets/icons/share.svg";
+import ArchiveIcon from "assets/icons/archive-icon2.svg";
+import RefreshIcon from "assets/icons/refresh.svg";
 import trashIcon from "assets/icons/trash_danger.svg";
 import { useClickOutside } from "webrix/hooks";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { base_url } from "utils/utils";
+import { setAlert } from "features/alert/alertSlice";
+import { useDispatch } from "react-redux";
 
 const fadeIn = keyframes`
   from {
@@ -51,33 +57,89 @@ const Wrapper = styled.div`
   }
 `;
 
-const CardOptions = ({ setOpen, slug }) => {
+const CardOptions = ({ setOpen, slug, wishItem, getWishLists }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const username = useSelector((state) => state.auth.user.username);
+  const token = useSelector((state) => state.auth.token);
 
   const handleOnMouseDownCapture = useClickOutside(() => {
     setOpen(false);
   });
 
+
+  const archiveFunc =async(wishItem)=> {
+    const visibility = wishItem.visibility === 'private' ? "public" : "private"
+    const formData = {
+      ...wishItem,
+      visibility
+    }
+    try {
+        const res = await axios.patch(`${base_url}/wishlist/${wishItem.id}`, formData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = res.data
+        console.log(data)
+        getWishLists()
+        dispatch(
+          setAlert({
+            type: 'success',
+            message: visibility === "public" ? "Wishlist restored successfully" : "Wishlist archived successfully"
+          })
+        )
+    } catch (err) {
+      dispatch(
+        setAlert({
+          type: 'error',
+          message: err.response.data.errors[0]
+        })
+      )
+    }
+  }
+
+
   return (
     <Wrapper onMouseDownCapture={handleOnMouseDownCapture}>
+      {wishItem.visibility === "public" && (
+        <button
+          className="flexRow alignCenter item"
+          onClick={() => navigate("share")}
+        >
+          <img src={shareIcon} alt="share" className="icon" />
+          <Spacer x={0.8} />
+          <span className="body-3 text colorTitleActive">Share wish list</span>
+        </button>
+      )}
+      
+      {wishItem.visibility === "public" && (
+        <button
+          className="flexRow alignCenter item"
+          onClick={() => navigate(`/${username}/${slug}`)}
+        >
+          <img src={eyeIcon} alt="view" className="icon" />
+          <Spacer x={0.8} />
+          <span className="body-3 text colorTitleActive">Preview wish list</span>
+        </button>
+      )}
+
       <button
         className="flexRow alignCenter item"
-        onClick={() => navigate("share")}
+        onClick={()=>archiveFunc(wishItem)}
       >
-        <img src={shareIcon} alt="share" className="icon" />
+        <img 
+          src={wishItem.visibility === "public" ? ArchiveIcon : RefreshIcon} 
+          alt="archive" 
+          className="icon" 
+        />
         <Spacer x={0.8} />
-        <span className="body-3 text colorTitleActive">Share wish list</span>
+        <span className="body-3 text colorTitleActive">
+          {wishItem.visibility === "public" ? "Archive wish list" : "Restore wish list"}
+        </span>
       </button>
-      <button
-        className="flexRow alignCenter item"
-        onClick={() => navigate(`/${username}/${slug}`)}
-      >
-        <img src={eyeIcon} alt="view" className="icon" />
-        <Spacer x={0.8} />
-        <span className="body-3 text colorTitleActive">Preview wish list</span>
-      </button>
+
       <button
         className="flexRow alignCenter item delete"
         onClick={() => navigate("delete")}
