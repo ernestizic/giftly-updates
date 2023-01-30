@@ -16,10 +16,13 @@ export const Modal = styled.div`
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    .item-image {
-        background: #f0f0f0;
-        width: 100%;
-        height: 100%;
+    .image-container {
+        /* background: #f0f0f0; */
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
 	& > div {
@@ -41,7 +44,7 @@ export const Modal = styled.div`
         }
         .image-container {
             margin-top: 60px;
-            height: 200px;
+            /* height: 200px; */
             padding: 0 20px;
         }
     }

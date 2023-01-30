@@ -71,6 +71,11 @@ const Archive = () => {
             ))}
         </List>
       )}
+      {archivedList.length < 1 && !isLoading && (
+        <div className="flexRow justifyCenter">
+          <p className='subtitle-4 colorTitleActive'>When you archive a wish, it would show up here!</p>
+        </div>
+      )}
     </ArchiveWrapper>
   )
 }

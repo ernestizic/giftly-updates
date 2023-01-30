@@ -11,6 +11,7 @@ import {
     ButtonContainer
 } from './ShowInterest.styled';
 import { useNavigate } from 'react-router-dom';
+import { base_url_vendors } from 'utils/utils';
 
 const ShowInterestModal = ({ item, setOpenShowInterestModal }) => {
 	const navigate = useNavigate();
@@ -34,11 +35,18 @@ const ShowInterestModal = ({ item, setOpenShowInterestModal }) => {
                     </button>
                 </ButtonContainer>
 				<div className='image-container'>
-					<img
-						src={item?.avatar ? item.avatar : NoImage}
-						className='item-image'
-						alt='empty'
-					/>
+					{item.avatar && (
+						<img 
+						src={`${item.avatar?.startsWith("uploads") ? base_url_vendors+'/../'+item.avatar : item.avatar}`} 
+						alt="wish" 
+						/>
+					)}
+					{!item.avatar && (
+						<img 
+						src={NoImage} 
+						alt="wish" 
+						/>
+					)}
 				</div>
 				<div className='right-side'>
 					<ModalContent>

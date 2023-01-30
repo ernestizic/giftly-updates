@@ -7,6 +7,7 @@ import {
 import {
   clearTempList,
   setTempList,
+  setTempListDescription,
   setTempListId,
   setTempListName,
   setTempListVisibility,
@@ -40,7 +41,7 @@ const EditWishList = ({ getWishLists }) => {
   const tempListId = useSelector((state) => state.wishList.tempListId);
   const tempList = useSelector((state) => state.wishList.tempList);
   const tempListName = useSelector((state) => state.wishList.tempListName);
-  const {tempListDescription} = useSelector(state => state.wishList)
+  // const {tempListDescription} = useSelector(state => state.wishList)
   const tempListVisibility = useSelector(
     (state) => state.wishList.tempListVisibility
   );
@@ -50,6 +51,7 @@ const EditWishList = ({ getWishLists }) => {
   const [saving, setSaving] = useState(false);
 
   const addListItem = async (data) => {
+    console.log(data)
     try {
       await axios.post(
         `${base_url}/items/${tempListId}`,
@@ -77,21 +79,23 @@ const EditWishList = ({ getWishLists }) => {
   };
 
   const updateListItem = async (data) => {
+    console.log(data)
     if (!data.id) {
       addListItem(data);
       return;
     }
 
     try {
-      await axios.patch(`${base_url}/items/${data.id}`, data, {
+      const res = await axios.patch(`${base_url}/items/${data.id}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(res.data)
 
       getWishLists();
     } catch (e) {
-      console.log(e);
+      console.log(e.response.data.errors);
     }
   };
 
@@ -176,15 +180,15 @@ const EditWishList = ({ getWishLists }) => {
       visibility: tempListVisibility,
     };
 
-    await axios.post(
-      `${base_url}/items/${tempListId}`,
-      { items: tempList.filter(item => !item.id) },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    // await axios.post(
+    //   `${base_url}/items/${tempListId}`,
+    //   { items: tempList.filter(item => !item.id) },
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   }
+    // );
 
     const res = await axios.patch(
       `${base_url}/wishlist/${tempListId}`,
@@ -233,6 +237,7 @@ const EditWishList = ({ getWishLists }) => {
       }))
     } catch (e) {
       setSaving(false);
+      console.log(e.response.data.errors)
       dispatch(setAlert({
         type: 'error',
         message: e.response.data.message || "Something went wrong"
@@ -289,8 +294,8 @@ const EditWishList = ({ getWishLists }) => {
                 value={tempListName}
                 onChange={(e) => dispatch(setTempListName(e.target.value))}
               />
-              {/* <Spacer y={1.4} /> */}
-              {/* <FormGroup
+              {/* <Spacer y={1.4} />
+              <FormGroup
                 fieldStyle="shortText"
                 name="description"
                 label="Description (optional)"

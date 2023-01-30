@@ -165,32 +165,17 @@ const ItemRowGroup = ({
 	}, [showAllFields]);
 
 
-  // file conversion to base64
-  // const toBase64 = file => new Promise((resolve, reject) => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onload = () => resolve(reader.result);
-  //   reader.onerror = error => reject(error);
-
-  //   return reader
-  // });
-
 	const onImageChange =async(e)=> {
-		// const base64file = await toBase64(e.target.files[0])
-		// if (e.target.files && e.target.files[0]) {
-		// 	setFieldValue(index, "avatar", base64file) 
-		// }
     const imgFile = e.target.files[0]
     const formData = new FormData();
 		formData.append('avatar', imgFile);
     try {
-      const res = await axios.post(`${base_url_vendors}/items/avatar/upload`, formData, {
+      const res = await axios.post(`${base_url}/items/avatar/upload`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      console.log(res.data)
-      // setFieldValue(index, "avatar", base64file)
+      setFieldValue(index, "avatar", res.data.data.url)
     } catch (error) {
       console.log(error.response.data)
     }
@@ -212,7 +197,7 @@ const ItemRowGroup = ({
             {rowValues?.avatar && (
               <div className='gift-image-container'>
                 <img 
-                  src={`${rowValues.avatar?.startsWith("data") ? rowValues.avatar : base_url_vendors+'/../'+rowValues.avatar}`} 
+                  src={`${rowValues.avatar?.startsWith("uploads") ? base_url_vendors+'/../'+rowValues.avatar : rowValues.avatar}`} 
                   alt='wish item' 
                   width='45px' 
                   height='45px' 
@@ -368,7 +353,7 @@ const ItemRowGroup = ({
                   type='file'
                   accept='image/*'
                   id='file'
-                  name='image'
+                  name='avatar'
                   onChange={onImageChange}
                 />
               </div>

@@ -17,7 +17,7 @@ import {
   setAlert
 } from "features/alert/alertSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { base_url } from "utils/utils";
+import { base_url, base_url_vendors } from "utils/utils";
 import axios from "axios";
 import { useEffect } from "react";
 import Loader from "components/global/Loader";
@@ -263,6 +263,7 @@ const ViewWishListItems = () => {
   // const getUser =async()=> {
 
   // }
+  console.log(wishList)
 
   useEffect(() => {
     document.querySelector("html").scrollTo(0, 0);
@@ -338,7 +339,18 @@ const ViewWishListItems = () => {
                 key={index}
               >
                 <div className="details">
-                  <img src={item.avatar ? item.avatar : NoImage} alt="wish"/>
+                  {item.avatar && (
+                    <img 
+                      src={`${item.avatar?.startsWith("uploads") ? base_url_vendors+'/../'+item.avatar : item.avatar}`} 
+                      alt="wish" 
+                    />
+                  )}
+                  {!item.avatar && (
+                    <img 
+                      src={NoImage} 
+                      alt="wish" 
+                    />
+                  )}
                   <div className="contents">
                     <div className="itemName">
                       {item.priority ? <StarIcon fill="var(--primary-main)" /> : '' } 

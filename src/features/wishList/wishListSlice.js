@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  wishList: [],
   tempListId: null,
   tempListName: "",
-  tempListDescription: "",
+  // tempListDescription: "",
   tempList: [{}],
   tempListVisibility: "public",
   tempListSlug: "",
@@ -21,9 +20,9 @@ export const wishListSlice = createSlice({
     setTempListName: (state, action) => {
       state.tempListName = action.payload;
     },
-    setTempListDescription: (state, action) => {
-      state.tempListDescription = action.payload;
-    },
+    // setTempListDescription: (state, action) => {
+    //   state.tempListDescription = action.payload;
+    // },
     setTempList: (state, action) => {
       state.tempList = action.payload;
     },
