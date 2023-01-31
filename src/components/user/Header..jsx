@@ -22,7 +22,7 @@ import SearchGifts from "components/giftIdeas/searchGifts/SearchGifts";
 
 const Wrapper = styled(HeaderWrapper)``;
 
-const searchCategories = ["Friends", "Gift items"];
+const searchCategories = ["Friends"];
 
 const Header = ({headerText}) => {
   const dispatch = useDispatch();

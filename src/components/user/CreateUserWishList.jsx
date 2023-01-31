@@ -81,9 +81,6 @@ const CreateUserWishList = ({ getWishLists }) => {
       (item) => item.link && item.link.length && !validURL(item.link)
     );
 
-    // const itemDescription = tempList.filter((item)=> item.description)
-    // console.log(itemDescription)
-
     if (!tempListName || !tempListName.length) {
       dispatch(setAlert({
         type: 'warning',
@@ -96,14 +93,6 @@ const CreateUserWishList = ({ getWishLists }) => {
     //   dispatch(setAlert({
     //     type: 'warning',
     //     message: "Wishlist description is too short"
-    //   }))
-    //   return;
-    // }
-
-    // if (itemDescription.description && itemDescription.description.length < 5 ) {
-    //   dispatch(setAlert({
-    //     type: 'warning',
-    //     message: "Item description is too short"
     //   }))
     //   return;
     // }
@@ -122,7 +111,6 @@ const CreateUserWishList = ({ getWishLists }) => {
       visibility: tempListVisibility,
       items: tempList,
     };
-    console.log(wishList)
 
     setSaving(true);
     const config = {

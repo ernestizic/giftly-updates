@@ -15,7 +15,8 @@ import { useDispatch } from "react-redux";
 
 const Wrapper = styled.div`
   padding: 2.4rem;
-  min-height: 100vh;
+  height: 100%;
+  max-height: 100%;
   background-color: var(--title-active);
   
   .brand {
@@ -35,8 +36,8 @@ const Wrapper = styled.div`
     position: fixed;
     width: 100%;
     left: 0;
-    bottom: -100vh;
-    min-height: 50vh;
+    bottom: -100%;
+    /* height: 100%; */
     transition: all 0.2s ease-out;
     z-index: 5;
 

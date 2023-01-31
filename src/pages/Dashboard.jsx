@@ -23,6 +23,9 @@ const Wrapper = styled.div`
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
   }
+  .viewContent {
+    max-height: 100%;
+  }
 `;
 
 const Dashboard = () => {

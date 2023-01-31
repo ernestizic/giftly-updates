@@ -102,7 +102,7 @@ const SearchBox = styled(Search)`
     width: 100%;
     grid-template-columns: 24px auto 24px;
     align-items: center;
-    background-color: #ffffff;
+    background-color: var(--off-white);
     z-index: 5;
     padding: 0 24px;
     height: 48px;
@@ -198,14 +198,14 @@ const Nav = ({ wt }) => {
         </button>
         <SearchBox className="searchBox">
           <div className="backdrop"></div>
-          <div className="flexRow alignCenter searchInputWrapper">
+          <div className="flexRow alignCenter searchInputWrapper" wt={wt}>
             <img src={searchIcon} alt="search" className="icon" />
             <FormGroupCustom
               fieldStyle="shortText"
               name="search"
               label="Find friends"
               onChange={findFriends}
-              bg="#ffffff"
+              bg="var(--off-white)"
               noLabel
             />
 

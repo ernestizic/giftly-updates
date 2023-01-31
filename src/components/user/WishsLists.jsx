@@ -105,7 +105,7 @@ const WishsLists = () => {
       }))
     }
   };
-  // console.log(data)
+  
   useEffect(() => {
     updateTempWishList();
     getWishLists();

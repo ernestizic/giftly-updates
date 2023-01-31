@@ -19,6 +19,7 @@ import { useState, useEffect, useRef } from "react";
 import { base_url, base_url_vendors } from "utils/utils";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import * as Yup from 'yup';
 
 const RowWrapper = styled.form`
   width: 100%;
@@ -180,6 +181,12 @@ const ItemRowGroup = ({
       console.log(error.response.data)
     }
 	}
+
+  // Form validation
+	// let validationSchema = Yup.object().shape({
+	// 	description: Yup.string().min(5, "Too short"),
+	// });
+
   return (
     <Formik
       initialValues={{
@@ -190,8 +197,9 @@ const ItemRowGroup = ({
         description: rowValues?.description || "",
         avatar: rowValues?.avatar || ""
       }}
+      // validationSchema={validationSchema}
     >
-      {({ handleSubmit }) => (
+      {({ handleSubmit, errors, touched }) => (
         <RowWrapper onSubmit={handleSubmit}>
           <div className="form-top-section">
             {rowValues?.avatar && (
@@ -324,6 +332,9 @@ const ItemRowGroup = ({
               }
             />
             </div>
+            {/* {errors.description && touched.description ? (
+              <span className='form-error'>{errors.description}</span>
+            ) : null} */}
             <div className="actionBtns">
               <button
                 type="button"
@@ -339,7 +350,7 @@ const ItemRowGroup = ({
               </button>
 
               <div className='upload-file-container'>
-                <label htmlFor='file' className='file-upload'>
+                <label htmlFor={`file-${index}`} className='file-upload'>
                   <span
                     type="button"
                     className="flexRow alignCenter justifyCenter btn"
@@ -352,7 +363,7 @@ const ItemRowGroup = ({
                 <input
                   type='file'
                   accept='image/*'
-                  id='file'
+                  id={`file-${index}`}
                   name='avatar'
                   onChange={onImageChange}
                 />
