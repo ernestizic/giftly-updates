@@ -266,7 +266,8 @@ export const Card = styled(AuthCard)`
   @media screen and (max-width: 768px) {
     position: fixed;
     width: 100%;
-    height: -webkit-fill-available;
+    height: 100%;
+    max-height: 100vh;
     margin: 0;
     padding: 24px 16px;
     overflow: auto;

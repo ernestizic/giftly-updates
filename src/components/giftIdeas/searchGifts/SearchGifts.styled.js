@@ -54,8 +54,9 @@ export const SearchGiftForm = styled.form`
     position: relative;
     display: flex;
     gap: 30px;
-
+    
 	input {
+        font-size: 16px;
 		border: 1px solid #D5D8DF;
 		background-color: var(--input-bg);
 		border-radius: 5px;
@@ -71,7 +72,7 @@ export const SearchGiftForm = styled.form`
     }
 	.search-icon {
 		position: absolute;
-		top: 14px;
+		top: 16px;
 		left: 10px;
 	}
     .close-icon {
