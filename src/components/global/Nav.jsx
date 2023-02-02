@@ -285,8 +285,7 @@ const Nav = ({ wt }) => {
       ) : (
         <div className="flexRow alignCenter">
           <Button
-            bg="var(--accent_2-main)"
-            color="var(--primary-main)"
+            className="inverted"
             text="Login"
             onClick={() => navigate("/home/login")}
           />

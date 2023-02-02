@@ -22,13 +22,21 @@ const Card = styled(AuthCard)`
   margin: auto;
   background-color: #ffffff;
   border-radius: 16px;
-  padding: 48px;
+  padding: 0 48px 48px;
   position: relative;
   height: calc(100% - 50px);
   max-height: 836px;
   width: calc(100% - 32px);
   max-width: 812px;
   overflow: auto;
+
+  .fixed-top {
+    padding-top: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #fff;
+  }
 
   .optionsWrapper {
     display: grid;
@@ -47,10 +55,19 @@ const Card = styled(AuthCard)`
     width: 100%;
     height: 100%;
     margin: 0;
-    padding: 24px;
+    padding: 0 24px 24px;
     overflow: auto;
     border-radius: 0;
     max-width: 100%;
+    .fixed-top {
+      h1{
+        font-size: 22px;
+      }
+      padding: 48px 5px 0;
+      position: fixed;
+      width: 100%;
+      left: 0;
+  }
 
     .title {
       font-size: 24px;
@@ -68,6 +85,7 @@ const Card = styled(AuthCard)`
     }
 
     .optionsWrapper {
+      margin-top: 200px;
       grid-template-columns: 1fr 1fr;
     }
   }
@@ -182,18 +200,21 @@ const Interests = () => {
   return (
     <Wrapper className="flexColumn justifyCenter alignCenter">
       <Card>
-        <div className="flexRow justifyCenter">
-          <Logo />
+        <div className="fixed-top">
+          <div className="flexRow justifyCenter">
+            <Logo />
+          </div>
+          <Spacer y={0.8} />
+          <h1 className="textCenter colorTitleActive">
+            What are you into these days?
+          </h1>
+          <Spacer y={0.8} />
+          <p className="subtitle-4 subtitle textCenter colorTitleActive">
+            Select at least 5 interests to help us personalise your Giftly
+            experience.
+          </p>
+
         </div>
-        <Spacer y={0.8} />
-        <h1 className="textCenter colorTitleActive">
-          What are you into these days?
-        </h1>
-        <Spacer y={0.8} />
-        <p className="subtitle-4 subtitle textCenter colorTitleActive">
-          Select at least 5 interests to help us personalise your Giftly
-          experience.
-        </p>
         <Spacer y={2.4} />
         <div className="optionsWrapper">
           {tempList.map((text) => (

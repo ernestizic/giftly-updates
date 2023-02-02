@@ -106,7 +106,7 @@ const GiftSuggestions = () => {
         </div>
         <Spacer y={0.8} />
         <p className="title-4 title textCenter colorTitleActive textCenter">
-          Gift suggestions
+          <b>Gift suggestions</b>
         </p>
         <Spacer y={0.4} />
         <h3 className="subtitle-4 subtitle textCenter">

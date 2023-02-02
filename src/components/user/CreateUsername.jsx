@@ -63,7 +63,7 @@ const CreateUsername = () => {
     } catch (e) {
       dispatch(setAlert({
         type: 'error',
-        message: e.response.data.message || "Something went wrong",
+        message: e.response.data.errors[0].message || "Something went wrong",
       }))
     }
   };

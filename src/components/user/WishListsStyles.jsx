@@ -25,16 +25,6 @@ export const HeaderWrapper = styled.div`
     position: relative;
     display: flex;
     gap: 30px;
-    .add-btn{
-        display: flex;
-        align-items: center;
-        background-color: var(--primary-main);
-        border-radius: 5px;
-        padding: 10px 12px;
-        color: #fff;
-        border: 1px solid var(--primary-main);
-    }
-      
   }
   @media screen and (max-width: 768px) {
     position: fixed;
@@ -229,7 +219,7 @@ export const Card = styled(AuthCard)`
   padding-bottom: 24px;
   position: relative;
   height: 100%;
-  min-width: 600px;
+  width: 600px;
   height: calc(100% - 16px);
   max-height: 836px;
   overflow: auto;

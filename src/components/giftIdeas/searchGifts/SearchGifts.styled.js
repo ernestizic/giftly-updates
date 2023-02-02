@@ -51,18 +51,18 @@ export const SearchContainer = styled.div`
     }
 `
 export const SearchGiftForm = styled.form`
-    position: relative;
+    /* position: relative;
     display: flex;
     gap: 30px;
-    
+     */
 	input {
         font-size: 16px;
-		border: 1px solid #D5D8DF;
+		border: none;
 		background-color: var(--input-bg);
 		border-radius: 5px;
-		width: 300px;
+		width: 320px;
 		padding: 15px;
-		text-indent: 25px;
+		text-indent: 30px;
 		&:focus {
 			outline: none;
 		}
@@ -73,7 +73,7 @@ export const SearchGiftForm = styled.form`
 	.search-icon {
 		position: absolute;
 		top: 16px;
-		left: 10px;
+		left: 15px;
 	}
     .close-icon {
         position: absolute;
@@ -88,7 +88,7 @@ export const SearchGiftForm = styled.form`
     }
     @media screen and (max-width: 640px) {
         input {
-            width: 85%;
+            width: 90%;
         }
         .close-icon {
             display: none;

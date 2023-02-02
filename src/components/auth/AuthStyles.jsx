@@ -169,10 +169,9 @@ export const PasswordReset = styled.div`
 export const CardImage = styled.img`
   display: block;
   width: 330px;
-  margin: auto;
 
   &.icon {
-    width: 48px;
+    width: 50px;
   }
 
   @media screen and (max-width: 768px) {

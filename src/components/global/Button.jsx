@@ -12,7 +12,7 @@ const Wrapper = styled.button`
   width: ${(props) => props.width ? props.width : props.fullWidth ? "100%" : "max-content"};
   background-color: ${(props) => props.bg || " var(--primary-main)"};
   color: ${(props) => props.color || "#ffffff"};
-  font-family: var(--font_1-regular);
+  font-family: var(--font_3-regular);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -23,6 +23,9 @@ const Wrapper = styled.button`
   flex-shrink: 0;
   padding: 0 24px;
   white-space: nowrap;
+  &:hover {
+    background: #9F1C52;
+  }
 
   .icon {
     height: 20px;
@@ -62,6 +65,9 @@ const Wrapper = styled.button`
   &:disabled {
     opacity: 0.5;
     cursor: default;
+    &:hover {
+      background: var(--primary-main);
+    }
   }
 
   &.noBorder {

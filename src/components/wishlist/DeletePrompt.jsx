@@ -1,5 +1,5 @@
 import React from "react";
-import deleteIcon from "assets/icons/delete_circle.svg";
+import deleteIcon from "assets/icons/delete-circle-icon.svg";
 import Spacer from "components/global/Spacer";
 import styled from "styled-components";
 import Button from "components/global/Button";
@@ -17,7 +17,12 @@ import { clearTempList } from "features/wishList/wishListSlice";
 import { useState } from "react";
 
 const Card = styled(AuthCard)`
-  background-color: var(--primary-main);
+  background-color: #fff;
+  color: var(--title-active);
+  .buttons {
+    display: flex;
+    gap: 10px;
+  }
 `;
 
 const DeletePrompt = ({ getWishLists, redirect }) => {
@@ -81,33 +86,34 @@ const DeletePrompt = ({ getWishLists, redirect }) => {
 
   return (
     <AuthWrapper className="flexColumn alignCenter">
-      <Card className="flexColumn justifyCenter">
+      <Card>
         <CardImage src={deleteIcon} alt="icon" className="icon" />
         <Spacer y={2.4} />
-        <h3 className="title-4 colorWhite title flexRow alignCenter justifyCenter">
-          Delete wish list
-        </h3>
+        <h2>
+          Delete wishlist
+        </h2>
         <Spacer y={0.8} />
-        <p className="subtitle-3 colorWhite textCenter">
-          Are you sure you want to delete this list? Note: By deleting, all
+        <p className="subtitle-3">
+          Are you sure you want to delete this list? <br /> By deleting, all
           wishes will be deleted with it.
         </p>
-        <Spacer y={2.4} />
-        <Button
-          text="Delete wish list"
-          width="100%"
-          className="inverted"
-          loading={deleting}
-          disabled={deleting}
-          onClick={deleteList}
-        />
-        <Spacer y={1.6} />
-        <Button
-          text="Cancel"
-          className="noBorder white"
-          width="100%"
-          onClick={() => navigate(-1)}
-        />
+        <Spacer y={1.9} />
+        <div className="buttons">
+          <Button
+            text="Cancel"
+            className="border_dark"
+            width="50%"
+            onClick={() => navigate(-1)}
+          />
+          <Button
+            bg="#AB0001"
+            text="Delete"
+            width="50%"
+            loading={deleting}
+            disabled={deleting}
+            onClick={deleteList}
+          />
+        </div>
       </Card>
     </AuthWrapper>
   );

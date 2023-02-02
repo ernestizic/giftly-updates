@@ -142,7 +142,7 @@ const CardOptions = ({ setOpen, slug, wishItem, getWishLists }) => {
 
       <button
         className="flexRow alignCenter item delete"
-        onClick={() => navigate("delete")}
+        onClick={() => navigate("/user/wish-lists/delete")}
       >
         <img src={trashIcon} alt="trash" className="icon" />
         <Spacer x={0.8} />
