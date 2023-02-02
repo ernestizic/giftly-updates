@@ -66,7 +66,7 @@ const RowWrapper = styled.form`
         padding-top: 7px;
       }
       img {
-        width: 16px;
+        width: 18px;
         height: auto;
       }
     }

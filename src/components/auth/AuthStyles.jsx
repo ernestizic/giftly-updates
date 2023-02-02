@@ -25,7 +25,7 @@ export const AuthCard = styled.div`
   flex-shrink: 0;
   .sign-in-sub-text{
     text-align: center;
-    max-width: 75%;
+    max-width: 95%;
     font-size: 16px;
     margin: auto;
     color: var(--gray-scale)

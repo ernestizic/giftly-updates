@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { AuthCard } from "./AuthStyles";
 import { AuthWrapper } from "./AuthStyles";
 import Button from "components/global/Button";
-import CheckBox from "components/global/CheckBox";
+// import CheckBox from "components/global/CheckBox";
 import CloseModal from "components/global/CloseModal";
 import FormGroup from "components/global/FormGroup";
 import FormWrapper from "components/global/FormWrapper";
@@ -29,7 +29,7 @@ const Login = () => {
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.auth.user);
 
-  const [isChecked, setChecked] = useState(false);
+  // const [isChecked, setChecked] = useState(false);
 
   const schema = Yup.object({
     email: Yup.string()
@@ -38,20 +38,20 @@ const Login = () => {
     password: Yup.string().required("Field required"),
   });
 
-  const rememberMe = (values) => {
-    const rmCheck = document.getElementById("rememberMe");
+  // const rememberMe = (values) => {
+  //   const rmCheck = document.getElementById("rememberMe");
 
-    if (rmCheck.checked && values.email !== "") {
-      localStorage.username = values.email.trim();
-      localStorage.checkbox = rmCheck.value;
-    } else {
-      localStorage.username = "";
-      localStorage.checkbox = "";
-    }
-  };
+  //   if (rmCheck.checked && values.email !== "") {
+  //     localStorage.username = values.email.trim();
+  //     localStorage.checkbox = rmCheck.value;
+  //   } else {
+  //     localStorage.username = "";
+  //     localStorage.checkbox = "";
+  //   }
+  // };
 
   const handleLogin = async (cred) => {
-    rememberMe(cred);
+    // rememberMe(cred);
 
     try {
       const res = await axios.post(`${base_url}/auth`, cred);
@@ -107,11 +107,11 @@ const Login = () => {
   useEffect(() => {
     checkEmailVerification();
 
-    if (localStorage.checkbox && localStorage.checkbox !== "") {
-      setChecked(true);
-    } else {
-      setChecked(false);
-    }
+    // if (localStorage.checkbox && localStorage.checkbox !== "") {
+    //   setChecked(true);
+    // } else {
+    //   setChecked(false);
+    // }
     // eslint-disable-next-line
   }, []);
 
@@ -169,13 +169,13 @@ const Login = () => {
                 className="password spanFull"
               />
               <div className="flexRow justifySpaceBetween spanFull">
-                <CheckBox
+                {/* <CheckBox
                   id="rememberMe"
                   name="rememberMe"
                   label="Remember me"
                   value="rememberMe"
                   isChecked={isChecked}
-                />
+                /> */}
                 <div>
                   <Link
                     to="/home/password-reset"

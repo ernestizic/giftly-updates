@@ -77,6 +77,8 @@ const Register = () => {
         <h1 className="textCenter colorTitleActive">
           Sign up
         </h1>
+        <Spacer y={1.2} />
+        <p className="sign-in-sub-text">You're just a few clicks away from creating your wish list.</p>
         <Spacer y={3.2} />
         <Formik
           initialValues={{
