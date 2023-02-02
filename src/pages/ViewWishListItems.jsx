@@ -140,11 +140,11 @@ const Banner = styled.div`
       background: #f0f0f0;
       border-radius: 4px;
       width: 85px;
+      min-width: 85px;
       height: 80px;
     }
   }
   .btn-container {
-    /* border: 1px solid blue; */
     width: 50%;
     .showInterest {
       float: right;
@@ -203,6 +203,7 @@ const ViewWishListItems = () => {
   const [item, setItem] = useState();
   const [openShowInterestModal, setOpenShowInterestModal] = useState(false)
   const [loading, setLoading] = useState(true);
+  const [avatar, setAvatar] = useState("")
   const token = useSelector((state) => state.auth.token);
 
   const dispatch = useDispatch();
@@ -260,17 +261,18 @@ const ViewWishListItems = () => {
     }
   };
 
-  // const getUser =async()=> {
-
-  // }
-  console.log(wishList)
-
   useEffect(() => {
     document.querySelector("html").scrollTo(0, 0);
     
     getWishList();
     // eslint-disable-next-line
   }, []);
+
+  (async()=> {
+    const res = await axios.get(`${base_url}/user/find/${wishList?.user_id}`)
+    const data = res.data
+    setAvatar(data.data.avatar)
+  })()
 
   function goBack() {
     token ? navigate('/user') : navigate('/')
@@ -289,7 +291,7 @@ const ViewWishListItems = () => {
       {!loading && !wishList?.items?.length && (
         <Header className="flexColumn alignCenter">
           <ImgWrapper size={16} imgHeight="100%">
-            <img src={openBox} alt="user avatar" className="userImage" />
+            <img src={avatar ? avatar : openBox} alt="user avatar" className="userImage" />
           </ImgWrapper>
           <Spacer y={0.8} />
           <h3 className="title-3 colorWhite textCenter listTitle">
@@ -309,7 +311,7 @@ const ViewWishListItems = () => {
         <>
           <Header>
             <ImgWrapper size={16} imgHeight="100%">
-              <img src={openBox} alt="..." className="userImage" />
+              <img src={avatar ? avatar : openBox} alt="..." className="userImage" />
             </ImgWrapper>
             <div>
               <h1>{wishList?.title}</h1>

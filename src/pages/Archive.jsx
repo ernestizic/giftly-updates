@@ -11,6 +11,9 @@ import { base_url } from "utils/utils";
 
 const ArchiveWrapper = styled.div`
   padding: 48px 0;
+  @media screen and (max-width: 768px) {
+    padding: 100px 0;
+  }
 `
 const List = styled.div`
   display: grid;
@@ -67,7 +70,7 @@ const Archive = () => {
       ) : (
         <List>
             {archivedList.map((data, idx) => (
-              <WishListCard key={idx} details={data} getWishLists={fetchWishlist} />
+              <WishListCard key={idx} details={data} getWishLists={fetchWishlist} archive/>
             ))}
         </List>
       )}

@@ -24,7 +24,7 @@ const Wrapper = styled(HeaderWrapper)``;
 
 const searchCategories = ["Friends"];
 
-const Header = ({headerText}) => {
+const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [category, setCategory] = useState("Friends");
@@ -44,10 +44,13 @@ const Header = ({headerText}) => {
     setShowNavigation(false)
   }, [location])
 
+  const pathname = location.pathname.split("/")[2]
+  const removeChar = pathname.replace("-", " ")
+
   return (
     <Wrapper className="flexRow alignCenter justifySpaceBetween">
       <Logo className='logo' />
-      <h3 className='subtitle-2'>{headerText}</h3>
+      <h3 className='subtitle-2' style={{textTransform: "capitalize"}}>{removeChar}</h3>
 
       <div className='header-action-container'>
         {location.pathname.includes('/gift-ideas') ? (

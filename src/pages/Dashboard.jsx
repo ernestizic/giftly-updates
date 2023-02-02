@@ -7,7 +7,6 @@ import Sidebar from "components/user/Sidebar";
 import WishsLists from "components/user/WishsLists";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { useState } from "react";
 import Archive from "./Archive";
 import SearchPage from "./SearchPage";
 
@@ -30,7 +29,6 @@ const Wrapper = styled.div`
 
 const Dashboard = () => {
   const token = useSelector((state) => state.auth.token);
-  const [headerText, setHeaderText] = useState("My Wish list")
 
   if (!token) {
     <Navigate to="/home/login" />;
@@ -38,9 +36,9 @@ const Dashboard = () => {
 
   return (
     <Wrapper>
-      <Sidebar setHeaderText={setHeaderText}/>
+      <Sidebar/>
       <div className="viewContent">
-        <Header headerText={headerText}/>
+        <Header />
         <Routes>
           {/* <Route path="" element={<WishsLists />} /> */}
           <Route path="wish-lists/*" element={<WishsLists />} />

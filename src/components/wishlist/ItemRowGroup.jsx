@@ -18,8 +18,6 @@ import styled from "styled-components";
 import { useState, useEffect, useRef } from "react";
 import { base_url, base_url_vendors } from "utils/utils";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import * as Yup from 'yup';
 
 const RowWrapper = styled.form`
   width: 100%;
@@ -153,7 +151,6 @@ const ItemRowGroup = ({
   setFieldValue,
   noCheck,
 }) => {
-  const token = useSelector((state) => state.auth.token);
   const [desired, setDesired] = useState(false);
   const [showAllFields, setShowAllFields] = useState(false)
   const [contentHeight, setContentHeight] = useState('0px');
@@ -171,21 +168,12 @@ const ItemRowGroup = ({
     const formData = new FormData();
 		formData.append('avatar', imgFile);
     try {
-      const res = await axios.post(`${base_url}/items/avatar/upload`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      const res = await axios.post(`${base_url}/items/avatar/upload`, formData)
       setFieldValue(index, "avatar", res.data.data.url)
     } catch (error) {
-      console.log(error.response.data)
+      console.log(error.response.data.errors[0].message || "An unknown error occured!")
     }
 	}
-
-  // Form validation
-	// let validationSchema = Yup.object().shape({
-	// 	description: Yup.string().min(5, "Too short"),
-	// });
 
   return (
     <Formik
@@ -197,9 +185,8 @@ const ItemRowGroup = ({
         description: rowValues?.description || "",
         avatar: rowValues?.avatar || ""
       }}
-      // validationSchema={validationSchema}
     >
-      {({ handleSubmit, errors, touched }) => (
+      {({ handleSubmit }) => (
         <RowWrapper onSubmit={handleSubmit}>
           <div className="form-top-section">
             {rowValues?.avatar && (

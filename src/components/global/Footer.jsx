@@ -37,7 +37,7 @@ const Wrapper = styled.div`
       color: #f0f0f0
     }
 	}
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 768px) {
     padding: 20px;
     .section_1_footer {
       flex-direction: column;
@@ -112,7 +112,7 @@ const NewsletterSection = styled.div`
       }
     }
   }
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 768px) {
     max-width: 100%;
     .newsletter {
       form {
@@ -156,9 +156,14 @@ const LastFooter = styled.div`
       padding: 0 20px;
     }
   }
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 768px) {
     flex-direction: column-reverse;
     gap: 10px;
+    text-align: center;
+    & > div {
+    li {
+      padding: 0 12px;
+    }
   }
 `
 

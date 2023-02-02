@@ -87,6 +87,14 @@ const CreateWishList = () => {
       return;
     }
 
+    if (tempListDescription && tempListDescription.length < 5 ) {
+      dispatch(setAlert({
+        type: 'warning',
+        message: "Wishlist description is too short"
+      }))
+      return;
+    }
+
     if (!tempList[0].name) {
       dispatch(setAlert({
         type: 'warning',
@@ -108,42 +116,42 @@ const CreateWishList = () => {
     };
     console.log(wishList)
 
-    // setSaving(true);
-    // try {
-    //   const res = await axios.post(`${base_url}/wishlist/save`, wishList);
-    //   console.log(res.data)
+    setSaving(true);
+    try {
+      const res = await axios.post(`${base_url}/wishlist/save`, wishList);
+      console.log(res.data)
 
-    //   if (!res) {
-    //     dispatch(setAlert({
-    //       type: 'error',
-    //       message: "An error occurred"
-    //     }))
-    //     return;
-    //   }
+      if (!res) {
+        dispatch(setAlert({
+          type: 'error',
+          message: "An error occurred"
+        }))
+        return;
+      }
 
-    //   if (res.data.status === "success") {
-    //     dispatch(setTempListId(res.data.data.id));
-    //     dispatch(setAlert({
-    //       type: 'success',
-    //       message: "Wish list saved"
-    //     }))
-    //     setSaving(false);
-    //     navigate("/home/register-prompt");
-    //     return;
-    //   }
+      if (res.data.status === "success") {
+        dispatch(setTempListId(res.data.data.id));
+        dispatch(setAlert({
+          type: 'success',
+          message: "Wish list saved"
+        }))
+        setSaving(false);
+        navigate("/home/register-prompt");
+        return;
+      }
 
-    //   setSaving(false);
-    //   dispatch(setAlert({
-    //     type: 'success',
-    //     message: res.data.message
-    //   }))
-    // } catch (e) {
-    //   setSaving(false);
-    //   dispatch(setAlert({
-    //     type: 'error',
-    //     message: e.response.data.message
-    //   }))
-    // }
+      setSaving(false);
+      dispatch(setAlert({
+        type: 'success',
+        message: res.data.message
+      }))
+    } catch (e) {
+      setSaving(false);
+      dispatch(setAlert({
+        type: 'error',
+        message: e.response.data.errors[0].message
+      }))
+    }
   };
 
   useEffect(() => {

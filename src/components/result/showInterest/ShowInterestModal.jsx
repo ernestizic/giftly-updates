@@ -52,7 +52,7 @@ const ShowInterestModal = ({ item, setOpenShowInterestModal }) => {
 					<ModalContent>
 						<header>
 							<StarIcon fill='var(--primary-main)' />
-							<h2>Purist organics skincare set</h2>
+							<h2>{item.name}</h2>
 						</header>
 
 						<Spacer y={0.5} />

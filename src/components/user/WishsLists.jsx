@@ -116,7 +116,7 @@ const WishsLists = () => {
     <Wrapper>
       <Spacer y={6.8} />
       {loading ? (
-        <div className="flexRow justifyCenter">
+        <div className="flexRow justifyCenter" style={{marginTop: '50px'}}>
           <Loader />
         </div>
       ) : !!data.length ? (

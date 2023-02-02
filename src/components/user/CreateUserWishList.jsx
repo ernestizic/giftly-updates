@@ -6,7 +6,7 @@ import {
 import {
   clearTempList,
   setTempList,
-  // setTempListDescription,
+  setTempListDescription,
   setTempListName,
   setTempListSlug,
   setTempListVisibility,
@@ -40,7 +40,7 @@ const CreateUserWishList = ({ getWishLists }) => {
   const navigate = useNavigate();
   const tempList = useSelector((state) => state.wishList.tempList);
   const tempListName = useSelector((state) => state.wishList.tempListName);
-  // const {tempListDescription} = useSelector(state => state.wishList)
+  const {tempListDescription} = useSelector(state => state.wishList)
   const tempListVisibility = useSelector(
     (state) => state.wishList.tempListVisibility
   );
@@ -89,13 +89,21 @@ const CreateUserWishList = ({ getWishLists }) => {
       return;
     }
 
-    // if (tempListDescription && tempListDescription.length < 5 ) {
-    //   dispatch(setAlert({
-    //     type: 'warning',
-    //     message: "Wishlist description is too short"
-    //   }))
-    //   return;
-    // }
+    if (tempListDescription && tempListDescription.length < 5 ) {
+      dispatch(setAlert({
+        type: 'warning',
+        message: "Wishlist description is too short"
+      }))
+      return;
+    }
+
+    if (!tempList[0].name) {
+      dispatch(setAlert({
+        type: 'warning',
+        message: "Please add at least one item"
+      }))
+      return;
+    }
 
     if (invalidLinks.length) {
       dispatch(setAlert({
@@ -107,7 +115,7 @@ const CreateUserWishList = ({ getWishLists }) => {
 
     const wishList = {
       title: tempListName,
-      // description: tempListDescription,
+      description: tempListDescription,
       visibility: tempListVisibility,
       items: tempList,
     };
@@ -152,11 +160,11 @@ const CreateUserWishList = ({ getWishLists }) => {
         message: res.data.message
       }))
     } catch (e) {
-      console.log(e.response.data)
+      console.log(e.response.data.errors)
       setSaving(false);
       dispatch(setAlert({
         type: 'error',
-        message: e.response.data.message
+        message: e.response.data.errors[0].message
       }))
     }
   };
@@ -191,16 +199,18 @@ const CreateUserWishList = ({ getWishLists }) => {
         <Spacer y={2.4} />
         <Formik initialValues={{ 
           wish_list_name: tempListName || "",
-          // description: tempListDescription || ""
+          description: tempListDescription || ""
         }}>
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit} encType="multipart/form-data">
+              <Spacer y={1.4} />
               <header>
                 <p className="body-3 colorTitleActive">
                   List details
                 </p>
                 <p>Add wishlist name and description.</p>
               </header>
+              <Spacer y={0.4} />
               <FormGroup
                 fieldStyle="shortText"
                 name="wish_list_name"
@@ -208,20 +218,25 @@ const CreateUserWishList = ({ getWishLists }) => {
                 value={tempListName}
                 onChange={(e) => dispatch(setTempListName(e.target.value))}
               />
-              {/* <Spacer y={1.4} />
+              <Spacer y={1.4} />
               <FormGroup
                 fieldStyle="shortText"
                 name="description"
                 label="Description (optional)"
                 value={tempListDescription}
                 onChange={(e) => dispatch(setTempListDescription(e.target.value))}
-              /> */}
+              />
             </form>
           )}
         </Formik>
         <Spacer y={2.4} />
-        <p className="subtitle-4 colorTitleActive">Add wishes</p>
-        <Spacer y={1.6} />
+        <header>
+          <p className="body-3 colorTitleActive">
+            Add wishes
+          </p>
+          <p>Add wishes and other details.</p>
+        </header>
+        <Spacer y={0.4} />
         <div className="formRows">
           {tempList?.map((row, index) => (
             <ItemRowGroup

@@ -1,5 +1,6 @@
 import {
   setTempList,
+  setTempListDescription,
   setTempListId,
   setTempListName,
   setTempListSlug,
@@ -57,6 +58,7 @@ const WishListCard = ({
   getWishLists,
   details,
   fromSearch,
+  archive,
   handleSearchNavigate = () => null,
 }) => {
   const navigate = useNavigate();
@@ -65,9 +67,11 @@ const WishListCard = ({
 
   const handleOpen = () => {
     if (!details) return;
+    if (archive) return;
 
     dispatch(setTempListId(details.id));
     dispatch(setTempListName(details.title));
+    dispatch(setTempListDescription(details.description))
     dispatch(setTempListSlug(details.slug));
     dispatch(setTempList(details.items));
     dispatch(setTempListVisibility(details.visibility));

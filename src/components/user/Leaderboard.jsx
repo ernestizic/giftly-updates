@@ -79,7 +79,7 @@ const Leaderboard = () => {
       {loading ? (
         <>
           <Spacer y={4.8} />
-          <div className="flexRow justifyCenter">
+          <div className="flexRow justifyCenter" style={{marginTop: '50px'}}>
             <Loader />
           </div>
           <Spacer y={4.8} />

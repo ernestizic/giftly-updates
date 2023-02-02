@@ -37,7 +37,7 @@ const Wrapper = styled.div`
     width: 100%;
     left: 0;
     bottom: -100%;
-    /* height: 100%; */
+    /* height: 95%; */
     transition: all 0.2s ease-out;
     z-index: 5;
 
@@ -116,7 +116,7 @@ const Menu = styled.ul`
     height: calc(100vh - 75px);
     position: relative;
     z-index: 6;
-    padding-top: 50px;
+    padding-top: 80px;
   }
 `;
 
@@ -149,7 +149,7 @@ const menuList = [
   },
 ];
 
-const Sidebar = ({setHeaderText}) => {
+const Sidebar = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -184,7 +184,6 @@ const Sidebar = ({setHeaderText}) => {
             to={item.slug}
             className="item flexRow alignCenter"
             onClick={() => {
-              setHeaderText(item.title)
               document.querySelector(".sidebar").classList.remove("open")
             }}
           >

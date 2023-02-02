@@ -7,7 +7,7 @@ import {
 import {
   clearTempList,
   setTempList,
-  // setTempListDescription,
+  setTempListDescription,
   setTempListId,
   setTempListName,
   setTempListVisibility,
@@ -41,7 +41,7 @@ const EditWishList = ({ getWishLists }) => {
   const tempListId = useSelector((state) => state.wishList.tempListId);
   const tempList = useSelector((state) => state.wishList.tempList);
   const tempListName = useSelector((state) => state.wishList.tempListName);
-  // const {tempListDescription} = useSelector(state => state.wishList)
+  const {tempListDescription} = useSelector(state => state.wishList)
   const tempListVisibility = useSelector(
     (state) => state.wishList.tempListVisibility
   );
@@ -74,7 +74,7 @@ const EditWishList = ({ getWishLists }) => {
         return;
       }
     } catch (e) {
-      console.log(e);
+      console.log(e.response.data);
     }
   };
 
@@ -166,6 +166,14 @@ const EditWishList = ({ getWishLists }) => {
       return;
     }
 
+    if (tempListDescription && tempListDescription.length < 5 ) {
+      dispatch(setAlert({
+        type: 'warning',
+        message: "Wishlist description is too short"
+      }))
+      return;
+    }
+
     if (invalidLinks.length) {
       dispatch(setAlert({
         type: 'warning',
@@ -176,7 +184,7 @@ const EditWishList = ({ getWishLists }) => {
 
     const wishList = {
       title: tempListName,
-      // description: tempListDescription,
+      description: tempListDescription,
       visibility: tempListVisibility,
     };
 
@@ -237,10 +245,10 @@ const EditWishList = ({ getWishLists }) => {
       }))
     } catch (e) {
       setSaving(false);
-      console.log(e.response.data.errors)
+      console.log(e.response.data)
       dispatch(setAlert({
         type: 'error',
-        message: e.response.data.message || "Something went wrong"
+        message: e.response.data.errors[0].message || "Something went wrong"
       }))
     }
   };
@@ -283,7 +291,7 @@ const EditWishList = ({ getWishLists }) => {
         <Spacer y={2.4} />
         <Formik initialValues={{ 
           wish_list_name: tempListName || "",
-          // description: tempListDescription || "" 
+          description: tempListDescription || "" 
           }}>
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
@@ -294,21 +302,21 @@ const EditWishList = ({ getWishLists }) => {
                 value={tempListName}
                 onChange={(e) => dispatch(setTempListName(e.target.value))}
               />
-              {/* <Spacer y={1.4} />
+              <Spacer y={1.4} />
               <FormGroup
                 fieldStyle="shortText"
                 name="description"
                 label="Description (optional)"
                 value={tempListDescription}
                 onChange={(e) => dispatch(setTempListDescription(e.target.value))}
-              /> */}
+              />
               
             </form>
           )}
         </Formik>
         <Spacer y={2.4} />
         <p className="subtitle-4 colorTitleActive">Add wishes</p>
-        <Spacer y={1.6} />
+        <Spacer y={0.4} />
         <div className="formRows">
           {tempList?.map((row, index) => (
             <ItemRowGroup

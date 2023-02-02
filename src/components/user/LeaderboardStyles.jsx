@@ -3,9 +3,10 @@ import styled from "styled-components";
 export const LeaderboardWrapper = styled.div`
   width: 480px;
   margin: auto;
-
+  
   @media screen and (max-width: 768px) {
     width: calc(100vw - 48px);
+    padding-top: 60px;
 
     .title {
       font-size: 24px;
@@ -84,6 +85,9 @@ export const UserContainer = styled.div`
   border-top: 1px solid var(--accent_3-light);
   width: 100%;
   left: 0;
+  @media screen and (max-width: 768px) {
+    position: fixed;
+  }
 `
 export const UserRow = styled.div`
   margin: 1px auto;

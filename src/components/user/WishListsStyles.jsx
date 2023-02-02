@@ -37,6 +37,8 @@ export const HeaderWrapper = styled.div`
       
   }
   @media screen and (max-width: 768px) {
+    position: fixed;
+    width: 100%;
     background-color: var(--title-active);
     padding: 16px;
     .logo{ display: block }
@@ -195,7 +197,7 @@ export const ListWrapper = styled.div`
   @media screen and (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
-    padding: 0 10px;
+    padding: 50px 10px;
   }
 `;
 
@@ -221,12 +223,13 @@ export const Card = styled(AuthCard)`
   ::-webkit-scrollbar {
     display: none;
   }
-  margin: 10px auto;
+  margin: auto;
   background-color: #ffffff;
   border-radius: 16px;
-  padding: 48px;
   padding-bottom: 24px;
   position: relative;
+  height: 100%;
+  min-width: 600px;
   height: calc(100% - 16px);
   max-height: 836px;
   overflow: auto;

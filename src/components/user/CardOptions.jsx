@@ -94,7 +94,7 @@ const CardOptions = ({ setOpen, slug, wishItem, getWishLists }) => {
       dispatch(
         setAlert({
           type: 'error',
-          message: err.response.data.errors[0]
+          message: err.response.data.errors[0].message
         })
       )
     }
