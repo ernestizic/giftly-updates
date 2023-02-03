@@ -1,5 +1,5 @@
 import { Card, PrivacyOptions } from "components/user/WishListsStyles";
-import { base_url, validURL } from "utils/utils";
+import { base_url, validateURL } from "utils/utils";
 import {
   setAlert
 } from "features/alert/alertSlice";
@@ -76,7 +76,7 @@ const CreateWishList = () => {
 
   const handleShare = async () => {
     const invalidLinks = tempList.filter(
-      (item) => item.link && item.link.length && !validURL(item.link)
+      (item) => item.link && item.link.length && !validateURL(item.link)
     );
 
     if (!tempListName || !tempListName.length) {
@@ -114,7 +114,6 @@ const CreateWishList = () => {
       visibility: tempListVisibility,
       items: tempList,
     };
-    console.log(wishList)
 
     setSaving(true);
     try {

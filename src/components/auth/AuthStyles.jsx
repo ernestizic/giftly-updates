@@ -86,6 +86,7 @@ export const VerifyEmailContainer = styled.div`
         max-width: 40%;
         margin: 0 auto;
         p{
+            font-size: 16px;
             color: var(--accent_2-light);
             margin-bottom: 40px;
         }
@@ -103,6 +104,8 @@ export const VerifyEmailContainer = styled.div`
       background: var(--accent_2-light);
       &:hover {
           cursor: pointer;
+          background: #fff;
+          color: #000;
       }
   }
 	#fromTrigger {

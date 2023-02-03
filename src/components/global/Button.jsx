@@ -89,6 +89,13 @@ const Wrapper = styled.button`
     }
   }
 
+  &.text-type {
+    background: inherit;
+    &:hover {
+      background: inherit;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     height: 48px;
 

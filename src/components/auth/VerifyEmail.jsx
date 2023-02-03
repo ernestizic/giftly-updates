@@ -52,9 +52,12 @@ const VerifyEmail = () => {
 
 	return (
 		<VerifyEmailContainer>
-			<button className='back-btn' onClick={() => navigate('/home/login')}>
-				Go back to site
-			</button>
+			<Button
+				bg="#fff"
+				text="Go back to site"
+				className='back-btn'
+				onClick={() => navigate('/home/login')}
+			/>
 			<div>
 				<img src={Logo} alt='logo' height='50px' width='auto' />
 				<Spacer y={1.2} />
@@ -65,7 +68,14 @@ const VerifyEmail = () => {
 					verification link we just sent you.
 				</p>
 
-				<Button type='button' loading={isLoading} text='Resend email' bg='inherit' onClick={resendEmail} />
+				<Button 
+					type='button' 
+					loading={isLoading} 
+					text='Resend email' 
+					bg='inherit' 
+					className='text-type'
+					onClick={resendEmail} 
+				/>
 			</div>
 			{/* <button id='fromTrigger'>...</button> */}
 		</VerifyEmailContainer>

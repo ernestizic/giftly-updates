@@ -3,14 +3,47 @@ import styled from "styled-components";
 import useInfiniteScroll from "hooks/useInfiniteScroll";
 import { useState } from "react";
 
+const MainWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: ${(props) => props.giftSuggestionModal ? 'column-reverse' : 'row'};
+  gap: 10px;
+
+  .trending {
+    p{
+      color: var(--title-active)
+    }
+    .tag{
+      background: #FFF5F9;
+      color: var(--primary-main);
+      border-radius: 8px;
+      padding: 5px 15px;
+      font-size: 14px;
+      font-weight: normal;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column-reverse;
+    .trending {
+    p{
+      margin-top: ${(props) => props.giftSuggestionModal ? '0' : '12px'};
+    }
+  }
+  }
+`
 const Wrapper = styled.div`
   position: -webkit-sticky;
   position: sticky;
+  width: ${(props) => props.giftSuggestionModal ? '100%' : '75%'}; //remove after removing trending
   background: white;
   padding: 10px 0;
   overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 
   &::-webkit-scrollbar {
     display: none;
@@ -35,7 +68,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const ProductCategories = ({ setFilters }) => {
+const ProductCategories = ({ setFilters, giftSuggestionModal }) => {
   const { list, lastListElementRef } = useInfiniteScroll(
     getProductCategories,
     "data"
@@ -54,21 +87,26 @@ const ProductCategories = ({ setFilters }) => {
   };
 
   return (
-    <Wrapper>
-      <div className="track flexRow">
-        {list.map((category, index) => (
-          <button
-            key={category.id}
-            data-id={category.id}
-            ref={list.length === index + 1 ? lastListElementRef : null}
-            className={`category${category.id === selectedId ? " active" : ""}`}
-            onClick={handleSelect}
-          >
-            {index === 0 ? "All" : category.name}
-          </button>
-        ))}
+    <MainWrapper giftSuggestionModal={giftSuggestionModal}>
+      <Wrapper giftSuggestionModal={giftSuggestionModal}>
+        <div className="track flexRow">
+          {list.map((category, index) => (
+            <button
+              key={category.id}
+              data-id={category.id}
+              ref={list.length === index + 1 ? lastListElementRef : null}
+              className={`category${category.id === selectedId ? " active" : ""}`}
+              onClick={handleSelect}
+            >
+              {index === 0 ? "All" : category.name}
+            </button>
+          ))}
+        </div>
+      </Wrapper>
+      <div className="trending">
+        <p><b>Trending:</b> <span className="tag">Valentine</span></p>
       </div>
-    </Wrapper>
+    </MainWrapper>
   );
 };
 

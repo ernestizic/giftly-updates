@@ -1,6 +1,6 @@
 import { Card, PrivacyOptions } from "./WishListsStyles";
 import { Navigate, useNavigate } from "react-router-dom";
-import { base_url, debounce, validURL } from "utils/utils";
+import { base_url, debounce, validateURL } from "utils/utils";
 import {
   setAlert
 } from "features/alert/alertSlice";
@@ -155,7 +155,7 @@ const EditWishList = ({ getWishLists }) => {
 
   const updateDetails = async () => {
     const invalidLinks = tempList.filter(
-      (item) => item.link && item.link.length && !validURL(item.link)
+      (item) => item.link && item.link.length && !validateURL(item.link)
     );
 
     if (!tempListName || !tempListName.length) {

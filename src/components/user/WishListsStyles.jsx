@@ -262,7 +262,7 @@ export const Card = styled(AuthCard)`
     height: 100%;
     max-height: 100vh;
     margin: 0;
-    padding: 24px 16px;
+    padding: 24px 16px 0;
     overflow: auto;
     border-radius: 0;
 
@@ -281,9 +281,16 @@ export const Card = styled(AuthCard)`
       line-height: auto;
     }
 
+    .giftSuggestionsBtn {
+      margin-bottom: 120px;
+    }
+
     .stickyBottom {
-      bottom: -24px;
-      padding: 24px 0 60px 0;
+      position: fixed;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      padding: 24px 16px 10px;
     }
   }
 `;

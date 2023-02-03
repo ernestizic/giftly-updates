@@ -17,7 +17,8 @@ import { setTempList } from "features/wishList/wishListSlice";
 import styled from "styled-components";
 import useInfiniteScroll from "hooks/useInfiniteScroll";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import Heart from "assets/icons/heart.svg"
+import { forwardRef, useState } from "react";
 
 const Wrapper = styled(Backdrop)`
   .card {
@@ -39,6 +40,24 @@ const Product = styled.div`
   border-radius: 8px;
   padding: 12px 24px;
   margin-bottom: 16px;
+  position: relative;
+
+  .tag {
+      position: absolute;
+      right: 0;
+      padding: 5px 10px;
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+      background: var(--primary-main);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      img {
+        width: 18px;
+        filter: var(--filter-white);
+      }
+    }
 
   .imageWrapper {
     border-radius: 8px;
@@ -54,6 +73,45 @@ const Product = styled.div`
     }
   }
 `;
+
+const ProductItem = forwardRef(({product, selectedProductIds, handleSelect}, ref)=> {
+  const val = product.tags?.find((item) => item?.name === 'Valentines')
+  return(
+    <Product ref={ref}>
+      <CheckBox
+        id={`product_${product.product_id}`}
+        name={`product_${product.product_id}`}
+        isChecked={selectedProductIds.includes(product.product_id)}
+        onChange={() => {
+          handleSelect(product.product_id);
+        }}
+      />
+      <ImageWrapper className="imageWrapper fullWidth">
+        <img
+          src={`${base_url_vendors}/../${product.avatar}`}
+          className="image"
+          alt="."
+        />
+      </ImageWrapper>
+      <div className="textWrapper">
+        <p className="body-3 bold colorTitleActive ellipsify productName" style={{width: "78%"}}>
+          {product.name}
+        </p>
+        <Spacer y={0.2} />
+        <p className="body-3 colorGrayScale productPrice">
+          {product.currency === "Dollar" ? "$" : <del>N</del>}
+          {parseInt(product.amount).toLocaleString()}
+        </p>
+      </div>
+      {val && (
+        <div className="tag">
+          <img src={Heart} alt="heart" />
+          Valentine
+        </div>)
+      }
+  </Product>
+  )
+})
 
 const GiftSuggestions = () => {
   const navigate = useNavigate();
@@ -112,40 +170,18 @@ const GiftSuggestions = () => {
         <h3 className="subtitle-4 subtitle textCenter">
           Here’s a list of gift suggestions that you can add to your wish list.
         </h3>
-        <Spacer y={4.8} />
-        <ProductCategories setFilters={updateFilters} />
+        <Spacer y={2.8} />
+        <ProductCategories setFilters={updateFilters} giftSuggestionModal/>
         <Spacer y={2.4} />
         {list?.map((product, index) => (
-          <Product
-            key={product.product_id}
+          <ProductItem 
+            product={product} 
+            key={product.product_id} 
+            index={index}
             ref={list.length === index + 1 ? lastListElementRef : null}
-          >
-            <CheckBox
-              id={`product_${product.product_id}`}
-              name={`product_${product.product_id}`}
-              isChecked={selectedProductIds.includes(product.product_id)}
-              onChange={() => {
-                handleSelect(product.product_id);
-              }}
-            />
-            <ImageWrapper className="imageWrapper fullWidth">
-              <img
-                src={`${base_url_vendors}/../${product.avatar}`}
-                className="image"
-                alt="."
-              />
-            </ImageWrapper>
-            <div className="textWrapper">
-              <p className="body-3 bold colorTitleActive ellipsify productName">
-                {product.name}
-              </p>
-              <Spacer y={0.2} />
-              <p className="body-3 colorGrayScale productPrice">
-                {product.currency === "Dollar" ? "$" : <del>N</del>}
-                {parseInt(product.amount).toLocaleString()}
-              </p>
-            </div>
-          </Product>
+            selectedProductIds={selectedProductIds}
+            handleSelect={handleSelect}
+          />
         ))}
         {loading && (
           <>
