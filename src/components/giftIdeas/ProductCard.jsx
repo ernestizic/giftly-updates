@@ -1,8 +1,8 @@
-import Button from "components/global/Button";
+// import Button from "components/global/Button";
 import ImageWrapper from "./ImageWrapper";
 import { base_url_vendors } from "utils/utils";
-import { forwardRef, useState, useEffect } from "react";
-import plusIcon from "assets/icons/plus_white.svg";
+import { forwardRef } from "react";
+// import plusIcon from "assets/icons/plus_white.svg";
 import Heart from "assets/icons/heart.svg"
 import styled from "styled-components";
 
@@ -68,28 +68,28 @@ const Wrapper = styled.div`
 `;
 
 const ProductCard = forwardRef(({ showPreview = () => null, details }, ref) => {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-	const breakpoint = 768;
+	// const breakpoint = 768;
   const val = details.tags?.find((item) => item?.name === 'Valentines')
 
-  useEffect(() => {
-		// Set screen width as window resizes
-		const handleWindowResize = () => setScreenWidth(window.innerWidth);
-		window.addEventListener('resize', handleWindowResize);
+  // useEffect(() => {
+	// 	// Set screen width as window resizes
+	// 	const handleWindowResize = () => setScreenWidth(window.innerWidth);
+	// 	window.addEventListener('resize', handleWindowResize);
 
-		return () => window.removeEventListener('resize', handleWindowResize);
-	}, [screenWidth]);
+	// 	return () => window.removeEventListener('resize', handleWindowResize);
+	// }, [screenWidth]);
 
-  const handleClick =()=> {
-    if(screenWidth > breakpoint) return
-    if(screenWidth < breakpoint) {
-      showPreview(details)
-    }
-  }
+  // const handleClick =()=> {
+  //   if(screenWidth > breakpoint) return
+  //   if(screenWidth < breakpoint) {
+  //     showPreview(details)
+  //   }
+  // }
 
   return (
-    <Wrapper ref={ref} onClick={handleClick}>
+    <Wrapper ref={ref} onClick={() => showPreview(details)}>
       <ImageWrapper className="imageWrapper">
         {val && (
           <div className="tag">
@@ -112,11 +112,11 @@ const ProductCard = forwardRef(({ showPreview = () => null, details }, ref) => {
             {details.currency === "Dollar" ? "$" : <del>N</del>}
             {parseInt(details.amount).toLocaleString()}
           </p>
-          <Button
+          {/* <Button
             className="previewBtn"
             iconLeft={plusIcon}
             onClick={() => showPreview(details)}
-          />
+          /> */}
         </div>
       </div>
     </Wrapper>
