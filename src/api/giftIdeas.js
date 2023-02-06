@@ -9,7 +9,7 @@ export const getGiftIdeas = async (page, filters) => {
   }
 
   try {
-    const res = await axios.get(`${base_url_vendors}/market?page=${page}${categoryParam}`);
+    const res = await axios.get(`${base_url_vendors}/market?page=${page}&sort=rand${categoryParam}`);
 
     if (res.data.status === true) {
       return res;
