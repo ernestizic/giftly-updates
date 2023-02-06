@@ -9,6 +9,9 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   box-shadow: 0px 1px 10px 2px #E5E5E5;
   border-radius: 15px;
+  &:hover{
+    cursor: pointer;
+  }
 
   .imageWrapper {
     border-radius: 16px 16px 0 0;
