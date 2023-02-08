@@ -48,17 +48,28 @@ const Wrapper = styled.div`
 `;
 
 const Header = styled.div`
-  padding: 10px 120px;
+  padding: 20px 120px;
   background-color: #fff;
   display: flex;
   gap: 25px;
   align-items: center;
+
+  .profile {
+    h1{
+      font-style: normal;
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 45px;
+    }
+  }
 
   .username{
     color: var(--primary-dark)
   }
   @media screen and (max-width: 768px) {
     padding: 10px;
+    flex-direction: column;
+    text-align: center;
     h1{
       font-size: 18px;
     }
@@ -74,10 +85,10 @@ const Header = styled.div`
 `;
 
 const ListItems = styled.div`
-  padding: 20px 120px;
+  padding: 0 120px 30px;
 
   @media screen and (max-width: 768px) {
-    padding: 48px 24px;
+    padding: 0 24px;
   }
 `;
 
@@ -96,11 +107,16 @@ const Banner = styled.div`
   .details {
     width: 50%;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    gap: 16px;
+    &:hover {
+      cursor: pointer;
+    }
 
     .contents {
       width: 100%;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
       .itemName {
         font-weight: 500;
         font-size: 16px;
@@ -112,6 +128,9 @@ const Banner = styled.div`
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 24px;
         }
       }
       .price{
@@ -122,8 +141,9 @@ const Banner = styled.div`
       .itemLink {
         color: var(--primary-main);
         display: inline-block;
-        line-height: 25px;
-        width: 100%;
+        max-width: 100%;
+        font-weight: 500;
+        font-size: 16px;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
@@ -139,9 +159,15 @@ const Banner = styled.div`
     img {
       background: #f0f0f0;
       border-radius: 4px;
-      width: 85px;
-      min-width: 85px;
-      height: 80px;
+      width: 108px;
+      min-width: 108px;
+      height: 108px;
+    }
+    @media screen and (max-width: 768px) {
+      img {
+        min-width: 60px;
+        height: 60px;
+      }
     }
   }
   .btn-container {
@@ -151,9 +177,12 @@ const Banner = styled.div`
       border: 1px solid var(--accent_3-dark);
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
-      padding: 8px 12px;
-      border-radius: 5px;
+      padding: 16px;
+      width: 196px;
+      height: 56px;
+      border-radius: 8px;
 
     }
   }
@@ -166,7 +195,7 @@ const Banner = styled.div`
     .details {
       width: 80%;
       .contents {
-        width: 80%;
+        width: 70%;
         .itemName {
         font-size: 16px;
         line-height: 24px;
@@ -187,6 +216,8 @@ const Banner = styled.div`
     .btn-container {
       width: 20%;
       .showInterest {
+        width: 52px;
+        height: 52px;
         .text {
           display: none;
         }
@@ -212,6 +243,11 @@ const ViewWishListItems = () => {
     setItem(details);
     setOpenShowInterestModal(true)
   };
+
+  const confirmInterest =(details) => {
+    setItem(details)
+    navigate('confirm-interest');
+  }
 
   const getDeviceId = () => {
     const navigator_info = window.navigator;
@@ -280,13 +316,13 @@ const ViewWishListItems = () => {
 
   return (
     <Wrapper>
-      <div style={{borderBottom: '1px solid #f0f0f0'}}>
+      {/* <div style={{borderBottom: '1px solid #f0f0f0'}}>
+      </div> */}
         <Nav />
-      </div>
-      <button className="back-btn" type="button" onClick={goBack}>
+      {/* <button className="back-btn" type="button" onClick={goBack}>
         <img src={BackArrowIcon} alt="back arrow"/>
         Back to Dashboard
-      </button>
+      </button> */}
 
       {!loading && !wishList?.items?.length && (
         <Header className="flexColumn alignCenter">
@@ -311,9 +347,9 @@ const ViewWishListItems = () => {
         <>
           <Header>
             <ImgWrapper size={16} imgHeight="100%">
-              <img src={avatar ? avatar : openBox} alt="..." className="userImage" />
+              <img src={avatar ? avatar : openBox} alt="..." className="userImage" width="120px" height="120px" />
             </ImgWrapper>
-            <div>
+            <div className="profile">
               <h1>{wishList?.title}</h1>
               <Spacer y={0.4} />
               <p className="body-2 listTitle">
@@ -340,7 +376,7 @@ const ViewWishListItems = () => {
               <Banner
                 key={index}
               >
-                <div className="details">
+                <div className="details" onClick={() => showInterest(item)}>
                   {item.avatar && (
                     <img 
                       src={`${item.avatar?.startsWith("uploads") ? base_url_vendors+'/../'+item.avatar : item.avatar}`} 
@@ -382,7 +418,7 @@ const ViewWishListItems = () => {
                   <button
                     type="button"
                     className="showInterest"
-                    onClick={() => showInterest(item)}
+                    onClick={() => confirmInterest(item)}
                   >
                     <img src={heartIcon} alt="heart" />
                     <span className="text">
@@ -425,7 +461,6 @@ const ViewWishListItems = () => {
               link={item?.link} 
               username={username} 
               slug={slug} 
-              setOpenShowInterestModal={setOpenShowInterestModal} 
             />
           }
         />

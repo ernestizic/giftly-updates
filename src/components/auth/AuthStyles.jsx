@@ -86,9 +86,10 @@ export const VerifyEmailContainer = styled.div`
         max-width: 40%;
         margin: 0 auto;
         p{
-            font-size: 16px;
+            font-size: 18px;
             color: var(--accent_2-light);
             margin-bottom: 40px;
+            line-height: 27px;
         }
         button{
             color: var(--primary-dark)

@@ -4,7 +4,7 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import {setAlert} from "features/alert/alertSlice";
 import { setToken, setUser } from "features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { AuthCard } from "./AuthStyles";
 import { AuthWrapper } from "./AuthStyles";

@@ -18,6 +18,7 @@ const ShowInterestModal = ({ item, setOpenShowInterestModal }) => {
 
 	const showInterest = () => {
 		navigate('confirm-interest');
+		setOpenShowInterestModal(false)
 	};
 	return (
 		<ShowInterestContainer>
@@ -34,7 +35,7 @@ const ShowInterestModal = ({ item, setOpenShowInterestModal }) => {
                         />
                     </button>
                 </ButtonContainer>
-				<div className='image-container'>
+				<div className={`image-container ${!item.avatar && 'bg'}`}>
 					{item.avatar && (
 						<img 
 						src={`${item.avatar?.startsWith("uploads") ? base_url_vendors+'/../'+item.avatar : item.avatar}`} 
@@ -45,6 +46,7 @@ const ShowInterestModal = ({ item, setOpenShowInterestModal }) => {
 						<img 
 						src={NoImage} 
 						alt="wish" 
+						className='no-image'
 						/>
 					)}
 				</div>

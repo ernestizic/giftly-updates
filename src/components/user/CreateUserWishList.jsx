@@ -208,9 +208,8 @@ const CreateUserWishList = ({ getWishLists }) => {
                 <p className="body-3 colorTitleActive">
                   List details
                 </p>
-                <p>Add wishlist name and description.</p>
+                <p className="subtitle-5 colorGrayScale">Add wishlist name and description.</p>
               </header>
-              <Spacer y={0.4} />
               <FormGroup
                 fieldStyle="shortText"
                 name="wish_list_name"
@@ -234,9 +233,8 @@ const CreateUserWishList = ({ getWishLists }) => {
           <p className="body-3 colorTitleActive">
             Add wishes
           </p>
-          <p>Add wishes and other details.</p>
+          <p className="subtitle-5 colorGrayScale">Add wishes and other details.</p>
         </header>
-        <Spacer y={0.4} />
         <div className="formRows">
           {tempList?.map((row, index) => (
             <ItemRowGroup
@@ -253,6 +251,7 @@ const CreateUserWishList = ({ getWishLists }) => {
           type="button"
           className="flexRow alignCenter colorGrey1"
           onClick={addMore}
+          style={{color: "#121212", fontWeight: 600,}}
         >
           <img src={addIcon} alt="plus" className="icon" />
           <Spacer x={1.2} />

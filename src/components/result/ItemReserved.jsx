@@ -4,7 +4,7 @@ import { AuthWrapper } from 'components/auth/AuthStyles';
 import { AuthCard } from 'components/auth/AuthStyles';
 import { useNavigate } from 'react-router-dom';
 
-const ItemReserved = ({ link, username, slug, setOpenShowInterestModal }) => {
+const ItemReserved = ({ link, username, slug }) => {
 	const navigate = useNavigate();
 	const basePath = `/${username}/${slug}`;
 
@@ -36,7 +36,6 @@ const ItemReserved = ({ link, username, slug, setOpenShowInterestModal }) => {
 					text='Done'
 					width='100%'
 					onClick={() => {
-            		setOpenShowInterestModal(false)
 						navigate(basePath);
 					}}
 				/>

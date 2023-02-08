@@ -17,12 +17,20 @@ export const Modal = styled.div`
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     .image-container {
-        /* background: #f0f0f0; */
+        text-align: center;
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+        .no-image{
+            width: 100px;
+            object-fit: contain;
+        }
+    }
+    .bg {
+        background: #f0f0f0;
+
     }
 
 	& > div {
@@ -30,7 +38,7 @@ export const Modal = styled.div`
 		background: #fff;
 	}
     .right-side{
-        padding: 20px;
+        padding: 24px;
     }
     @media screen and (max-width: 768px) {
         background: #fff;
@@ -58,7 +66,7 @@ export const ButtonContainer = styled.div`
     .close-icon {
         float: right;
         margin: 5px;
-        padding: 2px 10px;
+        padding: 24px 20px 0;
 	}
     @media screen and (max-width: 768px) {
         top: 0;
@@ -70,7 +78,7 @@ export const ButtonContainer = styled.div`
 export const ModalContent = styled.div`
     position: relative;
 	font-size: 16px;
-	padding: 60px 0 0;
+	padding: 70px 0 0;
 	height: 100%;
 	overflow: auto;
 	&::-webkit-scrollbar {
@@ -80,8 +88,16 @@ export const ModalContent = styled.div`
 		display: flex;
 		align-items: center;
 		gap: 5px;
+        h2{
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 30px;
+        }
 	}
     .showInterest {
+        position: sticky;
+        bottom: 0;
+        background: #fff;
         margin: 20px 0 0;
         width: 100%;
         justify-content: center;
@@ -89,8 +105,11 @@ export const ModalContent = styled.div`
         display: flex;
         align-items: center;
         gap: 10px;
-        padding: 8px 12px;
+        padding: 16px;
         border-radius: 5px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
     }
 
     @media screen and (max-width: 768px) {

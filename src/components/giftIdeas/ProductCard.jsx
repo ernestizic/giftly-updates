@@ -7,7 +7,8 @@ import Heart from "assets/icons/heart.svg"
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  box-shadow: 0px 1px 10px 2px #E5E5E5;
+  border: 1px solid #D5D8DF;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
   border-radius: 15px;
   &:hover{
     cursor: pointer;
@@ -45,6 +46,9 @@ const Wrapper = styled.div`
 
   .textWrapper {
     max-width: calc(240px - 32px - 36px - 8px);
+    .text {
+      color: #121212;
+    }
   }
 
   .previewBtn {
@@ -111,7 +115,7 @@ const ProductCard = forwardRef(({ showPreview = () => null, details }, ref) => {
           <p className="body-3 semi-bold ellipsify text">{details?.name}</p>
         </div>
         <div className="desc-2">
-          <p className="body-3 ellipsify text">
+          <p className="body-3 colorGrayScale">
             {details.currency === "Dollar" ? "$" : <del>N</del>}
             {parseInt(details.amount).toLocaleString()}
           </p>

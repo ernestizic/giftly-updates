@@ -46,14 +46,14 @@ const RowWrapper = styled.form`
     align-items: center;
     .gift-image-container {
       position: relative;
-      padding: 5px 10px 0;
+      padding: 5px 10px 0 0;
       img {
         border-radius: 5px;
       }
       button {
         position: absolute;
         top: 10px;
-        left: 45px;
+        left: 35px;
       }
     }
     .toggle-section {
@@ -97,7 +97,7 @@ const RowWrapper = styled.form`
 
   .additionalOption {
     padding: 4px 0;
-    margin-bottom: 16px;
+    margin-top: 16px;
 
     .fieldWrapper {
       height: auto;
@@ -125,6 +125,7 @@ const RowWrapper = styled.form`
   }
 
   .actionBtns {
+    margin-top: 16px;
     display: flex;
     gap: 24px;
     .upload-file-container {
@@ -265,7 +266,9 @@ const ItemRowGroup = ({
               />
             </div>
               <Spacer y={1.6} />
-              <div className={`additionalOption flexRow alignCenter`}>
+              <div className={`additionalOption flexRow alignCenter`} 
+                style={{ marginTop: '0px'}}
+              >
                 <LinkIcon />
                 <Spacer x={0.8} />
                 <FormGroup

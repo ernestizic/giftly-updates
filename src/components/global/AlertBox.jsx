@@ -12,20 +12,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearAlert } from "features/alert/alertSlice";
 
 const Wrapper = styled.div`
-  border-radius: 4px;
   position: fixed;
   z-index: 23456;
   top: 108px;
   left: 50%;
   transform: translateX(-50%);
-  min-width: 327px;
-  max-width: 500px;
+  width: 400px;
+  max-width: 400px;
   opacity: 0;
   pointer-events: none;
   transition: all 0.2s ease-out;
   
   & > div{
-    padding: 16px;
+    border-radius: 8px;
+    padding: 12px;
     gap: 16px;
   }
 
@@ -39,11 +39,11 @@ const Wrapper = styled.div`
   }
 
   img{
-    width:40px;
+    width:25px;
     height: auto;
   }
   .cancel-icon {
-    width: 25px;
+    width: 22px;
   }
 
   .success {
@@ -101,9 +101,11 @@ const AlertBox = ({ message, type }) => {
       className={`${alertMsg ? " show" : " hide"}`}
     >
       <div className={`${type} flexRow alignCenter justifySpaceBetween`}>
-        {getIcon(type)}
+        <div className="flexRow alignCenter" style={{gap: '8px'}}>
+          {getIcon(type)}
 
-        <span className={`body-3 ${type}`}>{message}</span>
+          <span className={`body-3 ${type}`}>{message}</span>
+        </div>
         <button
           type="button"
           onClick={() => dispatch(clearAlert())}

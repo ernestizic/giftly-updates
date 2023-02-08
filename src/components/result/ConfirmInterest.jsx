@@ -80,9 +80,9 @@ const ConfirmInterest = ({ itemId, itemName, username, slug }) => {
           Confirm interest
         </h2>
         <Spacer y={0.8} />
-        <p className="subtitle-4" style={{fontWeight: '500'}}>{itemName}</p>
+        <p style={{fontWeight: '500', fontSize: '16px', color: '#121212'}}>{itemName}</p>
         <Spacer y={0.8} />
-        <p className="subtitle-4">
+        <p className="subtitle-4 colorGrayScale">
           {username} will be notified that you have indicated interest to
           purchase this item anonymously and may check it off their wish list.
         </p>

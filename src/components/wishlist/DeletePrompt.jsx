@@ -1,5 +1,6 @@
 import React from "react";
 import deleteIcon from "assets/icons/delete-circle-icon.svg";
+import CloseIcon from "assets/icons/close_square.svg"
 import Spacer from "components/global/Spacer";
 import styled from "styled-components";
 import Button from "components/global/Button";
@@ -17,11 +18,33 @@ import { clearTempList } from "features/wishList/wishListSlice";
 import { useState } from "react";
 
 const Card = styled(AuthCard)`
+  max-width: 400px;
+  padding: 24px;
   background-color: #fff;
   color: var(--title-active);
   .buttons {
+    margin-top: 32px;
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .close-icon:hover {
+    cursor: pointer;
+  }
+  h2{
+    margin: 16px 0 4px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: #121212;
+  }
+  p{
+    font-weight: 475;
+    font-size: 16px;
+    line-height: 24px;
+    color: #3D3D3D;
   }
 `;
 
@@ -87,28 +110,28 @@ const DeletePrompt = ({ getWishLists, redirect }) => {
   return (
     <AuthWrapper className="flexColumn alignCenter">
       <Card>
-        <CardImage src={deleteIcon} alt="icon" className="icon" />
-        <Spacer y={2.4} />
+        <div className="flexRow justifySpaceBetween">
+          <CardImage src={deleteIcon} alt="icon" className="icon" />
+          <img src={CloseIcon} alt="close" className="close-icon" onClick={() => navigate(-1)}/>
+        </div>
         <h2>
           Delete wishlist
         </h2>
-        <Spacer y={0.8} />
         <p className="subtitle-3">
           Are you sure you want to delete this list? <br /> By deleting, all
           wishes will be deleted with it.
         </p>
-        <Spacer y={1.9} />
         <div className="buttons">
           <Button
             text="Cancel"
             className="border_dark"
-            width="50%"
+            width="45%"
             onClick={() => navigate(-1)}
           />
           <Button
             bg="#AB0001"
             text="Delete"
-            width="50%"
+            width="45%"
             loading={deleting}
             disabled={deleting}
             onClick={deleteList}

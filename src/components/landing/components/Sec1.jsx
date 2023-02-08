@@ -156,6 +156,7 @@ h1{
 			display:none;
 
 	}
+	}
 `;
 
 const Sec1 = () => {

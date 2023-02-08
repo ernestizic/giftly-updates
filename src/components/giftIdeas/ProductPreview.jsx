@@ -26,6 +26,13 @@ const Card = styled.div`
     padding: 48px;
     border-radius: 0 16px 16px 0;
     background-color: #ffffff;
+    .productLink {
+      display: block;
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
   }
 
   @media screen and (max-width: 768px) {
@@ -89,9 +96,9 @@ const ProductPreview = ({ details }) => {
             href={details?.purchase_link || "/user/gift-ideas"}
             target="_blank"
             rel="noopener noreferrer"
-            className="body-3 colorPrimaryMain ellipsify productLink"
+            className="body-3 colorPrimaryMain productLink"
           >
-            {details?.store}
+            {details?.purchase_link}
           </a>
           <Spacer y={2.4} />
           <Button

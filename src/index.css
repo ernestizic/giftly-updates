@@ -75,7 +75,7 @@
   --info-light: #D7F1FD;
   --body: #6f7273;
   --label: #6e7191;
-  --placeholder: #a0a3bd;
+  --placeholder:  #2E2E3A;
   --line: #d5d8df;
   --input-bg: #F7F7F7;
   --background: #f7f7fc;
@@ -113,7 +113,8 @@ body {
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 475px;
 }
 
 code {
@@ -180,7 +181,7 @@ textarea {
   font-family: "Boldenvan";
   font-size: 56px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 60px;
   letter-spacing: 0px;
 }
@@ -189,7 +190,7 @@ textarea {
   font-family: "General Sans";
   font-size: 48px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 56px;
   letter-spacing: 0px;
 }
@@ -198,7 +199,7 @@ textarea {
   font-family: "General Sans";
   font-size: 36px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 48px;
   letter-spacing: 0px;
 }
@@ -207,7 +208,7 @@ textarea {
   font-family: "General Sans";
   font-size: 24px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 36px;
   letter-spacing: 0px;
 }
@@ -217,7 +218,7 @@ textarea {
 .subtitle-1 {
   font-size: 24px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 30px;
   letter-spacing: 0px;
 }
@@ -225,7 +226,7 @@ textarea {
 .subtitle-2 {
   font-size: 20px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 28px;
   letter-spacing: 0px;
 }
@@ -233,7 +234,7 @@ textarea {
 .subtitle-3 {
   font-size: 18px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 28px;
   letter-spacing: 0px;
 }
@@ -241,7 +242,7 @@ textarea {
 .subtitle-4 {
   font-size: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 24px;
   letter-spacing: 0px;
 }
@@ -249,7 +250,7 @@ textarea {
 .subtitle-5 {
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 18px;
   letter-spacing: 0px;
 }
@@ -259,7 +260,7 @@ textarea {
 .body-1 {
   font-size: 20px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 28px;
   letter-spacing: 0px;
 }
@@ -267,7 +268,7 @@ textarea {
 .body-2 {
   font-size: 18px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 28px;
   letter-spacing: 0px;
 }
@@ -275,7 +276,7 @@ textarea {
 .body-3 {
   font-size: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 24px;
   letter-spacing: 0px;
 }
@@ -283,7 +284,7 @@ textarea {
 .body-4 {
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 18px;
   letter-spacing: 0px;
 }
@@ -293,7 +294,7 @@ textarea {
 .label {
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 18px;
   letter-spacing: 0px;
 }
@@ -301,7 +302,7 @@ textarea {
 .metadata {
   font-size: 12px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 475;
   line-height: 16px;
   letter-spacing: 0px;
 }

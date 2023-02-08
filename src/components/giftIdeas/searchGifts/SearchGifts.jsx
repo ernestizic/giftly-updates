@@ -60,15 +60,17 @@ const SearchGifts = () => {
 						findGifts(e.target.value);
 					}}
 				/>
-				<img 
-					src={closeIcon} 
-					className='close-icon' 
-					alt='close' 
-					onClick={() => {
-						document.querySelector(`input[type=search]`).value = "";
-                        setKeyword("")
-					}}
-				/>
+				{keyword && (
+					<img 
+						src={closeIcon} 
+						className='close-icon' 
+						alt='close' 
+						onClick={() => {
+							document.querySelector(`input[type=search]`).value = "";
+							setKeyword("")
+						}}
+					/>
+				)}
 				<img
 					src={closeIcon}
 					alt="search"
@@ -91,6 +93,7 @@ const SearchGifts = () => {
 						<ul>
 							{relatedItems?.map((item, idx) => (
 								<li key={idx} onClick={()=>handleClick(item)}>
+									<img src={ base_url_vendors+'/../'+item.avatar} alt='avatar' />
 									{item.name}
 								</li>
 							))}

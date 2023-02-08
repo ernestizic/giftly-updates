@@ -65,6 +65,12 @@ const Product = styled.div`
 
   .textWrapper {
     max-width: 320px;
+    .productName {
+      width: 78%;
+    }
+    .productPrice {
+      line-height: 24px;
+    }
   }
 
   @media screen and (max-width: 768px) {
@@ -94,11 +100,11 @@ const ProductItem = forwardRef(({product, selectedProductIds, handleSelect}, ref
         />
       </ImageWrapper>
       <div className="textWrapper">
-        <p className="body-3 bold colorTitleActive ellipsify productName" style={{width: "78%"}}>
+        <p className="body-3 medium colorTitleActive ellipsify productName">
           {product.name}
         </p>
         <Spacer y={0.2} />
-        <p className="body-3 colorGrayScale productPrice">
+        <p className="body-4 colorGrayScale productPrice">
           {product.currency === "Dollar" ? "$" : <del>N</del>}
           {parseInt(product.amount).toLocaleString()}
         </p>

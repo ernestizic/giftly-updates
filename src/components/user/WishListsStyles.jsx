@@ -192,13 +192,19 @@ export const ListWrapper = styled.div`
 `;
 
 export const NoLists = styled.div`
-  max-width: 35%;
+  max-width: 40%;
   margin: auto;
   text-align: center;
-  h2 {
-    color: var(--title-active)
+  .header-text {
+    font-size: 24px;
+    line-height: 36px;
+    color: #121212;
   }
   p{
+    font-style: normal;
+    font-weight: 475;
+    font-size: 18px;
+    line-height: 27px;
     color: #3D3D3D;
   }
   .createButton {
@@ -223,6 +229,15 @@ export const Card = styled(AuthCard)`
   height: calc(100% - 16px);
   max-height: 836px;
   overflow: auto;
+
+  header {
+    margin-bottom: 8px;
+  }
+  .title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+  }
 
   .giftSuggestionsBtn {
     width: 100%;
@@ -297,7 +312,10 @@ export const Card = styled(AuthCard)`
 
 export const PrivacyOptions = styled.div`
   .toggler {
-    color: var(--body);
+    color: #3D3D3D;
+    font-style: normal;
+    font-weight: 475;
+    font-size: 14px;
   }
 
   .options {

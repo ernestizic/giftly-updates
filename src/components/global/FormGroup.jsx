@@ -26,7 +26,7 @@ export const FormGroupWrapper = styled.div`
   textarea,
   select {
     display: block;
-    color: ${(props) => props.color ?? "var(--title-active)"};
+    color: ${(props) => props.color ?? "#121212"};
     width: 100%;
     padding: 0 24px;
     background-color: transparent;
@@ -34,10 +34,12 @@ export const FormGroupWrapper = styled.div`
     font-size: 16px;
     line-height: 24px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
 
     &::placeholder {
       color: var(--placeholder);
+      font-weight: 475;
+      font-size: 14px;
     }
   }
 

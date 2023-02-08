@@ -3,7 +3,7 @@ import {
   setAlert
 } from "features/alert/alertSlice";
 import { useDispatch, useSelector } from "react-redux";
-
+import CheckIcon from "assets/icons/check-glow.svg"
 import CloseModal from "components/global/CloseModal";
 import FormGroupCustom from "components/global/FormGroupCustom";
 import Spacer from "components/global/Spacer";
@@ -15,68 +15,65 @@ import telegramIcon from "assets/icons/telegram.svg";
 import twitterIcon from "assets/icons/twitter.svg";
 import { useNavigate } from "react-router-dom";
 import whatsappIcon from "assets/icons/whatsapp.svg";
+import Button from "components/global/Button";
 
 const Wrapper = styled(AuthWrapper)``;
 
 const Card = styled(AuthCard)`
   padding: 0;
-
+  
   .shareOptions {
-    padding: 48px 64px;
+    padding: 24px 28px;
+    .share-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
   }
+
+  .title {
+    font-weight: 600;
+    color: #121212;
+  }
+
+  .subtext {
+    font-weight: 475;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
 
   .socials {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 20%;
-    grid-row-gap: 24px;
+    grid-template-columns:repeat(2, 1fr);
+    gap: 24px 0;
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .icon{
+        width: 35px;
+      }
+    }
   }
-
-  .copyWrapper {
-    padding: 24px 48px;
-    background-color: var(--title-active);
-    border-radius: 0 0 16px 16px;
-  }
-
-  .copyArea {
-    display: grid;
-    grid-template-columns: auto 48px;
-    background-color: #ffffff;
+  .cancel {
+    width: 100%;
+    border: 1px solid #9B9B9B;
     border-radius: 8px;
+    padding: 12px;
+    margin-top: 26px;
+    color: #121212;
+    font-weight: 500;
+    font-size: 16px;
   }
-
-  .copyTrigger {
-    width: max-content;
-  }
-
-  .copyLink {
+  .copyWrapper {
     display: none;
   }
 
   @media screen and (max-width: 768px) {
     .shareOptions {
-      padding: 24px 48px;
-      padding-bottom: 32px;
-    }
-
-    .socials {
-      grid-column-gap: 40px;
-      .icon {
-        height: 48px;
-      }
-
-      .text {
-        font-size: 14px;
-        line-height: 18px;
-      }
-    }
-
-    .copyWrapper {
-      display: none;
-    }
-
-    .copyLink {
-      display: flex;
+      padding: 16px;
     }
   }
 `;
@@ -162,15 +159,18 @@ const ShareList = () => {
     <Wrapper className="flexColumn alignCenter">
       <Card>
         <div className="shareOptions">
-          <CloseModal callback={() => navigate("/user/wish-lists")} />
-          <Spacer y={2.4} />
-          <h4 className="title-4 title colorTitleActive">Share to</h4>
+          <div className="share-header">
+            <img src={CheckIcon} alt='check' />
+            <CloseModal callback={() => navigate("/user/wish-lists")} />
+          </div>
+          <h4 className="title-4 title colorTitleActive">Share wish list</h4>
+          <p className="subtext">This blog post has been published. Team members will be able to edit this post and republish changes.</p>
           <Spacer y={2.4} />
           <div className="socials">
             {Object.keys(socials)?.map((key, index) => (
               <button
                 key={index}
-                className="flexColumn justifyCenter alignCenter item"
+                className="item"
                 onClick={() =>
                   socials[key].share(
                     `https://giftly.me/${user?.username}/${tempListSlug}`
@@ -178,23 +178,28 @@ const ShareList = () => {
                 }
               >
                 <img src={socials[key].icon} alt="" className="icon" />
-                <Spacer y={0.4} />
                 <p className="subtitle-4 textCenter colorTitleActive text textCapitalize">
                   {key}
                 </p>
               </button>
             ))}
             <button
-              className="flexColumn justifyCenter alignCenter item copyLink"
+              className="item copyLink"
               onClick={() => copyLink("share_link")}
             >
-              <img src={copyIconCircle} alt="search" className="icon" />
-              <Spacer y={0.4} />
+              <img src={copyIcon} alt="search" className="icon" />
               <p className="subtitle-4 textCenter colorTitleActive text textCapitalize">
                 Copy link
               </p>
             </button>
           </div>
+          <button 
+            type="button" 
+            className="cancel" 
+            onClick={()=> navigate("/user/wish-lists")}
+          > 
+          Cancel
+        </button>
         </div>
         <div className="copyWrapper">
           <p className="subtitle-4 colorWhite">Copy link</p>

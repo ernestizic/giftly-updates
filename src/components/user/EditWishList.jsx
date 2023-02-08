@@ -332,6 +332,7 @@ const EditWishList = ({ getWishLists }) => {
           type="button"
           className="flexRow alignCenter colorGrey1"
           onClick={addMore}
+          style={{color: "#121212", fontWeight: 600,}}
         >
           <img src={addIcon} alt="plus" className="icon" />
           <Spacer x={1.2} />

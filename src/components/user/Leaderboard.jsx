@@ -120,7 +120,7 @@ const Leaderboard = () => {
                 <p className="subtitle-2 textCenter colorTitleActive">
                   {leaderboardItems[1].username}
                 </p>
-                <p className="subtitle-2 textCenter">
+                <p className="subtitle-3 colorGrayScale textCenter">
                   {formatNum(leaderboardItems[1].points)} pts
                 </p>
               </TopRankedWrapper>
@@ -158,7 +158,7 @@ const Leaderboard = () => {
                 <p className="subtitle-2 textCenter colorTitleActive">
                   {leaderboardItems[0].username}
                 </p>
-                <p className="subtitle-2 textCenter">
+                <p className="subtitle-3 textCenter colorGrayScale">
                   {formatNum(leaderboardItems[0].points)} pts
                 </p>
               </TopRankedWrapper>
@@ -199,7 +199,7 @@ const Leaderboard = () => {
                 <p className="subtitle-2 textCenter colorTitleActive">
                   {leaderboardItems[2].username}
                 </p>
-                <p className="subtitle-2 textCenter">
+                <p className="subtitle-3 textCenter colorGrayScale">
                   {formatNum(leaderboardItems[2].points)} pts
                 </p>
               </TopRankedWrapper>
@@ -248,49 +248,7 @@ const Leaderboard = () => {
 
           {leaderboardItems?.slice(3).map((item, index) => {
             if (currentUser?.username === item.username) {
-              return (
-                <UserRow className="flexRow alignCenter">
-                  <p className="body-2 colorTitleActive">
-                    Rank: {currentUser.rank}
-                  </p>
-                  <div className="flexRow alignCenter">
-                    {!currentUser.avatar ? (
-                      <Initials
-                        size="32"
-                        textSize="16"
-                        bg="var(--accent_3-main)"
-                      >
-                        {currentUser?.first_name.charAt(0)}
-                        {currentUser?.last_name.charAt(0)}
-                      </Initials>
-                    ) : (
-                      <ImgWrapper size={3.2} imgHeight="100%">
-                        <img
-                          src={currentUser.avatar}
-                          alt="..."
-                          className="userImage"
-                        />
-                      </ImgWrapper>
-                    )}
-                    <Spacer x={0.4} />
-                    <div>
-                      <p className="body-2 colorTitleActive">
-                        {currentUser.username}
-                      </p>
-                      <div className="giftlyScore flexRow alignCenter">
-                        <Logo />
-                        <Spacer x={0.4} />
-                        <span className="subtitle-3 colorPrimaryMain bold">
-                          {formatNum(currentUser.cummulative_points)}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <p className="body-2 colorTitleActive textRight">
-                    {formatNum(currentUser.points)} pts
-                  </p>
-                </UserRow>
-              );
+              return 
             }
             return (
               <OtherRow className="flexRow alignCenter" key={index}>
@@ -306,7 +264,7 @@ const Leaderboard = () => {
                   </ImgWrapper>
                 )}
                 <p className="body-2 colorTitleActive">{item.username}</p>
-                <p className="body-2 textRight">{formatNum(item.points)} pts</p>
+                <p className="body-2 textRight colorGrayScale">{formatNum(item.points)} pts</p>
               </OtherRow>
             );
           })}

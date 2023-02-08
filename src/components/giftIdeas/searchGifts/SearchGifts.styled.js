@@ -19,7 +19,7 @@ export const SearchContainer = styled.div`
         }
     }
     .list-of-related-items {
-        box-shadow: 0px 1px 10px 2px #E5E5E5;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
         background: #fff;
         top: 55px;;
         width: 100%;
@@ -41,9 +41,17 @@ export const SearchContainer = styled.div`
                 background-color: var(--off-white);
                 cursor: pointer;
             }
+            display: flex;
+            gap: 10px;
+            img {
+                width: 30px;
+                min-width: 30px;
+                height: 30px;
+                border-radius: 8px;
+            }
 	    }
         @media screen and (max-width: 640px) {
-            width: 85%;
+            width: 90%;
         }
     }
     .notFound {

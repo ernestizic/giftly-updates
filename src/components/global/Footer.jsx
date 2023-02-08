@@ -10,20 +10,24 @@ import Button from "./Button";
 
 const Wrapper = styled.div`
   background-color: var(--title-active);
-  padding: 40px 80px;
+  font-size: 14px;
+  font-weight: 475;
+  padding: 48px 80px;
   color: #fff;
   .section_1_footer {
     display: flex;
-    gap: 80px;
+    justify-content: space-between;
 
     .item_1 {
       width: 40%;
+      line-height: 20px;
       .logo{
         padding-bottom: 20px;
       }
     }
     .item_2 {
-      width: 60%;
+      /* border: 1px solid red; */
+      width: 45%;
       display: grid;
       gap: 20px;
       /* grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); */
@@ -55,6 +59,10 @@ const Wrapper = styled.div`
 `;
 
 const About = styled.div`
+  p{
+    line-height: 20px;
+    font-weight: 600;
+  }
   ul {
     list-style-type: none;
     margin: 0;
@@ -62,12 +70,18 @@ const About = styled.div`
   }
   li a {
     margin: 0;
+    font-weight: 475;
+    font-size: 14px;
     line-height: 30px;
 		text-decoration: none;
 	}
 `
 
 const Socials = styled.div`
+  p{
+    line-height: 20px;
+    font-weight: 600;
+  }
 & > div {
   display: flex;
 }
@@ -88,27 +102,34 @@ const Socials = styled.div`
 `
 const Contact = styled.div`
   p{
-    line-height: 30px;
+    line-height: 20px;
+    font-weight: 600;
   }
 `
 const NewsletterSection = styled.div`
+  margin-top: 36px;
   max-width: 40%;
   .newsletter {
     background: #1C1C3B;
     border-radius: 10px;
     margin: 20px 0;
-    padding: 30px 20px;
+    padding: 24px;
+    font-size: 14px;
+    line-height: 20px;
     form {
       margin-top: 10px;
       display: flex;
       gap: 5px;
       input {
         color: #000;
-        border-radius: 10px;
-        padding-left: 10px;
+        border-radius: 8px;
+        padding-left: 24px;
         width: 100%;
         border: none;
         background: #F7F7F7;
+        &::placeholder {
+          color: #2E2E3A;
+        }
       }
     }
   }
@@ -130,10 +151,13 @@ const NewsletterSection = styled.div`
 `
 const LastFooter = styled.div`
   background-color: var(--title-active);
-  padding: 15px 80px;
+  padding: 26px 80px;
   border-top: 1px solid #f0f0f0;
   display: flex;
   justify-content: space-between;
+  font-weight: 475;
+  font-size: 14px;
+  line-height: 20px;
   p{
     color: #fff;
   }
@@ -141,7 +165,7 @@ const LastFooter = styled.div`
     color: #fff;
     font-size: 14px;
     &:hover {
-      color: #f0f0f0
+      color: #f0f0f0;
     }
 	}
   & > div {
@@ -165,6 +189,7 @@ const LastFooter = styled.div`
       padding: 0 12px;
     }
   }
+}
 `
 
 const MEDIA = [
@@ -188,7 +213,6 @@ const MEDIA = [
 const Footer = () => {
   return (
     <>
-    
       <Wrapper>
         <div className="section_1_footer">
           <div className="item_1">
@@ -202,7 +226,7 @@ const Footer = () => {
 
           <div className="item_2">
             <About>
-              <p className="subtitle-4">About</p>
+              <p className="subtitle-5">Company</p>
               <ul>
                 <li>
                   <Link to="##">Blog</Link>
@@ -216,7 +240,7 @@ const Footer = () => {
               </ul>
             </About>
             <Socials>
-              <p className="subtitle-4">Socials</p>
+              <p className="subtitle-5">Socials</p>
               <div>
                 {MEDIA.map((ele, index) => (
                   <a
@@ -232,7 +256,7 @@ const Footer = () => {
               </div>
             </Socials>
             <Contact>
-              <p className="subtitle-4">Contact</p>
+              <p className="subtitle-5">Contact</p>
               <a href="mailto:info@giftly.com">info@giftly.com</a>
             </Contact>
           </div>

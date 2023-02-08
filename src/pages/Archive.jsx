@@ -1,9 +1,10 @@
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Loader from 'components/global/Loader';
 import WishListCard from 'components/user/WishListCard';
+import EmptyArchive from "../assets/images/personal-files.svg"
+import { NoLists } from 'components/user/WishListsStyles';
 import { setAlert } from 'features/alert/alertSlice'
-import React from 'react'
-import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -11,6 +12,7 @@ import { base_url } from "utils/utils";
 
 const ArchiveWrapper = styled.div`
   padding: 48px 0;
+
   @media screen and (max-width: 768px) {
     padding: 100px 0;
   }
@@ -75,9 +77,11 @@ const Archive = () => {
         </List>
       )}
       {archivedList.length < 1 && !isLoading && (
-        <div className="flexRow justifyCenter">
-          <p className='subtitle-4 colorTitleActive'>When you archive a wish, it would show up here!</p>
-        </div>
+        <NoLists>
+          <img src={EmptyArchive} alt="archive" width='90%' height='auto' />
+          <h2 className='header-text bold'>Your wish list archive is empty</h2>
+          <p>Preserve your dreams - Archive your wish list for safekeeping and future reference.</p>
+        </NoLists>
       )}
     </ArchiveWrapper>
   )

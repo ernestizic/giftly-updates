@@ -150,7 +150,7 @@ const WishsLists = () => {
       {!loading && !data.length && (
         <NoLists>
           <img src={ThinkingGirlImg} alt='Girl thinking' width='90%' height='auto' />
-          <h2>We've never met a list we didn't like</h2>
+          <h2 className="header-text bold">We've never met a list we didn't like</h2>
           <Spacer y={0.5} />
           <p>
             Your first list doesn't need to be perfect. Just put it out there and
