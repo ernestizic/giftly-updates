@@ -8,10 +8,6 @@ export const AuthWrapper = styled(Backdrop)`
   #fromTrigger {
     display: none;
   }
-
-  @media screen and (max-width: 768px) {
-    padding: 72px 8px;
-  }
 `;
 
 export const AuthCard = styled.div`
