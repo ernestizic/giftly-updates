@@ -27,12 +27,27 @@ const Card = styled(AuthCard)`
 
   .uploadWrapper{
     margin: 36px 0;
+    .upload-btn {
+      gap: 8px;
+      img {
+        margin-right: 5px;
+      }
   }
+}
   .demacator {
-    /* display: inline-block; */
     background: #9B9B9B;
     width: 4px;
     height: 4px;
+  }
+  @media screen and (max-width: 768px) {
+    .uploadWrapper{
+    margin: 36px 0;
+    .upload-btn {
+      img {
+        display: none;
+      }
+  }
+}
   }
 `;
 

@@ -211,13 +211,12 @@ const ProfileDetailsTab = () => {
 						onChange={(e) => loadFile(e)}
 					/>
 					{imgDetails || userImage ? (
-						<div className='flexRow alignCenter' style={{gap: '8px'}}>
+						<div className='flexRow alignCenter upload-btn'>
 							<button
 								className='flexRow alignCenter subtitle-5 colorPrimaryMain'
 								onClick={() => document.querySelector('#photoInput').click()}
 							>
 								<img src={cameraIcon} alt='' className='icon' />
-								<Spacer x={0.8} />
 								<span>Upload a new photo</span>
 							</button>
               <div className='demacator'></div>
@@ -229,8 +228,6 @@ const ProfileDetailsTab = () => {
 									setImgDetails(null);
 								}}
 							>
-								{/* <img src={deleteIcon} alt="" className="icon" />
-                  <Spacer x={0.8} /> */}
 								<span>Remove</span>
 							</button>
 						</div>
