@@ -229,8 +229,6 @@ const ProfileDetailsTab = () => {
 									setImgDetails(null);
 								}}
 							>
-								{/* <img src={deleteIcon} alt="" className="icon" />
-                  <Spacer x={0.8} /> */}
 								<span>Remove</span>
 							</button>
 						</div>
