@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   left: 50%;
   transform: translateX(-50%);
   width: 400px;
-  max-width: 400px;
+  max-width: 80%;
   opacity: 0;
   pointer-events: none;
   transition: all 0.2s ease-out;

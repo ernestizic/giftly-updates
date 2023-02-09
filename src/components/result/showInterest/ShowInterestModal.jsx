@@ -43,11 +43,13 @@ const ShowInterestModal = ({ item, setOpenShowInterestModal }) => {
 						/>
 					)}
 					{!item.avatar && (
-						<img 
-						src={NoImage} 
-						alt="wish" 
-						className='no-image'
-						/>
+						<div className='no-image'>
+							<img 
+							src={NoImage} 
+							alt="wish" 
+							
+							/>
+						</div>
 					)}
 				</div>
 				<div className='right-side'>

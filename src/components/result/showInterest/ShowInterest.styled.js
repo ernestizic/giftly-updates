@@ -22,10 +22,20 @@ export const Modal = styled.div`
             width: 100%;
             height: 100%;
             object-fit: cover;
+            @media screen and (max-width: 768px) {
+                height: 600px;
+            }
+            @media screen and (max-width: 512px) {
+                height: 312px;
+            }
         }
         .no-image{
-            width: 100px;
-            object-fit: contain;
+            width: 100%;
+            height: 310px;
+            img {
+                width: 100px;
+                object-fit: contain;
+            }
         }
     }
     .bg {
@@ -71,7 +81,7 @@ export const ButtonContainer = styled.div`
     @media screen and (max-width: 768px) {
         top: 0;
         .close-icon {
-            padding: 10px;
+            padding: 20px;
         }
     }
 `
@@ -97,19 +107,29 @@ export const ModalContent = styled.div`
     .showInterest {
         position: sticky;
         bottom: 0;
-        background: #fff;
         margin: 20px 0 0;
         width: 100%;
         justify-content: center;
-        border: 1px solid var(--accent_3-dark);
         display: flex;
         align-items: center;
         gap: 10px;
         padding: 16px;
-        border-radius: 5px;
+        border-radius: 8px;
         font-weight: 500;
         font-size: 16px;
         line-height: 24px;
+        transition: all 0.2s ease-out;
+        border: 1px solid #9B9B9B;
+        color: #121212;
+        background: inherit;
+        &:hover {
+            box-shadow: 0px 16px 40px 5px rgba(213, 216, 223, 0.2);
+            background: #F7F7FC;
+        }
+        &:focus {
+            border: 4px solid #121212;
+            box-shadow: 0px 16px 40px 5px rgba(213, 216, 223, 0.2);
+        }
     }
 
     @media screen and (max-width: 768px) {

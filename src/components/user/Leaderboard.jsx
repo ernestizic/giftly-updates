@@ -248,7 +248,7 @@ const Leaderboard = () => {
 
           {leaderboardItems?.slice(3).map((item, index) => {
             if (currentUser?.username === item.username) {
-              return 
+              return <></>
             }
             return (
               <OtherRow className="flexRow alignCenter" key={index}>

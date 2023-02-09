@@ -76,7 +76,7 @@ export const DropdownWrapper = styled.div`
     color: var(--grey_1);
 
     &:hover {
-      background-color: var(--background);
+      background-color: var(--input-bg);
     }
   }
 

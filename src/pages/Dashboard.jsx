@@ -44,7 +44,7 @@ const Dashboard = () => {
           <Route path="wish-lists/*" element={<WishsLists />} />
           <Route path="gift-ideas/*" element={<GiftIdeas />} />
           <Route path="leaderboard" element={<Leaderboard />} />
-          <Route path="/archive" element={<Archive />}/>
+          <Route path="/archive/*" element={<Archive />}/>
           <Route path="/gift-ideas/search" element={<SearchPage />} />
         </Routes>
       </div>

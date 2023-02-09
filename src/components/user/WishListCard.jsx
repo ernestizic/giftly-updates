@@ -106,7 +106,7 @@ const WishListCard = ({
             fromSearch ? () => handleSearchNavigate(details.slug) : handleOpen
           }
         >
-          <button className="body-3 colorTitleActive title textLeft bold">
+          <button className="body-2 colorTitleActive title textLeft bold">
             {details.title}
           </button>
           <Spacer y={0.4} />

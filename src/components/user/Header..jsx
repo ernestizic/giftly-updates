@@ -39,7 +39,7 @@ const SearchBox = styled(Search)`
     background-color: var(--input-bg);
     z-index: 5;
     padding: 0 24px;
-    height: 48px;
+    height: 56px;
     border-radius: 4px;
   }
 
@@ -192,6 +192,7 @@ const Header = () => {
         
         <Button
           width="170px"
+          // height="48px"
           text="Create Wishlist"
           className="add-btn"
           iconLeft={plusIcon}

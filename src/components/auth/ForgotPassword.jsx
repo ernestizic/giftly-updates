@@ -178,7 +178,7 @@ const ForgotPassword = () => {
                   If you can't find it, check your spam box.
               </p>
       
-              <button type='button'>Resend email</button>
+              {/* <button type='button'>Resend email</button> */}
             </div>
           </PasswordReset>
         }

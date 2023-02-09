@@ -27,7 +27,7 @@ import addIcon from "assets/icons/plus.svg";
 import axios from "axios";
 import saveIcon from "assets/icons/save_white.svg";
 import settingsIcon from "assets/icons/settings.svg";
-import shareIcon from "assets/icons/share_primary.svg";
+import shareIcon from "assets/icons/share-black.svg";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";

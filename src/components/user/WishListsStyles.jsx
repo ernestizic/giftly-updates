@@ -51,7 +51,7 @@ export const HeaderWrapper = styled.div`
 
 export const Search = styled.div`
   width: 400px;
-  height: 48px;
+  height: 56px;
   border: 1px solid #efefef;
   border-radius: 4px;
   padding: 8px 0;
@@ -99,7 +99,7 @@ export const Search = styled.div`
       }
 
       &:hover {
-        background-color: var(--background);
+        background-color: var(--input-bg);
       }
     }
 

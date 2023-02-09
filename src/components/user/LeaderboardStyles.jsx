@@ -87,6 +87,8 @@ export const UserContainer = styled.div`
   left: 0;
   @media screen and (max-width: 768px) {
     position: fixed;
+    bottom: 0;
+    margin: -2px;
   }
 `
 export const UserRow = styled.div`

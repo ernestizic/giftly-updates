@@ -8,14 +8,12 @@ import CloseModal from "components/global/CloseModal";
 import FormGroupCustom from "components/global/FormGroupCustom";
 import Spacer from "components/global/Spacer";
 import copyIcon from "assets/icons/document_copy.svg";
-import copyIconCircle from "assets/icons/document_copy_circle.svg";
 import facebookIcon from "assets/icons/facebook.svg";
 import styled from "styled-components";
 import telegramIcon from "assets/icons/telegram.svg";
 import twitterIcon from "assets/icons/twitter.svg";
 import { useNavigate } from "react-router-dom";
 import whatsappIcon from "assets/icons/whatsapp.svg";
-import Button from "components/global/Button";
 
 const Wrapper = styled(AuthWrapper)``;
 

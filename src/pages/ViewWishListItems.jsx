@@ -5,7 +5,7 @@ import openBox from "assets/images/open_box.svg";
 import NoImage from 'assets/images/no-image.svg'
 // import Star from "assets/icons/star-colored.svg";
 import heartIcon from "assets/icons/heart.svg";
-import BackArrowIcon from "assets/icons/back-arrow-red.svg";
+// import BackArrowIcon from "assets/icons/back-arrow-red.svg";
 import Spacer from "components/global/Spacer";
 import Sec2 from "components/landing/components/Sec2";
 import { Route, Routes, useNavigate } from "react-router";
@@ -155,13 +155,36 @@ const Banner = styled.div`
         white-space: nowrap;
       }
     }
+    .image-container {
+      width: 108px;
+      min-width: 108px;
+      height: 108px;
+      background: #f0f0f0;
+      text-align: center;
+      img{
+          max-width: 50px;
+          min-width: 50px;
+          width: 50px;
+          object-fit: contain;
+      }
+      @media screen and (max-width: 768px) {
+        width: 60px;
+        min-width: 60px;
+        height: 60px;
+          img {
+          min-width: 20px;
+          height: 20px;
+          margin-top: 30%;
+        }
+      } 
+    }
 
     img {
-      background: #f0f0f0;
       border-radius: 4px;
       width: 108px;
       min-width: 108px;
       height: 108px;
+      max-height: 108px;
     }
     @media screen and (max-width: 768px) {
       img {
@@ -174,7 +197,6 @@ const Banner = styled.div`
     width: 50%;
     .showInterest {
       float: right;
-      border: 1px solid var(--accent_3-dark);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -183,6 +205,18 @@ const Banner = styled.div`
       width: 196px;
       height: 56px;
       border-radius: 8px;
+      transition: all 0.2s ease-out;
+      border: 1px solid #9B9B9B;
+      color: #121212;
+      background: inherit;
+      &:hover {
+        box-shadow: 0px 16px 40px 5px rgba(213, 216, 223, 0.2);
+        background: #F7F7FC;
+      }
+      &:focus {
+        border: 4px solid #121212;
+        box-shadow: 0px 16px 40px 5px rgba(213, 216, 223, 0.2);
+      }
 
     }
   }
@@ -310,9 +344,9 @@ const ViewWishListItems = () => {
     setAvatar(data.data.avatar)
   })()
 
-  function goBack() {
-    token ? navigate('/user') : navigate('/')
-  }
+  // function goBack() {
+  //   token ? navigate('/user') : navigate('/')
+  // }
 
   return (
     <Wrapper>
@@ -384,10 +418,13 @@ const ViewWishListItems = () => {
                     />
                   )}
                   {!item.avatar && (
-                    <img 
-                      src={NoImage} 
-                      alt="wish" 
-                    />
+                    <div className="image-container">
+                      <img 
+                        src={NoImage} 
+                        alt="wish" 
+                        className="no-img"
+                      />
+                    </div>
                   )}
                   <div className="contents">
                     <div className="itemName">

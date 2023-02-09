@@ -87,6 +87,9 @@ export const FormGroupWrapper = styled.div`
     text-align: left;
     margin-top: 6px;
     color: var(--error-default);
+    font-weight: 475;
+    font-size: 12px;
+    line-height: 18px;
   }
 `;
 

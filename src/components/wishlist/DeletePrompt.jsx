@@ -1,7 +1,6 @@
 import React from "react";
 import deleteIcon from "assets/icons/delete-circle-icon.svg";
 import CloseIcon from "assets/icons/close_square.svg"
-import Spacer from "components/global/Spacer";
 import styled from "styled-components";
 import Button from "components/global/Button";
 import { AuthWrapper } from "components/auth/AuthStyles";
@@ -112,7 +111,9 @@ const DeletePrompt = ({ getWishLists, redirect }) => {
       <Card>
         <div className="flexRow justifySpaceBetween">
           <CardImage src={deleteIcon} alt="icon" className="icon" />
-          <img src={CloseIcon} alt="close" className="close-icon" onClick={() => navigate(-1)}/>
+          <button onClick={() => navigate(-1)}>
+            <img src={CloseIcon} alt="close" className="close-icon"/>
+          </button>
         </div>
         <h2>
           Delete wishlist

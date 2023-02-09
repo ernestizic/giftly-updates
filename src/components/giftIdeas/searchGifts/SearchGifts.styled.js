@@ -38,7 +38,7 @@ export const SearchContainer = styled.div`
         li {
             padding: 12px;
             &:hover {
-                background-color: var(--off-white);
+                background-color: var(--input-bg);
                 cursor: pointer;
             }
             display: flex;
@@ -64,6 +64,7 @@ export const SearchGiftForm = styled.form`
     gap: 30px;
      */
 	input {
+        height: 56px;
         font-size: 16px;
 		border: none;
 		background-color: var(--input-bg);
@@ -80,7 +81,7 @@ export const SearchGiftForm = styled.form`
     }
 	.search-icon {
 		position: absolute;
-		top: 16px;
+		top: 18px;
 		left: 15px;
 	}
     .close-icon {

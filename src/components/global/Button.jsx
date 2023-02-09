@@ -8,14 +8,14 @@ const Wrapper = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  height: ${(props) => props.height || "48px"};
+  height: ${(props) => props.height || "56px"};
   width: ${(props) => props.width ? props.width : props.fullWidth ? "100%" : "max-content"};
   background-color: ${(props) => props.bg || " var(--primary-main)"};
   color: ${(props) => props.color || "#ffffff"};
   font-family: var(--font_3-regular);
   font-size: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 24px;
   letter-spacing: 0rem;
   text-align: center;
@@ -25,6 +25,11 @@ const Wrapper = styled.button`
   white-space: nowrap;
   &:hover {
     background: #9F1C52;
+  }
+  &:focus {
+    box-shadow: 0px 16px 40px 5px rgba(213, 216, 223, 0.2);
+    background: #EE2A7B;
+    border: 4px solid #F694BD;
   }
 
   .icon {
@@ -39,20 +44,35 @@ const Wrapper = styled.button`
     }
   }
 
-  // &:hover {
-  //   background-color: var(--primary-dark);
-  // }
   &.border_dark {
-    border: 1px solid #121212;
+    border: 1px solid #9B9B9B;
     color: #121212;
     background: inherit;
+    font-weight: 500;
+    font-size: 16px;
+    &:hover {
+      box-shadow: 0px 16px 40px 5px rgba(213, 216, 223, 0.2);
+      background: #F7F7FC;
+    }
+    &:focus {
+      border: 4px solid #121212;
+      box-shadow: 0px 16px 40px 5px rgba(213, 216, 223, 0.2);
+    }
   }
   &.secondary {
-    background-color: var(--accent_2-main);
-    color: var(--primary-main);
+    font-weight: 500;
+    font-size: 16px;
+    border: 1px solid #9B9B9B;
+    background-color: inherit;
+    color: #121212;
 
     &:hover {
-      background-color: var(--primary-light);
+      box-shadow: 0px 16px 40px 5px rgba(213, 216, 223, 0.2);
+      background: #F7F7FC;
+    }
+    &:focus {
+      border: 4px solid #121212;
+      box-shadow: 0px 16px 40px 5px rgba(213, 216, 223, 0.2);
     }
   }
 

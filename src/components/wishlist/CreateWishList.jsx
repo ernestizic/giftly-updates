@@ -25,7 +25,7 @@ import RadioInput from "components/global/RadioInput";
 import Spacer from "components/global/Spacer";
 import addIcon from "assets/icons/plus.svg";
 import axios from "axios";
-import deleteIcon from "assets/icons/trash.svg";
+import deleteIcon from "assets/icons/trash-black.svg";
 import settingsIcon from "assets/icons/settings.svg";
 import shareIcon from "assets/icons/share_white.svg";
 import styled from "styled-components";
@@ -285,18 +285,18 @@ const CreateWishList = () => {
           </PrivacyOptions>
           <div className="flexRow justifyCenter actionBtns">
             <Button
+              text="Delete"
+              iconLeft={deleteIcon}
+              className="secondary"
+              onClick={() => navigate("/home/delete-prompt")}
+              fullWidth
+            />
+            <Button
               text="Share"
               iconLeft={shareIcon}
               disabled={saving}
               loading={saving}
               onClick={handleShare}
-              fullWidth
-            />
-            <Button
-              text="Delete"
-              iconLeft={deleteIcon}
-              className="secondary"
-              onClick={() => navigate("/home/delete-prompt")}
               fullWidth
             />
           </div>

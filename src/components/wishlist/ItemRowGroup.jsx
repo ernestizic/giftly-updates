@@ -116,7 +116,7 @@ const RowWrapper = styled.form`
       font-size: 16px;
       line-height: 24px;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 500;
 
       &::placeholder {
         color: var(--placeholder);
