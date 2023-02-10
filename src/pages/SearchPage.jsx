@@ -16,7 +16,7 @@ const SearchPageContainer = styled.div`
 	color: var(--title-active);
 	padding: 20px 48px;
 
-	@media screen and (max-width: 576px) {
+	@media screen and (max-width: 768px) {
 		padding: 20px;
 		h2 {
 			padding-top: 90px;
