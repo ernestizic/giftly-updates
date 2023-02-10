@@ -8,7 +8,6 @@ export const AuthWrapper = styled(Backdrop)`
   #fromTrigger {
     display: none;
   }
-
 `;
 
 export const AuthCard = styled.div`
