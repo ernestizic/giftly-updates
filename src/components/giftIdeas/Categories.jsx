@@ -1,9 +1,9 @@
 import { getProductCategories } from "api/giftIdeas";
 import styled from "styled-components";
 import useInfiniteScroll from "hooks/useInfiniteScroll";
-import { useState, useContext } from "react";
-// import ArrowRight from 'assets/icons/arrow-right.svg';
-// import ArrowLeft from 'assets/icons/arrow-left.svg';
+import { useState, useContext, useRef } from "react";
+import ArrowRight from 'assets/icons/arrow-right.svg';
+import ArrowLeft from 'assets/icons/arrow-left.svg';
 import { ProductContext } from "context/ProductContext";
 import { useNavigate } from 'react-router-dom';
 
@@ -27,6 +27,13 @@ const MainWrapper = styled.div`
       font-weight: normal;
     }
   }
+
+  .category_container {
+    display: flex;
+    gap: 10px;
+    width: ${(props) => props.giftSuggestionModal ? '100%' : '75%'}; //remove after removing trending
+  }
+
   @media screen and (max-width: 768px) {
     flex-direction: column-reverse;
     .trending {
@@ -34,15 +41,19 @@ const MainWrapper = styled.div`
       margin-top: ${(props) => props.giftSuggestionModal ? '0' : '12px'};
     }
   }
+  .category_container {
+    width: 100%;
+  }
   }
 `
 const Wrapper = styled.div`
   position: -webkit-sticky;
   position: sticky;
-  width: ${(props) => props.giftSuggestionModal ? '100%' : '75%'}; //remove after removing trending
+  width: 100%;
   background: white;
   padding: 10px 0;
-  overflow: auto;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
   -ms-overflow-style: none;
   scrollbar-width: none;
   @media screen and (max-width: 768px) {
@@ -73,6 +84,7 @@ const Wrapper = styled.div`
 `;
 
 const ProductCategories = ({ setFilters, giftSuggestionModal }) => {
+  const ref = useRef(null);
   const navigate = useNavigate()
   const {emptySearch} = useContext(ProductContext)
   const { list, lastListElementRef } = useInfiniteScroll(
@@ -97,23 +109,35 @@ const ProductCategories = ({ setFilters, giftSuggestionModal }) => {
 		navigate(`/user/gift-ideas/search?name=valentine`)
 	}
 
+  const scroll = (scrollOffset) => {
+    ref.current.scrollLeft += scrollOffset;
+  };
+
   return (
     <MainWrapper giftSuggestionModal={giftSuggestionModal}>
-      <Wrapper giftSuggestionModal={giftSuggestionModal}>
-        <div className="track flexRow">
-          {list.map((category, index) => (
-            <button
-              key={category.id}
-              data-id={category.id}
-              ref={list.length === index + 1 ? lastListElementRef : null}
-              className={`category${category.id === selectedId ? " active" : ""}`}
-              onClick={handleSelect}
-            >
-              {index === 0 ? "All" : category.name}
-            </button>
-          ))}
-        </div>
-      </Wrapper>
+      <div className="category_container">
+        <button onClick={() => scroll(-70)}>
+          <img src={ArrowLeft} alt="arrow" />
+        </button>
+        <Wrapper giftSuggestionModal={giftSuggestionModal} ref={ref}>
+          <div className="track flexRow">
+            {list.map((category, index) => (
+              <button
+                key={category.id}
+                data-id={category.id}
+                ref={list.length === index + 1 ? lastListElementRef : null}
+                className={`category${category.id === selectedId ? " active" : ""}`}
+                onClick={handleSelect}
+              >
+                {index === 0 ? "All" : category.name}
+              </button>
+            ))}
+          </div>
+        </Wrapper>
+        <button onClick={() => scroll(70)}>
+          <img src={ArrowRight} alt="arrow" />
+        </button>
+      </div>
       <div className="trending">
         <button onClick={handleClick}><b>Trending:</b> <span className="tag">Valentine</span></button>
       </div>
