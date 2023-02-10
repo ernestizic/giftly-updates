@@ -110,10 +110,6 @@ const CreateUsername = () => {
 									name='username'
 									className='spanFull'
 								/>
-								{/* <span className="subtitle-5">
-                  Usernames can contain only letters, numbers &amp; underscore,
-                  no spaces.
-                </span> */}
 							</div>
 
 							<Button

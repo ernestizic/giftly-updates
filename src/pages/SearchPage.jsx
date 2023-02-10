@@ -18,6 +18,12 @@ const SearchPageContainer = styled.div`
 
 	@media screen and (max-width: 576px) {
 		padding: 20px;
+		h2 {
+			padding-top: 90px;
+			font-weight: 600;
+			font-size: 20px;
+			line-height: 30px;
+		}
 	}
 `;
 const ProductList = styled.div`
@@ -36,8 +42,8 @@ const ProductList = styled.div`
 `;
 
 const SearchPage = () => {
-	const {searchedItems, fillSearch} = useContext(ProductContext)
-	const[page, setPage] = useState(1);
+	const { searchedItems, fillSearch } = useContext(ProductContext);
+	const [page, setPage] = useState(1);
 	const [isLoading, setIsLoading] = useState(false);
 	const [hasMore, setHasMore] = useState(true);
 
@@ -59,43 +65,43 @@ const SearchPage = () => {
 		// eslint-disable-next-line
 	}, []);
 
-
 	const sendQuery = useCallback(async () => {
 		try {
-		  setIsLoading(true);
-		  const res = await axios.get(`${base_url_vendors}/market?page=${page}&search=${nameFromQuery}`);
+			setIsLoading(true);
+			const res = await axios.get(
+				`${base_url_vendors}/market?page=${page}&search=${nameFromQuery}`
+			);
 
-		  const list = res.data.data.products;
-		  const links = res.data.data.pagination?.links || {};
-		  fillSearch(list)
+			const list = res.data.data.products;
+			const links = res.data.data.pagination?.links || {};
+			fillSearch(list);
 
-		  setHasMore(links?.next_page_url);
-		  setIsLoading(false);
+			setHasMore(links?.next_page_url);
+			setIsLoading(false);
 		} catch (err) {
-			console.log(err)
+			console.log(err);
 		}
 		// eslint-disable-next-line
 	}, [nameFromQuery, page]);
-	
-	  useEffect(()=> {
-			sendQuery();
-		}, [sendQuery, nameFromQuery, page])
 
+	useEffect(() => {
+		sendQuery();
+	}, [sendQuery, nameFromQuery, page]);
 
-		const observer = useRef();
-		const lastListElementRef = useCallback(
-		  (node) => {
+	const observer = useRef();
+	const lastListElementRef = useCallback(
+		(node) => {
 			if (isLoading) return;
 			if (observer.current) observer.current.disconnect();
 			observer.current = new IntersectionObserver((entries) => {
-			  if (entries[0].isIntersecting && hasMore) {
-				setPage((prev) => prev + 1);
-			  }
+				if (entries[0].isIntersecting && hasMore) {
+					setPage((prev) => prev + 1);
+				}
 			});
 			if (node) observer.current.observe(node);
-		  },
-		  [isLoading, hasMore]
-		);
+		},
+		[isLoading, hasMore]
+	);
 
 	const getWishLists = async () => {
 		try {
@@ -129,6 +135,13 @@ const SearchPage = () => {
 					/>
 				))}
 			</ProductList>
+			{searchedItems.length < 1 && !isLoading && (
+				<div>
+					<h1>Oops!</h1>
+					<Spacer y={0.4} />
+					<p className='subtitle-4 subtitle'>Nothing found for '{nameFromQuery}'.</p>
+				</div>
+			)}
 			{isLoading && (
 				<div className='flexRow justifyCenter'>
 					<Loader />

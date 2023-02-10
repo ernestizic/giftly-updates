@@ -1,7 +1,11 @@
 import { getProductCategories } from "api/giftIdeas";
 import styled from "styled-components";
 import useInfiniteScroll from "hooks/useInfiniteScroll";
-import { useState } from "react";
+import { useState, useContext } from "react";
+// import ArrowRight from 'assets/icons/arrow-right.svg';
+// import ArrowLeft from 'assets/icons/arrow-left.svg';
+import { ProductContext } from "context/ProductContext";
+import { useNavigate } from 'react-router-dom';
 
 const MainWrapper = styled.div`
   display: flex;
@@ -11,7 +15,7 @@ const MainWrapper = styled.div`
   gap: 10px;
 
   .trending {
-    p{
+    button{
       color: var(--title-active)
     }
     .tag{
@@ -69,6 +73,8 @@ const Wrapper = styled.div`
 `;
 
 const ProductCategories = ({ setFilters, giftSuggestionModal }) => {
+  const navigate = useNavigate()
+  const {emptySearch} = useContext(ProductContext)
   const { list, lastListElementRef } = useInfiniteScroll(
     getProductCategories,
     "data"
@@ -85,6 +91,11 @@ const ProductCategories = ({ setFilters, giftSuggestionModal }) => {
       setFilters({ categoryId });
     }
   };
+
+  function handleClick(){
+		emptySearch()
+		navigate(`/user/gift-ideas/search?name=valentine`)
+	}
 
   return (
     <MainWrapper giftSuggestionModal={giftSuggestionModal}>
@@ -104,7 +115,7 @@ const ProductCategories = ({ setFilters, giftSuggestionModal }) => {
         </div>
       </Wrapper>
       <div className="trending">
-        <p><b>Trending:</b> <span className="tag">Valentine</span></p>
+        <button onClick={handleClick}><b>Trending:</b> <span className="tag">Valentine</span></button>
       </div>
     </MainWrapper>
   );
