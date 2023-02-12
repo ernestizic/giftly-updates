@@ -70,13 +70,14 @@ const CardOptions = ({ setOpen, slug, wishItem, getWishLists }) => {
 	});
 
 	const archiveFunc = async (wishItem) => {
+		setOpen(false)
 		const visibility = wishItem.visibility === 'private' ? 'public' : 'private';
 		const formData = {
 			...wishItem,
 			visibility,
 		};
 		try {
-			const res = await axios.patch(
+			await axios.patch(
 				`${base_url}/wishlist/${wishItem.id}`,
 				formData,
 				{
@@ -85,8 +86,6 @@ const CardOptions = ({ setOpen, slug, wishItem, getWishLists }) => {
 					},
 				}
 			);
-			const data = res.data;
-			console.log(data);
 			getWishLists();
 			dispatch(
 				setAlert({
@@ -152,10 +151,12 @@ const CardOptions = ({ setOpen, slug, wishItem, getWishLists }) => {
 
 			<button
 				className='flexRow alignCenter item delete'
-				onClick={() =>
+				onClick={() => {
 					location.pathname === '/user/archive'
 						? navigate('/user/archive/delete')
 						: navigate('/user/wish-lists/delete')
+						setOpen(false)
+				}
 				}
 			>
 				<img src={trashIcon} alt='trash' className='icon' />

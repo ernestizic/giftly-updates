@@ -19,7 +19,7 @@ const TabContainer = styled.div`
 		border-bottom: 1px solid var(--line);
 		display: flex;
 		gap: 31px;
-		a {
+		button {
             color: #3D3D3D;
             padding: 0 0px 8px;
 			font-weight: 500;
@@ -60,15 +60,14 @@ const Tab = ({ tabsData }) => {
 			<div className='tab-header-container'>
 				<div className='tab-header'>
 					{tabsData.map((tab, idx) => (
-						<a
-							href='##'
+						<button
 							onClick={() => setIndexOfActiveTab(idx)}
 							key={idx}
 							ref={(el) => (tabsRef.current[idx] = el)}
 							className={indexOfActiveTab === idx ? 'active' : ''}
 						>
 							{tab.label}
-						</a>
+						</button>
 					))}
 				</div>
 				<span

@@ -262,7 +262,7 @@ const Card2 = () => {
               />
               <FormGroup
                 fieldStyle="shortText"
-                label="Find friends"
+                label="https://giftly.me"
                 name="link"
                 value="https://giftly.me/Natasha/Doja"
                 className={`inputField`}

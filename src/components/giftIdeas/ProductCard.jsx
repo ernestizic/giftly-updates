@@ -34,7 +34,6 @@ const Wrapper = styled.div`
   }
 
   .description {
-    background: #fff;
     padding: 16px;
     border-radius: 0 0 8px 8px;
   }
