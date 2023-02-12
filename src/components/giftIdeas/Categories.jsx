@@ -5,7 +5,7 @@ import { useState, useContext, useRef } from "react";
 import ArrowRight from 'assets/icons/arrow-right.svg';
 import ArrowLeft from 'assets/icons/arrow-left.svg';
 import { ProductContext } from "context/ProductContext";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const MainWrapper = styled.div`
   display: flex;
@@ -83,9 +83,10 @@ const Wrapper = styled.div`
   }
 `;
 
-const ProductCategories = ({ setFilters, giftSuggestionModal }) => {
+const ProductCategories = ({ setFilters, giftSuggestionModal, setQuery }) => {
   const ref = useRef(null);
   const navigate = useNavigate()
+  const location = useLocation()
   const {emptySearch} = useContext(ProductContext)
   const { list, lastListElementRef } = useInfiniteScroll(
     getProductCategories,
@@ -106,7 +107,8 @@ const ProductCategories = ({ setFilters, giftSuggestionModal }) => {
 
   function handleClick(){
 		emptySearch()
-		navigate(`/user/gift-ideas/search?name=valentine`)
+		location.pathname.includes("gift-ideas") && navigate(`/user/gift-ideas/search?name=valentine`)
+    setQuery("valentine")
 	}
 
   const scroll = (scrollOffset) => {

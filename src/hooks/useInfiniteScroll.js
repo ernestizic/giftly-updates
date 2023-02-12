@@ -9,6 +9,7 @@ const useInfiniteScroll = (request, listKey) => {
   const [error, setError] = useState(false);
   const [list, setList] = useState([]);
   const [page, setPage] = useState(1);
+  const [query, setQuery] = useState("")
   const [hasMore, setHasMore] = useState(true);
   const [filters, setFilters] = useState();
   const dispatch = useDispatch();
@@ -17,13 +18,17 @@ const useInfiniteScroll = (request, listKey) => {
     setList([]);
     setFilters(val);
   }
+  const updateQuery = (val) => {
+    setList([]);
+    setQuery(val);
+  }
 
   const sendRequest = useCallback(async () => {
     // if (!hasMore) return;
     try {
       setLoading(true);
       setError(false);
-      const res = await request(page, filters);
+      const res = await request(query, page, filters);
   
       if (!res) {
         dispatch(setAlert({
@@ -39,6 +44,7 @@ const useInfiniteScroll = (request, listKey) => {
       setList((prev) => [...prev, ...list]);
       setHasMore(links?.next_page_url);
       setLoading(false);
+      setQuery("")
     } catch (e) {
       console.log(e);
       setError(e);
@@ -48,7 +54,7 @@ const useInfiniteScroll = (request, listKey) => {
       }))
     }
     // eslint-disable-next-line
-  }, [page, filters]);
+  }, [page, filters, query]);
 
   const observer = useRef();
   const lastListElementRef = useCallback(
@@ -67,9 +73,9 @@ const useInfiniteScroll = (request, listKey) => {
 
   useEffect(() => {
     sendRequest();
-  }, [sendRequest, page, filters]);
+  }, [sendRequest, page, filters, query]);
 
-  return { loading, error, list, lastListElementRef, updateFilters };
+  return { loading, error, list, lastListElementRef, updateFilters, updateQuery };
 }
 
 export default useInfiniteScroll;

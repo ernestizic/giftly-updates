@@ -38,7 +38,7 @@ const Product = styled.div`
   grid-gap: 16px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 12px 24px;
+  padding:  ${(props) => props.val ? '30px 24px 12px' : '12px 24px'};
   margin-bottom: 16px;
   position: relative;
 
@@ -83,7 +83,7 @@ const Product = styled.div`
 const ProductItem = forwardRef(({product, selectedProductIds, handleSelect}, ref)=> {
   const val = product.tags?.find((item) => item?.name === 'Valentines')
   return(
-    <Product ref={ref}>
+    <Product ref={ref} val={val ? true : false}>
       <CheckBox
         id={`product_${product.product_id}`}
         name={`product_${product.product_id}`}
@@ -123,7 +123,7 @@ const GiftSuggestions = () => {
   const navigate = useNavigate();
   const tempList = useSelector((state) => state.wishList.tempList);
   const [selectedProductIds, setSelectedProductIds] = useState([]);
-  const { loading, list, lastListElementRef, updateFilters } = useInfiniteScroll(getGiftIdeas, "products");
+  const { loading, list, lastListElementRef, updateFilters, updateQuery } = useInfiniteScroll(getGiftIdeas, "products");
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -177,7 +177,7 @@ const GiftSuggestions = () => {
           Here’s a list of gift suggestions that you can add to your wish list.
         </h3>
         <Spacer y={2.8} />
-        <ProductCategories setFilters={updateFilters} giftSuggestionModal/>
+        <ProductCategories setFilters={updateFilters} giftSuggestionModal setQuery={updateQuery}/>
         <Spacer y={2.4} />
         {list?.map((product, index) => (
           <ProductItem 
