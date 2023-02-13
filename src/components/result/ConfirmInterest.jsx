@@ -48,7 +48,6 @@ const ConfirmInterest = ({ itemId, itemName, username, slug }) => {
       if (!res) {
         setConfirming(false);
         dispatch(setAlert({
-          type: 'error',
           message: 'An error occurred'
         }))
         return;
@@ -59,13 +58,11 @@ const ConfirmInterest = ({ itemId, itemName, username, slug }) => {
         return;
       }
       dispatch(setAlert({
-        type: 'success',
         message: res.data.message
       }))
     } catch (e) {
       setConfirming(false);
       dispatch(setAlert({
-        type: 'error',
         message: e.response?.data.message || "Something went wrong"
       }))
     }

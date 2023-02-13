@@ -183,14 +183,12 @@ const Interests = () => {
 			const data = res.data
       dispatch(setUser({ ...user, interests: formData.interests }))
       dispatch(setAlert({
-        type: 'success',
         message: data.message
       }))
 			setSaving(false)
       navigate("/user/wish-lists");
     } catch (err) {
       dispatch(setAlert({
-        type: 'error',
         message: err.response.data.message || "Something went wrong"
       }))
       setSaving(false)

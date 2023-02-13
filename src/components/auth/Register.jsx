@@ -41,7 +41,6 @@ const Register = () => {
       const res = await axios.post(`${base_url}/auth/register`, cred);
       if (!res) {
         dispatch(setAlert({
-          type: 'error',
           message: "An error occurred"
       }))
         return;
@@ -54,12 +53,10 @@ const Register = () => {
         return;
       }
       dispatch(setAlert({
-        type: 'success',
         message: res.data.message
     }))
     } catch (e) {
       dispatch(setAlert({
-        type: 'error',
         message: e.response.data.message
       }))
     }

@@ -62,7 +62,6 @@ const Archive = () => {
 			setIsLoading(false);
 			dispatch(
 				setAlert({
-					type: 'error',
 					message: error.response?.data.message || 'Something went wrong',
 				})
 			);

@@ -89,7 +89,6 @@ const CardOptions = ({ setOpen, slug, wishItem, getWishLists }) => {
 			getWishLists();
 			dispatch(
 				setAlert({
-					type: 'success',
 					message:
 						visibility === 'public'
 							? 'Wishlist restored successfully'
@@ -99,7 +98,6 @@ const CardOptions = ({ setOpen, slug, wishItem, getWishLists }) => {
 		} catch (err) {
 			dispatch(
 				setAlert({
-					type: 'error',
 					message: err.response.data.errors[0].message,
 				})
 			);

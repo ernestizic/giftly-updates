@@ -34,14 +34,12 @@ const PasswordTab = () => {
 			dispatch(setToken(data.data.token.token));
             dispatch(
                 setAlert({
-                    type: 'success',
                     message: data.message,
                 })
             )
 		} catch (e) {
             dispatch(
                 setAlert({
-                    type: 'error',
                     message: e.response.data.message,
                 })
             )

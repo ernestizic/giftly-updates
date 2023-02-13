@@ -32,7 +32,6 @@ const useInfiniteScroll = (request, listKey) => {
   
       if (!res) {
         dispatch(setAlert({
-          type: 'error',
           message: "An error occurred"
         }))
         return;
@@ -49,7 +48,6 @@ const useInfiniteScroll = (request, listKey) => {
       console.log(e);
       setError(e);
       dispatch(setAlert({
-        type: 'error',
         message: e.response?.data.message || "Something went wrong"
       }))
     }

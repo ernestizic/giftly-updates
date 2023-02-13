@@ -7,6 +7,7 @@ export const LeaderboardWrapper = styled.div`
   @media screen and (max-width: 768px) {
     width: calc(100vw - 48px);
     padding-top: 60px;
+      margin-bottom: 20px;
 
     .title {
       font-size: 24px;
@@ -93,7 +94,7 @@ export const UserContainer = styled.div`
 `
 export const UserRow = styled.div`
   margin: 1px auto;
-  max-width: 50%;
+  width: 550px;
   padding: 12px 30px;
   background-color: #fff;
   display: flex;
@@ -126,6 +127,6 @@ export const UserRow = styled.div`
 export const OtherRow = styled.div`
   padding: 12px 0;
   display: grid;
-  grid-template-columns: 1fr 2fr 4fr 3fr;
+  grid-template-columns: 1fr 1fr 4fr 3fr;
   grid-gap: 8px;
 `;

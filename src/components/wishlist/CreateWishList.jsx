@@ -81,7 +81,6 @@ const CreateWishList = () => {
 
     if (!tempListName || !tempListName.length) {
       dispatch(setAlert({
-        type: 'warning',
         message: "Please name your wish list"
       }))
       return;
@@ -89,7 +88,6 @@ const CreateWishList = () => {
 
     if (tempListDescription && tempListDescription.length < 5 ) {
       dispatch(setAlert({
-        type: 'warning',
         message: "Wishlist description is too short"
       }))
       return;
@@ -97,14 +95,13 @@ const CreateWishList = () => {
 
     if (!tempList[0].name) {
       dispatch(setAlert({
-        type: 'warning',
         message: "Please add at least one item"
       }))
       return;
     }
 
     if (invalidLinks.length) {
-      dispatch(setAlert({ type: 'warning', message: "You have entered an invalid URL link" }))
+      dispatch(setAlert({ message: "You have entered an invalid URL link" }))
       return;
     }
 
@@ -122,7 +119,6 @@ const CreateWishList = () => {
 
       if (!res) {
         dispatch(setAlert({
-          type: 'error',
           message: "An error occurred"
         }))
         return;
@@ -131,7 +127,6 @@ const CreateWishList = () => {
       if (res.data.status === "success") {
         dispatch(setTempListId(res.data.data.id));
         dispatch(setAlert({
-          type: 'success',
           message: "Wish list saved"
         }))
         setSaving(false);
@@ -141,13 +136,11 @@ const CreateWishList = () => {
 
       setSaving(false);
       dispatch(setAlert({
-        type: 'success',
         message: res.data.message
       }))
     } catch (e) {
       setSaving(false);
       dispatch(setAlert({
-        type: 'error',
         message: e.response.data.errors[0].message
       }))
     }

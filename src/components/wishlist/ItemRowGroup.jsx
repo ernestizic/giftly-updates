@@ -173,9 +173,7 @@ const ItemRowGroup = ({
       const res = await axios.post(`${base_url}/items/avatar/upload`, formData)
       setFieldValue(index, "avatar", res.data.data.url)
     } catch (error) {
-      console.log(error.response.data.errors[0].message || "An error occured while uploading image!")
       setAlert({
-        type: "error",
         message: error.response.data.errors[0].message || "An error occured while uploading image!"
       })
     }

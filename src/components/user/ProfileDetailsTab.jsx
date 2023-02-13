@@ -57,7 +57,6 @@ const ProfileDetailsTab = () => {
     
           if (!res) {
             dispatch(setAlert({
-              type: 'error',
               message: "An error occurred"
             }))
             return;
@@ -67,18 +66,15 @@ const ProfileDetailsTab = () => {
             // dispatch(setUser({ ...user, avatar: res.data.data }));
             getUser();
             dispatch(setAlert({
-              type: 'success',
               message: res.data.message
             }))
             return;
           }
           dispatch(setAlert({
-            type: 'success',
             message: res.data.message
           }))
         } catch (e) {
           dispatch(setAlert({
-            type: 'error',
             message: e.response.data.message || "Something went wrong"
           }))
         }
@@ -94,7 +90,6 @@ const ProfileDetailsTab = () => {
     
           if (!res) {
             dispatch(setAlert({
-              type: 'error',
               message: "An error occurred"
             }))
             return;
@@ -103,18 +98,15 @@ const ProfileDetailsTab = () => {
           if (res.data.status === "success") {
             dispatch(setUser(res.data.data));
             dispatch(setAlert({
-              type: 'success',
               message: res.data.message
             }))
             return;
           }
           dispatch(setAlert({
-            type: 'success',
             message: res.data.message
           }))
         } catch (e) {
           dispatch(setAlert({
-            type: 'error',
             message: e.response.data.message || "Something went wrong"
           }))
         }
@@ -148,7 +140,6 @@ const ProfileDetailsTab = () => {
     
           if (!res) {
             dispatch(setAlert({
-              type: 'error',
               message: "An error occurred"
             }))
             return;
@@ -157,20 +148,17 @@ const ProfileDetailsTab = () => {
           if (res.data.status === "success") {
             dispatch(setUser(res.data.data));
             dispatch(setAlert({
-              type: 'success',
               message: res.data.message
             }))
             return;
           }
     
           dispatch(setAlert({
-            type: 'success',
             message: res.data.message
           }));
           
         } catch (e) {
           dispatch(setAlert({
-            type: 'error',
             message: e.response.data.message || "Something went wrong"
           }));
         }

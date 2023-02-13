@@ -306,7 +306,6 @@ const ViewWishListItems = () => {
       if (!res) {
         setLoading(false);
         dispatch(setAlert({
-          type: 'error',
           message: "An error occurred"
         }))
         return;
@@ -319,13 +318,11 @@ const ViewWishListItems = () => {
       }
       setLoading(false);
       dispatch(setAlert({
-        type: 'success',
         message: res.data.message
       }))
     } catch (e) {
       setLoading(false);
       dispatch(setAlert({
-        type: 'error',
         message: e.response.data.message || "Something went wrong"
       }))
     }

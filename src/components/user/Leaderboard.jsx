@@ -43,7 +43,6 @@ const Leaderboard = () => {
       if (!res) {
         setLoading(false);
         dispatch(setAlert({
-          type: 'error',
           message: "An error occurred"
         }))
         return;
@@ -57,13 +56,11 @@ const Leaderboard = () => {
       }
       setLoading(false);
       dispatch(setAlert({
-        type: 'success',
         message: res.data.message
       }))
     } catch (e) {
       setLoading(false);
       dispatch(setAlert({
-        type: 'error',
         message: e.response.data.message || "Something went wrong"
       }))
     }
@@ -281,12 +278,12 @@ const Leaderboard = () => {
               </p>
               <div className="flexRow alignCenter">
                 {!currentUser.avatar ? (
-                  <Initials size="32" textSize="16" bg="var(--accent_3-main)">
+                  <Initials size="40" textSize="16" bg="var(--accent_3-main)">
                     {currentUser?.first_name.charAt(0)}
                     {currentUser?.last_name.charAt(0)}
                   </Initials>
                 ) : (
-                  <ImgWrapper size={3.2} imgHeight="100%">
+                  <ImgWrapper size={4} imgHeight="100%">
                     <img
                       src={currentUser.avatar}
                       alt="..."
@@ -310,7 +307,7 @@ const Leaderboard = () => {
               </div>
             </div>
 
-            <p className="body-2 colorTitleActive textRight">
+            <p className="body-2 colorTitleActive">
               {formatNum(currentUser.points)} pts
             </p>
           </UserRow>

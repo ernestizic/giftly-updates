@@ -58,7 +58,6 @@ const Login = () => {
 
       if (!res) {
         dispatch(setAlert({
-          type: 'error',
           message: "An error occurred"
       }))
         return;
@@ -72,12 +71,10 @@ const Login = () => {
         return;
       }
       dispatch(setAlert({
-        type: 'success',
         message: res.data.message
       }))
     } catch (e) {
       dispatch(setAlert({
-        type: 'error',
         message: e.response.data.message
       }))
 
@@ -98,7 +95,6 @@ const Login = () => {
 
     if (emailVerificationMessage) {
       dispatch(setAlert({
-        type: 'success',
         message: emailVerificationMessage
       }))
     }

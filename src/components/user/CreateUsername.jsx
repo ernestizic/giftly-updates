@@ -42,7 +42,6 @@ const CreateUsername = () => {
 			if (!res) {
 				dispatch(
 					setAlert({
-						type: 'error',
 						message: 'An error occurred',
 					})
 				);
@@ -52,7 +51,6 @@ const CreateUsername = () => {
 			if (res.data.status === 'success') {
 				dispatch(
 					setAlert({
-						type: 'success',
 						message: res.data.message,
 					})
 				);
@@ -65,14 +63,12 @@ const CreateUsername = () => {
 
 			dispatch(
 				setAlert({
-					type: 'success',
 					message: res.data.message,
 				})
 			);
 		} catch (e) {
 			dispatch(
 				setAlert({
-					type: 'error',
 					message: e.response.data.errors[0].message || 'Something went wrong',
 				})
 			);

@@ -148,7 +148,6 @@ const ShareList = () => {
 
     /* Alert the copied text */
     dispatch(setAlert({
-      type: 'success',
       message: "Link copied!"
     }))
   };

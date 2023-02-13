@@ -44,18 +44,15 @@ const ForgotPassword = () => {
 
       if (res.data.status === "success") {
         dispatch(setAlert({
-          type: 'success',
           message: res.data.message
         }))
         navigate("/home/password-reset/mail-sent");
       } else if (res.data.status === "failure") {
         dispatch(setAlert({
-          type: 'error',
           message: res.data.message
         }))
       } else {
         dispatch(setAlert({
-          type: 'error',
           message: "An error occurred"
         }))
       }
@@ -63,7 +60,6 @@ const ForgotPassword = () => {
       console.log(e);
       dispatch(
         dispatch(setAlert({
-          type: 'error',
           message: e.response.data.message || "Invalid request. Try again."
         }))
       );
@@ -81,25 +77,21 @@ const ForgotPassword = () => {
 
       if (res.data.status === "success") {
         dispatch(setAlert({
-          type: 'success',
           message: res.data.message
         }))
         navigate("/home/login");
       } else if (res.data.status === "failure") {
         dispatch(setAlert({
-          type: 'error',
           message: res.data.message
         }))
       } else {
         dispatch(setAlert({
-          type: 'error',
           message: "An error occurred"
         }))
       }
     } catch (e) {
       console.log(e);
       dispatch(setAlert({
-        type: 'error',
         message: e.response.data.message || "Invalid request. Try again."
       }))
     }
