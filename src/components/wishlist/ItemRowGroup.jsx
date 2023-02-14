@@ -10,7 +10,6 @@ import MaximizeIcon from 'assets/icons/maximize-icon.svg';
 import MinimizeIcon from 'assets/icons/minimize-icon.svg';
 import TrashIcon from 'assets/icons/trash_danger.svg';
 import CloseIcon from 'assets/icons/close_circle.svg';
-// import CheckBox from "components/global/CheckBox";
 import FormGroup from "components/global/FormGroup";
 import { Formik } from "formik";
 import Spacer from "components/global/Spacer";
@@ -164,6 +163,8 @@ const ItemRowGroup = ({
 		);
 	}, [showAllFields]);
 
+  console.log(rowValues)
+
 
 	const onImageChange =async(e)=> {
     const imgFile = e.target.files[0]
@@ -232,27 +233,6 @@ const ItemRowGroup = ({
           </div>
           <div className="header">
             <div className="flexRow alignCenter">
-              {/* {rowValues?.name && !noCheck && (
-                <>
-                  <CheckBox
-                    id={`status_${rowValues.id}`}
-                    name={`status_${rowValues.id}`}
-                    isChecked={
-                      rowValues.status && rowValues.status !== "pending"
-                    }
-                    onChange={() => {
-                      setFieldValue(
-                        index,
-                        "status",
-                        `${
-                          rowValues.status === "pending" ? "checked" : "pending"
-                        }`
-                      );
-                    }}
-                  />
-                  <Spacer x={0.8} />
-                </>
-              )} */}
               <FormGroup
                 className="mainInput"
                 fieldStyle="shortText"
@@ -325,9 +305,7 @@ const ItemRowGroup = ({
               }
             />
             </div>
-            {/* {errors.description && touched.description ? (
-              <span className='form-error'>{errors.description}</span>
-            ) : null} */}
+
             <div className="actionBtns">
               <button
                 type="button"
