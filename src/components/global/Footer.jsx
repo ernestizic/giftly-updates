@@ -257,7 +257,7 @@ const Footer = () => {
             </Socials>
             <Contact>
               <p className="subtitle-5">Contact</p>
-              <a href="mailto:info@giftly.com">info@giftly.com</a>
+              <a href="mailto:info@giftly.me">info@giftly.me</a>
             </Contact>
           </div>
         </div>
