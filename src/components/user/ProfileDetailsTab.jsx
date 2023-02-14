@@ -248,23 +248,26 @@ const ProfileDetailsTab = () => {
 					await handleSave(values);
 				}}
 			>
-				{({ handleSubmit, isSubmitting, isValid }) => (
+				{({ handleSubmit, isSubmitting, isValid, values }) => (
 					<FormWrapper onSubmit={handleSubmit}>
 						<FormGroup
 							fieldStyle='shortText'
 							label='First name'
 							name='first_name'
+              value={values.first_name}
 						/>
 						<FormGroup
 							fieldStyle='shortText'
 							label='Last name'
 							name='last_name'
+              value={values.last_name}
 						/>
 						<FormGroup
 							fieldStyle='shortText'
 							type='email'
 							label='Email address'
 							name='email'
+              value={values.email}
 							className='spanFull'
 						/>
 						<div className='spanFull'>
@@ -272,6 +275,7 @@ const ProfileDetailsTab = () => {
 								fieldStyle='shortText'
 								label='Username'
 								name='username'
+                value={values.username}
 							/>
 							<span className='body-5 colorGrayScale'>
 								You can only change your username once every 30 days
