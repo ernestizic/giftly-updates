@@ -238,8 +238,9 @@ const ItemRowGroup = ({
                 fieldStyle="shortText"
                 name="name"
                 label="Wish name"
+                value={rowValues.name}
                 onChange={(e) => {
-                  setFieldValue(index, "name", e.target.value.trim());
+                  setFieldValue(index, "name", e.target.value);
                 }}
               />
             </div>
@@ -254,6 +255,7 @@ const ItemRowGroup = ({
                 fieldStyle="shortText"
                 name="link"
                 placeholder="Link e.g https://example.com"
+                value={rowValues.link}
                 onChange={(e) =>
                   setFieldValue(index, "link", e.target.value.trim())
                 }
@@ -274,6 +276,7 @@ const ItemRowGroup = ({
               fieldStyle="shortText"
               name="price" 
               placeholder="Price e.g $30" 
+              value={rowValues.price}
               onChange={(e) =>
                 setFieldValue(index, "price", e.target.value.trim())
               }
@@ -288,6 +291,7 @@ const ItemRowGroup = ({
               name="quantity" 
               type="number"
               placeholder="Quantity e.g 2" 
+              value={rowValues.quantity}
               onChange={(e) =>
                 setFieldValue(index, "quantity", e.target.value.trim())
               }
@@ -300,8 +304,9 @@ const ItemRowGroup = ({
               className="fullWidth"
               fieldStyle="shortText"
               name="description" placeholder="Description" 
+              value={rowValues.description}
               onChange={(e) =>
-                setFieldValue(index, "description", e.target.value.trim())
+                setFieldValue(index, "description", e.target.value)
               }
             />
             </div>

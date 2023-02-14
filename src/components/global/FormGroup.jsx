@@ -183,7 +183,7 @@ const FormGroup = ({
                   toggleLabel(e);
                   field.onBlur(e);
                 }}
-                value={field.value}
+                value={value}
                 autoComplete="off"
                 placeholder={label}
                 {...props}
