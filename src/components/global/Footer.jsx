@@ -19,15 +19,14 @@ const Wrapper = styled.div`
     justify-content: space-between;
 
     .item_1 {
-      width: 40%;
+      width: 403px;
       line-height: 20px;
       .logo{
         padding-bottom: 20px;
       }
     }
     .item_2 {
-      /* border: 1px solid red; */
-      width: 45%;
+      width: 50%;
       display: grid;
       gap: 20px;
       /* grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); */
@@ -62,6 +61,7 @@ const About = styled.div`
   p{
     line-height: 20px;
     font-weight: 600;
+    padding-bottom: 16px;
   }
   ul {
     list-style-type: none;
@@ -69,7 +69,8 @@ const About = styled.div`
     padding: 0;
   }
   li a {
-    margin: 0;
+    display: inline-block;
+    margin-bottom: 16px;
     font-weight: 475;
     font-size: 14px;
     line-height: 30px;
@@ -83,6 +84,7 @@ const Socials = styled.div`
     font-weight: 600;
   }
 & > div {
+  margin: 16px 0;
   display: flex;
 }
 .icon {
@@ -104,10 +106,12 @@ const Contact = styled.div`
   p{
     line-height: 20px;
     font-weight: 600;
+    margin-bottom: 16px;
   }
 `
 const NewsletterSection = styled.div`
   margin-top: 36px;
+  width: 403px;
   max-width: 40%;
   .newsletter {
     background: #1C1C3B;
@@ -129,6 +133,10 @@ const NewsletterSection = styled.div`
         background: #F7F7F7;
         &::placeholder {
           color: #2E2E3A;
+          font-style: normal;
+          font-weight: 475;
+          font-size: 14px;
+          line-height: 20px;
         }
       }
     }
