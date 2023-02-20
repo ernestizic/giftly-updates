@@ -16,7 +16,7 @@ const ItemReserved = ({ link, username, slug }) => {
 				<p className='body-3'>The magic of Giftly ensures that {username} will remain unaware of your claim on this wish.</p>
 				{link && (
 					<>
-						<p className='body-3' style={{marginBottom: "16px"}}>
+						<p className='body-3' style={{wordBreak: "break-all"}}>
 							You can now continue to buy the item: {" "} 
 						<a
 							href={link}
@@ -29,13 +29,15 @@ const ItemReserved = ({ link, username, slug }) => {
 						</p>
 					</>
 				)}
-				<Button
-					text='Done'
-					width='100%'
-					onClick={() => {
-						navigate(basePath);
-					}}
-				/>
+				<div style={{marginTop: "16px"}}>
+					<Button
+						text='Done'
+						width='100%'
+						onClick={() => {
+							navigate(basePath);
+						}}
+					/>
+				</div>
 			</AuthCard>
 		</AuthWrapper>
 	);

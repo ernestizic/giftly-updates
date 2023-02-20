@@ -61,7 +61,7 @@ const ShowInterestModal = ({ item, setOpenShowInterestModal }) => {
 						</header>
 
 						<Spacer y={0.5} />
-						<p>
+						<p className='medium body-2 colorGrayScale'>
 							{item?.price} {item.quantity ? 'x ' + item.quantity : ''}
 						</p>
 						<Spacer y={0.5} />
@@ -69,12 +69,12 @@ const ShowInterestModal = ({ item, setOpenShowInterestModal }) => {
 							href={item.link}
 							target='_blank'
 							rel='noopener noreferrer'
-							className='subtitle-5 colorPrimaryMain'
+							className='body-3 medium colorPrimaryMain'
 						>
 							{item.link}
 						</a>
 						<Spacer y={1.0} />
-						<p>{item.description}</p>
+						<p className='body-3'>{item.description}</p>
 						<ShowInterestButtonContainer>
 							<button
 								type='button'
