@@ -229,7 +229,7 @@ const Footer = () => {
               <p className="subtitle-5">Company</p>
               <ul>
                 <li>
-                  <Link to="##">Blog</Link>
+                  <a href="https://blog.giftly.me/">Blog</a>
                 </li>
                 <li>
                   <Link to="/faqs">FAQs</Link>

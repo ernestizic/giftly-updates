@@ -1,4 +1,5 @@
 import heartIcon from "assets/icons/heart_success_circle.svg";
+import CloseIcon from "assets/icons/close_square.svg";
 import Spacer from "components/global/Spacer";
 import styled from "styled-components";
 import Button from "components/global/Button";
@@ -70,8 +71,13 @@ const ConfirmInterest = ({ itemId, itemName, username, slug }) => {
 
   return (
     <AuthWrapper className="flexColumn alignCenter">
-      <Card className="flexColumn justifyCenter">
-        <img src={heartIcon} alt='confirm interest' width="48px"/>
+      <Card className="flexColumn justifyCenter" padding="24px" width="400px">
+        <div className="flexRow alignCenter justifySpaceBetween">
+          <img src={heartIcon} alt='confirm interest' width="48px"/>
+          <button onClick={() => navigate(-1)}>
+            <img src={CloseIcon} alt='close' />
+          </button>
+        </div>
         <Spacer y={2.4} />
         <h2>
           Confirm interest

@@ -56,7 +56,7 @@ const ShowInterestModal = ({ item, setOpenShowInterestModal }) => {
 				<div className='right-side'>
 					<ModalContent>
 						<header>
-							<StarIcon fill='var(--primary-main)' />
+							{item.priority ? <StarIcon fill="var(--primary-main)" /> : '' } 
 							<h2>{item.name}</h2>
 						</header>
 
