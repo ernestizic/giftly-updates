@@ -11,13 +11,13 @@ export const AuthWrapper = styled(Backdrop)`
 `;
 
 export const AuthCard = styled.div`
-  width: 480px;
+  width: ${(props)=> props.width ? props.width : "480px"};;
   // max-height: 640px;
   // overflow: auto;
   margin: auto;
   background-color: #ffffff;
   border-radius: 16px;
-  padding: 48px;
+  padding: ${(props)=> props.padding ? props.padding : "48px"};
   flex-shrink: 0;
   .sign-in-sub-text{
     text-align: center;

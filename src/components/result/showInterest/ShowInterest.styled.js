@@ -8,8 +8,8 @@ export const Modal = styled.div`
     overflow: hidden;
 	width: 60%;
     max-width: 70%;
-    height: 60%;
-    max-height: 70%;
+    height: 370px;
+    max-height: 370px;
 	display: flex;
     position: absolute;
     left: 50%;
@@ -18,6 +18,9 @@ export const Modal = styled.div`
     transform: translate(-50%, -50%);
     .image-container {
         text-align: center;
+        display: flex;
+        align-items: center;
+        justify-items: center;
         img {
             width: 100%;
             height: 100%;
@@ -135,8 +138,8 @@ export const ModalContent = styled.div`
 
 export const ShowInterestButtonContainer = styled.div`
     position: sticky;
-        bottom: 0;
-        margin: 20px 0 0;
-        padding-top: 10px;
-        background: #fff;
+    bottom: 0;
+    margin: 20px 0 0;
+    padding-top: 10px;
+    background: #fff;
 `

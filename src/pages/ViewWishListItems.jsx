@@ -102,6 +102,7 @@ const Banner = styled.div`
 
   &:last-child {
     margin-bottom: 0;
+    border: none;
   }
 
 
@@ -109,6 +110,7 @@ const Banner = styled.div`
     width: 50%;
     display: flex;
     gap: 16px;
+    align-items: center;
     &:hover {
       cursor: pointer;
     }
@@ -188,6 +190,7 @@ const Banner = styled.div`
       max-height: 108px;
     }
     @media screen and (max-width: 768px) {
+      align-items: start;
       img {
         min-width: 60px;
         height: 60px;
@@ -210,6 +213,10 @@ const Banner = styled.div`
       border: 1px solid #9B9B9B;
       color: #121212;
       background: inherit;
+      font-style: normal;
+      font-weight: 475;
+      font-size: 16px;
+      line-height: 24px;
       &:hover {
         box-shadow: 0px 16px 40px 5px rgba(213, 216, 223, 0.2);
         background: #F7F7FC;

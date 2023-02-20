@@ -1,4 +1,3 @@
-import Spacer from 'components/global/Spacer';
 import Button from 'components/global/Button';
 import { AuthWrapper } from 'components/auth/AuthStyles';
 import { AuthCard } from 'components/auth/AuthStyles';
@@ -10,28 +9,26 @@ const ItemReserved = ({ link, username, slug }) => {
 
 	return (
 		<AuthWrapper className='flexColumn alignCenter'>
-			<AuthCard className='flexColumn justifyCenter'>
-				<h3 className='title-3 colorTitleActive title flexRow alignCenter justifyCenter'>
-					Item reserved
+			<AuthCard className='flexColumn justifyCenter' padding="48px 24px" width="400px">
+				<h3 className='colorTitleActive body-lg-semibold' style={{marginBottom: "16px"}}>
+					Item Reserved
 				</h3>
+				<p className='body-3'>The magic of Giftly ensures that {username} will remain unaware of your claim on this wish.</p>
 				{link && (
 					<>
-						<Spacer y={0.8} />
-						<p className='subtitle-2 textCenter'>
-							You can now continue to buy the item:
-						</p>
-						<Spacer y={0.8} />
+						<p className='body-3' style={{marginBottom: "16px"}}>
+							You can now continue to buy the item: {" "} 
 						<a
 							href={link}
 							rel='noopener noreferrer'
 							target='_blank'
-							className='subtitle-3 colorLink textCenter'
+							className='body-3 colorPrimaryMain'
 						>
 							{link}
 						</a>
+						</p>
 					</>
 				)}
-				<Spacer y={2.4} />
 				<Button
 					text='Done'
 					width='100%'

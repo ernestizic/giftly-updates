@@ -26,6 +26,7 @@ const Wrapper = styled.div`
     font-size: 14px;
     color: #fff;
     background: var(--title-active);
+    width: 327px;
     max-width: 327px;
     word-break: break-all;
     border-radius: 8px;
