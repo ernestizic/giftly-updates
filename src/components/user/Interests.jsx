@@ -55,10 +55,17 @@ const Card = styled(AuthCard)`
     width: 100%;
     height: 100%;
     margin: 0;
-    padding: 0 24px 24px;
+    padding: 0 24px 120px;
     overflow: auto;
     border-radius: 0;
     max-width: 100%;
+    .stickyBottom {
+      border: 1px solid #fff;
+      position: fixed;
+      bottom: 0;
+      padding: 20px 0;
+      width: 89%;
+    }
     .fixed-top {
       h1{
         font-size: 22px;
