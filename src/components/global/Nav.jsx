@@ -279,7 +279,7 @@ const Nav = ({ wt }) => {
       {token ? (
         <div className="flexRow alignCenter">
           <Link to="/user/wish-lists" className="body-3 colorWhite">
-            Back to account
+            Back to Dashboard
           </Link>
         </div>
       ) : (

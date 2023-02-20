@@ -8,7 +8,8 @@ import {
 	Modal,
 	ModalContent,
 	ShowInterestContainer,
-    ButtonContainer
+    ButtonContainer,
+	ShowInterestButtonContainer
 } from './ShowInterest.styled';
 import { useNavigate } from 'react-router-dom';
 import { base_url_vendors } from 'utils/utils';
@@ -74,14 +75,16 @@ const ShowInterestModal = ({ item, setOpenShowInterestModal }) => {
 						</a>
 						<Spacer y={1.0} />
 						<p>{item.description}</p>
-                        <button
-                            type='button'
-                            className='showInterest'
-                            onClick={() => showInterest(item)}
-                        >
-                            <img src={heartIcon} alt='heart' />
-                            <span className='text'>Show interest</span>
-                        </button>
+						<ShowInterestButtonContainer>
+							<button
+								type='button'
+								className='showInterest'
+								onClick={() => showInterest(item)}
+							>
+								<img src={heartIcon} alt='heart' />
+								<span className='text'>Show interest</span>
+							</button>
+						</ShowInterestButtonContainer>
 					</ModalContent>
 				</div>
 			</Modal>

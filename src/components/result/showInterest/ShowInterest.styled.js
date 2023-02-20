@@ -105,9 +105,6 @@ export const ModalContent = styled.div`
         }
 	}
     .showInterest {
-        position: sticky;
-        bottom: 0;
-        margin: 20px 0 0;
         width: 100%;
         justify-content: center;
         display: flex;
@@ -121,7 +118,6 @@ export const ModalContent = styled.div`
         transition: all 0.2s ease-out;
         border: 1px solid #9B9B9B;
         color: #121212;
-        background: inherit;
         &:hover {
             box-shadow: 0px 16px 40px 5px rgba(213, 216, 223, 0.2);
             background: #F7F7FC;
@@ -136,3 +132,11 @@ export const ModalContent = styled.div`
         padding: 0;
     }
 `;
+
+export const ShowInterestButtonContainer = styled.div`
+    position: sticky;
+        bottom: 0;
+        margin: 20px 0 0;
+        padding-top: 10px;
+        background: #fff;
+`

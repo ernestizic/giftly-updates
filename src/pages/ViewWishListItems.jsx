@@ -1,11 +1,8 @@
-import ImgWrapper from "components/global/ImgWrapper";
 import Nav from "components/global/Nav";
 import styled from "styled-components";
 import openBox from "assets/images/open_box.svg";
 import NoImage from 'assets/images/no-image.svg'
-// import Star from "assets/icons/star-colored.svg";
 import heartIcon from "assets/icons/heart.svg";
-// import BackArrowIcon from "assets/icons/back-arrow-red.svg";
 import Spacer from "components/global/Spacer";
 import Sec2 from "components/landing/components/Sec2";
 import { Route, Routes, useNavigate } from "react-router";
@@ -36,10 +33,6 @@ const Wrapper = styled.div`
     gap: 4px;
   }
   @media screen and (max-width: 768px) {
-    /* .prompt1 {
-      font-size: 14px;
-      line-height: 18px;
-    } */
     .back-btn {
       margin: 10px;
       padding: 5px;
@@ -47,29 +40,37 @@ const Wrapper = styled.div`
   }
 `;
 
+const HeaderContainer = styled.div`
+  background-color: var(--title-active);
+  
+`
+
 const Header = styled.div`
-  padding: 20px 120px;
-  background-color: #fff;
-  display: flex;
-  gap: 25px;
-  align-items: center;
+  padding: 48px 0;
+  max-width: 610px;
+  margin: auto;
+  color: #fff;
+  text-align: center;
+
+  img {
+    border-radius: 50%;
+    margin-bottom: 16px;
+  }
 
   .profile {
     h1{
       font-style: normal;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 36px;
       line-height: 45px;
     }
   }
 
   .username{
-    color: var(--primary-dark)
+    color: var(--accent_1-main);
   }
   @media screen and (max-width: 768px) {
-    padding: 10px;
-    flex-direction: column;
-    text-align: center;
+    padding: 48px 40px;
     h1{
       font-size: 18px;
     }
@@ -341,30 +342,20 @@ const ViewWishListItems = () => {
     setAvatar(data.data.avatar)
   })()
 
-  // function goBack() {
-  //   token ? navigate('/user') : navigate('/')
-  // }
-
   return (
     <Wrapper>
-      {/* <div style={{borderBottom: '1px solid #f0f0f0'}}>
-      </div> */}
         <Nav />
-      {/* <button className="back-btn" type="button" onClick={goBack}>
-        <img src={BackArrowIcon} alt="back arrow"/>
-        Back to Dashboard
-      </button> */}
 
       {!loading && !wishList?.items?.length && (
-        <Header className="flexColumn alignCenter">
-          <ImgWrapper size={16} imgHeight="100%">
-            <img src={avatar ? avatar : openBox} alt="user avatar" className="userImage" />
-          </ImgWrapper>
-          <Spacer y={0.8} />
-          <h3 className="title-3 colorWhite textCenter listTitle">
-            No items here...
-          </h3>
-        </Header>
+        <HeaderContainer>
+          <Header className="flexColumn alignCenter">
+            <img src={avatar ? avatar : openBox} alt="user avatar" className="userImage" width="120px" height="120px" />
+            <Spacer y={0.8} />
+            <h3 className="title-3 colorWhite textCenter listTitle">
+              No items here...
+            </h3>
+          </Header>
+        </HeaderContainer>
       )}
       {loading ? (
         <>
@@ -376,32 +367,23 @@ const ViewWishListItems = () => {
         </>
       ) : !!wishList?.items?.length ? (
         <>
-          <Header>
-            <ImgWrapper size={16} imgHeight="100%">
-              <img src={avatar ? avatar : openBox} alt="..." className="userImage" width="120px" height="120px" />
-            </ImgWrapper>
-            <div className="profile">
-              <h1>{wishList?.title}</h1>
-              <Spacer y={0.4} />
-              <p className="body-2 listTitle">
-                {wishList.description}
-              </p>
-              <Spacer y={0.4} />
-              <p className="body-3 subtitle">
-                By <span className="username">{username}</span>
-              </p>
-            </div>
-          </Header>
-          <ListItems>
-            {/* <div className="flexRow justifyEnd">
-              <div className="flexRow alignCenter">
-                <p className="body-3 colorTitleActive prompt1">
-                  Reserve items here
+          <HeaderContainer>
+            <Header>
+                <img src={avatar ? avatar : openBox} alt="..." className="userImage" width="120px" height="120px" />
+              <div className="profile">
+                <h1>{wishList?.title}</h1>
+                <Spacer y={0.4} />
+                <p className="body-2 listTitle">
+                  {wishList.description}
                 </p>
-                <Spacer x={0.8} />
-                <img src={arrowDowm} alt="arrow" />
+                <Spacer y={0.4} />
+                <p className="body-3 subtitle">
+                  By <span className="username">@{username}</span>
+                </p>
               </div>
-            </div> */}
+            </Header>
+          </HeaderContainer>
+          <ListItems>
             <Spacer y={2.4} />
             {wishList?.items?.map((item, index) => (
               <Banner
