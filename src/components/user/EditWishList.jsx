@@ -160,7 +160,6 @@ const EditWishList = ({ getWishLists }) => {
 
     if (!tempListName || !tempListName.length) {
       dispatch(setAlert({
-        type: 'warning',
         message: "Please name your wish list"
       }))
       return;
@@ -168,7 +167,6 @@ const EditWishList = ({ getWishLists }) => {
 
     if (tempListDescription && tempListDescription.length < 5 ) {
       dispatch(setAlert({
-        type: 'warning',
         message: "Wishlist description is too short"
       }))
       return;
@@ -176,7 +174,6 @@ const EditWishList = ({ getWishLists }) => {
 
     if (invalidLinks.length) {
       dispatch(setAlert({
-        type: 'warning',
         message: "You have entered an invalid URL link"
       }))
       return;
@@ -228,7 +225,6 @@ const EditWishList = ({ getWishLists }) => {
       if (res.data.status === "success") {
         dispatch(setTempListId(res.data.data.id));
         dispatch(setAlert({
-          type: 'success',
           message: "Wish list saved"
         }))
         setSaving(false);
@@ -240,14 +236,12 @@ const EditWishList = ({ getWishLists }) => {
 
       setSaving(false);
       dispatch(setAlert({
-        type: 'error',
         message: res.data.message
       }))
     } catch (e) {
       setSaving(false);
       console.log(e.response.data)
       dispatch(setAlert({
-        type: 'error',
         message: e.response.data.errors[0].message || "Something went wrong"
       }))
     }

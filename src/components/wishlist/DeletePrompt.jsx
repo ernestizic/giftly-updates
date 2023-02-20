@@ -76,7 +76,6 @@ const DeletePrompt = ({ getWishLists, redirect }) => {
       if (!res) {
         setDeleting(false);
         dispatch(setAlert({
-          type: 'error',
           message: "An error occurred"
         }))
         return;
@@ -86,7 +85,6 @@ const DeletePrompt = ({ getWishLists, redirect }) => {
         getWishLists();
         dispatch(clearTempList());
         dispatch(setAlert({
-          type: 'success',
           message: "List deleted"
         }))
         navigate(-1);
@@ -94,13 +92,11 @@ const DeletePrompt = ({ getWishLists, redirect }) => {
       }
       setDeleting(false);
       dispatch(setAlert({
-        type: 'success',
         message: res.data.message
       }))
     } catch (e) {
       setDeleting(false);
       dispatch(setAlert({
-        type: 'error',
         message: e.response?.data.message || "Something went wrong"
       }))
     }

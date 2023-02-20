@@ -37,13 +37,11 @@ const VerifyEmail = () => {
 			const res = await axios.post(`${base_url}/auth/email/verify/resend/${userEmail}`)
 			const data = res.data
 			dispatch(setAlert({
-				type: 'success',
 				message: data.message
 			}))
 			setIsLoading(false)
 		} catch (err) {
 			dispatch(setAlert({
-				type: 'error',
 				message: err.response.data.message || "Something went wrong"
 			}))
 			setIsLoading(false)

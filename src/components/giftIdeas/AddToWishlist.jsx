@@ -104,7 +104,6 @@ const AddToWishlist = ({ wishlists, product }) => {
 
       if (res.data.status === "success") {
         dispatch(setAlert({
-          type: 'success',
           message: res.data.message || "Succesfully added to wishlist",
         }))
       }

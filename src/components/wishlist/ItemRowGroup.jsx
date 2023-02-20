@@ -10,7 +10,6 @@ import MaximizeIcon from 'assets/icons/maximize-icon.svg';
 import MinimizeIcon from 'assets/icons/minimize-icon.svg';
 import TrashIcon from 'assets/icons/trash_danger.svg';
 import CloseIcon from 'assets/icons/close_circle.svg';
-// import CheckBox from "components/global/CheckBox";
 import FormGroup from "components/global/FormGroup";
 import { Formik } from "formik";
 import Spacer from "components/global/Spacer";
@@ -164,6 +163,8 @@ const ItemRowGroup = ({
 		);
 	}, [showAllFields]);
 
+  console.log(rowValues)
+
 
 	const onImageChange =async(e)=> {
     const imgFile = e.target.files[0]
@@ -173,9 +174,7 @@ const ItemRowGroup = ({
       const res = await axios.post(`${base_url}/items/avatar/upload`, formData)
       setFieldValue(index, "avatar", res.data.data.url)
     } catch (error) {
-      console.log(error.response.data.errors[0].message || "An error occured while uploading image!")
       setAlert({
-        type: "error",
         message: error.response.data.errors[0].message || "An error occured while uploading image!"
       })
     }
@@ -234,34 +233,14 @@ const ItemRowGroup = ({
           </div>
           <div className="header">
             <div className="flexRow alignCenter">
-              {/* {rowValues?.name && !noCheck && (
-                <>
-                  <CheckBox
-                    id={`status_${rowValues.id}`}
-                    name={`status_${rowValues.id}`}
-                    isChecked={
-                      rowValues.status && rowValues.status !== "pending"
-                    }
-                    onChange={() => {
-                      setFieldValue(
-                        index,
-                        "status",
-                        `${
-                          rowValues.status === "pending" ? "checked" : "pending"
-                        }`
-                      );
-                    }}
-                  />
-                  <Spacer x={0.8} />
-                </>
-              )} */}
               <FormGroup
                 className="mainInput"
                 fieldStyle="shortText"
                 name="name"
                 label="Wish name"
+                value={rowValues.name}
                 onChange={(e) => {
-                  setFieldValue(index, "name", e.target.value.trim());
+                  setFieldValue(index, "name", e.target.value);
                 }}
               />
             </div>
@@ -276,6 +255,7 @@ const ItemRowGroup = ({
                 fieldStyle="shortText"
                 name="link"
                 placeholder="Link e.g https://example.com"
+                value={rowValues.link}
                 onChange={(e) =>
                   setFieldValue(index, "link", e.target.value.trim())
                 }
@@ -296,6 +276,7 @@ const ItemRowGroup = ({
               fieldStyle="shortText"
               name="price" 
               placeholder="Price e.g $30" 
+              value={rowValues.price}
               onChange={(e) =>
                 setFieldValue(index, "price", e.target.value.trim())
               }
@@ -310,6 +291,7 @@ const ItemRowGroup = ({
               name="quantity" 
               type="number"
               placeholder="Quantity e.g 2" 
+              value={rowValues.quantity}
               onChange={(e) =>
                 setFieldValue(index, "quantity", e.target.value.trim())
               }
@@ -322,14 +304,13 @@ const ItemRowGroup = ({
               className="fullWidth"
               fieldStyle="shortText"
               name="description" placeholder="Description" 
+              value={rowValues.description}
               onChange={(e) =>
-                setFieldValue(index, "description", e.target.value.trim())
+                setFieldValue(index, "description", e.target.value)
               }
             />
             </div>
-            {/* {errors.description && touched.description ? (
-              <span className='form-error'>{errors.description}</span>
-            ) : null} */}
+
             <div className="actionBtns">
               <button
                 type="button"

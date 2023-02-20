@@ -57,7 +57,6 @@ const ProfileDetailsTab = () => {
     
           if (!res) {
             dispatch(setAlert({
-              type: 'error',
               message: "An error occurred"
             }))
             return;
@@ -67,18 +66,15 @@ const ProfileDetailsTab = () => {
             // dispatch(setUser({ ...user, avatar: res.data.data }));
             getUser();
             dispatch(setAlert({
-              type: 'success',
               message: res.data.message
             }))
             return;
           }
           dispatch(setAlert({
-            type: 'success',
             message: res.data.message
           }))
         } catch (e) {
           dispatch(setAlert({
-            type: 'error',
             message: e.response.data.message || "Something went wrong"
           }))
         }
@@ -94,7 +90,6 @@ const ProfileDetailsTab = () => {
     
           if (!res) {
             dispatch(setAlert({
-              type: 'error',
               message: "An error occurred"
             }))
             return;
@@ -103,18 +98,15 @@ const ProfileDetailsTab = () => {
           if (res.data.status === "success") {
             dispatch(setUser(res.data.data));
             dispatch(setAlert({
-              type: 'success',
               message: res.data.message
             }))
             return;
           }
           dispatch(setAlert({
-            type: 'success',
             message: res.data.message
           }))
         } catch (e) {
           dispatch(setAlert({
-            type: 'error',
             message: e.response.data.message || "Something went wrong"
           }))
         }
@@ -148,7 +140,6 @@ const ProfileDetailsTab = () => {
     
           if (!res) {
             dispatch(setAlert({
-              type: 'error',
               message: "An error occurred"
             }))
             return;
@@ -157,20 +148,17 @@ const ProfileDetailsTab = () => {
           if (res.data.status === "success") {
             dispatch(setUser(res.data.data));
             dispatch(setAlert({
-              type: 'success',
               message: res.data.message
             }))
             return;
           }
     
           dispatch(setAlert({
-            type: 'success',
             message: res.data.message
           }));
           
         } catch (e) {
           dispatch(setAlert({
-            type: 'error',
             message: e.response.data.message || "Something went wrong"
           }));
         }
@@ -260,23 +248,26 @@ const ProfileDetailsTab = () => {
 					await handleSave(values);
 				}}
 			>
-				{({ handleSubmit, isSubmitting, isValid }) => (
+				{({ handleSubmit, isSubmitting, isValid, values }) => (
 					<FormWrapper onSubmit={handleSubmit}>
 						<FormGroup
 							fieldStyle='shortText'
 							label='First name'
 							name='first_name'
+              value={values.first_name}
 						/>
 						<FormGroup
 							fieldStyle='shortText'
 							label='Last name'
 							name='last_name'
+              value={values.last_name}
 						/>
 						<FormGroup
 							fieldStyle='shortText'
 							type='email'
 							label='Email address'
 							name='email'
+              value={values.email}
 							className='spanFull'
 						/>
 						<div className='spanFull'>
@@ -284,6 +275,7 @@ const ProfileDetailsTab = () => {
 								fieldStyle='shortText'
 								label='Username'
 								name='username'
+                value={values.username}
 							/>
 							<span className='body-5 colorGrayScale'>
 								You can only change your username once every 30 days

@@ -83,7 +83,6 @@ const CreateUserWishList = ({ getWishLists }) => {
 
     if (!tempListName || !tempListName.length) {
       dispatch(setAlert({
-        type: 'warning',
         message: "Please name your wish list"
       }))
       return;
@@ -91,7 +90,6 @@ const CreateUserWishList = ({ getWishLists }) => {
 
     if (tempListDescription && tempListDescription.length < 5 ) {
       dispatch(setAlert({
-        type: 'warning',
         message: "Wishlist description is too short"
       }))
       return;
@@ -99,7 +97,6 @@ const CreateUserWishList = ({ getWishLists }) => {
 
     if (!tempList[0].name) {
       dispatch(setAlert({
-        type: 'warning',
         message: "Please add at least one item"
       }))
       return;
@@ -107,7 +104,6 @@ const CreateUserWishList = ({ getWishLists }) => {
 
     if (invalidLinks.length) {
       dispatch(setAlert({
-        type: 'warning',
         message: "You have entered an invalid URL link"
       }))
       return;
@@ -132,7 +128,6 @@ const CreateUserWishList = ({ getWishLists }) => {
       if (!res) {
         setSaving(false);
         dispatch(setAlert({
-          type: 'error',
           message: "An error occurred"
         }))
         return;
@@ -143,7 +138,6 @@ const CreateUserWishList = ({ getWishLists }) => {
         setSaving(false);
         dispatch(setTempListSlug(res.data.data.slug));
         dispatch(setAlert({
-          type: 'success',
           message: "Wish list saved"
         }))
         dispatch(clearTempList());
@@ -156,14 +150,12 @@ const CreateUserWishList = ({ getWishLists }) => {
       setSaving(false);
       console.log(res.data)
       dispatch(setAlert({
-        type: 'error',
         message: res.data.message
       }))
     } catch (e) {
       console.log(e.response.data.errors)
       setSaving(false);
       dispatch(setAlert({
-        type: 'error',
         message: e.response.data.errors[0].message
       }))
     }

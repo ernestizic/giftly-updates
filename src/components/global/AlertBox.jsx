@@ -17,15 +17,19 @@ const Wrapper = styled.div`
   top: 108px;
   left: 50%;
   transform: translateX(-50%);
-  width: 400px;
-  max-width: 80%;
   opacity: 0;
   pointer-events: none;
   transition: all 0.2s ease-out;
   
   & > div{
+    font-weight: 500;
+    font-size: 14px;
+    color: #fff;
+    background: var(--title-active);
+    max-width: 327px;
+    word-break: break-all;
     border-radius: 8px;
-    padding: 12px;
+    padding: 16px;
     gap: 16px;
   }
 
@@ -104,7 +108,7 @@ const AlertBox = ({ message, type }) => {
         <div className="flexRow alignCenter" style={{gap: '8px'}}>
           {getIcon(type)}
 
-          <span className={`body-3 ${type}`}>{message}</span>
+          <span className={`${type}`}>{message}</span>
         </div>
         <button
           type="button"

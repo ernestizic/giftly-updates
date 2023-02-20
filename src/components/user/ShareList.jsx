@@ -1,14 +1,15 @@
 import { AuthCard, AuthWrapper } from "components/auth/AuthStyles";
-import {
-  setAlert
-} from "features/alert/alertSlice";
 import { useDispatch, useSelector } from "react-redux";
+
 import CheckIcon from "assets/icons/check-glow.svg"
 import CloseModal from "components/global/CloseModal";
 import FormGroupCustom from "components/global/FormGroupCustom";
 import Spacer from "components/global/Spacer";
 import copyIcon from "assets/icons/document_copy.svg";
 import facebookIcon from "assets/icons/facebook.svg";
+import {
+  setAlert
+} from "features/alert/alertSlice";
 import styled from "styled-components";
 import telegramIcon from "assets/icons/telegram.svg";
 import twitterIcon from "assets/icons/twitter.svg";
@@ -148,7 +149,6 @@ const ShareList = () => {
 
     /* Alert the copied text */
     dispatch(setAlert({
-      type: 'success',
       message: "Link copied!"
     }))
   };
@@ -162,7 +162,7 @@ const ShareList = () => {
             <CloseModal callback={() => navigate("/user/wish-lists")} />
           </div>
           <h4 className="title-4 title colorTitleActive">Share wish list</h4>
-          <p className="subtext">This blog post has been published. Team members will be able to edit this post and republish changes.</p>
+          <p className="subtext">You have created a wish list, now it's time to share it with your family and friends to receive the most desirable gifts.</p>
           <Spacer y={2.4} />
           <div className="socials">
             {Object.keys(socials)?.map((key, index) => (

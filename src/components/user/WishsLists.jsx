@@ -80,7 +80,6 @@ const WishsLists = () => {
       if (!res) {
         setLoading(false);
         dispatch(setAlert({
-          type: 'error',
           message: "An error occurred"
         }))
         return;
@@ -94,13 +93,11 @@ const WishsLists = () => {
       }
       setLoading(false);
       dispatch(setAlert({
-        type: 'success',
         message: res.data.message
       }))
     } catch (e) {
       setLoading(false);
       dispatch(setAlert({
-        type: 'error',
         message: e.response?.data.message || "Something went wrong"
       }))
     }
